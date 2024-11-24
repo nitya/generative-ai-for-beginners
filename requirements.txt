@@ -7,3 +7,4 @@ python-dotenv==1.0.0
 openai>=0.28.0
 tiktoken
 azure-ai-inference
+mkdocs-material
