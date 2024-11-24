@@ -1,0 +1,1346 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/02-exploring-and-comparing-different-llms/translations/pt-br/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Explorando e comparando diferentes LLMs - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#explorando-e-comparando-diferentes-llms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Explorando e comparando diferentes LLMs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos-de-aprendizagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos de aprendizagem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entenda-diferentes-tipos-de-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entenda diferentes tipos de LLMs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entenda diferentes tipos de LLMs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modelos-de-base-versus-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelos de base versus LLMs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelos-de-codigo-aberto-versus-modelos-proprietarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelos de Código Aberto versus Modelos Proprietários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embeddings-versus-geracao-de-imagem-versus-geracao-de-texto-e-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embeddings versus Geração de Imagem versus Geração de Texto e Código
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encoder-decoder-versus-decoder-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encoder-Decoder versus Decoder-only
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servico-versus-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Serviço versus Modelo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-testar-e-iterar-com-diferentes-modelos-para-entender-o-desempenho-no-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como testar e iterar com diferentes modelos para entender o desempenho no Azure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#melhorando-os-resultados-dos-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Melhorando os Resultados dos LLMs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Melhorando os Resultados dos LLMs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#engenharia-de-prompts-com-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Engenharia de Prompts com Contexto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recuperacao-de-geracao-aumentada-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recuperação de Geração Aumentada (RAG)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelo-ajustado-fino" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelo Ajustado Fino
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelo-treinado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelo Treinado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao-de-conhecimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificação de Conhecimento
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desafio" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Desafio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#otimo-trabalho-continue-com-seu-aprendizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ótimo Trabalho, Continue com Seu Aprendizado
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="explorando-e-comparando-diferentes-llms">Explorando e comparando diferentes LLMs<a class="headerlink" href="#explorando-e-comparando-diferentes-llms" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson2-gh?WT.mc_id=academic-105485-koreystt"><img alt="Exploring and comparing different LLMs" src="../../images/02-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<blockquote>
+<p><em>Clique na imagem acima para ver o vídeo desta lição</em></p>
+</blockquote>
+<p>Na lição anterior, vimos como a IA generativa está mudando o cenário tecnológico, como os Grandes Modelos de Linguagens (LLMs) funcionam e como uma empresa - como nossa startup - pode aplicá-los aos seus casos de uso e crescer! Neste capítulo, estamos procurando comparar e contrastar diferentes tipos de modelos de linguagem grandes, LLMs para entender seus prós e contras.</p>
+<p>O próximo passo na jornada de nossa startup é explorar o cenário atual dos Grandes Modelos de Linguagem (LLMs) e entender quais são adequados para nosso caso de uso.</p>
+<h2 id="introducao">Introdução<a class="headerlink" href="#introducao" title="Permanent link">&para;</a></h2>
+<p>Esta lição abordará:</p>
+<ul>
+<li>Diferentes tipos de LLMs no cenário atual.</li>
+<li>Testar, iterar e comparar diferentes modelos para seu caso de uso no Azure.</li>
+<li>Como implantar um LLM.</li>
+</ul>
+<h2 id="objetivos-de-aprendizagem">Objetivos de aprendizagem<a class="headerlink" href="#objetivos-de-aprendizagem" title="Permanent link">&para;</a></h2>
+<p>Após a conclusão desta lição, você será capaz de:</p>
+<ul>
+<li>Selecionar o modelo certo para seu caso de uso.</li>
+<li>Entender como testar, iterar e melhorar o desempenho do seu modelo.</li>
+<li>Saber como as empresas implantam modelos.</li>
+</ul>
+<h2 id="entenda-diferentes-tipos-de-llms">Entenda diferentes tipos de LLMs<a class="headerlink" href="#entenda-diferentes-tipos-de-llms" title="Permanent link">&para;</a></h2>
+<p>Os Grandes Modelos de Linguagem (LLMs) podem ter várias categorizações com base em sua arquitetura, dados de treinamento e caso de uso. Entender essas diferenças ajudará nossa startup a selecionar o modelo certo para o cenário e entender como testar, iterar e melhorar o desempenho.</p>
+<p>Existem muitos tipos diferentes de modelos LLM, sua escolha de modelo depende do que você pretende usá-los, seus dados, quanto você está pronto para pagar e muito mais.</p>
+<p>Dependendo se você pretende usar os modelos para geração de texto, áudio, vídeo ou imagem você pode optar por um tipo diferente de modelo.</p>
+<ul>
+<li>
+<p><strong>Reconhecimento de áudio e fala</strong>: para esse fim, os modelos do tipo Whisper são uma ótima escolha. Pois são de propósito geral e destinados ao reconhecimento de fala. Ele é treinado em áudio diversificado e pode realizar reconhecimento de fala multilíngue. Saiba mais sobre <a href="https://platform.openai.com/docs/models/whisper?WT.mc_id=academic-105485-koreyst">modelos do tipo Whisper aqui</a>.</p>
+</li>
+<li>
+<p><strong>Geração de Imagem</strong>: para geração de imagem, DALL-E e Midjourney são duas escolhas muito conhecidas. DALL-E é oferecido pelo Azure OpenAI. <a href="https://platform.openai.com/docs/models/dall-e?WT.mc_id=academic-105485-koreyst">Leia mais sobre DALL-E aqui</a> e também no Capítulo 9 deste currículo.</p>
+</li>
+<li>
+<p><strong>Geração de texto</strong>: a maioria dos modelos é treinada na geração de texto e você tem uma grande variedade de escolhas, desde GPT-3.5 até GPT-4. Eles vêm a custos diferentes, sendo o GPT-4 o mais caro. Vale a pena dar uma olhada no <a href="https://oai.azure.com/portal/playground?WT.mc_id=academic-105485-koreyst">Azure Open AI playground</a> para avaliar quais modelos se adequam melhor às suas necessidades em termos de capacidade e custo.</p>
+</li>
+</ul>
+<p>Escolher um modelo significa que você obtém algumas capacidades básicas, que podem não ser suficientes. Muitas vezes, você tem dados específicos da empresa que precisa informar ao LLM. Existem algumas opções diferentes sobre como abordar isso, abordaremos mais sobre isso nas próximas seções.</p>
+<h3 id="modelos-de-base-versus-llms">Modelos de base versus LLMs<a class="headerlink" href="#modelos-de-base-versus-llms" title="Permanent link">&para;</a></h3>
+<p>O termo Modelo de Fundação foi <a href="https://arxiv.org/abs/2108.07258?WT.mc_id=academic-105485-koreyst">criado por pesquisadores de Stanford</a> e definido como um modelo de IA que segue alguns critérios, como:</p>
+<ul>
+<li>
+<p><strong>Eles são treinandos usando aprendizado não supervisionado ou aprendizado auto-supervisionado</strong>, o que significa que são treinados em dados multimodais não rotulados e não requerem anotação humana ou rotulagem de dados para seu processo de treinamento.</p>
+</li>
+<li>
+<p><strong>Eles são modelos muito grandes</strong>, baseados em redes neurais muito profundas treinadas em bilhões de parâmetros.</p>
+</li>
+<li>
+<p><strong>Normalmente, eles são destinados a servir como uma ‘base’ para outros modelos</strong>, o que significa que podem ser usados como ponto de partida para outros modelos serem construídos em cima, o que pode ser feito por ajuste fino.</p>
+</li>
+</ul>
+<p><img alt="Foundation Models versus LLMs" src="../../images/FoundationModel.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>Fonte da imagem: <a href="https://thebabar.medium.com/essential-guide-to-foundation-models-and-large-language-models-27dab58f7404?WT.mc_id=academic-105485-koreyst">Essential Guide to Foundation Models and Large Language Models | by Babar M Bhatti | Medium
+</a></p>
+<p>Para esclarecer ainda mais essa distinção, vamos usar o ChatGPT como exemplo. Para criar a primeira versão do ChatGPT, um modelo chamado GPT-3.5 serviu como modelo fundamental. Isso significa que a OpenAI utilizou alguns dados específicos de conversação para criar uma versão ajustada do GPT-3.5 que foi especializada em se sair bem em cenários de conversação, como chatbots.</p>
+<p><img alt="Foundation Model" src="../../images/Multimodal.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>Fonte da imagem: <a href="https://arxiv.org/pdf/2108.07258.pdf?WT.mc_id=academic-105485-koreyst">2108.07258.pdf (arxiv.org)</a></p>
+<h3 id="modelos-de-codigo-aberto-versus-modelos-proprietarios">Modelos de Código Aberto versus Modelos Proprietários<a class="headerlink" href="#modelos-de-codigo-aberto-versus-modelos-proprietarios" title="Permanent link">&para;</a></h3>
+<p>Outra maneira de categorizar os Modelos de Linguagem de Grande Escala (LLMs) é se eles são de código aberto ou proprietários.</p>
+<p>Os modelos de código aberto são modelos que são disponibilizados ao público e podem ser usados por qualquer pessoa. Eles são frequentemente disponibilizados pela empresa que os criou ou pela comunidade de pesquisa. Esses modelos podem ser inspecionados, modificados e personalizados para diversos casos de uso em LLMs. No entanto, nem sempre são otimizados para uso em produção e podem não ser tão eficientes quanto os modelos proprietários. Além disso, o financiamento para modelos de código aberto pode ser limitado, e eles podem não ser mantidos a longo prazo ou não ser atualizados com as pesquisas mais recentes. Exemplos de modelos de código aberto populares incluem <a href="https://crfm.stanford.edu/2023/03/13/alpaca.html?WT.mc_id=academic-105485-koreyst">Alpaca</a>, <a href="https://huggingface.co/bigscience/bloom">Bloom</a> e <a href="https://llama.meta.com">LLaMA</a>.</p>
+<p>Os modelos proprietários são modelos de propriedade de uma empresa e não são disponibilizados ao público. Esses modelos são frequentemente otimizados para uso em produção. No entanto, não podem ser inspecionados, modificados ou personalizados para diferentes casos de uso. Além disso, nem sempre estão disponíveis gratuitamente e podem exigir uma assinatura ou pagamento para uso. Além disso, os usuários não têm controle sobre os dados usados para treinar o modelo, o que significa que devem confiar ao proprietário do modelo o compromisso com a privacidade dos dados e o uso responsável da IA. Exemplos de modelos proprietários populares incluem <a href="https://platform.openai.com/docs/models/overview?WT.mc_id=academic-105485-koreyst">modelos da OpenAI</a>, <a href="https://sapling.ai/llm/bard?WT.mc_id=academic-105485-koreyst">Google Bard</a> ou <a href="https://www.anthropic.com/index/claude-2?WT.mc_id=academic-105485-koreyst">Claude 2</a>.</p>
+<h3 id="embeddings-versus-geracao-de-imagem-versus-geracao-de-texto-e-codigo">Embeddings versus Geração de Imagem versus Geração de Texto e Código<a class="headerlink" href="#embeddings-versus-geracao-de-imagem-versus-geracao-de-texto-e-codigo" title="Permanent link">&para;</a></h3>
+<p>Os LLMs também podem ser categorizados com base na saída que geram.</p>
+<p>Os <code>embeddings</code> são um conjunto de modelos que podem converter texto em uma forma numérica, chamada <code>embedding</code>, que é uma representação numérica do texto de entrada. Os <code>embeddings</code> facilitam a compreensão das relações entre palavras ou frases por máquinas e podem ser usadas como entradas por outros modelos, como modelos de classificação ou modelos de agrupamento que têm um melhor desempenho com dados numéricos. Modelos de incorporação são frequentemente usados para aprendizado por transferência, onde um modelo é construído para uma tarefa substituta para a qual há uma abundância de dados, e em seguida, os pesos do modelo (<code>embeddings</code>) são reutilizados para outras tarefas subsequentes. Um exemplo desta categoria é <a href="https://platform.openai.com/docs/models/embeddings?WT.mc_id=academic-105485-koreyst">Embeddings no OpenAI</a>.</p>
+<p><img alt="Embedding" src="../../images/Embedding.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>Modelos de geração de imagem são modelos que geram imagens. Esses modelos são frequentemente usados para edição de imagens, síntese de imagens e tradução de imagens. Modelos de geração de imagem são frequentemente treinados em grandes conjuntos de dados de imagens, como <a href="https://laion.ai/blog/laion-5b/?WT.mc_id=academic-105485-koreyst">LAION-5B</a>, e podem ser usados para gerar novas imagens ou editar imagens existentes com técnicas de inpainting, super-resolução e colorização. Exemplos incluem <a href="https://openai.com/dall-e-3?WT.mc_id=academic-105485-koreyst">DALL-E-3</a> e <a href="https://github.com/Stability-AI/StableDiffusion?WT.mc_id=academic-105485-koreyst">modelos do Stable Diffusion</a>.</p>
+<p><img alt="Image Generation" src="../../images/Image.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>Modelos de geração de texto e código são modelos que geram texto ou código. Esses modelos são frequentemente usados para resumir texto, traduzir e responder a perguntas. Modelos de geração de texto são frequentemente treinados em grandes conjuntos de dados de texto, como <a href="https://www.cv-foundation.org/openaccess/content_iccv_2015/html/Zhu_Aligning_Books_and_ICCV_2015_paper.html?WT.mc_id=academic-105485-koreyst">BookCorpus</a>, e podem ser usados para gerar novo texto ou responder a perguntas. Modelos de geração de código, como <a href="https://huggingface.co/codeparrot?WT.mc_id=academic-105485-koreyst">CodeParrot</a>, são frequentemente treinados em grandes conjuntos de dados de código, como o GitHub, e podem ser usados para gerar novo código ou corrigir bugs em código existente.</p>
+<p><img alt="Text and code generation" src="../../images/Text.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h3 id="encoder-decoder-versus-decoder-only">Encoder-Decoder versus Decoder-only<a class="headerlink" href="#encoder-decoder-versus-decoder-only" title="Permanent link">&para;</a></h3>
+<p>Para falar sobre os diferentes tipos de arquiteturas de Grandes Modelos de Linguagem (LLMs), vamos usar uma analogia.</p>
+<p>Imagine que seu gerente te deu uma tarefa de escrever um questionário para os alunos. Você tem dois colegas; um supervisiona a criação do conteúdo e o outro supervisiona a revisão.</p>
+<p>O criador de conteúdo é como um modelo somente <code>Decoder</code>, ele pode olhar para o tópico e ver o que você já escreveu e então ele pode escrever um curso com base nisso. Eles são muito bons em escrever conteúdo envolvente e informativo, mas não são muito bons em entender o tópico e os objetivos de aprendizado. Alguns exemplos de modelos Decodificadores são os modelos da família GPT, como o GPT-3.</p>
+<p>O revisor é como um modelo somente <code>Encoder</code>, eles olham para o curso escrito e as respostas, percebendo a relação entre eles e entendendo o contexto, mas não são bons em gerar conteúdo. Um exemplo de modelo somente Codificador seria o BERT.</p>
+<p>Imagine que também podemos ter alguém que possa criar e revisar o questionário, este é um modelo <code>Encoder-Decoder</code>. Alguns exemplos seriam <code>BART</code> e <code>T5</code>.</p>
+<h3 id="servico-versus-modelo">Serviço versus Modelo<a class="headerlink" href="#servico-versus-modelo" title="Permanent link">&para;</a></h3>
+<p>Agora, vamos falar sobre a diferença entre um serviço e um modelo. Um serviço é um produto oferecido por um Provedor de Serviços em Nuvem e é frequentemente uma combinação de modelos, dados e outros componentes. Um modelo é o componente central de um serviço e é frequentemente um modelo fundamental, como um LLM.</p>
+<p>Os serviços são frequentemente otimizados para uso em produção e muitas vezes são mais fáceis de usar do que os modelos, por meio de uma interface gráfica de usuário. No entanto, os serviços nem sempre estão disponíveis gratuitamente e podem exigir uma assinatura ou pagamento para uso, em troca de aproveitar os recursos e equipamentos do proprietário do serviço, otimizando despesas e escalando facilmente. Um exemplo de serviço é o <a href="https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=academic-105485-koreyst">Serviço do Azure OpenAI</a>, que oferece um plano de tarifas pay-as-you-go, o que significa que os usuários são cobrados de acordo com o quanto usam o serviço. Além disso, o serviço do Azure OpenAI oferece segurança de nível empresarial e um framework de IA responsável sobre as capacidades dos modelos.</p>
+<p>Os modelos são apenas as Redes Neurais, com parâmetros, pesos e outros. Isso permite que as empresas os executem localmente. No entanto, elas precisariam comprar equipamentos, criar uma estrutura para escalar e adquirir uma licença ou usar um modelo de código aberto. Um modelo como o <code>LLaMA</code> está disponível para uso, exigindo poder computacional para executar o modelo.</p>
+<h2 id="como-testar-e-iterar-com-diferentes-modelos-para-entender-o-desempenho-no-azure">Como testar e iterar com diferentes modelos para entender o desempenho no Azure<a class="headerlink" href="#como-testar-e-iterar-com-diferentes-modelos-para-entender-o-desempenho-no-azure" title="Permanent link">&para;</a></h2>
+<p>Depois que nossa equipe explorou o cenário atual dos LLMs e identificou alguns bons candidatos para seus cenários, o próximo passo é testá-los em seus dados e carga de trabalho. Isso é um processo iterativo, feito por meio de experimentos e medições.
+A maioria dos modelos mencionados nos parágrafos anteriores (modelos da OpenAI, modelos de código aberto como <code>Llama2</code> e <code>Hugging Face transformers</code>) está disponível no <a href="https://learn.microsoft.com/azure/machine-learning/concept-foundation-models?WT.mc_id=academic-105485-koreyst">Foundation Models</a> no <a href="https://ml.azure.com/?WT.mc_id=academic-105485-koreyst">Azure Machine Learning studio</a>.</p>
+<p><a href="https://azure.microsoft.com/products/machine-learning/?WT.mc_id=academic-105485-koreyst">Azure Machine Learning</a> é um serviço em nuvem projetado para Cientistas de Dados e Engenheiros de Machine Learning que gerenciam o ciclo completo de Aprendizado de Máquina (treinamento, teste, implantação e gerenciamento de MLOps) em uma única plataforma. O Machine Learning Studio oferece uma interface gráfica de usuário para este serviço e permite ao usuário:</p>
+<ul>
+<li>Encontrar o Foundation Model de interesse no catálogo, filtrando por tarefa, licença ou nome. Também é possível importar novos modelos que ainda não estejam incluídos no catálogo.</li>
+<li>Analisar o cartão do modelo, incluindo uma descrição detalhada e exemplos de código, e testá-lo com o widget de Inferência de Amostra, fornecendo um prompt de amostra para testar o resultado.</li>
+</ul>
+<p><img alt="Cartão do Modelo" src="../../images/Llama1.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ul>
+<li>Avaliar o desempenho do modelo com métricas de avaliação objetivas em uma carga de trabalho específica e um conjunto de dados específico fornecido como entrada.</li>
+</ul>
+<p><img alt="Avaliação do Modelo" src="../../images/Llama2.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ul>
+<li>Ajustar o modelo com dados de treinamento personalizados para melhorar o desempenho do modelo em uma carga de trabalho específica, aproveitando as capacidades de experimentação e rastreamento do Aprendizado de Máquina do Azure.</li>
+</ul>
+<p><img alt="Ajuste do Modelo" src="../../images/Llama3.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ul>
+<li>Implante o modelo pré-treinado original ou a versão ajustada a um ponto de extremidade remoto em tempo real ou por lote, para permitir que aplicativos o consumam.</li>
+</ul>
+<p><img alt="Implantação do Modelo" src="../../images/Llama4.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="melhorando-os-resultados-dos-llms">Melhorando os Resultados dos LLMs<a class="headerlink" href="#melhorando-os-resultados-dos-llms" title="Permanent link">&para;</a></h2>
+<p>Exploramos com nossa equipe de startup diferentes tipos de Modelos de Linguagem de Grande Escala (LLMs) e uma Plataforma em Nuvem (Azure Machine Learning) que nos permite comparar diferentes modelos, avaliá-los em dados de teste, melhorar o desempenho e implantá-los em pontos de extremidade de inferência.</p>
+<p>Mas quando eles devem considerar o ajuste fino de um modelo em vez de usar um pré-treinado? Existem outras abordagens para melhorar o desempenho do modelo em cargas de trabalho específicas?</p>
+<p>Existem várias abordagens que uma empresa pode usar para obter os resultados desejados de um LLM, você pode selecionar diferentes tipos de modelos com diferentes graus de treinamento.</p>
+<p>Implantar um LLM em produção, com diferentes níveis de complexidade, custo e qualidade. Aqui estão algumas abordagens diferentes:</p>
+<ul>
+<li>
+<p><strong>Engenharia de prompts com contexto</strong>: a ideia é fornecer contexto suficiente ao formular o prompt para garantir que você obtenha as respostas de que precisa.</p>
+</li>
+<li>
+<p><strong>Geração Aprimorada com Recuperação, RAG</strong>: seus dados podem existir em um banco de dados ou ponto de extremidade da web, por exemplo. Para garantir que esses dados, ou um subconjunto deles, estejam incluídos no momento do prompt, você pode buscar os dados relevantes e torná-los parte do prompt do usuário.</p>
+</li>
+<li>
+<p><strong>Modelo ajustado fino</strong>: nesse caso, você treinou o modelo ainda mais com seus próprios dados, o que torna o modelo mais preciso e responsivo às suas necessidades, mas pode ser custoso.</p>
+</li>
+</ul>
+<p><img alt="Implantação de LLMs" src="../../images/Deploy.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>Fonte da imagem: <a href="https://www.fiddler.ai/blog/four-ways-that-enterprises-deploy-llms?WT.mc_id=academic-105485-koreyst">Quatro Maneiras de Empresas Implatarem LLMs | Blog Fiddler AI</a></p>
+<h3 id="engenharia-de-prompts-com-contexto">Engenharia de Prompts com Contexto<a class="headerlink" href="#engenharia-de-prompts-com-contexto" title="Permanent link">&para;</a></h3>
+<p>Os LLMs pré-treinados funcionam muito bem em tarefas de linguagem natural generalizadas, mesmo quando chamados com um prompt curto, como uma frase a ser completada ou uma pergunta - o chamado "aprendizado de zero-shot".</p>
+<p>No entanto, quanto mais o usuário puder estruturar sua consulta, com uma solicitação detalhada e exemplos (o Contexto) mais precisa e próxima das expectativas do usuário será a resposta. Nesse caso, falamos de "aprendizado de um único exemplo" se o prompt incluir apenas um exemplo e "aprendizado de alguns exemplos" se incluir vários exemplos.
+A Engenharia de Prompts com contexto é a abordagem mais econômica para começar.</p>
+<h3 id="recuperacao-de-geracao-aumentada-rag">Recuperação de Geração Aumentada (RAG)<a class="headerlink" href="#recuperacao-de-geracao-aumentada-rag" title="Permanent link">&para;</a></h3>
+<p>Os LLMs têm a limitação de que só podem usar os dados que foram usados durante seu treinamento para gerar uma resposta. Isso significa que eles não sabem nada sobre os fatos que ocorreram após seu processo de treinamento e não podem acessar informações não públicas (como dados de uma empresa).
+Isso pode ser superado por meio do <code>RAG</code>, uma técnica que amplia o prompt com dados externos na forma de trechos de documentos, considerando limites de comprimento do prompt. Isso é suportado por ferramentas de banco de dados vetoriais (como <a href="https://learn.microsoft.com/azure/search/vector-search-overview?WT.mc_id=academic-105485-koreyst">Azure Vector Search</a>) que recuperam trechos úteis de várias fontes de dados predefinidas e os adicionam ao Contexto do prompt.</p>
+<p>Essa técnica é muito útil quando uma empresa não possui dados suficientes, tempo suficiente ou recursos para ajustar finamente um LLM, mas ainda deseja melhorar o desempenho em uma carga de trabalho específica e reduzir os riscos de alucinações. Ou seja, mistificação da realidade ou conteúdo prejudicial.</p>
+<h3 id="modelo-ajustado-fino">Modelo Ajustado Fino<a class="headerlink" href="#modelo-ajustado-fino" title="Permanent link">&para;</a></h3>
+<p>O ajuste fino é um processo que alavanca a aprendizagem por transferência para 'adaptar' o modelo a uma tarefa subsequente ou para resolver um problema específico. Diferentemente do aprendizado de alguns exemplos e do RAG, ele resulta na geração de um novo modelo, com pesos e vieses atualizados. Isso requer um conjunto de exemplos de treinamento consistindo de uma única entrada (o prompt) e sua saída associada (a conclusão).
+Essa seria a abordagem preferida se:</p>
+<ul>
+<li>
+<p><strong>Usando modelos ajustados finamente</strong>: Uma empresa deseja usar modelos menos capazes ajustados finamente (como modelos de incorporação) em vez de modelos de alto desempenho, resultando em uma solução mais econômica e rápida.</p>
+</li>
+<li>
+<p><strong>Considerando a latência</strong>: A latência é importante para um caso de uso específico, portanto, não é possível usar prompts muito longos ou o número de exemplos que devem ser aprendidos a partir do modelo não se encaixa no limite de comprimento do prompt.</p>
+</li>
+<li>
+<p><strong>Mantendo-se atualizado</strong>: Uma empresa possui muitos dados de alta qualidade e rótulos de verdade fundamentais e os recursos necessários para manter esses dados atualizados ao longo do tempo.</p>
+</li>
+</ul>
+<h3 id="modelo-treinado">Modelo Treinado<a class="headerlink" href="#modelo-treinado" title="Permanent link">&para;</a></h3>
+<p>Treinar um LLM a partir do zero é, sem dúvida, a abordagem mais difícil e complexa de adotar, exigindo enormes quantidades de dados, recursos qualificados e poder computacional adequado. Essa opção deve ser considerada apenas em um cenário em que uma empresa possui um caso de uso específico de domínio e uma grande quantidade de dados centrados no domínio.</p>
+<h2 id="verificacao-de-conhecimento">Verificação de Conhecimento<a class="headerlink" href="#verificacao-de-conhecimento" title="Permanent link">&para;</a></h2>
+<p>Qual poderia ser uma boa abordagem para melhorar os resultados de completude do LLM?</p>
+<ol>
+<li>Engenharia de prompts com contexto</li>
+<li>RAG</li>
+<li>Modelo ajustado fino</li>
+</ol>
+<p>R: 3 Pois, se você tem o tempo, os recursos e dados de alta qualidade, o ajuste fino é a melhor opção para se manter atualizado. No entanto, se você está procurando melhorar as coisas e está com pouco tempo, vale a pena considerar o RAG primeiro.</p>
+<h2 id="desafio">🚀 Desafio<a class="headerlink" href="#desafio" title="Permanent link">&para;</a></h2>
+<p>Saiba mais sobre como você pode <a href="https://learn.microsoft.com/azure/search/retrieval-augmented-generation-overview?WT.mc_id=academic-105485-koreyst">usar o RAG</a> para o seu negócio.</p>
+<h2 id="otimo-trabalho-continue-com-seu-aprendizado">Ótimo Trabalho, Continue com Seu Aprendizado<a class="headerlink" href="#otimo-trabalho-continue-com-seu-aprendizado" title="Permanent link">&para;</a></h2>
+<p>Deseja aprender mais sobre diferentes conceitos de IA Generativa? Acesse a <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">página de aprendizado contínuo</a> para encontrar outros ótimos recursos sobre este tópico.</p>
+<p>Vamos para a Lição 3, onde veremos como podemos <a href="../../../03-using-generative-ai-responsibly/translations/pt-br/?WT.mc_id=academic-105485-koreyst">Criar IA Generativa de forma Responsável</a>!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

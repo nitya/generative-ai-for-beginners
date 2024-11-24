@@ -1,0 +1,2043 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/05-advanced-prompts/translations/ja-jp/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>高度なプロンプトの作成 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              高度なプロンプトの作成
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      学習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロンプト・エンジニアリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プロンプト・エンジニアリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロンプトの例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      単純なプロンプトの制限
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロンプトのテクニック
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#few-shot-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Few-shot prompting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain-of-thought" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chain-of-thought
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generated-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generated knowledge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#least-to-most" class="md-nav__link">
+    <span class="md-ellipsis">
+      Least-to-most
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-refine-critique-the-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-refine, critique the results
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maieutic-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maieutic prompting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vary-your-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vary your output
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vary your output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      温度を使用して出力を変化させる
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      おすすめの方法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      課題
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      解決
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      知識チェック
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Challenge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      お疲れ様でした!学習を続ける
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">高度なプロンプトの作成<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson5-gh?WT.mc_id=academic-105485-koreyst"><img alt="高度なプロンプトの作成" src="../../images/05-lesson-banner.png?WT.mc_id=academic-105485-yoterada" /></a></p>
+<p>前章までの学習内容をいくつかおさらいしましょう。</p>
+<blockquote>
+<p>「<em>プロンプト・エンジニアリング</em>」は、より意味のある指示やコンテキスト（文脈）を提供し、「<strong>適切な回答の提供に向けてモデルを導く</strong>」プロセスです。</p>
+</blockquote>
+<p>また、プロンプトを作成するには 2 つの段階があります。
+一つ目は関連する「<em>コンテキスト（文脈）を作成</em>」する手法で、二つ目は「<em>最適化</em>」つまりプロンプトを徐々に改善する手法です。</p>
+<p>これまで、プロンプトの書き方に関連する基本的な内容について学んできましたが、さらに深く掘り下げる必要があります。この章では、さまざまなプロンプトを試し、特定のプロンプトが別のプロンプトよりも優れている理由を理解します。任意の LLM に適用できる、いくつかの基本的な手法に従ってプロンプトを作成する方法について学びます。</p>
+<h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>このレッスンでは、下記の内容について説明します。</p>
+<ul>
+<li>プロンプトに、さまざまな手法を適用し、プロンプト・エンジニアリングの知識の幅を広げます</li>
+<li>出力を変化させるようなプロンプトを作成します</li>
+</ul>
+<h2 id="_3">学習目標<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>このレッスンを修了すると、下記を理解できます：</p>
+<ul>
+<li>結果を改善するプロンプト・エンジニアリング手法を学ぶ</li>
+<li>多様な、あるいは決定的なプロンプトを作成する</li>
+</ul>
+<h2 id="_4">プロンプト・エンジニアリング<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>プロンプト・エンジニアリングは、期待する結果を生み出すためのプロンプトを作成するプロセスです。単にテキスト・プロンプトを書くだけではありません。プロンプト・エンジニアリングはエンジニアリング分野ではなく、期待する結果を得るために適用できる一連のテクニックです。</p>
+<h3 id="_5">プロンプトの例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>次の基本的なプロンプトを見てみましょう。</p>
+<blockquote>
+<p>地理に関する質問を 10 問作成してください</p>
+</blockquote>
+<p>このプロンプトの中では、実際には一連のさまざまなプロンプトのテクニックを適用しています。</p>
+<p>詳しく見ていきましょう。</p>
+<ul>
+<li><strong>コンテキスト :</strong> 「地理」に関する質問を指定しています。</li>
+<li><strong>出力を制限 :</strong> 作成される質問の数は 10 個以下になります</li>
+</ul>
+<h3 id="_6">単純なプロンプトの制限<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>期待する結果が得られる場合と得られない場合があります。地理は幅広いテーマであり、幅広いテーマは以下の理由により期待する結果が得られない場合があります。</p>
+<ul>
+<li><strong>大きな話題 :</strong> 国、首都、川などのような話題は大きく、どのような回答結果が得られるか予想できません。</li>
+<li><strong>フォーマット :</strong> 質問を特定の方法で書式設定したい場合はどうすればよいでしょうか。</li>
+</ul>
+<p>ご覧のとおり、プロンプトを作成する際には考慮すべき点がたくさんあります。</p>
+<p>ここまでは、簡単なプロンプトの例を見てきましたが、生成 AI は、さまざまな役割や業界の人々を支援するために、より多くの作業ができます。次に、いくつかの基本的なテクニックを確認してみましょう。</p>
+<h3 id="_7">プロンプトのテクニック<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>まずプロンプトは、大規模言語モデル (LLM) の登場で、「<em>新たに出てきたテクニック</em>」で、これはモデルに組み込まれている機能ではなく、モデルを使うために使用するものだとご理解ください。</p>
+<p>LLM のプロンプトで利用可能な、基本的なテクニックがいくつかあります。それらを確認してみましょう。</p>
+<ul>
+<li><strong>Few shot prompting</strong>：プロンプトの最も基本的な形式で、いくつかの例 (質問例と回答例) を含む一つのプロンプトです。</li>
+<li><strong>Chain-of-thought</strong>：このプロンプトは、問題を段階に分解し LLM に指示を与えます。</li>
+<li><strong>Generated knowledge</strong>：プロンプトの応答を改善するため、事実や知識をプロンプトに追加で提供します。</li>
+<li><strong>Least to most</strong>：Chain-of-thought(思考の連鎖)と同様に、この手法は問題を一連のステップに分解し、それらのステップを順番に実行するように指示します。</li>
+<li><strong>Self-refine</strong>：この手法は、LLM からの出力結果を LLM 自ら再評価させ、評価結果に基づいて LLM に改善要求を行います。</li>
+<li><strong>Maieutic prompting</strong>：これは、LLM の回答が正しいか確認するため、回答の各部分を説明するように求めます。これは自己改善の一種です。</li>
+</ul>
+<h3 id="few-shot-prompting">Few-shot prompting<a class="headerlink" href="#few-shot-prompting" title="Permanent link">&para;</a></h3>
+<p>このプロンプトはとても簡単で、一つのプロンプトといくつかの例から構成します。
+この手法は、LLM について学び始めたときに最初に使用すると良い手法です。次に例を示します。</p>
+<ul>
+<li>プロンプト: 「代数とは何ですか？」</li>
+<li>回答: 「数学の一分野で、数の代わりに文字を用いて方程式の解法などを研究する学問です。」</li>
+</ul>
+<blockquote>
+<p>[!NOTE]
+訳者追記<br />
+実際には上記の例は Few-shot ではなく One Shot プロンプトになっています。Few Shot プロンプトは、複数の例を含むプロンプトです。</p>
+</blockquote>
+<h3 id="chain-of-thought">Chain-of-thought<a class="headerlink" href="#chain-of-thought" title="Permanent link">&para;</a></h3>
+<p>Chain-of-thought (思考の連鎖) は、非常に興味深い手法で、一つの問題をいくつか複数の段階に分けて、LLM の回答を誘導する手法です。LLM が、何をどうやって処理を行うべきか理解できるように指示する手法です。次の例を考えてみてください。Chain-of-thought を用いた場合と用いない場合の両方の例をご覧ください。まずは、Chain-of-thought を用いない例を見てみましょう。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- プロンプト: 「アリスはリンゴを 5 個持っていて、3 個を捨て、2 個をボブに渡し、ボブは 1 個を返します。アリスはリンゴを何個持っていますか？」
+- 回答: 5
+</code></pre></div></td></tr></table></div>
+<p>LLM は 5 と答えますが、これは不正解です。正しい答えはリンゴ 1 個で、計算式は (5 -3 -2 + 1 = 1) になります。</p>
+<p>では、どうやって LLM がこれを正しく計算できるように伝えられるのでしょうか？</p>
+<p>次に、Chain-of-thought を試してみましょう。Chain-of-thought を適用するためには：</p>
+<ol>
+<li>LLM に類似の例を示す。</li>
+<li>計算式と、それを正しく計算する方法を示す。</li>
+<li>元のプロンプトを提供する。</li>
+</ol>
+<p>という手順を踏みます。以下にその方法を示します。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>- プロンプト: 「リサはリンゴを7個持っていて、1個を捨て、4個をバートに渡し、バートは1個を返します。計算は次の通り：
+  7 - 1 = 6
+  6 - 4 = 2
+  2 + 1 = 3
+アリスはリンゴを 5 個持っていて、3 個を捨て、2 個をボブに渡し、ボブは 1 個を返します。アリスはリンゴを何個持っていますか？」
+- 回答: 1
+</code></pre></div></td></tr></table></div>
+<p>最初に類似した計算問題の計算順序や式を記述した、少し長いプロンプトを作成します。次に、本当に聞きたい内容を記述し送信します。すると正しい答え 1 が得られています。</p>
+<p>ご覧の通り、Chain-of-thought (思考の連鎖) は非常に強力な手法です。</p>
+<blockquote>
+<p>[!TIP]
+訳者追記<br />
+Chain-of-thought を使うと解ける問題もありますが、なるべく LLM にロジカルな処理をさせないほうがいいかもしれません。</p>
+</blockquote>
+<h3 id="generated-knowledge">Generated knowledge<a class="headerlink" href="#generated-knowledge" title="Permanent link">&para;</a></h3>
+<p>企業環境で LLM を使用する際、Generated knowledge (生成された知識) は、プロンプトを作成する際に最も頻繁に使用する手法の一つです。Generated knowledge は、プロンプトに、会社のデータを追加する手法です。これにより、LLM が会社のデータを使用して、より正確な回答を生成できるようになります。</p>
+<p>例えば、保険業界であれば、プロンプトは以下のようになります。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>{{company}}: {{company_name}}
+{{products}}:
+{{products_list}}
+以下の予算と要件を考慮し、保険を提案してください:
+予算: {{budget}}
+要件: {{requirements}}
+</code></pre></div></td></tr></table></div>
+<p>上記は、テンプレートを使用してプロンプトをどのように作成するかを示しています。テンプレートには、<code>{{variable}}</code>という形式で表現する変数がいくつかあり、これらは会社の API から取得した実際の値に置き換えます。</p>
+<p>以下は、変数を自社の情報に置き換えた後のプロンプト例です。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>保険会社: ACME保険
+保険商品（月額料金）:
+- 自動車保険, 安価, 500ドル
+- 自動車保険, 高価, 1100ドル
+- 家財保険, 安価, 600ドル
+- 家財保険, 高価, 1200ドル
+- 生命保険, 安価, 100ドル
+
+以下の予算と要件を考慮した上で、保険を提案してください:
+予算: $1000
+要件: 自動車保険, 家財保険
+</code></pre></div></td></tr></table></div>
+<p>このプロンプトを LLM（Large Language Model）を実行すると、以下のような回答が得られます。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">生命保険も含めて</span>
+
+<span class="go">予算と要件を考慮した上で、ACME保険から以下の保険パッケージを提案します:</span>
+<span class="go">- 自動車保険, 安価, 500ドル</span>
+<span class="go">- 家財保険, 安価, 600ドル</span>
+<span class="go">- 生命保険, 安価, 100ドル</span>
+<span class="go">合計費用: $1,200ドル</span>
+</code></pre></div></td></tr></table></div>
+<p>結果は、生命保険も提案されましたが、これは本来求めていない結果です。そして、プロンプトの最適化が必要だというのを示しています。プロンプトで何を許可するのかを、より明確にする必要があります。試行錯誤を繰り返した結果、以下のようなプロンプトにたどり着きました。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>保険会社: ACME保険
+保険商品（月額料金）:
+- 種類: 自動車保険, 安価, 費用: 500ドル
+- 種類: 自動車保険, 高価, 費用: 1100ドル
+- 種類: 家財保険, 安価, 費用: 600ドル
+- 種類: 家財保険, 高価, 費用: 1200ドル
+- 種類: 生命保険, 安価, 費用: 100ドル
+
+以下の予算と要件を考慮した上で、保険を提案してください:
+予算: $1000 選択を以下の種類に限定: 自動車保険, 家財保険
+</code></pre></div></td></tr></table></div>
+<p>「種類」と「費用」を追加し、「限定」というキーワードを使用し、LLM が何を求めているかを理解するのに役立ちます。</p>
+<p>これにより、以下のような回答が得られました。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">予算と要件を考慮した上で、月額500ドルの自動車保険（安価）を提案します。</span>
+</code></pre></div></td></tr></table></div>
+<p>この例から、Generated knowledge という手法を使用しても、期待する結果を得るためには、多くの場合でプロンプトの最適化が必要だとわかります。</p>
+<h3 id="least-to-most">Least-to-most<a class="headerlink" href="#least-to-most" title="Permanent link">&para;</a></h3>
+<p>「Least-to-most (最小から最大) プロンプト」は、大きな問題を小さな問題に分割する手法です。これにより、LLM（Language Model）が大きな問題をどのように「解決」するかをガイドするのに役立ちます。良い例としては、データサイエンスがあります。LLM に以下のように問題を分割するように依頼できます。</p>
+<blockquote>
+<p>プロンプト: 5 つのステップで、データサイエンスを実行する方法は何ですか？</p>
+</blockquote>
+<p>AI アシスタントは以下のように回答します。</p>
+<ol>
+<li>データを収集する</li>
+<li>データをクリーニングする</li>
+<li>データを分析する</li>
+<li>データをプロットする</li>
+<li>データを提示する</li>
+</ol>
+<blockquote>
+<p>[!TIP]
+訳者追記<br />
+上記の説明に加え、Least-to-most に関して追加で説明します。Chain of thought と同様に、Least-to-most は問題を一連のステップに分解し、それらのステップを順番に実行するように指示します。<br />
+Chain of thought の場合は、問題の解き方をプロンプト内で具体的に指示するために、仮に解き方で記載した手順よりも難しい問題が与えられた場合は、時間を要するかもしくは回答できません。<br />
+一方で、Least-to-most は、複雑な問題をより簡単なサブ問題に分解し、それらを順番に解いていきます。サブ問題を解く際には、前に解いたサブ問題の答えを利用します。<br />
+たとえば、難しい問題を解くために、最初にこの問題の解き方を教えてくださいという、最小の簡単な質問をします。その結果、AI はまず、その問題の解き方を考えて教えてくれます。この問題の解き方の情報を会話履歴に含めたままで、次に、オリジナルの問題をもう一度問い合わせします。すると、会話履歴に含まれる、解き方の情報を使って、オリジナルの問題を解き回答できます。そのため、Chain of thought よりも、より難しい問題を解けるようになります。<br />
+　解き方</p>
+<ol>
+<li>複雑な問題を一連の単純なサブ問題に分解する</li>
+<li>サブ質問のそれぞれを、前の回答を元に解く
+   参考情報： <a href="https://cobusgreyling.medium.com/least-to-most-prompting-b37ed2e19859?WT.mc_id=academic-105485-yoterada">1. Least to Most Prompting</a>, <a href="https://arxiv.org/pdf/2205.10625.pdf?WT.mc_id=academic-105485-yoterada">2. LEAST-TO-MOST PROMPTING ENABLES COMPLEX REASONING IN LARGE LANGUAGE MODELS (Original Paper)</a></li>
+</ol>
+</blockquote>
+<h3 id="self-refine-critique-the-results">Self-refine, critique the results<a class="headerlink" href="#self-refine-critique-the-results" title="Permanent link">&para;</a></h3>
+<p>生成 AI や LLM を使用する際、その出力をそのまま信じてはいけません。必ず確認が必要です。なぜなら、LLM は何が正しいかではなく、次に出てくる可能性が最も高いものを提示しているだけだからです。そのため、LLM に自己評価を求め、それによって自己改善するという手法が有効です。</p>
+<p>この手法は以下の手順で行います：</p>
+<ol>
+<li>最初に LLM に問題解決を求める</li>
+<li>LLM が回答する</li>
+<li>その回答を評価し、AI に改善を求める</li>
+<li>LLM が再度回答し、今度は評価を考慮して自身が考えた解決策を提案する</li>
+</ol>
+<p>このプロセスは何度でも繰り返しができます。</p>
+<p>以下にこの手法を使用した例を示します：</p>
+<blockquote>
+<p>プロンプト: "製品と顧客を持つ　 Python Web API 　を作成してください"</p>
+</blockquote>
+<p>AI の回答:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">flask</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/products&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">products</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;Products&#39;</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/customers&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">customers</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;Customers&#39;</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>プロンプト: "上記のコードの改善点を 3 つ提案してください"</p>
+</blockquote>
+<p>AI の回答:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>もちろんです、コードを改善するための3つの提案をします：
+
+正しいモジュールをインポートする：最初の行は flask ではなく Flask をインポートするべきです。正しいインポート文は from flask import Flask となります。
+
+メイン関数を追加する：ファイルを実行した際、アプリケーションを実行できるように、if __name__ == &#39;__main__&#39;: ブロックをファイルの最後に追加します。
+
+f-strings を使用する：ルート関数の return 文をフォーマットするために f-strings を使用します。例えば、&#39;Products&#39; を返す代わりに、f&#39;This is the {request.path} page&#39; を返すように変更できます。
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/products&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">products</span><span class="p">():</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;This is the </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s1"> page&#39;</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/customers&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">customers</span><span class="p">():</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;This is the </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s1"> page&#39;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>上記の AI の回答を見ると、最初の回答を再評価し、最初に提案されたコードが改善されているのがわかります。</p>
+<h3 id="maieutic-prompting">Maieutic prompting<a class="headerlink" href="#maieutic-prompting" title="Permanent link">&para;</a></h3>
+<p>Maieutic プロンプトは、self-refine (自己改善) と似た手法ですが、こちらは LLM に自身で説明を求めるものです。LLM の出力における不整合を減らし、正確な回答を取得するのを目指します。そのための手順は以下のようになります。</p>
+<ol>
+<li>LLM に質問に答えるよう求める</li>
+<li>答えの各部分について、LLM に詳しく説明させる</li>
+<li>不整合がある場合、その部分は排除する</li>
+</ol>
+<p>これら全ての内容を検討し、回答に満足するまで 2 と 3 の手順を繰り返します。</p>
+<p>以下に、例を示します。</p>
+<blockquote>
+<p>プロンプト: パンデミックを緩和するための危機対策を 5 つの段階でどのように作成すればよいか教えてください。</p>
+</blockquote>
+<p>LLM の回答:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>1. リスクを特定する
+2. 利害関係者を特定する
+3. リソースを特定する
+4. 行動を特定する
+5. コミュニケーションチャネルを特定する
+</code></pre></div></td></tr></table></div>
+<p>5 つが特定されましたが、これが正しいかどうかを確認するために、LLM に各内容を詳しく説明させてみましょう。</p>
+<blockquote>
+<p>プロンプト: 最初のステップを詳しく説明してください。具体的には、パンデミックにおけるリスクは何ですか？</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>リスクは以下の通りです：
+
+- 生命の喪失
+- ビジネスの喪失
+- 評判の喪失
+- 顧客の喪失
+- 従業員の喪失
+</code></pre></div></td></tr></table></div>
+<p>ここで、LLM が正しいかどうかを確認するため、最初のリスクについて詳しく説明させ、それが上記の答えと一致するか確認します。</p>
+<blockquote>
+<p>プロンプト: パンデミックにおいて、最も大きなリスクは何でしょうか？また、その理由は何ですか？</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>最も大きなリスクは生命の喪失で、それは最も重要な守るべきものです。
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>パンデミックにおけるリスクの中で、最も大きな 2 つのリスクは何だと思いますか？</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>最も大きな2つのリスクは、生命の喪失とビジネスの喪失です。
+</code></pre></div></td></tr></table></div>
+<p>ここで、LLM 　は一貫性を保ち、「生命」と「ビジネス」を最大の 2 つのリスクとして挙げています。これにより、次のステップに進み、かなりの自信を持てます。ただし、LLM 　を盲目的に信頼するのではなく、常にその出力を検証するのが重要です。</p>
+<h2 id="vary-your-output">Vary your output<a class="headerlink" href="#vary-your-output" title="Permanent link">&para;</a></h2>
+<p>LLM は本質的に非確実な性質を持っているため、同じプロンプトを実行しても結果は毎回異なります。例えば、以下のプロンプトを試してみてください。</p>
+<blockquote>
+<p>"Python Web API のコードを生成してください"</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 必要なモジュールをインポートする</span>
+<span class="kn">import</span> <span class="nn">flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="c1"># Flaskアプリを作成する</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># APIのルートを作成する</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">api</span><span class="p">():</span>
+    <span class="c1"># リクエストからデータを取得する</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span>
+
+    <span class="c1"># データを処理する</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># 結果をJSONとして返す</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># データを処理する関数</span>
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># データを何かしら処理する</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="c1"># 結果を返す</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># アプリを実行する</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>同じプロンプトを再度実行すると、少し異なる結果が出力されます。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 必要なパッケージをインポートする</span>
+<span class="kn">import</span> <span class="nn">flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="c1"># Flaskアプリケーションを作成する</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># 本のリストを作成する</span>
+<span class="n">books</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+     <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;A Fire Upon the Deep&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;ヴァーナー・ヴィンジ&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;first_sentence&#39;</span><span class="p">:</span> <span class="s1">&#39;コールドスリープ自体は夢がない。&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;year_published&#39;</span><span class="p">:</span> <span class="s1">&#39;1992&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+     <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;The Ones Who Walk Away From Omelas&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;アーシュラ・K・ル=グウィン&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;first_sentence&#39;</span><span class="p">:</span> <span class="s1">&#39;鐘の騒音がツバメを舞い上がらせ、夏の祭りが海に面した明るい塔の街オメラスにやってきた。&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;published&#39;</span><span class="p">:</span> <span class="s1">&#39;1973&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+     <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Dhalgren&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;サミュエル・R・ディレイニ&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;first_sentence&#39;</span><span class="p">:</span> <span class="s1">&#39;秋の街に傷をつけるために&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;published&#39;</span><span class="p">:</span> <span class="s1">&#39;1975&#39;</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="c1"># APIのエンドポイントを作成する</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;&#39;&lt;h1&gt;Books API&lt;/h1&gt;</span>
+<span class="s1">&lt;p&gt;A prototype API for retrieving books.&lt;/p&gt;&#39;&#39;&#39;</span>
+
+<span class="c1"># すべての本を返すエンドポイントを作成する</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/v1/resources/books/all&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">api_all</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">books</span><span class="p">)</span>
+
+<span class="c1"># 単一の本を返すエンドポイントを作成する</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/v1/resources/books&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">api_id</span><span class="p">():</span>
+    <span class="c1"># IDがURLの一部として提供されたか確認する</span>
+    <span class="c1"># IDが提供された場合は、それを変数に割り当てる</span>
+    <span class="c1"># IDが提供されていない場合は、エラーを表示する</span>
+    <span class="k">if</span> <span class="s1">&#39;id&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Error: No id field provided. Please specify an id.&quot;</span>
+
+    <span class="c1"># 結果のための空のリストを作成する</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># データをループして、リクエストされたIDに一致する結果を探す</span>
+    <span class="c1"># IDは一意ですが、他のフィールドは多数の結果を返す可能性があります</span>
+    <span class="k">for</span> <span class="n">book</span> <span class="ow">in</span> <span class="n">books</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">book</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">book</span><span class="p">)</span>
+
+    <span class="c1"># Flaskのjsonify関数を使用して、Pythonの辞書のリストをJSON形式に変換する</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>では、このような出力のバリエーションは問題なのでしょうか？</p>
+</blockquote>
+<p>それは、皆様が何を実現したいかによります。特定の確実な回答を求めている場合、それは問題となります。しかし、「地理に関する任意の 3 つの質問を生成する」のように、出力のバリエーションに対して柔軟であれば問題ではありません。</p>
+<h3 id="_8">温度を使用して出力を変化させる<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>出力をより予測可能、つまりより決定論的(確実)に制限したいと考えた場合、どのようにすればよいでしょうか？</p>
+<p>Temperature (温度) パラメータは 0 から 1 までの範囲で値を持っており、0 が最も決定的で、1 が最も多様性があります。デフォルト値は 0.7 です。温度を 0.1 に設定し、同じプロンプトを 2 回実行してみると以下のような結果が得られます。</p>
+<blockquote>
+<p>"Python Web API のコード を作成してください"</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">#import necessary libraries</span>
+<span class="kn">import</span> <span class="nn">flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="c1">#create an instance of the Flask class</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">#create an endpoint for the API</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/v1/endpoint&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">api_endpoint</span><span class="p">():</span>
+    <span class="c1">#get the request data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+
+    <span class="c1">#process the data</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1">#return the result</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1">#function to process the data</span>
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1">#process the data</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="s1">&#39;success&#39;</span><span class="p">}</span>
+
+    <span class="c1">#return the result</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1">#run the Flask app</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>プロンプトを再度実行すると、次の結果が得られます。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">#import necessary libraries</span>
+<span class="kn">import</span> <span class="nn">flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="c1">#create a Flask app</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">#create a route for the API</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">api_call</span><span class="p">():</span>
+    <span class="c1">#get the data from the request</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+
+    <span class="c1">#process the data</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1">#return the result</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1">#define the process_data function</span>
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1">#do something with the data</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="c1">#return the result</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1">#run the app</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>これら 2 つの出力結果はわずかな違いしかありません。今度は逆に、温度を 0.9 に設定してみましょう。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Import necessary libraries</span>
+<span class="kn">import</span> <span class="nn">flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="c1"># Create a Flask app</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Create a route for the API</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">api_call</span><span class="p">():</span>
+    <span class="c1"># Get the data from the request</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span>
+
+    <span class="c1"># Process the data</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Return the result</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># Function to process the data</span>
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Do something with the data</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="c1"># Return the result</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># Run the app</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>温度パラメータの値として 0.9 で 2 回目の実行:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+
+<span class="c1"># create the Flask app</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># create some test data</span>
+<span class="n">books</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;A Fire Upon The Deep&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;Vernor Vinge&#39;</span><span class="p">,</span> <span class="s1">&#39;first_sentence&#39;</span><span class="p">:</span> <span class="s1">&#39;The coldsleep itself was dreamless.&#39;</span><span class="p">,</span> <span class="s1">&#39;year_published&#39;</span><span class="p">:</span> <span class="s1">&#39;1992&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;The Ones Who Walk Away From Omelas&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;Ursula K. Le Guin&#39;</span><span class="p">,</span> <span class="s1">&#39;first_sentence&#39;</span><span class="p">:</span> <span class="s1">&#39;With a clamor of bells that set the swallows soaring, the Festival of Summer came to the city Omelas, bright-towered by the sea.&#39;</span><span class="p">,</span> <span class="s1">&#39;published&#39;</span><span class="p">:</span> <span class="s1">&#39;1973&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Dhalgren&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;Samuel R. Delany&#39;</span><span class="p">,</span> <span class="s1">&#39;first_sentence&#39;</span><span class="p">:</span> <span class="s1">&#39;to wound the autumnal city.&#39;</span><span class="p">,</span> <span class="s1">&#39;published&#39;</span><span class="p">:</span> <span class="s1">&#39;1975&#39;</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="c1"># create an endpoint</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;&#39;&lt;h1&gt;Welcome to our book API!&lt;/h1&gt;&#39;&#39;&#39;</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/v1/resources/books</span>
+</code></pre></div></td></tr></table></div>
+<p>ご覧いただいたように、結果は非常に多様（違う内容）になります。</p>
+<blockquote>
+<p>なお、出力を変化させるために変更できるパラメータは他にもあります。例えば、top-k, top-p, repetition penalty, length penalty, diversity penalty などですが、これらはこのレッスンでは取り扱いません。</p>
+</blockquote>
+<h2 id="_9">おすすめの方法<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>皆様が目的の結果を得るためには、様々な方法をお試しできます。プロンプトを利用する頻度が増えるほど、ご自身専用のスタイルを身に付けられるでしょう。</p>
+<p>これまでに紹介したテクニックに加えて、LLM を活用する際におすすめの方法がいくつかあります。</p>
+<p>以下に、そのおすすめの方法をいくつか紹介します。</p>
+<ul>
+<li><strong>コンテキストを明確にする</strong>：コンテキスト(文脈)は重要で、ドメインやトピックなど、具体的に指定するほど良い結果が得られます。</li>
+<li><strong>出力を制限する</strong>：特定の項目数や特定の長さが必要な場合は、それを明示的に指定しましょう。</li>
+<li><strong>「何を」、「どうするか」を明確にする</strong>：例えば、「Python の Web API を作成し、商品と顧客を設定し、それを 3 つのファイルに分けてください」といった、具体的な指示を出すようにしてください</li>
+<li><strong>テンプレートを活用する</strong>：自社データをプロンプトに反映させたい場合も多いと思います。その際に、テンプレートを活用しましょう。テンプレートには、実際のデータに置き換えられる変数を設定できます。</li>
+<li><strong>正確に記述する</strong>：スペル・ミスがあっても LLM は正しい回答を提供してくれるかもしれませんが、スペルが正確であれば、より良い回答が得られます。</li>
+</ul>
+<h2 id="_10">課題<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>Flask を使用して単純な API を構築する方法を示す Python のコードを次に示します。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;World&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">!&#39;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>上記のコードを、GitHub Copilot や ChatGPT などの AI アシスタントを使用し、「self-refine (自己調整)」の手法を適用してコードを改善してください。</p>
+<h2 id="_11">解決<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>コードに対して適切なプロンプトを追加し、課題の解決を試みてください。</p>
+<blockquote>
+<p>[!TIP]
+プロンプトの改善を求める際、対象となる改善項目を制限すると効果が高まります。また、アーキテクチャ、パフォーマンス、セキュリティといった特定の観点から改善を求めるアプローチも有効です。</p>
+</blockquote>
+<p><a href="../../python/aoai-solution.py?WT.mc_id=academic-105485-koreyst">Solution</a></p>
+<h2 id="_12">知識チェック<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>なぜ、chain-of-thought (思考の連鎖) プロンプトを使用するのでしょうか? 正解を 1 つ選択してください。</p>
+<ol>
+<li>LLM に問題の解決方法を教える。</li>
+<li>LLM にコード内のエラーを見つけるように教える</li>
+<li>LLM にさまざまな解決策を考えるように指示する</li>
+</ol>
+<p>答え：1：chain-of-thought (思考の連鎖) プロンプトは、LLM に回答を導き出すための一連の処理段階と、類似問題とその解決方法を提供し、問題解決方法を示します。</p>
+<h2 id="challenge">🚀 Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h2>
+<p>課題では、self-refine (自己改善) の手法を使用しました。皆様が実際に実装したプログラムを取り上げて、それに対してどのように改善したいか考えてみてください。そして、その改善案を self-refine (自己改善)の手法を使って実際に適用してみましょう。結果は良くなりましたか？悪くなりましたか？どう思われますか?</p>
+<h2 id="_13">お疲れ様でした!学習を続ける<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>このレッスン修了後、<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-yoterada">生成 AI 学習コレクション</a> をチェックして、Generative AI の知識をレベルアップさせましょう。</p>
+<p>レッスン 6 では、プロンプト エンジニアリングの知識を応用して<a href="../../../06-text-generation-apps/translations/ja-jp/?WT.mc_id=academic-105485-yoterada">テキスト生成アプリケーションの構築</a>を行います。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

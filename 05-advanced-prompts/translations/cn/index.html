@@ -1,0 +1,2120 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/05-advanced-prompts/translations/cn/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>第五章：创建高级的提示工程技巧 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第五章：创建高级的提示工程技巧
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      本章概述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      学习目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      提示工程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="提示工程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      一个例子
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      简单提示的局限性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      提示技巧
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      零样本提示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      少样本提示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      思维链
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成的知识
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      从少到多
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      自我完善，质疑结果
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      多维度的提示
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      改变您的输出
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="改变您的输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      利用温度来改变输出
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      最佳实践
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      作业
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      解决方案
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      知识检查
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 知识拓展
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      继续学习
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">第五章：创建高级的提示工程技巧<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson5-gh?WT.mc_id=academic-105485-koreyst"><img alt="Creating Advanced Prompts" src="../../images/05-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<p>让我们回顾一下上一章的一些知识：</p>
+<blockquote>
+<p>Prompt <em>engineering</em> is the process by which we <strong>guide the model towards more relevant responses</strong> by providing more useful instructions or context.</p>
+</blockquote>
+<p>编写提示也有两个步骤，通过提供相关上下文构建提示，第二部分是优化，如何逐步改进提示。</p>
+<p>至此，我们对如何编写提示有了一些基本的了解，但还需要更深入。 在本章中，您将从尝试各种提示到理解为什么一种提示比另一种更好的方向出发。 您将学习如何按照一些适用于 LLMs 的基本技术构建提示。</p>
+<h2 id="_2">本章概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在本章中，我们将讨论以下内容：</p>
+<ul>
+<li>通过在提示中应用不同的技术来扩展您的提示工程知识。</li>
+<li>配置提示以改变输出。</li>
+</ul>
+<h2 id="_3">学习目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>完成本课程后，您将能够掌握：</p>
+<ul>
+<li>应用提示工程技术来改善提示结果。</li>
+<li>执行多样化或确定性的提示。</li>
+</ul>
+<h2 id="_4">提示工程<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>提示工程是创建将产生所需结果的提示的过程。 提示工程不仅仅是编写文本提示。提示工程不是一门工程学科，它更像是一组可以应用以获得所需结果的技术。</p>
+<h3 id="_5">一个例子<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>让我们看一个像这样的基本提示：</p>
+<blockquote>
+<p>Generate 10 questions on geography.</p>
+</blockquote>
+<p>在这个提示中，实际上应用了一组不同的提示技巧。</p>
+<p>让我们来分解一下。</p>
+<ul>
+<li><strong>上下文</strong>，您指定它应该与“地理”有关。</li>
+<li><strong>限制输出</strong>，您希望不超过 10 个问题。</li>
+</ul>
+<h3 id="_6">简单提示的局限性<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>您可能会也可能不会得到想要的结果。 你会得到你的问题，但地理是一个大话题，你可能无法得到你想要的，原因如下：</p>
+<ul>
+<li><strong>大话题</strong>，你不知道它是否会涉及国家、首都、河流等等。</li>
+<li><strong>格式</strong>，如果您希望问题以某种方式格式化怎么办？</li>
+</ul>
+<p>正如您所看到的，创建提示时需要考虑很多因素。</p>
+<p>到目前为止，我们已经看到了一个简单的提示示例，但生成式人工智能能够为各种角色和行业的人们提供更多帮助。 接下来让我们探讨一些基本技术。</p>
+<h3 id="_7">提示技巧<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>首先，我们需要了解提示是 LLM 的一个紧急属性，这意味着这不是模型中内置的功能，而是我们在使用模型时发现的东西。</p>
+<p>我们可以使用一些基本技巧来提示 LLM。 让我们来探索一下它们。</p>
+<ul>
+<li><strong>零样本提示</strong>，这是最基本的提示形式。它是一种单次提示，要求 LLM 仅根据其训练数据做出响应。</li>
+<li><strong>少样本提示</strong>，这种类型的提示通过提供一个或多个示例来引导 LLM 生成响应。</li>
+<li><strong>思维链</strong>，这种类型的提示告诉 LLMs 如何将问题分解为步骤。</li>
+<li><strong>生成的知识</strong>，为了提高提示的响应，您可以在提示中额外提供生成的事实或知识。</li>
+<li><strong>从最少到最多</strong>，就像链式分析一样，这种技术是将问题分解为一系列步骤，然后要求按顺序执行这些步骤。</li>
+<li><strong>自我完善</strong>，这种技术是修正 LLM 的输出，然后要求其改进。</li>
+<li><strong>多维度提示</strong>。 您在这里想要的是确保 LLM 答案是正确的，并要求它解释答案的各个部分。 这是一种自我完善的形式。</li>
+</ul>
+<h3 id="_8">零样本提示<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>这种提示风格非常简单，它只有一个提示。当你开始学习 LLM 时，可能就会用到这种方法。下面是一个例子：</p>
+<ul>
+<li>Prompt: "What is Algebra?"</li>
+<li>Answer: "Algebra is a branch of mathematics that studies mathematical symbols and the rules for manipulating these symbols."</li>
+</ul>
+<h3 id="_9">少样本提示<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>这种提示方式通过在提出请求的同时提供一些示例来帮助模型。它由单个提示和附加的特定任务数据组成。下面是一个例子：</p>
+<ul>
+<li>Prompt: "以莎士比亚的风格写一首诗。下面是一些莎士比亚十四行诗的例子：十四行诗第 18 首："我要把你比作夏日吗？你更可爱，更有节制......'第 116 首十四行诗："让我不要为真正心灵的结合设置障碍。爱不是爱，当它发现改变时就会改变......'十四行诗第 132 首："我爱你的眼睛，它们怜悯我，知道你的心在折磨我，对我不屑一顾......现在，请写一首关于月亮之美的十四行诗。"</li>
+<li>Answer："在天空中，月亮闪烁着柔和的光芒，散发着温柔的光辉，......"</li>
+</ul>
+<p>示例为 LLM 提供了所需输出的背景、格式或风格。它们有助于模型理解具体任务，并生成更准确、更相关的回复。</p>
+<h3 id="_10">思维链<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>思想链是一项非常有趣的技术，因为它涉及到 LLMs 的分步。 这个想法是以一种让 LLMs 了解如何做某种事情的方式来指导 LLMs。 考虑下面的例子，无论有没有思想链：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>- Prompt: &quot;Alice has 5 apples, throws 3 apples, gives 2 to Bob and Bob gives one back, how many apples does Alice have?&quot;
+- Answer: 5
+</code></pre></div></td></tr></table></div>
+<p>LLM 给出的答案为 5，这是不正确的。 根据计算结果 (5 -3 -2 + 1 = 1)，正确答案是 1 个苹果。</p>
+<p>那么我们怎样才能教 LLM 正确地做到这一点呢？</p>
+<p>让我们尝试一下思维链。 应用思维链意味着：</p>
+<ol>
+<li>给 LLM 一个类似的例子。</li>
+<li>展示计算结果，以及如何正确计算。</li>
+<li>
+<p>提供原始提示。</p>
+</li>
+<li>
+<p>Prompt: "Lisa has 7 apples, throws 1 apple, gives 4 apples to Bart and Bart gives one back:
+  7 -1 = 6
+  6 -4 = 2
+  2 +1 = 3<br />
+  Alice has 5 apples, throws 3 apples, gives 2 to Bob and Bob gives one back, how many apples does Alice have?"
+  Answer: 1</p>
+</li>
+</ol>
+<p>请注意我们如何用另一个示例、计算和原始提示编写更长的提示，然后得出正确答案 1。</p>
+<p>正如您所看到的，思维链是一种非常强大的技术。</p>
+<h3 id="_11">生成的知识<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>很多时候，当您想要构建提示时，您希望使用自己公司的数据来实现。 您希望提示的一部分来自公司，另一部分应该是您感兴趣的实际提示。</p>
+<p>举个例子，如果您从事保险业务，那么您的提示可能如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>```text
+{{company}}: {{company_name}}
+{{products}}:
+{{products_list}}
+Please suggest an insurance given the following budget and requirements:
+Budget: {{budget}}
+Requirements: {{requirements}}
+```
+</code></pre></div></td></tr></table></div>
+<p>在上面，您可以看到如何使用模板构建提示。 模板中有许多变量，用“{{variable}}”表示，这些变量将替换为公司 API 中的实际值。</p>
+<p>以下示例展示了变量被公司内容替换后提示的外观：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>```text
+Insurance company: ACME Insurance
+Insurance products (cost per month):
+- Car, cheap, 500 USD
+- Car, expensive, 1100 USD
+- Home, cheap, 600 USD
+- Home, expensive, 1200 USD
+- Life, cheap, 100 USD
+
+Please suggest an insurance given the following budget and requirements:
+Budget: $1000
+Requirements: Car, Home
+```
+</code></pre></div></td></tr></table></div>
+<p>通过 LLM 运行此提示将产生如下响应：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>```output
+, and Life insurance
+
+Given the budget and requirements, we suggest the following insurance package from ACME Insurance:
+- Car, cheap, 500 USD
+- Home, cheap, 600 USD
+- Life, cheap, 100 USD
+Total cost: $1,200 USD
+```
+</code></pre></div></td></tr></table></div>
+<p>正如您所看到的，它还建议购买人寿保险，但事实并非如此。 此结果表明我们需要通过更改提示来优化提示，使其更清楚地了解其允许的内容。 经过一些试验和错误之后，我们得到以下提示：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>```text
+Insurance company: ACME Insurance
+Insurance products (cost per month):
+- type: Car, cheap, cost: 500 USD
+- type: Car, expensive, cost: 1100 USD
+- type: Home, cheap, cost: 600 USD
+- type: Home, expensive, cost: 1200 USD
+- type: Life, cheap, cost: 100 USD
+
+Please suggest an insurance given the following budget and requirements:
+Budget: $1000 restrict choice to types: Car, Home
+```
+</code></pre></div></td></tr></table></div>
+<p>请注意添加 <em>type</em> 和 <em>cost</em> 以及使用关键字 <em>restrict</em> 如何帮助 LLM 理解我们想要的内容。</p>
+<p>现在我们得到以下响应：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>```output
+Given the budget and requirements, we suggest the Car, Cheap insurance product which costs 500 USD per month.
+```
+</code></pre></div></td></tr></table></div>
+<p>这个例子的目的是表明，即使我们使用像<em>生成知识</em>这样的基本技术，我们仍然需要在大多数情况下优化提示以获得所需的结果。</p>
+<h3 id="_12">从少到多<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>从最少到最多提示的想法是将一个更大的问题分解为多个子问题。 这样，您就可以帮助指导 LLMs 如何“克服”更大的问题。 数据科学就是一个很好的例子，你可以要求 LLMs 来划分问题，如下所示：</p>
+<blockquote>
+<p>Prompt: How to perform data science in 5 steps?</p>
+</blockquote>
+<p>你的人工智能助理会回答：</p>
+<ol>
+<li>收集数据</li>
+<li>清理数据</li>
+<li>分析数据</li>
+<li>绘制数据</li>
+<li>展示数据</li>
+</ol>
+<h3 id="_13">自我完善，质疑结果<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>对于生成式人工智能和 LLMs，你不能相信其输出。 你需要验证一下。 毕竟， LLMs 只是向您展示下一个最有可能说的话，而不是正确的内容。 因此，一个好主意是要求 LLMs 自我批评，这引导我们自我完善技术。</p>
+<p>其工作原理是按照以下步骤操作：</p>
+<ol>
+<li>要求 LLM 解决问题的初始提示</li>
+<li>LLM 产生答案</li>
+<li>质疑答案并要求人工智能改进</li>
+<li>LLM 再次回答，这次考虑了质疑并提出了解决方案</li>
+</ol>
+<p>您可以根据需要多次重复此过程。</p>
+<p>这是使用此技术的示例：</p>
+<blockquote>
+<p>Prompt: "Create a Python Web API with routes products and customers"</p>
+</blockquote>
+<p>AI Answer:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>```python
+import flask
+app = Flask(__name__)
+
+@app.route(&#39;/products&#39;)
+def products():
+    return &#39;Products&#39;
+
+@app.route(&#39;/customers&#39;)
+def customers():
+    return &#39;Customers&#39;
+```
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>Prompt: suggest 3 improvements of the above code</p>
+</blockquote>
+<p>AI Answer:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code>```text
+Sure, here are three suggestions to improve the code:
+
+Import the correct module: The first line should import Flask instead of flask. The correct import statement should be from flask import Flask.
+
+Add a main function: Add a if __name__ == &#39;__main__&#39;: block to the end of the file to run the application when the file is executed.
+
+Use f-strings: Use f-strings to format the return statements in the route functions. For example, return &#39;Products&#39; can be changed to return f&#39;This is the {request.path} page&#39;.
+```
+
+```python
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route(&#39;/products&#39;)
+def products():
+    return f&#39;This is the {request.path} page&#39;
+
+@app.route(&#39;/customers&#39;)
+def customers():
+    return f&#39;This is the {request.path} page&#39;
+
+if __name__ == &#39;__main__&#39;:
+    app.run()
+```
+</code></pre></div></td></tr></table></div>
+<p>正如您所看到的，由于对第一个答案的批评，上述人工智能响应正在改进第一个建议的代码。</p>
+<h3 id="_14">多维度的提示<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>多维度的提示是一种类似于自我完善的技术，但它更多的是要求 LLMs 解释自己。 目标是减少 LLMs 输出不一致，以确保得出正确的答案。 要遵循的工作流程是：</p>
+<ol>
+<li>请 LLM 回答问题</li>
+<li>对于答案的每一部分，请 LLM 更深入地解释。</li>
+<li>如果存在不一致，则丢弃不一致的部分。</li>
+</ol>
+<p>重复 2 和 3，直到您完成所有部分并对答案感到满意为止。</p>
+<blockquote>
+<p>prompt: How can I create a crisis plan to mitigate for a pandemic in 5 steps?
+LLM answer:</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>```text
+1. Identify the risks
+1. Identify the stakeholders
+1. Identify the resources
+1. Identify the actions
+1. Identify the communication channels
+```
+</code></pre></div></td></tr></table></div>
+<p>它确定了 5 个步骤，但是我们可以确定这是否正确吗？ 让我们请 LLM 解释一下每一步：</p>
+<blockquote>
+<p>prompt: Explain the first step in more detail, what are the risks in detail with a pandemic?</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>```text
+The risks are the following:
+
+- Loss of life
+- Loss of business
+- Loss of reputation
+- Loss of customers
+- Loss of employees
+```
+</code></pre></div></td></tr></table></div>
+<p>此时，我们希望确保 LLM 是正确的，因此我们要求它更详细地解释第一个风险，并希望它与上面的答案一致：</p>
+<blockquote>
+<p>prompt: In a Pandemic, which is the biggest risk and why?</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>```text
+The biggest risk is loss of life because it&#39;s the most important thing to protect.
+```
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>What are the two biggest risks in a pandemic?</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>```text
+The two biggest risks are loss of life and loss of business.
+```
+</code></pre></div></td></tr></table></div>
+<p>在这一点上，LLMs 是一致的，并提到“生活”和“商业”是两大风险。 我们现在可以继续下一步并感到相当有信心。 然而，我们不应该盲目相信 LLM，我们应该始终验证输出。</p>
+<h2 id="_15">改变您的输出<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>LLM 本质上是不确定的，这意味着每次运行相同的提示时都会得到不同的结果。 例如尝试以下提示：</p>
+<blockquote>
+<p>"Generate code for a Python Web API"</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code>```text
+# Import necessary modules
+import flask
+from flask import request, jsonify
+
+# Create a Flask app
+app = flask.Flask(__name__)
+
+# Create a route for the API
+@app.route(&#39;/api&#39;, methods=[&#39;GET&#39;])
+def api():
+    # Get the data from the request
+    data = request.args
+
+    # Process the data
+    result = process_data(data)
+
+    # Return the result as JSON
+    return jsonify(result)
+
+# Function to process the data
+def process_data(data):
+    # Do something with the data
+    result = data + 1
+
+    # Return the result
+    return result
+
+# Run the app
+if __name__ == &#39;__main__&#39;:
+    app.run()
+
+```
+</code></pre></div></td></tr></table></div>
+<p>再次运行相同的提示会生成略有不同的响应：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code>```text
+#import necessary packages
+import flask
+from flask import request, jsonify
+
+#create the Flask application
+app = flask.Flask(__name__)
+app.config[&quot;DEBUG&quot;] = True
+
+#create a list of books
+books = [
+    {&#39;id&#39;: 0,
+     &#39;title&#39;: &#39;A Fire Upon the Deep&#39;,
+     &#39;author&#39;: &#39;Vernor Vinge&#39;,
+     &#39;first_sentence&#39;: &#39;The coldsleep itself was dreamless.&#39;,
+     &#39;year_published&#39;: &#39;1992&#39;},
+    {&#39;id&#39;: 1,
+     &#39;title&#39;: &#39;The Ones Who Walk Away From Omelas&#39;,
+     &#39;author&#39;: &#39;Ursula K. Le Guin&#39;,
+     &#39;first_sentence&#39;: &#39;With a clamor of bells that set the swallows soaring, the Festival of Summer came to the city Omelas, bright-towered by the sea.&#39;,
+     &#39;published&#39;: &#39;1973&#39;},
+    {&#39;id&#39;: 2,
+     &#39;title&#39;: &#39;Dhalgren&#39;,
+     &#39;author&#39;: &#39;Samuel R. Delany&#39;,
+     &#39;first_sentence&#39;: &#39;to wound the autumnal city.&#39;,
+     &#39;published&#39;: &#39;1975&#39;}
+]
+
+#create an endpoint for the API
+@app.route(&#39;/&#39;, methods=[&#39;GET&#39;])
+def home():
+    return &#39;&#39;&#39;&lt;h1&gt;Books API&lt;/h1&gt;
+&lt;p&gt;A prototype API for retrieving books.&lt;/p&gt;&#39;&#39;&#39;
+
+#create an endpoint to return all books
+@app.route(&#39;/api/v1/resources/books/all&#39;, methods=[&#39;GET&#39;])
+def api_all():
+    return jsonify(books)
+
+#create an endpoint to return a single book
+@app.route(&#39;/api/v1/resources/books&#39;, methods=[&#39;GET&#39;])
+def api_id():
+    #check if an ID was provided as part of the URL
+    #if ID is provided, assign it to a variable
+    #if no ID is provided, display an error
+    if &#39;id&#39; in request.args:
+        id = int(request.args[&#39;id&#39;])
+    else:
+        return &quot;Error: No id field provided. Please specify an id.&quot;
+
+    #create an empty list for our results
+    results = []
+
+    #loop through the data and match results that fit the requested ID
+    #IDs are unique, but other fields might return many results
+    for book in books:
+        if book[&#39;id&#39;] == id:
+            results.append(book)
+
+    #use the jsonify function from Flask to convert our list of
+    #Python dictionaries to the JSON format
+    return jsonify(results)
+
+app.run()
+```
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>多变的输出是个问题吗？</p>
+</blockquote>
+<p>取决于你想做什么。 如果你想要一个具体的回应，那就是一个问题。 如果您可以接受诸如“生成任意 3 个地理问题”之类的不同输出，那么这不是问题。</p>
+<h3 id="_16">利用温度来改变输出<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>好的，所以我们决定将输出限制为更可预测，即更具确定性。 我们该怎么做呢？</p>
+<p>温度是 0 到 1 之间的值，其中 0 最具确定性，1 最具变化性。 默认值为 0.7。 让我们看看在温度设置为 0.1 的情况下两次运行相同的提示会发生什么：</p>
+<blockquote>
+<p>"Generate code for a Python Web API"</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code>```python
+#import necessary libraries
+import flask
+from flask import request, jsonify
+
+#create an instance of the Flask class
+app = flask.Flask(__name__)
+
+#create an endpoint for the API
+@app.route(&#39;/api/v1/endpoint&#39;, methods=[&#39;GET&#39;])
+def api_endpoint():
+    #get the request data
+    data = request.get_json()
+
+    #process the data
+    result = process_data(data)
+
+    #return the result
+    return jsonify(result)
+
+#function to process the data
+def process_data(data):
+    #process the data
+    result = {&#39;result&#39;: &#39;success&#39;}
+
+    #return the result
+    return result
+
+#run the Flask app
+if __name__ == &#39;__main__&#39;:
+    app.run()
+
+```
+</code></pre></div></td></tr></table></div>
+<p>再次运行提示符会给我们这样的结果：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code>```python
+#import necessary libraries
+import flask
+from flask import request, jsonify
+
+#create a Flask app
+app = flask.Flask(__name__)
+
+#create a route for the API
+@app.route(&#39;/api&#39;, methods=[&#39;GET&#39;])
+def api_call():
+    #get the data from the request
+    data = request.get_json()
+
+    #process the data
+    result = process_data(data)
+
+    #return the result
+    return jsonify(result)
+
+#define the process_data function
+def process_data(data):
+    #do something with the data
+    result = data + 1
+
+    #return the result
+    return result
+
+#run the app
+if __name__ == &#39;__main__&#39;:
+    app.run()
+
+```
+</code></pre></div></td></tr></table></div>
+<p>这两个输出之间只有很小的差异。 这次我们反其道而行之，将温度设置为 0.9：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code>```python
+# Import necessary libraries
+import flask
+from flask import request, jsonify
+
+# Create a Flask app
+app = flask.Flask(__name__)
+
+# Create a route for the API
+@app.route(&#39;/api&#39;, methods=[&#39;GET&#39;])
+def api_call():
+    # Get the data from the request
+    data = request.args
+
+    # Process the data
+    result = process_data(data)
+
+    # Return the result
+    return jsonify(result)
+
+# Function to process the data
+def process_data(data):
+    # Do something with the data
+    result = data + 1
+
+    # Return the result
+    return result
+
+# Run the app
+if __name__ == &#39;__main__&#39;:
+    app.run()
+
+```
+</code></pre></div></td></tr></table></div>
+<p>第二次尝试使用 0.9 作为温度值：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code>```python
+import flask
+from flask import request, jsonify
+
+# create the Flask app
+app = flask.Flask(__name__)
+app.config[&#39;DEBUG&#39;] = True
+
+# create some test data
+books = [
+    {&#39;id&#39;: 0, &#39;title&#39;: &#39;A Fire Upon The Deep&#39;, &#39;author&#39;: &#39;Vernor Vinge&#39;, &#39;first_sentence&#39;: &#39;The coldsleep itself was dreamless.&#39;, &#39;year_published&#39;: &#39;1992&#39;},
+    {&#39;id&#39;: 1, &#39;title&#39;: &#39;The Ones Who Walk Away From Omelas&#39;, &#39;author&#39;: &#39;Ursula K. Le Guin&#39;, &#39;first_sentence&#39;: &#39;With a clamor of bells that set the swallows soaring, the Festival of Summer came to the city Omelas, bright-towered by the sea.&#39;, &#39;published&#39;: &#39;1973&#39;},
+    {&#39;id&#39;: 2, &#39;title&#39;: &#39;Dhalgren&#39;, &#39;author&#39;: &#39;Samuel R. Delany&#39;, &#39;first_sentence&#39;: &#39;to wound the autumnal city.&#39;, &#39;published&#39;: &#39;1975&#39;}
+]
+
+# create an endpoint
+@app.route(&#39;/&#39;, methods=[&#39;GET&#39;])
+def home():
+    return &#39;&#39;&#39;&lt;h1&gt;Welcome to our book API!&lt;/h1&gt;&#39;&#39;&#39;
+
+@app.route(&#39;/api/v1/resources/books
+
+```
+</code></pre></div></td></tr></table></div>
+<p>正如您所看到的，结果各式各样。</p>
+<blockquote>
+<p>请注意，您可以更改更多参数来改变输出，例如 top-k, top-p, repetition penalty, length penalty and diversity penalty ，但这些不属于本课程的范围。</p>
+</blockquote>
+<h2 id="_17">最佳实践<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<p>您可以应用许多实践来尝试获得您想要的东西。 当你越来越多地使用提示时，你会发现自己的风格。</p>
+<p>除了我们介绍的技术之外，在调用 LLMs 时还需要考虑一些好的做法。</p>
+<p>以下是一些值得考虑的良好做法：</p>
+<ul>
+<li><strong>指定上下文</strong>。 上下文很重要，您可以指定的领域、主题等越多越好。</li>
+<li>限制输出。 如果您想要特定数量的项目或特定长度，请指定。</li>
+<li><strong>指定内容和方式</strong>。 请记住提及您想要什么以及您想要如何实现，例如“创建一个包含路由产品和客户的 Python Web API，将其分为 3 个文件”。</li>
+<li><strong>使用模板</strong>。 通常，您会希望使用公司的数据来丰富提示。 使用模板来执行此操作。 模板可以包含用实际数据替换的变量。</li>
+<li><strong>拼写正确</strong>。 LLMs 可能会为您提供正确的答案，但如果您拼写正确，您会得到更好的答案。</li>
+</ul>
+<h2 id="_18">作业<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p>以下 Python 代码展示了如何使用 Flask 构建简单的 API：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>```python
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route(&#39;/&#39;)
+def hello():
+    name = request.args.get(&#39;name&#39;, &#39;World&#39;)
+    return f&#39;Hello, {name}!&#39;
+
+if __name__ == &#39;__main__&#39;:
+    app.run()
+```
+</code></pre></div></td></tr></table></div>
+<p>使用 GitHub Copilot 或 ChatGPT 等人工智能助手，并应用“自我优化”技术来改进代码。</p>
+<h2 id="_19">解决方案<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>请尝试通过在代码中添加适当的提示来完成作业。</p>
+<blockquote>
+<p>[!TIP]
+短语提示要求它改进，限制改进的数量是个好主意。 您还可以要求以某种方式改进它，例如架构、性能、安全性等。</p>
+</blockquote>
+<p><a href="../../python/aoai-solution.py?WT.mc_id=academic-105485-koreyst">Solution</a></p>
+<h2 id="_20">知识检查<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<p>为什么我要使用思维链提示？ 显示 1 个正确答案和 2 个错误答案。</p>
+<ol>
+<li>教 LLM 如何解决问题。</li>
+<li>教 LLM 发现代码中的错误。</li>
+<li>指导 LLM 提出不同的解决方案。</li>
+</ol>
+<p>答：1，因为思路链是向 LLM 展示如何通过提供一系列步骤来解决问题，以及类似的问题以及它们是如何解决的。</p>
+<h2 id="_21">🚀 知识拓展<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h2>
+<p>你刚刚在作业中使用了自我完善技术。 选取您构建的任何程序并考虑您想要对其进行哪些改进。 现在使用自我优化技术来建议更改。 您认为结果如何，是更好还是更坏了？</p>
+<h2 id="_22">继续学习<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
+<p>想要了解有关创建高级提示的更多信息？ 转至<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">进阶学习的页面</a> 查找有关此主章节的其他学习资源。</p>
+<p>前往第六章，我们将应用提示工程知识<a href="../../../06-text-generation-apps/translations/cn/?WT.mc_id=academic-105485-koreyst">构建文本生成应用程序</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

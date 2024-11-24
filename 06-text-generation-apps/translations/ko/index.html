@@ -1,0 +1,2131 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/06-text-generation-apps/translations/ko/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>텍스트 생성 애플리케이션 개발 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              텍스트 생성 애플리케이션 개발
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      소개
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      텍스트 생성 애플리케이션이 무엇인가요?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="텍스트 생성 애플리케이션이 무엇인가요?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      콘솔 및 UI 앱은 제한적입니다
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      텍스트 생성 앱의 장점
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      텍스트 생성 앱으로 무엇을 만들 수 있을까요?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      어떻게 시작할 수 있을까요?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      라이브러리/SDK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      openai를 사용한 앱 개발
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="openai를 사용한 앱 개발">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      openai 설치
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      리소스 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API 키와 엔드포인트 찾기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure 설정 구성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      텍스트 생성
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="텍스트 생성">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#completions" class="md-nav__link">
+    <span class="md-ellipsis">
+      채팅 completions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      연습 - 첫 번째 텍스트 생성 앱
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      서로 다른 유형의 프롬프트를, 서로 다른 용도에 맞게
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      더 실용적인 사용 사례: 레시피 생성기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      연습 - 레시피 생성기 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="연습 - 레시피 생성기 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      필터와 쇼핑 목록 추가로 개선하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      설정 개선하기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      과제
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      정답 예시
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="정답 예시">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      스터디 버디
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      역사 봇
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      지식 확인
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 도전과제
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      수고하셨습니다! 학습을 계속하세요
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">텍스트 생성 애플리케이션 개발<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson6-gh?WT.mc_id=academic-105485-koreyst"><img alt="Building Text Generation Applications" src="../../images/06-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<blockquote>
+<p><em>(위의 이미지를 클릭하여 이 수업의 동영상을 시청하세요.)</em></p>
+</blockquote>
+<p>지금까지 이 커리큘럼을 통해 프롬프트와 "프롬프트 엔지니어링"이라는 전체적인 개념과 같은 핵심 개념들을 보셨습니다. ChatGPT, Office 365, Microsoft Power Platform 등 다양한 도구들은 프롬프트를 사용하여 어떤 작업을 수행하는 데 도움을 주는 것을 확인하실 수 있습니다.</p>
+<p>앱에 이러한 경험을 추가하려면 프롬프트, completion(완성어) 및 작업할 라이브러리와 관련된 개념을 이해해야 합니다. 이것이 바로 이번 장에서 배우게 될 내용입니다.</p>
+<h2 id="_2">소개<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>이번 장에서는 다음을 하게 될 것입니다:</p>
+<ul>
+<li>OpenAI 라이브러리와 그 핵심 개념에 대해 학습합니다.</li>
+<li>OpenAI를 사용하여 텍스트 생성 앱을 개발합니다.</li>
+<li>프롬프트, temperature(언어 생성 모델에서 생성된 텍스트의 다양성을 조절하는 하이퍼파라미터), 토큰과 같은 개념을 사용하여 텍스트 생성 앱을 구축하는 방법을 이해합니다.</li>
+</ul>
+<h2 id="_3">학습 목표<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>이 장을 학습하고 나면 다음을 할 수 있게 될 것입니다:</p>
+<ul>
+<li>텍스트 생성 앱이 무엇인지를 설명합니다.</li>
+<li>OpenAI를 사용하여 텍스트 생성 앱을 개발합니다.</li>
+<li>앱을 더 많거나 더 적은 토큰을 사용하도록 구성하고, 또한 다양한 출력을 얻기 위해 temperature를 조절합니다.</li>
+</ul>
+<h2 id="_4">텍스트 생성 애플리케이션이 무엇인가요?<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>일반적으로 앱을 개발할 때 다음과 같은 종류의 인터페이스가 있습니다:</p>
+<ul>
+<li>명령 기반(Command-based): 콘솔 앱은 명령을 입력하고 해당 작업을 수행하는 전형적인 앱입니다. 예를 들어 git은 명령 기반 앱의 한 예입니다.</li>
+<li>사용자 인터페이스 (UI): 일부 앱은 그래픽 사용자 인터페이스 (GUI)를 갖고 있습니다. 여기서는 버튼을 클릭하거나 텍스트를 입력하고 옵션을 선택하는 등의 작업을 수행합니다.</li>
+</ul>
+<h3 id="ui">콘솔 및 UI 앱은 제한적입니다<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h3>
+<p>명령 기반 앱에서 명령을 입력하는 것과 비교해보세요:</p>
+<ul>
+<li><strong>제한적입니다</strong>. 모든 명령을 입력할 수 있는 것이 아니라, 앱이 지원하는 명령만 입력할 수 있습니다.</li>
+<li><strong>특정 언어에 한정됩니다</strong>. 일부 앱은 여러 언어를 지원하지만, 기본적으로 앱은 특정 언어를 위해 구축되며, 추가적인 언어 지원이 가능한 경우에도 해당 언어에 한정됩니다.</li>
+</ul>
+<h3 id="_5">텍스트 생성 앱의 장점<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>그렇다면 텍스트 생성 앱은 어떻게 다를까요?</p>
+<p>텍스트 생성 앱에서는 더 많은 유연성을 가지며, 일련의 명령이나 특정 입력 언어에 제한되지 않습니다. 대신에 자연어를 사용하여 앱과 상호작용할 수 있습니다. 또 다른 장점은 이미 방대한 정보 코퍼스(말뭉치)로 훈련된 데이터 소스와 상호작용하고 있기 때문에, 전통적인 앱이 데이터베이스에 제한되는 것과는 달리 더 많은 가능성을 가집니다.</p>
+<h3 id="_6">텍스트 생성 앱으로 무엇을 만들 수 있을까요?<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>많은 것들을 만들 수 있습니다. 예를 들어:</p>
+<ul>
+<li><strong>챗봇</strong>. 회사와 제품에 대한 질문에 답변하는 챗봇을 만들 수 있습니다.</li>
+<li><strong>도움이 되는 도구</strong>. LLM은 텍스트 요약, 텍스트에서 통찰력 얻기, 이력서와 같은 텍스트 생성 등에 뛰어납니다.</li>
+<li><strong>코드 어시스턴트</strong>. 사용하는 언어 모델에 따라 코드 작성을 도와주는 코드 어시스턴트를 만들 수 있습니다. 예를 들어, GitHub Copilot과 ChatGPT와 같은 제품을 사용하여 코드 작성을 도와줄 수 있습니다.</li>
+</ul>
+<h2 id="_7">어떻게 시작할 수 있을까요?<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>LLM과 통합하는 방법을 찾아야 합니다. 일반적으로 다음 두 가지 접근 방식을 사용합니다:</p>
+<ul>
+<li>API 사용. 여기서는 프롬프트와 함께 웹 요청을 생성하고 생성된 텍스트를 받아옵니다.</li>
+<li>라이브러리 사용. 라이브러리는 API 호출을 캡슐화하고 사용하기 쉽게 만들어줍니다.</li>
+</ul>
+<h2 id="sdk">라이브러리/SDK<a class="headerlink" href="#sdk" title="Permanent link">&para;</a></h2>
+<p>LLM과 작업하기 위해 몇 가지 잘 알려진 라이브러리가 있습니다:</p>
+<ul>
+<li><strong>openai</strong>, 이 라이브러리는 모델에 연결하고 프롬프트를 보내는 것을 쉽게 만들어줍니다.</li>
+</ul>
+<p>또한 다음과 같이 더 높은 수준에서 작동하는 라이브러리도 있습니다:</p>
+<ul>
+<li><strong>Langchain</strong>. Langchain은 잘 알려진 라이브러리로, Python을 지원합니다.</li>
+<li><strong>Semantic Kernel</strong>. Semantic Kernel은 Microsoft에서 지원하는 C#, Python, Java 등의 언어를 지원하는 라이브러리입니다.</li>
+</ul>
+<h2 id="openai">openai를 사용한 앱 개발<a class="headerlink" href="#openai" title="Permanent link">&para;</a></h2>
+<p>우리는 앱을 만드는 방법, 앱을 만들기 위해 어떤 라이브러리가 얼마나 필요한지 등을 살펴보겠습니다.</p>
+<h3 id="openai_1">openai 설치<a class="headerlink" href="#openai_1" title="Permanent link">&para;</a></h3>
+<p>OpenAI 또는 Azure OpenAI와 상호작용하기 위한 다양한 라이브러리가 있습니다. 그리고 이러한 다양한 라이브러리에서는 C#, Python, JavaScript, Java 등 다양한 프로그래밍 언어를 사용할 수도 있습니다. 저희는 <code>openai</code> Python 라이브러리를 사용하기로 선택했으므로, <code>pip</code>를 사용하여 설치하겠습니다.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>openai
+</code></pre></div></td></tr></table></div>
+<h3 id="_8">리소스 생성<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>다음 단계를 수행해야 합니다:</p>
+<ul>
+<li>Azure에 계정을 만듭니다. <a href="https://azure.microsoft.com/free/?WT.mc_id=academic-105485-koreyst">https://azure.microsoft.com/free/</a>에서 계정을 만드세요.</li>
+<li>Azure Open AI에 액세스 권한을 얻으세요. <a href="https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai?WT.mc_id=academic-105485-koreyst">https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai</a>로 이동하여 액세스를 요청하세요.</li>
+</ul>
+<blockquote>
+<p>[!NOTE]
+작성 시점에서 Azure Open AI에 대한 액세스 신청이 필요합니다.</p>
+</blockquote>
+<ul>
+<li>Python을 설치합니다. <a href="https://www.python.org/">https://www.python.org/</a></li>
+<li>Azure OpenAI 서비스 리소스를 생성했습니다. <a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal?WT.mc_id=academic-105485-koreyst">리소스 생성 가이드</a>를 참조하세요.</li>
+</ul>
+<h3 id="api">API 키와 엔드포인트 찾기<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<p>이 시점에서 <code>openai</code> 라이브러리에 사용할 API 키를 알려야 합니다. API 키를 찾으려면 Azure Open AI 리소스의 "Keys and Endpoint" 섹션으로 이동하고 "Key 1" 값을 복사하세요.</p>
+<p><img alt="Azure Portal의 Keys and Endpoint 리소스 블레이드" src="https://learn.microsoft.com/azure/ai-services/openai/media/quickstarts/endpoint.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>이제 이 정보를 복사했으니, 라이브러리에 사용하도록 지시합시다.</p>
+<blockquote>
+<p>[!NOTE]
+API 키를 코드와 분리하는 것이 좋습니다. 이를 위해 환경 변수를 사용할 수 있습니다.</p>
+<ul>
+<li>환경 변수 <code>OPENAI_API_KEY</code>를 API 키로 설정하세요.
+  <code>export OPENAI_API_KEY='sk-...'</code></li>
+</ul>
+</blockquote>
+<h3 id="azure">Azure 설정 구성<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
+<p>Azure Open AI를 사용하는 경우, 다음과 같이 설정을 구성할 수 있습니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-05-15&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;API_BASE&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>위에서는 다음과 같이 설정하고 있습니다:</p>
+<ul>
+<li><code>api_type</code>을 <code>azure</code>로 설정합니다. 이는 라이브러리가 OpenAI가 아닌 Azure Open AI를 사용하도록 지시합니다.</li>
+<li><code>api_key</code>는 Azure Portal에서 찾을 수 있는 API 키입니다.</li>
+<li><code>api_version</code>은 사용하려는 API의 버전입니다. 작성 시점에서 최신 버전은 <code>2023-05-15</code>입니다.</li>
+<li><code>api_base</code>는 API의 엔드포인트입니다. API 키 옆에 Azure Portal에서 찾을 수 있습니다.</li>
+</ul>
+<blockquote>
+<p>[!NOTE] &gt; <code>os.getenv</code>는 환경 변수를 읽는 함수입니다. <code>OPENAI_API_KEY</code>와 <code>API_BASE</code>와 같은 환경 변수를 읽을 때 사용할 수 있습니다. 이러한 환경 변수는 터미널에서 설정하거나 <code>dotenv</code>와 같은 라이브러리를 사용하여 설정할 수 있습니다.</p>
+</blockquote>
+<h2 id="_9">텍스트 생성<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>텍스트를 생성하는 방법은 <code>Completion</code> 클래스를 사용하는 것입니다. 다음은 예시입니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Complete the following: Once upon a time there was a&quot;</span>
+
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>위의 코드에서는 완성 객체를 생성하고 사용할 모델과 프롬프트를 전달합니다. 그런 다음 생성된 텍스트를 출력합니다.</p>
+<h3 id="completions">채팅 completions<a class="headerlink" href="#completions" title="Permanent link">&para;</a></h3>
+<p>지금까지 <code>Completion</code>을 사용하여 텍스트를 생성하는 방법을 살펴보았습니다. 그러나 챗봇에 더 적합한 <code>ChatCompletion</code>이라는 다른 클래스도 있습니다. 다음은 사용 예시입니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;sk-...&quot;</span>
+
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello world&quot;</span><span class="p">}])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>이 기능에 대한 자세한 내용은 다음 장에서 다룰 예정입니다.</p>
+<h2 id="-">연습 - 첫 번째 텍스트 생성 앱<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<p>이제 openai를 설정하고 구성하는 방법을 배웠으니, 첫 번째 텍스트 생성 앱을 만들어 보는 시간입니다. 앱을 만들기 위해 다음 단계를 따르세요:</p>
+<ol>
+<li>가상 환경을 생성하고 openai를 설치하세요:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>openai
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!NOTE]
+Windows를 사용하는 경우 <code>source venv/bin/activate</code> 대신 <code>venv\Scripts\activate</code>를 입력하세요.</p>
+<p>[!NOTE]
+Azure Open AI 키를 찾으려면 <a href="https://portal.azure.com/?WT.mc_id=academic-105485-koreyst">https://portal.azure.com/</a>로 이동하여 <code>Open AI</code>를 검색한 다음 <code>Open AI 리소스</code>를 선택하고 <code>Keys and Endpoint</code>를 선택하고 <code>Key 1</code> 값을 복사하세요.</p>
+</blockquote>
+<ol>
+<li><em>app.py</em> 파일을 생성하고 다음 코드를 추가하세요:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;&lt;replace this value with your open ai key or Azure Open AI key&gt;&quot;</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-05-15&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;&lt;endpoint found in Azure Portal where your API key is&gt;&quot;</span>
+<span class="n">deployment_name</span> <span class="o">=</span> <span class="s2">&quot;&lt;deployment name&gt;&quot;</span>
+
+<span class="c1"># add your completion code</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Complete the following: Once upon a time there was a&quot;</span>
+
+<span class="c1"># make completion</span>
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span> <span class="n">deployment_name</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
+
+<span class="c1"># print response</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!NOTE]
+Azure Open AI를 사용하는 경우, <code>api_type</code>을 <code>azure</code>로 설정하고 <code>api_key</code>를 Azure Open AI 키로 설정해야 합니다.</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>다음과 같은 출력을 볼 수 있어야 합니다:
+
+```output
+ very unhappy _____.
+
+Once upon a time there was a very unhappy mermaid.
+```
+</code></pre></div></td></tr></table></div>
+<h2 id="_10">서로 다른 유형의 프롬프트를, 서로 다른 용도에 맞게<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>이제 프롬프트를 사용하여 텍스트를 생성하는 방법을 보았습니다. 심지어 다양한 유형의 텍스트를 생성하기 위해 수정하고 변경할 수 있는 프로그램이 작동 중입니다.</p>
+<p>프롬프트는 다양한 작업에 사용할 수 있습니다. 예를 들어:</p>
+<ul>
+<li><strong>텍스트 유형 생성</strong>. 시, 퀴즈 질문 등을 생성할 수 있습니다.</li>
+<li><strong>정보 조회</strong>. '웹 개발에서 CORS는 무엇을 의미하는가?'와 같은 정보를 조회하는 데 프롬프트를 사용할 수 있습니다.</li>
+<li><strong>코드 생성</strong>. 이메일 유효성 검사에 사용되는 정규식 또는 웹 앱과 같은 전체 프로그램을 생성하는 데 프롬프트를 사용할 수 있습니다.</li>
+</ul>
+<h2 id="_11">더 실용적인 사용 사례: 레시피 생성기<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>가정에 있는 재료로 무언가 요리하고 싶을 때 레시피가 필요합니다. 레시피를 찾는 방법은 검색 엔진을 사용하거나 LLM을 사용할 수도 있습니다.</p>
+<p>다음과 같은 프롬프트를 작성할 수 있습니다:</p>
+<blockquote>
+<p>"닭, 감자, 당근을 사용한 요리 5개를 보여주세요. 각 레시피에 사용된 모든 재료를 나열해주세요."</p>
+</blockquote>
+<p>위의 프롬프트를 주면 다음과 유사한 응답을 받을 수 있습니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">1. Roasted Chicken and Vegetables:</span>
+<span class="go">Ingredients:</span>
+<span class="go">- 4 chicken thighs</span>
+<span class="go">- 2 potatoes, cut into cubes</span>
+<span class="go">- 2 carrots, cut into cubes</span>
+<span class="go">- 2 tablespoons olive oil</span>
+<span class="go">- 2 cloves garlic, minced</span>
+<span class="go">- 1 teaspoon dried thyme</span>
+<span class="go">- 1 teaspoon dried oregano</span>
+<span class="go">- Salt and pepper, to taste</span>
+
+<span class="go">2. Chicken and Potato Stew:</span>
+<span class="go">Ingredients:</span>
+<span class="go">- 2 tablespoons olive oil</span>
+<span class="go">- 1 onion, diced</span>
+<span class="go">- 2 cloves garlic, minced</span>
+<span class="go">- 2 chicken breasts, cut into cubes</span>
+<span class="go">- 2 potatoes, cut into cubes</span>
+<span class="go">- 2 carrots, cut into cubes</span>
+<span class="go">- 1 teaspoon dried oregano</span>
+<span class="go">- 1 teaspoon dried thyme</span>
+<span class="go">- 1 cup chicken broth</span>
+<span class="go">- Salt and pepper, to taste</span>
+
+<span class="go">3. Chicken and Potato Bake:</span>
+<span class="go">Ingredients:</span>
+<span class="go">- 2 tablespoons olive oil</span>
+<span class="go">- 2 chicken breasts, cut into cubes</span>
+<span class="go">- 2 potatoes, cut into cubes</span>
+<span class="go">- 2 carrots, cut into cubes</span>
+<span class="go">- 1 onion, diced</span>
+<span class="go">- 2 cloves garlic, minced</span>
+<span class="go">- 1 teaspoon dried oregano</span>
+<span class="go">- 1 teaspoon dried thyme</span>
+<span class="go">- 1 cup chicken broth</span>
+<span class="go">- Salt and pepper, to taste</span>
+
+<span class="go">4. Chicken and Potato Soup:</span>
+<span class="go">Ingredients:</span>
+<span class="go">- 2 tablespoons olive oil</span>
+<span class="go">- 1 onion, diced</span>
+<span class="go">- 2 cloves garlic, minced</span>
+<span class="go">- 2 chicken breasts, cut into cubes</span>
+<span class="go">- 2 potatoes, cut into cubes</span>
+<span class="go">- 2 carrots, cut into cubes</span>
+<span class="go">- 1 teaspoon dried oregano</span>
+<span class="go">- 1 teaspoon dried thyme</span>
+<span class="go">- 4 cups chicken broth</span>
+<span class="go">- Salt and pepper, to taste</span>
+
+<span class="go">5. Chicken and Potato Hash:</span>
+<span class="go">Ingredients:</span>
+<span class="go">- 2 tablespoons olive oil</span>
+<span class="go">- 2 chicken breasts, cut into cubes</span>
+<span class="go">- 2 potatoes, cut into cubes</span>
+<span class="go">- 2 carrots, cut into cubes</span>
+<span class="go">- 1 onion, diced</span>
+<span class="go">- 2 cloves garlic, minced</span>
+<span class="go">- 1 teaspoon dried oregano</span>
+</code></pre></div></td></tr></table></div>
+<p>이 결과는 훌륭합니다. 무엇을 요리할지 알게 되었습니다. 이제 유용한 개선 사항은 다음과 같습니다:</p>
+<ul>
+<li>싫어하는 재료나 알레르기가 있는 재료를 걸러내기.</li>
+<li>재료가 부족한 경우를 대비해 쇼핑 목록을 작성하기.</li>
+</ul>
+<p>위의 경우에 대해 추가적인 프롬프트를 추가해 보겠습니다:</p>
+<blockquote>
+<p>"대파를 대체할 다른 재료로 대체하고, 알레르기가 있는 사람을 위해 마늘이 포함된 레시피를 제거해주세요. 또한, 닭고기, 감자, 당근은 이미 집에 있으므로 쇼핑 목록을 작성해주세요."</p>
+</blockquote>
+<p>이제 새로운 결과가 있습니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">1. Roasted Chicken and Vegetables:</span>
+<span class="go">Ingredients:</span>
+<span class="go">- 4 chicken thighs</span>
+<span class="go">- 2 potatoes, cut into cubes</span>
+<span class="go">- 2 carrots, cut into cubes</span>
+<span class="go">- 2 tablespoons olive oil</span>
+<span class="go">- 1 teaspoon dried thyme</span>
+<span class="go">- 1 teaspoon dried oregano</span>
+<span class="go">- Salt and pepper, to taste</span>
+
+<span class="go">2. Chicken and Potato Stew:</span>
+<span class="go">Ingredients:</span>
+<span class="go">- 2 tablespoons olive oil</span>
+<span class="go">- 1 onion, diced</span>
+<span class="go">- 2 chicken breasts, cut into cubes</span>
+<span class="go">- 2 potatoes, cut into cubes</span>
+<span class="go">- 2 carrots, cut into cubes</span>
+<span class="go">- 1 teaspoon dried oregano</span>
+<span class="go">- 1 teaspoon dried thyme</span>
+<span class="go">- 1 cup chicken broth</span>
+<span class="go">- Salt and pepper, to taste</span>
+
+<span class="go">3. Chicken and Potato Bake:</span>
+<span class="go">Ingredients:</span>
+<span class="go">- 2 tablespoons olive oil</span>
+<span class="go">- 2 chicken breasts, cut into cubes</span>
+<span class="go">- 2 potatoes, cut into cubes</span>
+<span class="go">- 2 carrots, cut into cubes</span>
+<span class="go">- 1 onion, diced</span>
+<span class="go">- 1 teaspoon dried oregano</span>
+<span class="go">- 1 teaspoon dried thyme</span>
+<span class="go">- 1 cup chicken broth</span>
+<span class="go">- Salt and pepper, to taste</span>
+
+<span class="go">4. Chicken and Potato Soup:</span>
+<span class="go">Ingredients:</span>
+<span class="go">- 2 tablespoons olive oil</span>
+<span class="go">- 1 onion, diced</span>
+<span class="go">- 2 chicken breasts, cut into cubes</span>
+<span class="go">- 2 potatoes, cut into cubes</span>
+<span class="go">- 2 carrots, cut into cubes</span>
+<span class="go">- 1 teaspoon dried oregano</span>
+<span class="go">- 1 teaspoon dried thyme</span>
+<span class="go">- 4 cups chicken broth</span>
+<span class="go">- Salt and pepper, to taste</span>
+
+<span class="go">5. Chicken and Potato Hash:</span>
+<span class="go">Ingredients:</span>
+<span class="go">- 2 tablespoons olive oil</span>
+<span class="go">- 2 chicken breasts, cut into cubes</span>
+<span class="go">- 2 potatoes, cut into cubes</span>
+<span class="go">- 2 carrots, cut into cubes</span>
+<span class="go">- 1 onion, diced</span>
+<span class="go">- 1 teaspoon dried oregano</span>
+
+<span class="go">Shopping List:</span>
+<span class="go">- Olive oil</span>
+<span class="go">- Onion</span>
+<span class="go">- Thyme</span>
+<span class="go">- Oregano</span>
+<span class="go">- Salt</span>
+<span class="go">- Pepper</span>
+</code></pre></div></td></tr></table></div>
+<p>이것이 당신의 다섯 가지 레시피입니다. 마늘은 포함되지 않았으며, 집에 이미 있는 재료를 고려한 쇼핑 목록도 있습니다.</p>
+<h2 id="-_1">연습 - 레시피 생성기 만들기<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h2>
+<p>이제 우리가 시나리오를 플레이했으니, 해당 시나리오와 일치하는 코드를 작성해 봅시다. 다음 단계를 따라주세요:</p>
+<ol>
+<li>기존의 <em>app.py</em> 파일을 시작점으로 사용합니다.</li>
+<li><code>prompt</code> 변수를 찾아서 다음과 같이 코드를 변경합니다:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Show me 5 recipes for a dish with the following ingredients: chicken, potatoes, and carrots. Per recipe, list all the ingredients used&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>코드를 실행하면 다음과 유사한 출력이 표시됩니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">-Chicken Stew with Potatoes and Carrots: 3 tablespoons oil, 1 onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 bay leaf, 1 thyme sprig, 1/2 teaspoon salt, 1/4 teaspoon black pepper, 1 1/2 cups chicken broth, 1/2 cup dry white wine, 2 tablespoons chopped fresh parsley, 2 tablespoons unsalted butter, 1 1/2 pounds boneless, skinless chicken thighs, cut into 1-inch pieces</span>
+<span class="go">-Oven-Roasted Chicken with Potatoes and Carrots: 3 tablespoons extra-virgin olive oil, 1 tablespoon Dijon mustard, 1 tablespoon chopped fresh rosemary, 1 tablespoon chopped fresh thyme, 4 cloves garlic, minced, 1 1/2 pounds small red potatoes, quartered, 1 1/2 pounds carrots, quartered lengthwise, 1/2 teaspoon salt, 1/4 teaspoon black pepper, 1 (4-pound) whole chicken</span>
+<span class="go">-Chicken, Potato, and Carrot Casserole: cooking spray, 1 large onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and shredded, 1 potato, peeled and shredded, 1/2 teaspoon dried thyme leaves, 1/4 teaspoon salt, 1/4 teaspoon black pepper, 2 cups fat-free, low-sodium chicken broth, 1 cup frozen peas, 1/4 cup all-purpose flour, 1 cup 2% reduced-fat milk, 1/4 cup grated Parmesan cheese</span>
+
+<span class="go">-One Pot Chicken and Potato Dinner: 2 tablespoons olive oil, 1 pound boneless, skinless chicken thighs, cut into 1-inch pieces, 1 large onion, chopped, 3 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 bay leaf, 1 thyme sprig, 1/2 teaspoon salt, 1/4 teaspoon black pepper, 2 cups chicken broth, 1/2 cup dry white wine</span>
+
+<span class="go">-Chicken, Potato, and Carrot Curry: 1 tablespoon vegetable oil, 1 large onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 teaspoon ground coriander, 1 teaspoon ground cumin, 1/2 teaspoon ground turmeric, 1/2 teaspoon ground ginger, 1/4 teaspoon cayenne pepper, 2 cups chicken broth, 1/2 cup dry white wine, 1 (15-ounce) can chickpeas, drained and rinsed, 1/2 cup raisins, 1/2 cup chopped fresh cilantro</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>참고: LLM은 결정론적이지 않으므로 프로그램을 실행할 때마다 다른 결과를 얻을 수 있습니다.</p>
+</blockquote>
+<p>좋아요, 어떻게 개선할 수 있는지 알아봅시다. 개선하기 위해 코드가 유연하도록 만들어야 합니다. 따라서 재료와 레시피 수를 개선하고 변경할 수 있어야 합니다.</p>
+<ol>
+<li>다음과 같이 코드를 변경해 봅시다:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">no_recipes</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;No of recipes (for example, 5: &quot;</span><span class="p">)</span>
+
+<span class="n">ingredients</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;List of ingredients (for example, chicken, potatoes, and carrots: &quot;</span><span class="p">)</span>
+
+<span class="c1"># interpolate the number of recipes into the prompt an ingredients</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Show me </span><span class="si">{</span><span class="n">no_recipes</span><span class="si">}</span><span class="s2"> recipes for a dish with the following ingredients: </span><span class="si">{</span><span class="n">ingredients</span><span class="si">}</span><span class="s2">. Per recipe, list all the ingredients used&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>코드를 테스트 실행하면 결과가 다음과 같을 수 있습니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">No of recipes (for example, 5: 3</span>
+<span class="go">List of ingredients (for example, chicken, potatoes, and carrots: milk,strawberries</span>
+
+<span class="go">-Strawberry milk shake: milk, strawberries, sugar, vanilla extract, ice cubes</span>
+<span class="go">-Strawberry shortcake: milk, flour, baking powder, sugar, salt, unsalted butter, strawberries, whipped cream</span>
+<span class="go">-Strawberry milk: milk, strawberries, sugar, vanilla extract</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_12">필터와 쇼핑 목록 추가로 개선하기<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>이제 우리는 레시피를 생성할 수 있는 작동하는 앱을 가지고 있으며, 이 앱은 사용자의 입력에 의존하여 레시피 수와 사용되는 재료를 유연하게 조정할 수 있습니다.</p>
+<p>그리고 더 개선하기 위해 다음을 추가하고 싶습니다:</p>
+<ul>
+<li><strong>재료 필터링</strong>. 싫어하는 재료나 알레르기 반응이 있는 재료를 필터링할 수 있도록 하고 싶습니다. 이 변경을 위해 기존의 프롬프트를 수정하여 끝에 필터 조건을 추가할 수 있습니다:</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">filter</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Filter (for example, vegetarian, vegan, or gluten-free: &quot;</span><span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Show me </span><span class="si">{</span><span class="n">no_recipes</span><span class="si">}</span><span class="s2"> recipes for a dish with the following ingredients: </span><span class="si">{</span><span class="n">ingredients</span><span class="si">}</span><span class="s2">. Per recipe, list all the ingredients used, no </span><span class="si">{</span><span class="nb">filter</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>위에서는 프롬프트 끝에 <code>{filter}</code>를 추가하고 사용자로부터 필터 값을 입력받도록 합니다.</p>
+<p>프로그램을 실행하는 예시 입력은 다음과 같을 수 있습니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">No of recipes (for example, 5: 3</span>
+<span class="go">List of ingredients (for example, chicken, potatoes, and carrots: onion,milk</span>
+<span class="go">Filter (for example, vegetarian, vegan, or gluten-free: no milk</span>
+
+<span class="go">1. French Onion Soup</span>
+
+<span class="go">Ingredients:</span>
+
+<span class="go">-1 large onion, sliced</span>
+<span class="go">-3 cups beef broth</span>
+<span class="go">-1 cup milk</span>
+<span class="go">-6 slices french bread</span>
+<span class="go">-1/4 cup shredded Parmesan cheese</span>
+<span class="go">-1 tablespoon butter</span>
+<span class="go">-1 teaspoon dried thyme</span>
+<span class="go">-1/4 teaspoon salt</span>
+<span class="go">-1/4 teaspoon black pepper</span>
+
+<span class="go">Instructions:</span>
+
+<span class="go">1. In a large pot, sauté onions in butter until golden brown.</span>
+<span class="go">2. Add beef broth, milk, thyme, salt, and pepper. Bring to a boil.</span>
+<span class="go">3. Reduce heat and simmer for 10 minutes.</span>
+<span class="go">4. Place french bread slices on soup bowls.</span>
+<span class="go">5. Ladle soup over bread.</span>
+<span class="go">6. Sprinkle with Parmesan cheese.</span>
+
+<span class="go">2. Onion and Potato Soup</span>
+
+<span class="go">Ingredients:</span>
+
+<span class="go">-1 large onion, chopped</span>
+<span class="go">-2 cups potatoes, diced</span>
+<span class="go">-3 cups vegetable broth</span>
+<span class="go">-1 cup milk</span>
+<span class="go">-1/4 teaspoon black pepper</span>
+
+<span class="go">Instructions:</span>
+
+<span class="go">1. In a large pot, sauté onions in butter until golden brown.</span>
+<span class="go">2. Add potatoes, vegetable broth, milk, and pepper. Bring to a boil.</span>
+<span class="go">3. Reduce heat and simmer for 10 minutes.</span>
+<span class="go">4. Serve hot.</span>
+
+<span class="go">3. Creamy Onion Soup</span>
+
+<span class="go">Ingredients:</span>
+
+<span class="go">-1 large onion, chopped</span>
+<span class="go">-3 cups vegetable broth</span>
+<span class="go">-1 cup milk</span>
+<span class="go">-1/4 teaspoon black pepper</span>
+<span class="go">-1/4 cup all-purpose flour</span>
+<span class="go">-1/2 cup shredded Parmesan cheese</span>
+
+<span class="go">Instructions:</span>
+
+<span class="go">1. In a large pot, sauté onions in butter until golden brown.</span>
+<span class="go">2. Add vegetable broth, milk, and pepper. Bring to a boil.</span>
+<span class="go">3. Reduce heat and simmer for 10 minutes.</span>
+<span class="go">4. In a small bowl, whisk together flour and Parmesan cheese until smooth.</span>
+<span class="go">5. Add to soup and simmer for an additional 5 minutes, or until soup has thickened.</span>
+</code></pre></div></td></tr></table></div>
+<p>보시다시피, 우유가 들어간 레시피는 필터링되었습니다. 그러나 유당 불내증이 있다면 치즈가 들어간 레시피도 필터링하고 싶을 수 있으므로 명확하게 해야합니다.</p>
+<ul>
+<li><strong>쇼핑 목록 생성</strong>. 우리는 이미 집에 있는 재료를 고려하여 쇼핑 목록을 생성하고 싶습니다.</li>
+</ul>
+<p>이 기능을 위해 우리는 하나의 프롬프트에서 모든 것을 해결하려고 시도할 수도 있고, 두 개의 프롬프트로 나눠서 해결할 수도 있습니다. 후자의 접근 방식을 시도해 보겠습니다. 여기서는 추가적인 프롬프트를 추가하는 것을 제안하고 있습니다. 그러나 이를 위해 이전 프롬프트의 결과를 후자의 프롬프트에 컨텍스트로 추가해야 합니다.</p>
+<p>코드에서 첫 번째 프롬프트의 결과를 출력하는 부분을 찾아서 다음 코드를 아래에 추가하세요:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">old_prompt_result</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Produce a shopping list for the generated recipes and please don&#39;t include ingredients that I already have.&quot;</span>
+
+<span class="n">new_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">old_prompt_result</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">deployment_name</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">new_prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span>
+
+<span class="c1"># print response</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shopping list:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>다음 사항을 주목하세요:</p>
+<ol>
+<li>
+<p>첫 번째 프롬프트의 결과를 새로운 프롬프트에 추가하여 새로운 프롬프트를 구성합니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">new_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">old_prompt_result</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>첫 번째 프롬프트에서 요청한 토큰 수를 고려하여 새로운 요청을 만듭니다. 이번에는 <code>max_tokens</code>을 1200으로 설정합니다.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">deployment_name</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">new_prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Taking this code for a spin, we now arrive at the following output:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">No of recipes (for example, 5: 2</span>
+<span class="go">List of ingredients (for example, chicken, potatoes, and carrots: apple,flour</span>
+<span class="go">Filter (for example, vegetarian, vegan, or gluten-free: sugar</span>
+
+
+<span class="go">-Apple and flour pancakes: 1 cup flour, 1/2 tsp baking powder, 1/2 tsp baking soda, 1/4 tsp salt, 1 tbsp sugar, 1 egg, 1 cup buttermilk or sour milk, 1/4 cup melted butter, 1 Granny Smith apple, peeled and grated</span>
+<span class="go">-Apple fritters: 1-1/2 cups flour, 1 tsp baking powder, 1/4 tsp salt, 1/4 tsp baking soda, 1/4 tsp nutmeg, 1/4 tsp cinnamon, 1/4 tsp allspice, 1/4 cup sugar, 1/4 cup vegetable shortening, 1/4 cup milk, 1 egg, 2 cups shredded, peeled apples</span>
+<span class="go">Shopping list:</span>
+<span class="go">-Flour, baking powder, baking soda, salt, sugar, egg, buttermilk, butter, apple, nutmeg, cinnamon, allspice</span>
+</code></pre></div></td></tr></table></div>
+</li>
+</ol>
+<h2 id="_13">설정 개선하기<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>지금까지 작성한 코드는 작동하지만, 더 개선할 수 있는 몇 가지 조정 사항이 있습니다. 우리가 해야 할 몇 가지 작업은 다음과 같습니다:</p>
+<ul>
+<li>
+<p><strong>비밀 정보와 코드 분리하기</strong>, 예를 들어 API 키와 같은 비밀 정보는 코드에 포함되어서는 안 됩니다. 비밀 정보를 코드와 분리하기 위해 환경 변수와 <code>python-dotenv</code>와 같은 라이브러리를 사용하여 파일에서 로드할 수 있습니다. 코드에서 이렇게 구현할 수 있습니다:</p>
+</li>
+<li>
+<p><code>.env</code> 파일을 다음 내용으로 생성하세요:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-...
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>참고로, Azure의 경우 다음 환경 변수를 설정해야 합니다:</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">OPENAI_API_TYPE</span><span class="o">=</span>azure
+<span class="nv">OPENAI_API_VERSION</span><span class="o">=</span><span class="m">2023</span>-05-15
+<span class="nv">OPENAI_API_BASE</span><span class="o">=</span>&lt;replace&gt;
+</code></pre></div></td></tr></table></div>
+<p>코드에서는 다음과 같이 환경 변수를 로드합니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p><strong>토큰 길이에 대한 고려사항</strong>. 우리는 원하는 텍스트를 생성하기 위해 얼마나 많은 토큰이 필요한지 고려해야 합니다. 토큰은 비용이 들기 때문에 가능한 경우, 토큰의 수를 절약할 수 있는 방법을 고려해야 합니다. 예를 들어, 프롬프트를 어떻게 구성하면 더 적은 토큰을 사용할 수 있을까요?</p>
+</li>
+</ul>
+<p>사용할 토큰을 변경하려면 <code>max_tokens</code> 매개변수를 사용할 수 있습니다. 예를 들어, 100개의 토큰을 사용하려면 다음과 같이 할 수 있습니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>temperature 조절 실험</strong>. temperature는 우리가 지금까지 언급하지 않았지만, 프로그램의 동작에 중요한 맥락입니다. temperature 값이 높을수록 출력이 더 무작위적이 됩니다. 반대로, temperature 값이 낮을수록 출력이 더 예측 가능해집니다. 출력에 변화를 원하는지 여부를 고려해보세요.</li>
+</ul>
+<p>temperature를 변경하려면 <code>temperature</code> 매개변수를 사용할 수 있습니다. 예를 들어, temperature를 0.5로 설정하려면 다음과 같이 할 수 있습니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>참고로, 값이 1.0에 가까울수록 출력이 더 다양해집니다.</p>
+</blockquote>
+<h2 id="_14">과제<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>이 과제에서는 무엇을 구축할지 선택할 수 있습니다.</p>
+<p>다음은 몇 가지 제안 사항입니다:</p>
+<ul>
+<li>레시피 생성기 앱을 더 개선해 보세요. temperature 값과 프롬프트를 조정하여 어떤 결과를 얻을 수 있는지 확인해보세요.</li>
+<li>"스터디 버디"를 만들어 보세요. 이 앱은 Python과 같은 주제에 대한 질문에 답변할 수 있어야 합니다. "Python에서 특정 주제는 무엇인가요?"와 같은 프롬프트를 사용하거나, 특정 주제에 대한 코드를 보여달라는 프롬프트를 사용할 수도 있습니다.</li>
+<li>역사 봇을 만들어 역사를 생생하게 만들어 보세요. 봇에게 특정 역사적 인물로 역할을 맡게 하고, 그 인물에 대한 생애와 시대에 대해 질문해 보세요.</li>
+</ul>
+<h2 id="_15">정답 예시<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h3 id="_16">스터디 버디<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>아래는 시작 프롬프트입니다. 이를 활용하고 원하는 대로 조정해보세요.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>- &quot;You&#39;re an expert on the Python language
+
+    Suggest a beginner lesson for Python in the following format:
+
+    Format:
+    - concepts:
+    - brief explanation of the lesson:
+    - exercise in code with solutions&quot;
+</code></pre></div></td></tr></table></div>
+<h3 id="_17">역사 봇<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>다음은 사용할 수 있는 몇 가지 프롬프트입니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>- &quot;You are Abe Lincoln, tell me about yourself in 3 sentences, and respond using grammar and words like Abe would have used&quot;
+- &quot;You are Abe Lincoln, respond using grammar and words like Abe would have used:
+
+   Tell me about your greatest accomplishments, in 300 words&quot;
+</code></pre></div></td></tr></table></div>
+<h2 id="_18">지식 확인<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p>temperature 개념은 무엇을 하는 역할인가요?</p>
+<ol>
+<li>출력의 무작위성을 조절합니다.</li>
+<li>응답의 크기를 조절합니다.</li>
+<li>사용되는 토큰의 수를 조절합니다.</li>
+</ol>
+<h2 id="_19">🚀 도전과제<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>과제를 수행할 때, temperature 값을 다양하게 변경해보세요. 0, 0.5, 1로 설정해보세요. 기억해주세요, 0은 가장 일정하고 1은 가장 다양한 값을 의미합니다. 어떤 값이 앱에 가장 적합한지 확인해보세요.</p>
+<h2 id="_20">수고하셨습니다! 학습을 계속하세요<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<p>이 수업을 완료한 후에는 <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">Generative AI 학습 컬렉션</a>을 확인하여 Generative AI 지식을 더욱 향상시킬 수 있습니다!</p>
+<p>7번 수업으로 이동하여 <a href="../../../07-building-chat-applications/translations/ko/?WT.mc_id=academic-105485-koreyst">채팅 애플리케이션을 구축하는 방법</a>을 살펴보세요!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

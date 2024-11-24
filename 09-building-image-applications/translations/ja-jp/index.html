@@ -1,0 +1,1799 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/09-building-image-applications/translations/ja-jp/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>画像生成アプリケーションの構築 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              画像生成アプリケーションの構築
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      学習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      画像生成アプリケーションを作る理由は何でしょう？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edu4all" class="md-nav__link">
+    <span class="md-ellipsis">
+      シナリオ ： Edu4All
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dall-e-midjourney" class="md-nav__link">
+    <span class="md-ellipsis">
+      DALL-E と Midjourney とは何でしょう？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DALL-E と Midjourney とは何でしょう？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dall-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      DALL-E
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#midjourney" class="md-nav__link">
+    <span class="md-ellipsis">
+      Midjourney
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dall-e-midjourney_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DALL-E と Midjourney はどのように動作するのでしょうか？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      初めての画像生成アプリケーションの構築
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="初めての画像生成アプリケーションの構築">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      画像生成の詳細
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      画像生成における追加機能
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      温度
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="温度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      温度を変更してみましょう
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      メタ・プロンプトを使ってアプリケーションの範囲を設定する方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="メタ・プロンプトを使ってアプリケーションの範囲を設定する方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      それはどのように動作するのでしょうか？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      課題 - 学生の能力を引き出しましょう
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      解決策
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      お疲れ様でした! 学習を続ける
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">画像生成アプリケーションの構築<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson9-gh?WT.mc_id=academic-105485-koreyst"><img alt="Building Image Generation Applications" src="../../images/09-lesson-banner.png?WT.mc_id=academic-105485-yoterada" /></a></p>
+<p>LLM はテキスト生成だけでなく、テキストの説明から画像も生成できます。画像生成は、医療や建築、観光、ゲーム開発のように様々な業界において価値が高いとされています。この章では、最も人気のある 2 つの画像生成モデル、DALL-E と Midjourney について詳しく見ていきます。</p>
+<h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>このレッスンでは、下記の内容について説明します。</p>
+<ul>
+<li>画像生成の有用性</li>
+<li>DALL-E と Midjourney の概要とその動作原理</li>
+<li>画像生成アプリの作り方</li>
+</ul>
+<h2 id="_3">学習目標<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>このレッスンを修了すると、下記を理解できます：</p>
+<ul>
+<li>画像生成アプリの作成</li>
+<li>メタプロンプトを用いてアプリケーションの範囲を定義</li>
+<li>DALL-E と Midjourney の活用方法</li>
+</ul>
+<h2 id="_4">画像生成アプリケーションを作る理由は何でしょう？<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>画像生成アプリケーションは、生成 AI の能力を引き出す絶好の手段です。例えば、下記のような用途に利用できます：</p>
+<ul>
+<li>
+<p><strong>画像編集と合成</strong>：画像編集や画像合成など、様々な用途の画像を生成できます。</p>
+</li>
+<li>
+<p><strong>多種多様な業界への応用</strong>：医療技術、観光、ゲーム開発など、様々な業界の画像を生成できます。</p>
+</li>
+</ul>
+<h2 id="edu4all">シナリオ ： Edu4All<a class="headerlink" href="#edu4all" title="Permanent link">&para;</a></h2>
+<p>このレッスンでは、引き続きスタートアップの Edu4All で作業を進めていきます。生徒たちは評価用の画像を作成します。具体的にどのような画像を作るかは生徒たち次第ですが、自分たちの創作するおとぎ話のイラストを描いたり、物語の新しいキャラクターを作ったり、自分たちのアイデアや概念を視覚化する手助けをしてくれます。</p>
+<p>例えば、Edu4All の生徒たちが授業で記念碑について学んでいる場合、下記のような画像を生成できます：</p>
+<p><img alt="Edu4All startup, class on monuments, Eiffel Tower" src="../../images/startup.png?WT.mc_id=academic-105485-yoterada" /></p>
+<p>次のようなプロンプトを入力します。</p>
+<blockquote>
+<p>"早朝の日差しを浴びたエッフェル塔の前に座る犬"</p>
+</blockquote>
+<h2 id="dall-e-midjourney">DALL-E と Midjourney とは何でしょう？<a class="headerlink" href="#dall-e-midjourney" title="Permanent link">&para;</a></h2>
+<p><a href="https://openai.com/dall-e-2?WT.mc_id=academic-105485-yoterada">DALL-E</a> と <a href="https://www.midjourney.com/?WT.mc_id=academic-105485-yoterada">Midjourney</a> は、プロンプトを使って画像を生成できる、特に人気のある画像生成 AI モデルの 2 つです。</p>
+<h3 id="dall-e">DALL-E<a class="headerlink" href="#dall-e" title="Permanent link">&para;</a></h3>
+<p>まずは、テキストの説明から画像を生成する生成 AI モデル、DALL-E について見ていきましょう。</p>
+<blockquote>
+<p><a href="https://towardsdatascience.com/openais-dall-e-and-clip-101-a-brief-introduction-3a4367280d4e?WT.mc_id=academic-105485-yoterada">DALL-E は、CLIP と Diffused attention という 2 つのモデルを組み合わせたものです</a>.</p>
+</blockquote>
+<ul>
+<li><strong>CLIP</strong> は、画像やテキストからデータの数値表現である埋め込みを生成するモデルです。</li>
+<li><strong>Diffused attention</strong> は、埋め込みから画像を生成するモデルです。DALL-E は画像とテキストのデータセットで訓練され、テキストの説明から画像を生成できます。例えば、DALL-E を使って「帽子をかぶった猫」や「モヒカンヘアの犬」の画像を生成できます。</li>
+</ul>
+<h3 id="midjourney">Midjourney<a class="headerlink" href="#midjourney" title="Permanent link">&para;</a></h3>
+<p>Midjourney も DALL-E と同様に、テキストプロンプトから画像を生成できます。Midjourney も同様に、「帽子をかぶった猫」や「モヒカンヘアの犬」などのプロンプトを使って画像を生成できます。</p>
+<p><img alt="Image generated by Midjourney, mechanical pigeon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png/440px-Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png?WT.mc_id=academic-105485-yoterada" />
+<em>Image cred Wikipedia, image generated by Midjourney</em></p>
+<h2 id="dall-e-midjourney_1">DALL-E と Midjourney はどのように動作するのでしょうか？<a class="headerlink" href="#dall-e-midjourney_1" title="Permanent link">&para;</a></h2>
+<p>まず、<a href="https://arxiv.org/pdf/2102.12092.pdf?WT.mc_id=academic-105485-yoterada">DALL-E</a> について説明します。DALL-E は、「<em>自己回帰型トランスフォーマー</em>」を用いたトランスフォーマー・アーキテクチャに基づく生成 AI モデルです。</p>
+<p>「<em>自己回帰型トランスフォーマー</em>」は、AI モデルがテキストの説明から画像を生成する方法を定義します。このモデルは一度に 1 ピクセルずつ生成し、生成したピクセルを使って、次のピクセルを生成します。このプロセスは、画像が完成するまで、ニューラル・ネットワークの複数の層を通過していきます。</p>
+<p>このプロセスを通じて、DALL-E は生成する画像の属性、オブジェクト、特性などを制御します。DALL-E 2 や 3 は生成された画像をより詳細に制御する能力を持っています。</p>
+<h2 id="_5">初めての画像生成アプリケーションの構築<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>画像生成アプリケーションを作るためには、下記のライブラリが必要です。</p>
+<ul>
+<li><strong>python-dotenv</strong>：強く推奨：このライブラリを利用し機密情報をコードから分離し「<em>.env</em>」ファイルに記述します</li>
+<li><strong>openai</strong>：OpenAI API を利用するためのライブラリです</li>
+<li><strong>pillow</strong>：Python で画像を扱うためのライブラリです</li>
+<li>
+<p><strong>requests</strong>：HTTP リクエストを作成するのに役立つライブラリです</p>
+</li>
+<li>
+<p>下記の内容を記述した「<em>.env</em>」ファイルを作成します。</p>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>AZURE_OPENAI_ENDPOINT=&lt;your endpoint&gt;
+AZURE_OPENAI_API_KEY=&lt;your key&gt;
+</code></pre></div></td></tr></table></div>
+<p>この情報は、Azure Portal の OpenAI を作成したリソースの「Keys and Endpoints」セクションで確認します。</p>
+<ol>
+<li>上記で示した必須ライブラリを「<em>requirements.txt</em>」という名前のファイルに記述します</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>python-dotenv
+openai
+pillow
+requests
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>次に、仮想環境を作成し、ライブラリをインストールします</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div></td></tr></table></div>
+<p>Windows の場合は、下記のコマンドを実行して、仮想環境を作り利用できるようにします</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate.bat
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>「<em>app.py</em>」という名前のファイルに下記のコードを記述します</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">dotenv</span>
+
+<span class="c1"># dotenvをインポート</span>
+<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># 環境変数からエンドポイントとキーを取得</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_ENDPOINT&#39;</span><span class="p">]</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_API_KEY&#39;</span><span class="p">]</span>
+
+<span class="c1"># API のバージョンを割り当て（DALL-E は現在、2023-06-01-preview API バージョンのみをサポートしています）</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-06-01-preview&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 画像生成 API を使用して画像を作成</span>
+    <span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;ウサギがキャンディを持って馬に乗り、霧のかかった牧場で水仙が育つ中を走っている&#39;</span><span class="p">,</span>    <span class="c1"># ここにプロンプトのテキストを入力</span>
+        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># 画像を保存するディレクトリを設定</span>
+    <span class="n">image_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">)</span>
+
+    <span class="c1"># ディレクトリが存在しない場合は作成</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">)</span>
+
+    <span class="c1"># 画像ファイルへのパスを設定（ファイルタイプは png にします）</span>
+    <span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="s1">&#39;generated-image.png&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 生成した画像を取得</span>
+    <span class="n">image_url</span> <span class="o">=</span> <span class="n">generation_response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>  <span class="c1"># レスポンスからイメージの URL を取得</span>
+    <span class="n">generated_image</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">image_url</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># イメージのダウンロード</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">image_file</span><span class="p">:</span>
+        <span class="n">image_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">generated_image</span><span class="p">)</span>
+
+    <span class="c1"># デフォルトの画像ビューアで画像を表示</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 例外をキャッチ</span>
+<span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">InvalidRequestError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>上記のコードについて説明します。</p>
+<ul>
+<li>最初に、必要なライブラリをインポートします。これには、OpenAI ライブラリ、dotenv ライブラリ、requests ライブラリ、Pillow ライブラリが含まれます。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">dotenv</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>次に、「<em>.env</em>」ファイルから環境変数を読み込みます。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># dotenvをインポート</span>
+<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>その後、OpenAI API のエンドポイント、キー、バージョン、タイプを設定します。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 環境変数からエンドポイントとキーを取得</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_ENDPOINT&#39;</span><span class="p">]</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_API_KEY&#39;</span><span class="p">]</span>
+
+<span class="c1"># バージョンと種類を設定、Azure 固有設定</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-06-01-preview&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>次に、画像を作成します。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 画像生成 API を使用して画像を作成</span>
+<span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;ウサギがキャンディを持って馬に乗り、霧のかかった牧場で水仙が育つ中を走っている&#39;</span><span class="p">,</span>    <span class="c1"># ここにプロンプトのテキストを入力</span>
+    <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>上記のコードは、生成された画像の URL を含む JSON オブジェクトを返します。この URL を使って画像をダウンロードし、ファイルに保存できます。</p>
+<ul>
+<li>最後に、画像を開き、標準の画像ビューアを使って表示します。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_6">画像生成の詳細<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>画像を生成するコードをさらに詳しく見てみましょう。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;ウサギがキャンディを持って馬に乗り、霧のかかった牧場で水仙が育つ中を走っている&#39;</span><span class="p">,</span>    <span class="c1"># ここにプロンプトのテキストを入力</span>
+        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>prompt</strong>：画像を生成するためのテキスト・プロンプトです。この例では、「ウサギがキャンディを持って馬に乗り、霧のかかった牧場で水仙が育つ中を走っている」というプロンプトを使用しています。</li>
+<li><strong>size</strong>：生成する画像のサイズを指定します。この例では、1024x1024 ピクセルの画像を生成しています。</li>
+<li><strong>n</strong>：生成する画像の数です。この例では、2 つの画像を生成しています。</li>
+<li><strong>temperature</strong>：生成 AI モデルの出力のランダム性を制御するパラメータです。温度は 0 から 1 の間の値で、0 は出力が決定的を意味し、1 は出力がランダムになります。デフォルト値は 0.7 です。</li>
+</ul>
+<p>次のセクションでは、画像生成でできる内容についてさらに詳しく説明します。</p>
+<h2 id="_7">画像生成における追加機能<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>ここまで、Python コードを実装して画像を生成する方法を見てきました。しかし、画像生成でできる処理は他にもあります。</p>
+<p>下記のような処理も可能です。</p>
+<ul>
+<li><strong>画像編集を行う</strong>：既存の画像にマスクとプロンプトを提供し、画像を編集できます。例えば、画像の一部に、何かを新たに追加できます。たとえばウサギの画像を想像してみてください、ウサギに追加で帽子を被せれます。そのためには、画像、マスク（変更するエリアの部分を特定する）と、何をすべきかを示すテキストプロンプトを提供します。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create_edit</span><span class="p">(</span>
+  <span class="n">image</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;base_image.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+  <span class="n">mask</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mask.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+  <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;頭に帽子をかぶったウサギの画像&quot;</span><span class="p">,</span>
+  <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+  <span class="n">size</span><span class="o">=</span><span class="s2">&quot;1024x1024&quot;</span>
+<span class="p">)</span>
+<span class="n">image_url</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>ベース画像にはウサギだけが含まれていますが、最終的な画像にはウサギの帽子が含まれています。</p>
+<ul>
+<li><strong>バリエーションを作成する</strong>：既存の画像を取得し、バリエーションを作成するように依頼します。バリエーションを作成するには、画像とテキストプロンプトを提供し、以下のようなコードを記述します。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create_variation</span><span class="p">(</span>
+  <span class="n">image</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;bunny-lollipop.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+  <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+  <span class="n">size</span><span class="o">=</span><span class="s2">&quot;1024x1024&quot;</span>
+<span class="p">)</span>
+<span class="n">image_url</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>ご注意：これは OpenAI でのみサポートされています。</p>
+</blockquote>
+<h2 id="_8">温度<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>温度は、生成 AI モデルの出力のランダム性を制御するパラメータで、0 から 1 までの値を取ります。0 は出力が決定的で、1 は出力がランダムになります。デフォルト値は 0.7 になっています。</p>
+<p>実際に確認するため、下記のプロンプトを二度実行して、温度がどのように作用するか確認してください。</p>
+<blockquote>
+<p>プロンプト : "ウサギがキャンディを持って馬に乗り、霧のかかった牧場で水仙が育つ中を走っている"</p>
+</blockquote>
+<p><img alt="Bunny on a horse holding a lollipop, version 1" src="../../images/v1-generated-image.png?WT.mc_id=academic-105485-yoterada" /></p>
+<p>同じプロンプトをもう一度実行し、前回とは異なる画像が出てくるかを確認します</p>
+<p><img alt="Generated image of bunny on horse" src="../../images/v2-generated-image.png?WT.mc_id=academic-105485-yoterada" /></p>
+<p>ご覧の通り、生成された画像は似ているように見えますが、同じではありません。ここで温度の値を 0.1 に変更して、その結果を見てみましょう。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code> <span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;ウサギがキャンディを持って馬に乗り、霧のかかった牧場で水仙が育つ中を走っている&#39;</span><span class="p">,</span>    <span class="c1"># ここにプロンプトのテキストを入力</span>
+        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_9">温度を変更してみましょう<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>結果をより決定的にしたい場合、生成した二つの画像から見て分かるように、最初の画像にはウサギが、二つ目の画像には馬が映っているので、２つの画像に大きな違いがあります。</p>
+<p>そこで、コードを修正して温度を 0 に設定します。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;ウサギがキャンディを持って馬に乗り、霧のかかった牧場で水仙が育つ中を走っている&#39;</span><span class="p">,</span>    <span class="c1"># ここにプロンプトのテキストを入力</span>
+        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>このコードを実行すると、次の二つの画像が得られます。</p>
+<ul>
+<li><img alt="Temperature 0, v1" src="../../images/v1-temp-generated-image.png?WT.mc_id=academic-105485-yoterada" /></li>
+<li><img alt="Temperature 0 , v2" src="../../images/v2-temp-generated-image.png?WT.mc_id=academic-105485-yoterada" /></li>
+</ul>
+<p>これらの画像をご覧いただくと、２つの画像は明らかに似ています。</p>
+<h2 id="_10">メタ・プロンプトを使ってアプリケーションの範囲を設定する方法<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>上記のようにして、お客様に提供できる画像を生成できるようになっています。しかし、アプリケーションの範囲を設定する必要があります。</p>
+<p>例えば、職場や学校にとって安全でない画像や、子供に適さない画像の生成は避けたいと思います。</p>
+<p>これは<em>メタ・プロンプト</em>という手法を使って実現できます。メタ・プロンプトは、生成 AI モデルの出力を制御するために使用するテキスト・プロンプトです。例えば、メタ・プロンプトを使って出力を制御し、生成された画像が職場にとって安全か、子供にとって適しているかを確認できます。</p>
+<h3 id="_11">それはどのように動作するのでしょうか？<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>それでは、メタ・プロンプトはどのように動作するのでしょうか？</p>
+<p>メタ・プロンプトは、生成 AI モデルの出力を制御するために使用するテキスト・プロンプトで、テキスト・プロンプトの前に配置し、モデルの出力を制御するために使用します。これはアプリケーションに組み込まれ、モデルの出力を制御します。プロンプト入力とメタ・プロンプト入力を一つのテキスト・プロンプトにまとめます。</p>
+<p>メタ・プロンプトの一例を下記に示します。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>あなたは子供向けの画像を作成するアシスタントデザイナーです。
+
+画像は職場にとって安全で、子供にとって適している必要があります。
+
+画像はカラーである必要があります。
+
+画像は横長の形式である必要があります。
+
+画像は16:9のアスペクト比である必要があります。
+
+以下の入力から、職場に安全でない画像や子供にとって適さない画像は除外してください。
+
+（入力）
+</code></pre></div></td></tr></table></div>
+<p>さて、それではアプリでメタ・プロンプトをどのように使うか見てみましょう。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">disallow_list</span> <span class="o">=</span> <span class="s2">&quot;剣、暴力、血、ゴア、ヌード、性的コンテンツ、アダルト・コンテンツ、アダルト・テーマ、アダルト・ワード、アダルト・ユーモア、アダルト・ジョーク、アダルト・シチュエーション、アダルト&quot;</span>
+
+<span class="n">meta_prompt</span> <span class="o">=</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;あなたは子供向けの画像を作成するアシスタントデザイナーです。</span>
+
+<span class="s2">画像は職場の中で使用する際に安全で、子供に適している必要があります。</span>
+
+<span class="s2">画像はカラーである必要があります。</span>
+
+<span class="s2">画像は横長の形式である必要があります。</span>
+
+<span class="s2">画像は16:9のアスペクト比である必要があります。</span>
+
+<span class="s2">以下の入力から、職場に安全でない画像や子供にとって適さない画像は除外してください。</span>
+<span class="si">{</span><span class="n">disallow_list</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">meta_prompt</span><span class="si">}</span>
+<span class="n">ウサギがアメを持って馬に乗っている画像を作成してください</span><span class="s2">&quot;</span>
+
+<span class="c1"># TODO 画像生成のリクエストを追加</span>
+</code></pre></div></td></tr></table></div>
+<p>上記のプロンプトは、生成されるすべての画像がメタ・プロンプトを考慮しています。</p>
+<h2 id="-">課題 - 学生の能力を引き出しましょう<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<p>このレッスンの初めに Edu4All を紹介しました。今度は、学生が自分たちの評価のための画像を生成できるようにしましょう。</p>
+<p>学生は、自分たちの評価用の画像を作成します。その画像には記念碑が含まれている必要がありますが、どの記念碑を選ぶかは学生に任せます。学生は、これらの記念碑をさまざまな状況に合わせるために、この課題では創造性の発揮が求められます。</p>
+<h2 id="_12">解決策<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>下記に一つの解決策案を示します：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">dotenv</span>
+
+<span class="c1"># dotenvをインポート</span>
+<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># 環境変数からエンドポイントとキーを取得</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;&lt;エンドポイントに置き換え&gt;&quot;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;&lt;API キーに置き換え&gt;&quot;</span>
+
+<span class="c1"># APIバージョンを指定（DALL-Eは現在、2023-06-01-preview APIバージョンのみ対応）</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-06-01-preview&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+
+<span class="n">disallow_list</span> <span class="o">=</span> <span class="s2">&quot;剣、暴力、血、ゴア、ヌード、性的コンテンツ、大人向けコンテンツ、大人向けテーマ、大人向け言語、大人向けユーモア、大人向けジョーク、大人向け状況、大人&quot;</span>
+
+<span class="n">meta_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;あなたは子供向けの画像を作成するアシスタントデザイナーです。</span>
+
+<span class="s2">画像は、職場において安全で、子供に適している必要があります。</span>
+
+<span class="s2">画像はカラーである必要があります。</span>
+
+<span class="s2">画像は横向きである必要があります。</span>
+
+<span class="s2">画像は16:9のアスペクト比である必要があります。</span>
+
+<span class="s2">以下の入力は、職場で安全でない、または子供に適していないので除外してください。</span>
+<span class="si">{</span><span class="n">disallow_list</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="si">{</span><span class="n">metaprompt</span><span class="si">}</span>
+<span class="s2">フランスのパリにある凱旋門を夕暮れの光の中で描き、</span>
+<span class="s2">小さな子供がテディベアを持って見つめている様子の</span>
+<span class="s2">画像を生成してください。</span>
+<span class="s2">&quot;&quot;&quot;&quot;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 画像生成APIを使用して画像を作成</span>
+    <span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>    <span class="c1"># ここにプロンプト・テキストを入力</span>
+        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># 保存する画像のディレクトリを設定</span>
+    <span class="n">image_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">)</span>
+
+    <span class="c1"># ディレクトリが存在しない場合は作成</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">)</span>
+
+    <span class="c1"># 画像のパスを初期化（ファイル形式は png）</span>
+    <span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="s1">&#39;generated-image.png&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 生成された画像を取得</span>
+    <span class="n">image_url</span> <span class="o">=</span> <span class="n">generation_response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>  <span class="c1"># レスポンスから画像URLを抽出</span>
+    <span class="n">generated_image</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">image_url</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># 画像をダウンロード</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">image_file</span><span class="p">:</span>
+        <span class="n">image_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">generated_image</span><span class="p">)</span>
+
+    <span class="c1"># デフォルトの画像ビューアで画像を表示</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 例外をキャッチ</span>
+<span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">InvalidRequestError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_13">お疲れ様でした!　学習を続ける<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>このレッスン修了後、<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-yoterada">生成 AI 学習コレクション</a> をチェックして、Generative AI の知識をレベルアップさせましょう。</p>
+<p>次のレッスン 10 では、<a href="../../../10-building-low-code-ai-applications/translations/ja-jp/?WT.mc_id=academic-105485-yoterada">ローコード AI アプリケーションの構築</a>方法について学びます！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

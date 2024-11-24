@@ -1,0 +1,1787 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/11-integrating-with-function-calling/translations/ja-jp/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Function Calling との統合 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#function-calling" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Function Calling との統合
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      学習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      シナリオ：関数を用いてチャットボットを改善する
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      関数呼び出しを行う理由
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      シナリオを通じた問題の説明
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      関数呼び出しを使用するユースケース
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      最初の関数呼び出しの作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="最初の関数呼び出しの作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ 1 - メッセージの作成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ 2 - 関数の作成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ 3 - 関数呼び出しの実行
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      アプリケーションの関数呼び出しとの統合
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="アプリケーションの関数呼び出しとの統合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      フローの管理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      課題
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      お疲れ様でした! 学習を続ける
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="function-calling">Function Calling との統合<a class="headerlink" href="#function-calling" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson11-gh?WT.mc_id=academic-105485-koreyst"><img alt="Integrating with function calling" src="../../images/11-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<p>これまでのレッスンでかなり多くの内容を学びました。しかし、私たちはさらに成長できます。取り組むべき課題の一つは、一貫性のある回答フォーマットの作成です。回答フォーマットが一貫すると後続の処理はスムーズに進められます。また、他のデータ・ソースからデータを追加し、アプリケーションをさらに拡張できます。</p>
+<p>上記の問題を、この章で取り扱います。</p>
+<h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>このレッスンでは、下記の内容について説明します。</p>
+<ul>
+<li>関数呼び出し (function calling) とは何か、その使用例について説明します。</li>
+<li>Azure OpenAI を使用して関数呼び出しを作成します。</li>
+<li>関数呼び出しをアプリケーションに統合する方法を学びます。</li>
+</ul>
+<h2 id="_2">学習目標<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>このレッスンを修了すると、下記を理解できます：</p>
+<ul>
+<li>関数呼び出しを使う理由を説明できます。</li>
+<li>Azure Open AI Service を使用して関数呼び出しアプリを構築できます。</li>
+<li>アプリケーションのユースケースに適した効果的な関数呼び出しを設計できます。</li>
+</ul>
+<h2 id="_3">シナリオ：関数を用いてチャットボットを改善する<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>このレッスンでは、教育スタートアップで、利用者である学生がチャットボットを使用して技術コースを検索できる機能を実装したいと考えています。利用者のスキルレベル、現在の役割、興味のある技術に合わせたコースを推奨します。</p>
+<p>このシナリオを実現するために、下記の機能やサービスを使用します：</p>
+<ul>
+<li><code>Azure Open AI</code>：利用者にチャット体験を提供する為に使用します。</li>
+<li><code>Microsoft Learn Catalog API</code>：利用者のリクエストに基づいて、コースを見つける支援を行います。</li>
+<li><code>Function Calling</code>：利用者の問い合わせ内容を取得し、それを関数に送信し API リクエストを作成します。</li>
+</ul>
+<p>手始めに、そもそもなぜ関数呼び出しを使用する必要があるのかを見てみましょう。</p>
+<h2 id="_4">関数呼び出しを行う理由<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>関数呼び出しを行う前は、LLM からの回答は構造化されておらず、一貫性がありませんでした。開発者は、得られるさまざまな回答に対して処理できるように、複雑な検証コードを記述する必要がありました。例えば、利用者は「今のストックホルムの天気は何ですか？」のような回答を得られませんでした。これは、モデルの学習データをトレーニングした時間が制限されているためです。</p>
+<p>「関数呼び出し」は、Azure Open AI Service の機能で、下記ができるようになります：</p>
+<ul>
+<li><strong>一貫した回答形式</strong>：回答形式をより適切に制御できれば、回答結果を他のシステムに対してより簡単に統合できます。</li>
+<li><strong>外部データの利用</strong>：アプリケーションは、チャットのコンテキスト(文脈)に、他の外部データ・ソースのデータを使用できます。</li>
+</ul>
+<h2 id="_5">シナリオを通じた問題の説明<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><em>Notebook.ipynb</em> というファイルを作成し、下記のコードをコピー＆ペーストしてください。仮に下記のシナリオを実行したい場合は、別のコードセルへの貼り付けをお勧めします。また、下記に記述する関数が、実際の問題に対処するための説明も行っているので、あわせて記述内容をご覧ください。</p>
+</blockquote>
+<p>「一貫した回答フォーマットの取得」に関する問題の例を見てみましょう：</p>
+<p>たとえば、学生データのデータベースを作成し、学生に対して適切なコースを提案できるようにしたいと考えています。下記に含まれているデータ中に、2 人の非常によく似た学生の説明があります。</p>
+<ol>
+<li>Azure Open AI リソースへの接続を作成します。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">AzureOpenAI</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">AzureOpenAI</span><span class="p">(</span>
+<span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_API_KEY&#39;</span><span class="p">],</span>  <span class="c1"># これもデフォルトで省略できます</span>
+<span class="n">api_version</span> <span class="o">=</span> <span class="s2">&quot;2023-07-01-preview&quot;</span>
+<span class="p">)</span>
+
+<span class="n">deployment</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_DEPLOYMENT&#39;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>上記は、Azure Open AI への接続するための　 Python 　コードで、ここでは <code>api_version</code>、<code>api_key</code>を設定します。</p>
+<ol>
+<li><code>student_1_description</code>と<code>student_2_description</code>という変数を使用して、2 人の学生の説明を記述します。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">student_1_description</span><span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;Emily Johnson は、Duke University の</span>
+<span class="s1">コンピューターサイエンス専攻の2年生です。彼女の GPA は 3.7 です。</span>
+<span class="s1">Emily は大学のチェス・クラブとディベート・チームの活動的なメンバーです。</span>
+<span class="s1">彼女は卒業後、ソフトウェア・エンジニアリングのキャリアに進むのを望んでいます。</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">student_2_description</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;Michael Lee は、Stanford University の</span>
+<span class="s1">コンピューターサイエンス専攻の2年生です。彼の GPA は 3.8 です。</span>
+<span class="s1">Michael はプログラミングが得意と知られており、大学のロボティクス・クラブの</span>
+<span class="s1">活動的なメンバーです。</span>
+<span class="s1">彼は学習を終えた後、人工知能関連のキャリアに進むのを望んでいます。</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p>上記の学生の説明を LLM に送信し、データを解析します。このデータは後でアプリケーションで使用したり、API に送信したり、データベースへの保存ができます。</p>
+<ol>
+<li>関心のある情報を LLM に指示するため、2 つの同一プロンプトを作成します。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt1</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">   以下の情報を指定されたテキストから抽出し、それをJSONオブジェクトとして返してください：</span>
+
+<span class="s1">   名前</span>
+<span class="s1">   専攻</span>
+<span class="s1">   学校</span>
+<span class="s1">   成績</span>
+<span class="s1">   クラブ</span>
+
+<span class="s1">   情報を抽出するためのテキスト本文は以下の通りです：</span>
+<span class="s1">   </span><span class="si">{</span><span class="n">student_1_description</span><span class="si">}</span>
+<span class="s1">   &#39;&#39;&#39;</span>
+
+   <span class="n">prompt2</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">   以下の情報を指定されたテキストから抽出し、それをJSONオブジェクトとして返してください：</span>
+
+<span class="s1">   名前</span>
+<span class="s1">   専攻</span>
+<span class="s1">   学校</span>
+<span class="s1">   成績</span>
+<span class="s1">   クラブ</span>
+
+<span class="s1">   情報を抽出するためのテキスト本文は以下の通りです：</span>
+<span class="s1">   </span><span class="si">{</span><span class="n">student_2_description</span><span class="si">}</span>
+<span class="s1">   &#39;&#39;&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p>上記のプロンプトは、LLM に情報を抽出し、応答を JSON 形式で返すように指示しています。</p>
+<ol>
+<li>プロンプトと Azure Open AI の接続設定を行った後、<code>openai.ChatCompletion</code>を使用してプロンプトを LLM に送信します。プロンプトは <code>messages</code> 変数に格納し、ロールを <code>user</code> に設定します。これはチャット・ボットに対して、利用者からメッセージが書き込まれる様子を模倣するために記載しています。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># プロンプト1からの応答</span>
+<span class="n">openai_response1</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span>
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">prompt1</span><span class="p">}]</span>
+<span class="p">)</span>
+<span class="n">openai_response1</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+<span class="c1"># プロンプト2からの応答</span>
+<span class="n">openai_response2</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span>
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">prompt2</span><span class="p">}]</span>
+<span class="p">)</span>
+<span class="n">openai_response2</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+</code></pre></div></td></tr></table></div>
+<p>これで、両方のリクエストを LLM に送信し、受信した回答を <code>[openai_response1.choices[0].message.content]</code> 等で取得できます。</p>
+<ol>
+<li>最後に、<code>json.loads</code> を呼び出すと、応答を JSON 形式に変換できます：</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 応答を JSON オブジェクトとして読み込む</span>
+<span class="n">json_response1</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">openai_response1</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="n">json_response1</span>
+</code></pre></div></td></tr></table></div>
+<p>応答 1：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Emily Johnson&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;major&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;コンピューターサイエンス&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;school&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Duke University&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;grades&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.7&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;club&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;チェス・クラブ&quot;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>応答 2:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Michael Lee&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;major&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;コンピューターサイエンス&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;school&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stanford University&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;grades&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.8 GPA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;club&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ロボティクス・クラブ&quot;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>プロンプトは同じで、説明も似ていますが、<code>grades</code> プロパティ値の出力形式が異なっています。例えばここでは、<code>3.7</code>や<code>3.8 GPA</code>のような形式で出力されています。</p>
+<p>この結果は、記述したプロンプト内で非構造化のデータを取得し、結果として非構造化データを返しているからです。このデータを保存したり再利用するためには、どのような値を期待するかを把握できるように、構造化データの形式にする必要があります。</p>
+<p>それでは上記のような、出力フォーマットの問題をどのように解決すればよいのでしょうか。結論から言うと、関数呼び出しを使用すれば、構造化データを確実に受け取れるようになります。関数呼び出しを使用する場合、LLM は実際には特定の関数を呼び出したり実行したりするわけではありません。代わりに、LLM は構造化した回答（データ）を作成します。その後、この構造化した回答（データ）を使用して、実行すべき関数を決めます。</p>
+<p><img alt="function flow" src="../../images/Function-Flow.png?WT.mc_id=academic-105485-yoterada" /></p>
+<p>そして関数からの返却値を取得し、それを LLM に送り返します。その後、LLM は自然言語を使用して利用者の問い合わせに対して回答します。</p>
+<h2 id="_6">関数呼び出しを使用するユースケース<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>関数呼び出しを使用するとアプリが改善されるユースケースは多岐にわたります：</p>
+<ul>
+<li>
+<p><strong>外部ツールの呼び出し</strong>：チャット・ボットは利用者からの質問に回答するのが得意です。関数呼び出しを使用すると、チャット・ボットは利用者からのメッセージを使用して、特定のタスクを完了できます。例えば、学生はチャットボットに「この科目についてさらに支援が必要というメールを、教員に送信してください」と依頼できます。これにより、<code>send_email(to: string, body: string)</code>という関数呼び出しを行います。</p>
+</li>
+<li>
+<p><strong>API 　またはデータベースクエリの作成</strong>：利用者は、書式設定された問い合わせ、または API 要求に変換される自然言語を使用して、情報を検索できます。例えば、教師が「最後の課題を完了した生徒は誰ですか」と要求すると、<code>get_completed(student_name: string, assignment: int, current_status: string)</code>という関数を呼び出します。</p>
+</li>
+<li>
+<p><strong>構造化データの作成</strong>：利用者は、テキストまたは CSV フォーマットのデータを取得し、LLM を使用して、そこから重要な情報を抽出できます。例えば学生は、和平合意に関するウィキペディアの記事を変換して、AI フラッシュカードを作成できます。これは、<code>get_important_facts(agreement_name: string, date_signed: string, parties_involved: list)</code>という関数を使用して行います。</p>
+</li>
+</ul>
+<h2 id="_7">最初の関数呼び出しの作成<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>関数呼び出しを作成するプロセスは、以下の 3 つの主要なステップから構成されています。</p>
+<ol>
+<li><strong>呼び出し</strong>：関数リストとユーザー・メッセージを用いて、Chat Completions API を呼び出します。</li>
+<li><strong>読み取り</strong>：モデルからの回答を読み取り、アクションを実行します。つまり、関数を実行したり、API 呼び出しを行ったりします。</li>
+<li><strong>再呼び出し</strong>：関数からの返却値を用いて、Chat Completions API を再度呼び出し、その情報を使用して利用者に対する回答を作成します。</li>
+</ol>
+<p><img alt="LLM Flow" src="../../images/LLM-Flow.png?WT.mc_id=academic-105485-yoterada" /></p>
+<h3 id="1-">ステップ 1 - メッセージの作成<a class="headerlink" href="#1-" title="Permanent link">&para;</a></h3>
+<p>最初のステップで、ユーザー・メッセージを作成します。これは、テキストの入力値を取得して動的に割り当てるか、もしくはここで直接値を割り当てできます。仮に Chat Completions API を初めて使用するの場合は、メッセージの <code>role</code> と <code>content</code> を定義してください。</p>
+<p><code>role</code> は <code>system</code>（ルールを作成）、<code>assistant</code>（モデル）、または <code>user</code>（エンドユーザー）のいずれかになります。関数呼び出しは、<code>user</code> として、質問を割り当てます。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">messages</span><span class="o">=</span> <span class="p">[</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;初心者の学生が Azure を学ぶための良い学習コースを見つけてください。&quot;</span><span class="p">}</span> <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>異なる役割を割り当てると、LLM は、システムが言っているのか、それとも利用者が言っているのかが明確になり、LLM は会話履歴を構築するのに役立ちます。</p>
+<h3 id="2-">ステップ 2 - 関数の作成<a class="headerlink" href="#2-" title="Permanent link">&para;</a></h3>
+<p>次に、関数とその関数のパラメータを定義します。ここでは <code>search_courses</code> という 1 つの関数のみを使用しますが、複数の関数も作れます。</p>
+<blockquote>
+<p><strong>重要</strong> : 関数は LLM のシステム・メッセージに含まれており、利用可能なトークンの数に含まれます。</p>
+</blockquote>
+<p>下記は、関数を項目の配列として作成しています。各項目は関数であり、<code>name</code>、<code>description</code>、<code>parameters</code> というプロパティを持ちます。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">functions</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;search_courses&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;提供されたパラメータに基づいて検索インデックスからコースを取得します&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;parameters&quot;</span><span class="p">:{</span>
+         <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;properties&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:{</span>
+               <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;学習者の役割（例：開発者、データサイエンティスト、学生など）&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;product&quot;</span><span class="p">:{</span>
+               <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;レッスンでカバーしている製品（例：Azure、Power BIなど）&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;level&quot;</span><span class="p">:{</span>
+               <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;コースを受講する学習者のレベル（例：初心者、中級者、上級者）&quot;</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;required&quot;</span><span class="p">:[</span>
+            <span class="s2">&quot;role&quot;</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>下記に、関数について詳しく説明します。</p>
+<ul>
+<li><code>name</code> - 呼び出したい関数名</li>
+<li><code>description</code> - 関数がどのように動作するかの説明。ここは具体的で明確な説明の記述が必要</li>
+<li><code>parameters</code> - モデルによって回答で生成する値とフォーマットのリスト。<code>parameters</code> 配列として構成し、次のプロパティを含む</li>
+<li><code>type</code> - プロパティのデータ型</li>
+<li><code>properties</code> - 回答に使用する特定の値のリスト<ol>
+<li><code>name</code> - フォーマットされた回答で使用するプロパティ名。例えば、<code>product</code></li>
+<li><code>type</code> - プロパティのデータ型。例えば、<code>string</code></li>
+<li><code>description</code> - 特定のプロパティの説明</li>
+</ol>
+</li>
+</ul>
+<p>また、オプションのプロパティとして <code>required</code>もあります。これは関数呼び出しが必須かを指定するプロパティです。</p>
+<h3 id="3-">ステップ 3 - 関数呼び出しの実行<a class="headerlink" href="#3-" title="Permanent link">&para;</a></h3>
+<p>関数を定義した後、次に Chat Completion API の呼び出しにその関数を含める必要があります。これを行うには、リクエストに <code>functions</code> を追加します。この場合、<code>functions=functions</code>とします。</p>
+<p>また、<code>function_call</code> を <code>auto</code> に設定するオプションもあります。これは、どの関数を呼び出すか、利用者からのメッセージに基づいて LLM に判断させ、自分で割り当てるのではなく、LLM に選択させます。</p>
+<p>以下に、<code>ChatCompletion.create</code> を呼び出すコードを示します。<code>functions=functions</code> と <code>function_call="auto"</code> を設定し、LLM に提供する関数をいつ呼び出すかを選択させる方法に注目してください。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span>
+                                        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+                                        <span class="n">functions</span><span class="o">=</span><span class="n">functions</span><span class="p">,</span>
+                                        <span class="n">function_call</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>返される回答は下記のようになります。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;function_call&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_courses&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\n  \&quot;role\&quot;: \&quot;学生\&quot;,\n  \&quot;product\&quot;: \&quot;Azure\&quot;,\n  \&quot;level\&quot;: \&quot;初心者\&quot;\n}&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>ここでは、<code>search_courses</code> 関数がどのように呼び出され、どのような引数で呼び出されたかを、JSON 形式で返された応答の <code>arguments</code> プロパティ・リストから確認できます。</p>
+<p>結論として、LLM は Chat Completion 呼び出しの <code>messages</code> パラメータで提供した値からデータを抽出し、関数の引数に適合するデータを見つけられました。以下は、<code>messages</code> 値の内容です。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">messages</span><span class="o">=</span> <span class="p">[</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;初心者の学生が Azure を学ぶための良い学習コースを見つけてください。&quot;</span><span class="p">}</span> <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>ご覧の通り、<code>学生</code>、<code>Azure</code>、<code>初心者</code>は <code>messages</code> から抽出され、関数への入力として設定されました。このように関数を使用すると、プロンプトから情報を抽出するだけでなく、LLM に構造化データを提供し、再利用可能なデータを持てます。</p>
+<p>次に、この機能をアプリでどのように使用できるかを確認します。</p>
+<h2 id="_8">アプリケーションの関数呼び出しとの統合<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>LLM からフォーマットされた応答を取得した後、これをアプリケーションに統合します。</p>
+<h3 id="_9">フローの管理<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>アプリケーションに統合するためには、下記の手順で行います。</p>
+<ol>
+<li>まず、Open AI サービスを呼び出し、メッセージを <code>response_message</code> という変数に代入します。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>次に、Microsoft Learn のカタログ API を呼び出してコースの一覧を取得する関数を定義します。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">search_courses</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+  <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://learn.microsoft.com/api/catalog/&quot;</span>
+  <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">role</span><span class="p">,</span>
+     <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="n">product</span><span class="p">,</span>
+     <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="n">level</span>
+  <span class="p">}</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+  <span class="n">modules</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;modules&quot;</span><span class="p">]</span>
+  <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+     <span class="n">title</span> <span class="o">=</span> <span class="n">module</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+     <span class="n">url</span> <span class="o">=</span> <span class="n">module</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>
+     <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">})</span>
+  <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><code>functions</code> 変数に記載した関数名にマップする、実際の Python 関数を作成する方法に注目してください。また、必要なデータを取得するために、実際に外部 API 呼び出しも行っています。ここでは、Microsoft Learn API に対してトレーニング モジュールを検索しています。</p>
+<p>いま、<code>functions</code> 変数とそれに対応する Python 関数を作成しましたが、実際の Python 関数を呼び出すために、これら 2 つをマッピングした内容を、LLM に指示するにはどうすればよいでしょうか？</p>
+<ol>
+<li>Python 関数を呼び出す必要があるかどうかを確認するためには、LLM からの応答を調べ、 <code>function_call</code> が含まれているかを確認し、指摘された関数を呼び出す必要があります。以下のようにしてチェックを行います。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># モデルが関数を呼び出したいかどうかを確認</span>
+<span class="k">if</span> <span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recommended Function call:&quot;</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">()</span>
+
+   <span class="c1"># 関数を呼び出す</span>
+   <span class="n">function_name</span> <span class="o">=</span> <span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">name</span>
+
+   <span class="n">available_functions</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;search_courses&quot;</span><span class="p">:</span> <span class="n">search_courses</span><span class="p">,</span>
+   <span class="p">}</span>
+   <span class="n">function_to_call</span> <span class="o">=</span> <span class="n">available_functions</span><span class="p">[</span><span class="n">function_name</span><span class="p">]</span>
+
+   <span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+   <span class="n">function_response</span> <span class="o">=</span> <span class="n">function_to_call</span><span class="p">(</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;関数呼び出しの出力:&quot;</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">function_response</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">function_response</span><span class="p">))</span>
+
+
+   <span class="c1"># アシスタントの応答と関数の応答をメッセージに追加</span>
+   <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="c1"># アシスタントの応答をメッセージに追加</span>
+      <span class="p">{</span>
+         <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">response_message</span><span class="o">.</span><span class="n">role</span><span class="p">,</span>
+         <span class="s2">&quot;function_call&quot;</span><span class="p">:</span> <span class="p">{</span>
+             <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+             <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">arguments</span><span class="p">,</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="kc">None</span>
+      <span class="p">}</span>
+   <span class="p">)</span>
+   <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="c1"># 関数の応答をメッセージに追加</span>
+      <span class="p">{</span>
+         <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+         <span class="s2">&quot;content&quot;</span><span class="p">:</span><span class="n">function_response</span><span class="p">,</span>
+     <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>下記の 3 行は、関数名と引数を抽出し、呼び出しを確認できます。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">function_to_call</span> <span class="o">=</span> <span class="n">available_functions</span><span class="p">[</span><span class="n">function_name</span><span class="p">]</span>
+
+<span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+<span class="n">function_response</span> <span class="o">=</span> <span class="n">function_to_call</span><span class="p">(</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>下記は、コードを実行した出力結果です。</p>
+<p><strong>Output</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">{</span>
+<span class="go">     &quot;name&quot;: &quot;search_courses&quot;,</span>
+<span class="go">     &quot;arguments&quot;: &quot;{\n  \&quot;role\&quot;: \&quot;学生\&quot;,\n  \&quot;product\&quot;: \&quot;Azure\&quot;,\n  \&quot;level\&quot;: \&quot;初心者\&quot;\n}&quot;</span>
+<span class="go">}</span>
+
+<span class="go">関数呼び出しの出力:</span>
+<span class="go">   [</span>
+<span class="go">      {</span>
+<span class="go">        &quot;title&quot;: &quot;暗号の概念についての説明&quot;,</span>
+<span class="go">        &quot;url&quot;: &quot;https://learn.microsoft.com/training/modules/describe-concepts-of-cryptography/?WT.mc_id=api_CatalogApi&quot;</span>
+<span class="go">      },</span>
+<span class="go">      {</span>
+<span class="go">        &quot;title&quot;: &quot;TensorFlow を使用したオーディオ分類の概要&quot;,</span>
+<span class="go">        &quot;url&quot;: &quot;https://learn.microsoft.com/training/modules/intro-audio-classification-tensorflow/?WT.mc_id=api_CatalogApi&quot;</span>
+<span class="go">      },</span>
+<span class="go">      {</span>
+<span class="go">        &quot;title&quot;: &quot;Azure Data Studio を使って Azure SQL Database でパフォーマンスに優れたデータ モデルを設計する&quot;,</span>
+<span class="go">        &quot;url&quot;: &quot;https://learn.microsoft.com/training/modules/design-a-data-model-with-ads/?WT.mc_id=api_CatalogApi&quot;</span>
+<span class="go">      },</span>
+<span class="go">      {</span>
+<span class="go">        &quot;title&quot;: &quot;Azure 用の Microsoft クラウド導入フレームワークの概要&quot;,</span>
+<span class="go">        &quot;url&quot;: &quot;https://learn.microsoft.com/training/modules/cloud-adoption-framework-getting-started/?WT.mc_id=api_CatalogApi&quot;</span>
+<span class="go">      },</span>
+<span class="go">      {</span>
+<span class="go">        &quot;title&quot;: &quot;Rust 開発環境を設定する&quot;,</span>
+<span class="go">        &quot;url&quot;: &quot;https://learn.microsoft.com/training/modules/rust-set-up-environment/?WT.mc_id=api_CatalogApi&quot;</span>
+<span class="go">      }</span>
+<span class="go">    ]</span>
+<span class="go">   &lt;class &#39;str&#39;&gt;</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>次に、更新したメッセージ <code>messages</code> を LLM に送信して、JSON 形式の応答ではなく自然言語の応答を受け取ります。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;次のリクエストのメッセージ:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="n">second_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+   <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+   <span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span>
+   <span class="n">function_call</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+   <span class="n">functions</span><span class="o">=</span><span class="n">functions</span><span class="p">,</span>
+   <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span>
+   <span class="p">)</span>  <span class="c1"># 関数からの応答を元にした GPT から新しい応答を取得</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">second_response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Output</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">{</span>
+<span class="go">     &quot;role&quot;: &quot;assistant&quot;,</span>
+<span class="go">     &quot;content&quot;: &quot;Azureを学ぶ初心者の学生向けにいくつかの良いコースを見つけました:\n\n</span>
+<span class="go">    1. [暗号の概念についての説明] (https://learn.microsoft.com/training/modules/describe-concepts-of-cryptography/?WT.mc_id=api_CatalogApi)\n</span>
+<span class="go">    2. [TensorFlow を使用したオーディオ分類の概要](https://learn.microsoft.com/training/modules/intro-audio-classification-tensorflow/?WT.mc_id=api_CatalogApi)\n</span>
+<span class="go">    3. [Azure Data Studio を使って Azure SQL Database でパフォーマンスに優れたデータ モデルを設計する](https://learn.microsoft.com/training/modules/design-a-data-model-with-ads/?WT.mc_id=api_CatalogApi)\n</span>
+<span class="go">    4. [Azure 用の Microsoft クラウド導入フレームワークの概要](https://learn.microsoft.com/training/modules/cloud-adoption-framework-getting-started/?WT.mc_id=api_CatalogApi)\n</span>
+<span class="go">    5. [Rust 開発環境を設定する](https://learn.microsoft.com/training/modules/rust-set-up-environment/?WT.mc_id=api_CatalogApi)\n\n</span>
+<span class="go">    リンクをクリックしてコースにアクセスできます。&quot;</span>
+<span class="go">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_10">課題<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>Azure Open AI Function Calling の学習を続けるために、以下を試してみてください。</p>
+<ul>
+<li>学習者がより多くのコースを見つける為に有効な関数のパラメーターを探して増やす。</li>
+<li>学習者の母国語を聞くなど、学習者からより多くの情報を取得するための別の関数呼び出しを作成する。</li>
+<li>関数呼び出しや API 呼び出しが、適切なコースを返さない場合のエラー処理を実装する。</li>
+</ul>
+<p>ヒント: これらのデータを、どこでどのように利用できるかを確認するために、<a href="https://learn.microsoft.com/training/support/catalog-api-developer-reference?WT.mc_id=academic-105485-yoterada">Learn API リファレンス ドキュメント</a> をご参照ください。</p>
+<h2 id="_11">お疲れ様でした!　学習を続ける<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>このレッスン修了後、<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-yoterada">生成 AI 学習コレクション</a> をチェックして、Generative AI の知識をレベルアップさせましょう。</p>
+<p>Head over to Lesson 12 where we will look at how to !</p>
+<p>次のレッスン 12 では、<a href="../../../12-designing-ux-for-ai-applications/translations/ja-jp/?WT.mc_id=academic-105485-yoterada">AI アプリケーション用の UX デザイン</a>について学びます！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

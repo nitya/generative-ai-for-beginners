@@ -1,0 +1,1252 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/12-designing-ux-for-ai-applications/translations/ko/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>AI 애플리케이션을 위한 사용자 경험(ux) 디자인하기 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ai-ux" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AI 애플리케이션을 위한 사용자 경험(ux) 디자인하기
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      소개
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목표
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="학습 목표">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      전제 조건
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      사용자 경험 소개 및 사용자 요구 이해
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="사용자 경험 소개 및 사용자 요구 이해">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      유용성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      신뢰성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      접근성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      즐거움
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      신뢰와 투명성을 위한 AI 애플리케이션 디자인
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="신뢰와 투명성을 위한 AI 애플리케이션 디자인">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      설명가능성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      제어
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      협력과 피드백을 위한 AI 애플리케이션 디자인
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      과제
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      축하합니다, 이번 코스를 완료하였습니다.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="ai-ux">AI 애플리케이션을 위한 사용자 경험(ux) 디자인하기<a class="headerlink" href="#ai-ux" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson12-gh?WT.mc_id=academic-105485-koreyst"><img alt="Designing UX for AI Applications" src="../../images/12-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<blockquote>
+<p><em>(이미지를 클릭하면 이 수업의 비디오를 볼 수 있습니다)</em></p>
+</blockquote>
+<p>사용자 경험은 앱을 개발하는 데 있어 매우 중요한 부분입니다. 사용자들은 작업을 효율적으로 수행할 수 있어야 합니다. 그리고 효율적으로 사용하는 것도 중요하지만 누구나 사용할 수 있도록 앱을 디자인하는 것도 중요합니다. 이 장에서는 이러한 영역에 중점을 두어 사람들이 사용할 수 있고, 사용하고 싶어하는 앱을 디자인할 수 있도록 하는 부분들을 다룰 것입니다.</p>
+<h2 id="_1">소개<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>사용자 경험은 특정 제품이나 서비스(시스템, 도구, 또는 디자인)와 상호 작용하고 사용하는 방식입니다. AI 애플리케이션을 개발할 때, 개발자들은 사용자 경험이 효과적인 것뿐만 아니라 윤리적인 것도 보장하는 데 중점을 둡니다. 이 수업에서는 사용자의 요구를 충족시키는 AI 애플리케이션을 어떻게 구축하는지에 대해 다룹니다.</p>
+<p>이 수업에서는 다음의 영역들을 다룹니다:</p>
+<ul>
+<li>사용자 경험 소개 및 사용자 요구 이해</li>
+<li>신뢰와 투명성을 위한 AI 애플리케이션 디자인</li>
+<li>협력과 피드백을 위한 AI 애플리케이션 디자인</li>
+</ul>
+<h2 id="_2">학습 목표<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>이 수업을 마친 후에는 다음을 할 수 있을 것입니다:</p>
+<ul>
+<li>사용자 요구를 충족시키는 AI 애플리케이션을 구축하는 방법에 대한 이해</li>
+<li>신뢰와 협력을 촉진하는 AI 애플리케이션 디자인</li>
+</ul>
+<h3 id="_3">전제 조건<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>다음에 대해 더 읽어보십시오. <a href="https://learn.microsoft.com/training/modules/ux-design?WT.mc_id=academic-105485-koreyst">user experience and design thinking.</a></p>
+<h2 id="_4">사용자 경험 소개 및 사용자 요구 이해<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>우리 가상의 교육 스타트업에서는 두 주요 사용자, 즉 교사와 학생이 있습니다. 각각의 사용자는 고유한 요구사항을 가지고 있습니다. 사용자 중심 디자인은 제품이 목적 그대로의 사용자에게 관련성 있고 유익하도록 하는 데 중점을 둡니다.</p>
+<p>애플리케이션은 <strong>유용하며, 신뢰성 있고, 접근 가능하며, 즐거워야</strong> 좋은 사용자 경험을 제공할 수 있습니다.</p>
+<h3 id="_5">유용성<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>"유용하다"는 애플리케이션이 의도한 목적과 일치하는 기능을 갖고 있다는 것을 의미합니다. 예를 들어, 평가 과정을 자동화하거나 복습용 플래시카드를 생성하는 것과 같은 목적을 가지고 있을 수 있습니다. 평가 과정을 자동화하는 애플리케이션은 미리 정의된 기준을 기반으로 학생들의 과제에 정확하고 효율적으로 점수를 부여할 수 있어야 합니다. 마찬가지로, 복습용 플래시카드를 생성하는 애플리케이션은 데이터를 기반으로 관련성 있고 다양한 질문을 생성할 수 있어야 합니다.</p>
+<h3 id="_6">신뢰성<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>신뢰성은 애플리케이션이 일관되고 오류 없이 지속적으로 작업을 수행할 수 있다는 것을 의미합니다. 그러나 인간과 마찬가지로 AI도 완벽하지 않으며 오류에 노출될 수 있습니다. 애플리케이션은 오류나 예상치 못한 상황에 직면할 수 있으며 이는 인간의 개입이나 수정이 필요할 수 있습니다. 이러한 상황을 직면 했을 때 오류를 어떻게 처리하는지는 중요한 문제입니다. 이 수업의 마지막 섹션에서는 AI 시스템과 애플리케이션이 협력과 피드백을 위해 어떻게 디자인되는지에 대해 다룰 것입니다.</p>
+<h3 id="_7">접근성<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>접근 가능하다는 것은 사용자 경험을 여러 능력을 가진 사용자, 장애가 있는 사용자를 포함하여 모든 이에게 확장할 수 있다는 것을 의미합니다. 접근성 가이드라인과 원칙을 따르면, AI 솔루션은 모든 사용자에게 포괄적이고, 사용하기 쉬우며, 혜택이 있는 것으로 나타납니다.</p>
+<h3 id="_8">즐거움<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>즐거움을 준다는 것은 애플리케이션의 사용이 즐거움을 주는 것을 의미합니다. 매력적인 사용자 경험은 사용자에게 긍정적인 영향을 미칠 수 있어 애플리케이션에 다시 돌아오게 유도하고 비즈니스 수익을 증가시킬 수 있습니다.</p>
+<p><img alt="image illustrating UX considerations in AI" src="../../images/uxinai.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>모든 문제를 AI로 해결할 수 있는 것은 아닙니다. AI는 사용자 경험을 증진시키기 위해 나타납니다. 이는 수동적인 작업을 자동화하거나 사용자 경험을 개인화하는 것과 같은 방식으로 이루어질 수 있습니다.</p>
+<h2 id="ai">신뢰와 투명성을 위한 AI 애플리케이션 디자인<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h2>
+<p>신뢰를 구축하는 것은 AI 애플리케이션을 디자인할 때 중요합니다. 신뢰가 있다는 것은 애플리케이션이 작업을 완료하고 결과를 일관되게 제공하며 그 결과가 사용자가 필요로 하는 것임을 확신할 수 있게 도움을 줍니다. 이 영역에서의 위험은 불신이나 과신입니다. 불신은 사용자가 AI 시스템에 신뢰를 갖지 않거나 거의 없을 때 발생하며 이는 사용자가 애플리케이션을 거부하게 만들 수 있습니다. 과신은 사용자가 AI 시스템의 능력을 과대평가할 때 발생하며 이는 사용자가 AI 시스템에 지나치게 신뢰할 수 있게 만듭니다. 예를 들어, 자동 채점 시스템에서 과신이 발생하면 교사가 몇몇 종이를 확인하지 않고도 채점 시스템이 잘 작동하는지 확인하지 않을 수 있습니다. 이로 인해 학생들에 대한 불공정하거나 부정확한 성적 또는 피드백 및 개선의 기회를 놓치는 일이 발생할 수 있습니다.</p>
+<p>신뢰를 디자인의 중심에 두기 위해 두 가지 방법은 설명가능성과 제어입니다.</p>
+<h3 id="_9">설명가능성<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>AI가 미래 세대에 지식을 전달하는 것과 같이 결정에 도움이 되는 경우, 교사와 부모가 AI 결정이 어떻게 이루어지는지 이해하는 것이 중요합니다. AI 애플리케이션이 결정을 내리는 방식을 이해하는 것이 설명가능성입니다. 설명가능성을 위한 디자인에는 AI 애플리케이션이 수행할 수 있는 예제의 세부 정보를 추가하는 것이 포함됩니다. 예를 들어, "AI 교사로 시작하기" 대신에 "AI를 사용하여 노트를 요약하여 쉬운 복습을 도와보세요"와 같이 시스템이 구체적인 예시를 제공할 수 있습니다.</p>
+<p><img alt="an app landing page with clear illustration of explainability in AI applications" src="../../images/explanability-in-ai.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>또 다른 예로는 AI가 사용자 및 개인 데이터를 사용하는 방법이 있습니다. 예를 들어, 학생이라는 페르소나를 가진 사용자는 해당 페르소나에 기반한 제한이 있을 수 있습니다. AI는 질문에 대한 답을 드러낼 수 없을지라도 사용자가 문제를 어떻게 해결할지에 대한 가이드를 제공할 수 있습니다.</p>
+<p><img alt="AI replying to questions based on persona" src="../../images/solving-questions.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>설명가능성의 마지막 중요한 부분은 설명을 단순화하는 것입니다. 학생들과 교사들이 AI 전문가가 아닐 수 있기 때문에 애플리케이션이 할 수 있는 일이나 할 수 없는 일에 대한 설명은 단순하고 이해하기 쉽게 제공되어야 합니다.</p>
+<p><img alt="simplified explanations on AI capabilities" src="../../images/simplified-explanations.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h3 id="_10">제어<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>생성형 AI는 사용자와 AI 간의 협력을 만들어냅니다. 예를 들어 사용자는 서로 다른 결과를 얻기 위해 프롬프트를 수정할 수 있습니다. 또한, 한 번 출력물이 생성되면 사용자는 자신의 통제대로 결과를 수정하여 얻을 수 있어야 합니다. 예를 들어, Bing을 사용할 때는 형식, 어조, 길이에 기반하여 프롬프트를 맞춤 설정할 수 있습니다. 더불어 결과에 변경을 추가하거나 출력물을 수정할 수 있습니다. 아래에 표시된 것처럼요:</p>
+<p><img alt="Bing search results with options to modify the prompt and output" src="../../images/bing1.png?WT.mc_id=academic-105485-koreyst" title="Bing search results with options to modify the prompt and output" /></p>
+<p>Bing의 또 다른 기능 중 하나는 사용자가 애플리케이션을 통제할 수 있도록 데이터 사용에 동의하거나 동의를 철회할 수 있는 기능입니다. 예를 들어 학교 애플리케이션의 경우 학생은 자신의 노트와 교사의 자료를 복습 자료로 활용하고 싶을 것입니다.</p>
+<p><img alt="Bing search results with options to modify the prompt and output" src="../../images/bing2.png?WT.mc_id=academic-105485-koreyst" title="Bing search results with options to modify the prompt and output" /></p>
+<blockquote>
+<p>AI 애플리케이션을 디자인할 때 의도성(intentionality)은 사용자가 능력을 과대평가하거나 현실적이지 않은 기대를 설정하지 않도록 하는 데 핵심적인 역할을 합니다. 이를 위한 한 가지 방법은 프롬프트와 결과 사이에 마찰을 만들어내는 것입니다. 사용자에게 이것이 AI이며 인간이 아니라는 점을 상기시켜 사용자에게 경고하는 것입니다.</p>
+</blockquote>
+<h2 id="ai_1">협력과 피드백을 위한 AI 애플리케이션 디자인<a class="headerlink" href="#ai_1" title="Permanent link">&para;</a></h2>
+<p>앞서 언급한대로 생성형 AI는 사용자와 AI 간의 협력을 만들어냅니다. 대부분의 상호작용은 사용자가 프롬프트를 입력하고 AI가 결과를 생성하는 것입니다. 그렇다면 결과가 부정확한 경우는 어떻게 처리되는 걸까요? 애플리케이션이 오류를 어떻게 처리하나요? AI는 사용자를 나무랄까요 아니면 오류를 설명하는 데 시간을 들일까요?</p>
+<p>AI 애플리케이션은 피드백을 받고 주는 데에 적합하게 구축되어야 합니다. 이는 AI 시스템이 개선되는 데 도움이 되는 것뿐만 아니라 사용자와의 신뢰를 쌓는 데에도 기여합니다. 디자인에 피드백 루프를 포함하는 것이 중요하며, 이를 위한 예시로는 결과물에 대한 간단한 좋아요 또는 싫어요가 있을 수 있습니다.</p>
+<p>이를 처리하는 또 다른 방법은 시스템의 능력과 제한을 명확하게 전달하는 것입니다. 사용자가 AI 능력을 넘어서는 것을 요청할 때, 이에 대한 처리 방법도 명시되어야 합니다. 아래에 표시된 것처럼 사용자가 AI 능력을 벗어난 요청을 할 경우에 대한 처리 방법이 있어야 합니다.</p>
+<p><img alt="Giving feedback and handling errors" src="../../images/feedback-loops.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>시스템 오류는 사용자가 AI의 범위를 벗어난 정보와 관련한 도움이 필요한 경우나 애플리케이션이 사용자가 생성할 수 있는 질문/주제의 수에 제한을 둔 경우에 흔히 발생합니다. 예를 들어, 역사와 수학과 같은 한정된 주제의 데이터로 훈련된 AI 애플리케이션은 지리와 관련된 질문에 대응할 수 없을 것입니다. 이를 완화하기 위해 AI 시스템은 다음과 같은 응답을 할 수 있습니다: "죄송합니다만, 저희 제품은 다음과 같은 주제의 데이터로 훈련되었기 때문에... 당신이 물은 질문에 답할 수 없습니다."</p>
+<p>AI 애플리케이션은 완벽하지 않기 때문에 오류가 발생할 수 있습니다. 그렇기에 앱을 디자인할 때 사용자로부터 피드백과 오류 처리를 간단하고 설명하기 쉬운 방식으로 수용할 수 있도록 하는 것이 중요합니다.</p>
+<h2 id="_11">과제<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>당신이 만든 AI 앱들 중에 어떠한 것이든 골라 밑의 단계들을 당신의 앱에 구현해보는 것을 고려해보세요:</p>
+<ul>
+<li>
+<p><strong>즐거움:</strong> 앱을 어떻게 더 즐겁게 만들 수 있는지 고려하세요. 설명을 어디에 추가하고 있는지, 사용자의 탐험을 유도하고 있는지 확인하세요. 에러 메시지를 어떻게 구성하고 있는지도 고려해보세요.</p>
+</li>
+<li>
+<p><strong>사용성:</strong> 웹 앱을 개발 중이라면, 앱이 마우스와 키보드 둘다를 가지고 탐험할 수 있도록 보장하세요.</p>
+</li>
+<li>
+<p><strong>신뢰와 투명성:</strong> AI의 출력물을 완전히 신뢰하지 말고, 출력물을 검증하기 위해 인간을 프로세스에 추가하는 방법을 고려하세요. 또한, 신뢰성과 투명성을 달성하기 위한 다른 방법을 고려하고 구현하세요.</p>
+</li>
+<li>
+<p><strong>제어:</strong> 사용자에게 어플리케이션에 제공하는 데이터를 통제할 수 있는 권한을 부여하세요. 사용자가 AI 어플리케이션의 데이터 수집에 동의하거나 동의 철회할 수 있는 방법을 구현하세요.</p>
+</li>
+</ul>
+<!-- ## [Post-lecture quiz](quiz-url) -->
+
+<h2 id="_12">축하합니다, 이번 코스를 완료하였습니다.<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>이 수업이 끝났으니 우리의 <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">Generative AI 학습 컬렉션</a> 수업을 들어, 생성형 AI에 관한 지식을 계속해서 쌓아보세요!</p>
+<p>축하합니다, 이번 코스를 완료하였습니다! 그러나 여기서 멈추면 안됩니다. 바라건대, 당신이 당신만의 생성형 AI 스타트업을 만드는 것에 영감을 얻었으면 좋겠습니다. 여기 <a href="https://aka.ms/genai-foundershub?WT.mc_id=academic-105485-koreyst">Microsoft Founders Hub</a>로 이동하여 당신의 여정에 도움을 주기 위한 프로그램에 신청해보세요.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

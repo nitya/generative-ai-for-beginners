@@ -1,0 +1,1810 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/09-building-image-applications/translations/tw/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>建構影像生成應用程式 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              建構影像生成應用程式
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      簡介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      學習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      為什麼要建構一個圖像生成應用程式?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edu4all" class="md-nav__link">
+    <span class="md-ellipsis">
+      情境: Edu4All
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dall-emidjourney" class="md-nav__link">
+    <span class="md-ellipsis">
+      什麼是DALL-E和Midjourney?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="什麼是DALL-E和Midjourney?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dall-e" class="md-nav__link">
+    <span class="md-ellipsis">
+      DALL-E
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#midjourney" class="md-nav__link">
+    <span class="md-ellipsis">
+      Midjourney
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dall-e-midjourney" class="md-nav__link">
+    <span class="md-ellipsis">
+      DALL-E 和 Midjourney 如何運作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      建構你的第一個圖像生成應用程式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="建構你的第一個圖像生成應用程式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成圖像的更多資訊
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      影像生成的額外功能
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      溫度
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="溫度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      改變溫度
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metaprompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      如何使用 metaprompts 定義應用程式的邊界
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="如何使用 metaprompts 定義應用程式的邊界">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      它是如何運作的?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      作業 - 讓我們啟發學生
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      解決方案
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      很棒的工作！繼續學習
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">建構影像生成應用程式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson9-gh?WT.mc_id=academic-105485-koreyst"><img alt="建構影像生成應用" src="../../images/09-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<p>在 LLMs 中，除了文字生成之外還有更多的應用。也可以從文字描述生成圖像。將圖像作為一種模態在許多領域中都非常有用，從醫療技術、建築、旅遊、遊戲開發等。在本章中，我們將探討兩個最受歡迎的圖像生成模型，DALL-E 和 Midjourney。</p>
+<h2 id="_2">簡介<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在本課程中，我們將涵蓋:</p>
+<ul>
+<li>圖像生成及其用途。</li>
+<li>DALL-E 和 Midjourney，它們是什麼以及它們如何運作。</li>
+<li>如何建構一個圖像生成應用程式。</li>
+</ul>
+<h2 id="_3">學習目標<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>完成本課程後，你將能夠：</p>
+<ul>
+<li>建立影像生成應用程式。</li>
+<li>使用 meta 提示為您的應用程式定義邊界。</li>
+<li>使用 DALL-E 和 Midjourney。</li>
+</ul>
+<h2 id="_4">為什麼要建構一個圖像生成應用程式?<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>圖像生成應用程式是一個探索生成式 AI 能力的好方法。它們可以用於，例如:</p>
+<ul>
+<li>
+<p><strong>圖片編輯和合成</strong>。您可以為各種使用案例生成圖片，例如圖片編輯和圖片合成。</p>
+</li>
+<li>
+<p><strong>應用於多種行業</strong>。它們還可以用於為醫療技術、旅遊業、遊戲開發等多種行業生成圖片。</p>
+</li>
+</ul>
+<h2 id="edu4all">情境: Edu4All<a class="headerlink" href="#edu4all" title="Permanent link">&para;</a></h2>
+<p>在這節課中，我們將繼續與我們的初創公司Edu4All合作。學生們將為他們的評估創建圖像，具體創建什麼圖像由學生決定，但他們可以為自己的童話故事創作插圖，或者為他們的故事創建一個新角色，或幫助他們將自己的想法和概念具象化。</p>
+<p>以下是 Edu4All 的學生在課堂上研究紀念碑時可能生成的範例:</p>
+<p><img alt="Edu4All startup, 類別 on monuments, Eiffel Tower" src="../../images/startup.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>使用提示語如</p>
+<blockquote>
+<p>"早晨陽光下埃菲爾鐵塔旁的狗"</p>
+</blockquote>
+<h2 id="dall-emidjourney">什麼是DALL-E和Midjourney?<a class="headerlink" href="#dall-emidjourney" title="Permanent link">&para;</a></h2>
+<p><a href="https://openai.com/dall-e-2?WT.mc_id=academic-105485-koreyst">DALL-E</a> 和 <a href="https://www.midjourney.com/?WT.mc_id=academic-105485-koreyst">Midjourney</a> 是兩個最受歡迎的圖像生成模型，它們允許你使用提示來生成圖像。</p>
+<h3 id="dall-e">DALL-E<a class="headerlink" href="#dall-e" title="Permanent link">&para;</a></h3>
+<p>讓我們從 DALL-E 開始，這是一個生成式 AI 模型，可以從文字描述生成圖像。</p>
+<blockquote>
+<p><a href="https://towardsdatascience.com/openais-dall-e-and-clip-101-a-brief-introduction-3a4367280d4e?WT.mc_id=academic-105485-koreyst">DALL-E 是兩個模型的組合，CLIP 和擴散注意力</a>。</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>CLIP</strong>，是一個從圖像和文本中生成數值資料表示（嵌入）的模型。</p>
+</li>
+<li>
+<p><strong>Diffused attention</strong>，是一個從嵌入生成圖像的模型。DALL-E 是在圖像和文本數據集上訓練的，可以用來從文本描述生成圖像。例如，DALL-E 可以用來生成戴帽子的貓或有莫霍克髮型的狗的圖像。</p>
+</li>
+</ul>
+<h3 id="midjourney">Midjourney<a class="headerlink" href="#midjourney" title="Permanent link">&para;</a></h3>
+<p>Midjourney 的工作方式類似於 DALL-E，它從文本提示生成圖像。Midjourney 也可以用來生成圖像，使用像「戴帽子的貓」或「有莫霍克髮型的狗」這樣的提示。</p>
+<p><img alt="Image generated by Midjourney, mechanical pigeon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png/440px-Rupert_Breheny_mechanical_dove_eca144e7-476d-4976-821d-a49c408e4f36.png?WT.mc_id=academic-105485-koreyst" />
+<em>圖片來源 Wikipedia, 圖片由 Midjourney 生成</em></p>
+<h2 id="dall-e-midjourney">DALL-E 和 Midjourney 如何運作<a class="headerlink" href="#dall-e-midjourney" title="Permanent link">&para;</a></h2>
+<p>首先，<a href="https://arxiv.org/pdf/2102.12092.pdf?WT.mc_id=academic-105485-koreyst">DALL-E</a>。DALL-E 是一個基於 transformer 架構的生成式 AI 模型，具有 <em>自回歸 transformer</em>。</p>
+<p>一個_自回歸變壓器_定義了模型如何從文字描述生成圖像，它一次生成一個像素，然後使用生成的像素來生成下一個像素。通過神經網路的多層，直到圖像完成。</p>
+<p>透過這個過程，DALL-E 控制圖像中生成的屬性、物件、特徵等。然而，DALL-E 2 和 3 對生成的圖像有更多的控制。</p>
+<h2 id="_5">建構你的第一個圖像生成應用程式<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>那麼，建構一個影像生成應用程式需要什麼呢？你需要以下的函式庫:</p>
+<ul>
+<li><strong>python-dotenv</strong>，強烈建議您使用這個函式庫將您的秘密保存在 <em>.env</em> 文件中，遠離程式碼。</li>
+<li><strong>openai</strong>，這個函式庫是您用來與 OpenAI API 互動的工具。</li>
+<li><strong>pillow</strong>，用於在 Python 中處理圖像。</li>
+<li>
+<p><strong>requests</strong>，幫助您發出 HTTP 請求。</p>
+</li>
+<li>
+<p>建立一個名為 <em>.env</em> 的檔案，內容如下:</p>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>AZURE_OPENAI_ENDPOINT=&lt;your endpoint&gt;
+AZURE_OPENAI_API_KEY=&lt;your key&gt;
+</code></pre></div></td></tr></table></div>
+<p>在 Azure Portal 中找到你的資源的 "Keys and Endpoint" 部分來定位這些資訊。</p>
+<ol>
+<li>將上述函式庫收集到一個名為 <em>requirements.txt</em> 的檔案中，如下所示:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>python-dotenv
+openai
+pillow
+requests
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>接下來，建立虛擬環境並安裝函式庫:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div></td></tr></table></div>
+<p>對於 Windows，使用以下命令來建立和啟動你的虛擬環境:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate.bat
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>在名為 <em>app.py</em> 的檔案中添加以下程式碼:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">dotenv</span>
+
+<span class="c1"># import dotenv</span>
+<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># 從環境變數中獲取 endpoint 和 key</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_ENDPOINT&#39;</span><span class="p">]</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_API_KEY&#39;</span><span class="p">]</span>
+
+<span class="c1"># 指定 API 版本 (DALL-E 目前僅支持 2023-06-01-preview API 版本)</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-06-01-preview&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 使用圖像生成 API 來建立圖像</span>
+    <span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils&#39;</span><span class="p">,</span>    <span class="c1"># 在此輸入你的提示文字</span>
+        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># 設定存儲圖像的目錄</span>
+    <span class="n">image_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 如果目錄不存在，則建立它</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">)</span>
+
+    <span class="c1"># 初始化圖像路徑 (注意檔案類型應為 png)</span>
+    <span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="s1">&#39;generated-image.png&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 獲取生成的圖像</span>
+    <span class="n">image_url</span> <span class="o">=</span> <span class="n">generation_response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>  <span class="c1"># 從回應中提取圖像 URL</span>
+    <span class="n">generated_image</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">image_url</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># 下載圖像</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">image_file</span><span class="p">:</span>
+        <span class="n">image_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">generated_image</span><span class="p">)</span>
+
+    <span class="c1"># 在預設的圖像查看器中顯示圖像</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 捕捉異常</span>
+<span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">InvalidRequestError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>讓我們解釋這段程式碼:</p>
+<ul>
+<li>首先，我們匯入所需的函式庫，包括 OpenAI 函式庫、dotenv 函式庫、requests 函式庫和 Pillow 函式庫。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">dotenv</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>接下來，我們從 <em>.env</em> 檔案中載入環境變數。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># import dotenv</span>
+<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>之後，我們設定 OpenAI API 的端點、金鑰、版本和類型。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Get endpoint and key from environment variables</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_ENDPOINT&#39;</span><span class="p">]</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_API_KEY&#39;</span><span class="p">]</span>
+
+<span class="c1"># add version and type, Azure specific</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-06-01-preview&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>接下來，我們生成圖像:</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Create an image by using the image generation API</span>
+<span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils&#39;</span><span class="p">,</span>    <span class="c1"># Enter your prompt text here</span>
+    <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>上述程式碼回應一個包含生成圖像 URL 的 JSON 物件。我們可以使用該 URL 下載圖像並將其儲存到檔案中。</p>
+<ul>
+<li>最後，我們打開圖像並使用標準圖像檢視器顯示它:</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_6">生成圖像的更多資訊<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>讓我們更詳細地看看產生影像的程式碼:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;兔子在馬上，手拿棒棒糖，在長滿水仙花的霧氣草地上&#39;</span><span class="p">,</span>    <span class="c1"># 在此輸入您的提示文字</span>
+        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>prompt</strong>, 是用來生成圖像的文本提示。在這個例子中，我們使用的提示是 "Bunny on horse, holding a lollipop, on a foggy meadow where it grows daffodils"。</li>
+<li><strong>size</strong>, 是生成圖像的大小。在這個例子中，我們生成的圖像大小為 1024x1024 像素。</li>
+<li><strong>n</strong>, 是生成的圖像數量。在這個例子中，我們生成了兩張圖像。</li>
+<li><strong>temperature</strong>, 是控制生成式 AI 模型輸出隨機性的參數。temperature 是一個介於 0 和 1 之間的值，其中 0 表示輸出是確定性的，1 表示輸出是隨機的。預設值為 0.7。</li>
+</ul>
+<p>在下一節中，我們將介紹更多可以對影像進行的操作。</p>
+<h2 id="_7">影像生成的額外功能<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>你已經看到我們如何使用幾行 Python 程式碼生成圖像。然而，你還可以對圖像做更多事情。</p>
+<p>您也可以執行以下操作:</p>
+<ul>
+<li><strong>進行編輯</strong>。通過提供現有圖像、遮罩和提示，您可以更改圖像。例如，您可以在圖像的一部分添加一些東西。想像一下我們的兔子圖像，您可以給兔子加上一頂帽子。您可以通過提供圖像、遮罩（識別需要更改的區域部分）和文本提示來說明應該做什麼。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create_edit</span><span class="p">(</span>
+  <span class="n">image</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;base_image.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+  <span class="n">mask</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mask.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+  <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;An image of a rabbit with a hat on its head.&quot;</span><span class="p">,</span>
+  <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+  <span class="n">size</span><span class="o">=</span><span class="s2">&quot;1024x1024&quot;</span>
+<span class="p">)</span>
+<span class="n">image_url</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>基本圖像只包含兔子，但最終圖像會在兔子上加上一頂帽子。</p>
+<ul>
+<li><strong>建立變體</strong>。這個想法是您採用現有圖像並要求創建變體。要建立變體，您需要提供圖像和文本提示，程式碼如下：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create_variation</span><span class="p">(</span>
+  <span class="n">image</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;bunny-lollipop.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span>
+  <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+  <span class="n">size</span><span class="o">=</span><span class="s2">&quot;1024x1024&quot;</span>
+<span class="p">)</span>
+<span class="n">image_url</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>注意，這僅在 OpenAI 上支持。</p>
+</blockquote>
+<h2 id="_8">溫度<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>溫度是一個控制生成式 AI 模型輸出隨機性的參數。溫度是一個介於 0 和 1 之間的值，其中 0 表示輸出是確定性的，1 表示輸出是隨機的。預設值是 0.7。</p>
+<p>讓我們透過執行這個提示兩次來看看溫度如何運作的範例:</p>
+<blockquote>
+<p>提示 : "騎在馬上的兔子，手持棒棒糖，在長滿水仙花的霧濛濛的草地上"</p>
+</blockquote>
+<p><img alt="兔子騎在馬上拿著棒棒糖，版本 1" src="../../images/v1-generated-image.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>現在讓我們執行相同的提示，只是看看我們不會得到相同的圖像兩次:</p>
+<p><img alt="生成的兔子騎馬圖像" src="../../images/v2-generated-image.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>正如你所見，這些圖片相似，但不完全相同。讓我們嘗試將溫度值改為 0.1，看看會發生什麼事:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code> <span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;騎在馬上的兔子，手拿棒棒糖，在長滿水仙花的霧霾草地上&#39;</span><span class="p">,</span>    <span class="c1"># 在此輸入您的提示文字</span>
+        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">2</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_9">改變溫度<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>所以讓我們嘗試使回應更加確定。我們可以從我們生成的兩張圖片中觀察到，在第一張圖片中，有一隻兔子，而在第二張圖片中，有一匹馬，所以圖片差異很大。</p>
+<p>讓我們因此更改我們的程式碼並將溫度設置為 0，如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;騎在馬上的兔子，手拿棒棒糖，在長滿水仙花的霧濛濛的草地上&#39;</span><span class="p">,</span>    <span class="c1"># 在此輸入您的提示文字</span>
+        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>現在當你執行這段程式碼, 你會得到這兩張圖片:</p>
+<ul>
+<li><img alt="Temperature 0, v1" src="../../images/v1-temp-generated-image.png?WT.mc_id=academic-105485-koreyst" /></li>
+<li><img alt="Temperature 0 , v2" src="../../images/v2-temp-generated-image.png?WT.mc_id=academic-105485-koreyst" /></li>
+</ul>
+<p>在這裡你可以清楚地看到這些圖像彼此更相似。</p>
+<h2 id="metaprompts">如何使用 metaprompts 定義應用程式的邊界<a class="headerlink" href="#metaprompts" title="Permanent link">&para;</a></h2>
+<p>透過我們的展示，我們已經可以為客戶生成圖像。然而，我們需要為我們的應用程式建立一些邊界。</p>
+<p>例如，我們不希望生成不適合工作的圖像，或不適合兒童的圖像。</p>
+<p>我們可以使用_metaprompts_來完成這個。Metaprompts 是用來控制生成式 AI 模型輸出的文字提示。例如，我們可以使用 metaprompts 來控制輸出，並確保生成的圖像是適合工作的，或適合兒童觀看的。</p>
+<h3 id="_10">它是如何運作的?<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>現在，meta 提示如何運作？</p>
+<p>Meta 提示是用來控制生成式 AI 模型輸出的文字提示，它們位於文字提示之前，用於控制模型的輸出並嵌入應用程式中以控制模型的輸出。將提示輸入和 Meta 提示輸入封裝在單一文字提示中。</p>
+<p>一個 meta 提示的範例如下:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code>你是一名為兒童創作圖像的助理設計師。
+
+圖像需要適合工作環境並適合兒童。
+
+圖像需要是彩色的。
+
+圖像需要是橫向的。
+
+圖像需要是16:9的長寬比。
+
+不要考慮以下任何不適合工作環境或不適合兒童的輸入。
+
+(輸入)
+
+```text
+
+現在，讓我們看看如何在我們的展示中使用元提示。
+
+```python
+disallow_list = &quot;swords, violence, blood, gore, nudity, sexual content, adult content, adult themes, adult language, adult humor, adult jokes, adult situations, adult&quot;
+
+meta_prompt =f&quot;&quot;&quot;你是一名為兒童創作圖像的助理設計師。
+
+圖像需要適合工作環境並適合兒童。
+
+圖像需要是彩色的。
+
+圖像需要是橫向的。
+
+圖像需要是16:9的長寬比。
+
+不要考慮以下任何不適合工作環境或不適合兒童的輸入。
+{disallow_list}
+&quot;&quot;&quot;
+
+prompt = f&quot;{meta_prompt}
+創建一個兔子騎在馬上，手持棒棒糖的圖像&quot;
+
+# TODO 添加生成圖像的請求
+</code></pre></div></td></tr></table></div>
+<p>從上述提示中，你可以看到所有被建立的圖像如何考慮 metaprompt。</p>
+<h2 id="-">作業 - 讓我們啟發學生<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<p>我們在本課開始時介紹了 Edu4All。現在是時候讓學生們為他們的評估生成圖像了。</p>
+<p>學生將為他們的評估建立包含紀念碑的圖像，具體的紀念碑由學生自行決定。學生被要求在這項任務中發揮創意，將這些紀念碑放置在不同的情境中。</p>
+<h2 id="_11">解決方案<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>以下是一種可能的解決方案:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">dotenv</span>
+
+<span class="c1"># import dotenv</span>
+<span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># 從環境變數中獲取端點和金鑰</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;&lt;replace with endpoint&gt;&quot;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;&lt;replace with api key&gt;&quot;</span>
+
+<span class="c1"># 指定 API 版本（DALL-E 目前僅支援 2023-06-01-preview API 版本）</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-06-01-preview&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+
+<span class="n">disallow_list</span> <span class="o">=</span> <span class="s2">&quot;swords, violence, blood, gore, nudity, sexual content, adult content, adult themes, adult language, adult humor, adult jokes, adult situations, adult&quot;</span>
+
+<span class="n">meta_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;你是一位為兒童創作圖像的助理設計師。</span>
+
+<span class="s2">圖像需要適合工作環境且適合兒童。</span>
+
+<span class="s2">圖像需要是彩色的。</span>
+
+<span class="s2">圖像需要是橫向的。</span>
+
+<span class="s2">圖像需要是16:9的長寬比。</span>
+
+<span class="s2">不要考慮任何不適合工作環境或不適合兒童的輸入。</span>
+<span class="si">{</span><span class="n">disallow_list</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="si">{</span><span class="n">metaprompt</span><span class="si">}</span>
+<span class="s2">生成巴黎凱旋門的紀念碑，在傍晚的光線下，一個小孩抱著泰迪熊看著。</span>
+<span class="s2">&quot;&quot;&quot;&quot;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 使用圖像生成 API 建立圖像</span>
+    <span class="n">generation_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span>    <span class="c1"># 在此輸入提示文字</span>
+        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;1024x1024&#39;</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># 設定儲存圖像的目錄</span>
+    <span class="n">image_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 如果目錄不存在，則建立它</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">image_dir</span><span class="p">)</span>
+
+    <span class="c1"># 初始化圖像路徑（注意文件類型應為 png）</span>
+    <span class="n">image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="s1">&#39;generated-image.png&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 獲取生成的圖像</span>
+    <span class="n">image_url</span> <span class="o">=</span> <span class="n">generation_response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>  <span class="c1"># 從回應中提取圖像 URL</span>
+    <span class="n">generated_image</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">image_url</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># 下載圖像</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">image_file</span><span class="p">:</span>
+        <span class="n">image_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">generated_image</span><span class="p">)</span>
+
+    <span class="c1"># 在默認圖像查看器中顯示圖像</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 捕捉異常</span>
+<span class="k">except</span> <span class="n">openai</span><span class="o">.</span><span class="n">InvalidRequestError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_12">很棒的工作！繼續學習<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>完成本課程後，請查看我們的<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">生成式 AI 學習集合</a>以繼續提升您的生成式 AI 知識！</p>
+<p>前往第10課，我們將探討如何<a href="../../../10-building-low-code-ai-applications/translations/tw/?WT.mc_id=academic-105485-koreyst">建構低程式碼的AI應用程式</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

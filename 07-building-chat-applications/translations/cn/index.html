@@ -1,0 +1,1474 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/07-building-chat-applications/translations/cn/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>第七章：创建聊天应用 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第七章：创建聊天应用
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      本章概述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      学习目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      将生成式人工智能集成到聊天应用程序中
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="将生成式人工智能集成到聊天应用程序中">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      聊天机器人还是聊天应用程序？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdk-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      结合成熟的 SDK 和 API 构建生成式人工智能驱动的人工智能
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ux" class="md-nav__link">
+    <span class="md-ellipsis">
+      用户体验（UX）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="用户体验（UX）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      微软的 LLMs 系统消息框架
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      辅助功能
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      特定领域语言模型的定制和微调
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      定制：使用 DSL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      定制：应用微调
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="定制：应用微调">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      场景：医疗应用**
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      高质量 AI 驱动的聊天体验的注意事项
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="高质量 AI 驱动的聊天体验的注意事项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      关键指标
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      在聊天应用程序中实施负责任的人工智能实践
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      作业
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#great-work-continue-the-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      Great Work! Continue the Journey
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      继续学习
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">第七章：创建聊天应用<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lessons7-gh?WT.mc_id=academic-105485-koreyst"><img alt="Building Generative AI-Powered Chat Applications" src="../../images/07-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<blockquote>
+<p><em>(点击该图片看本章导学视频)</em></p>
+</blockquote>
+<p>通过之前的学习，我们了解了如何构建文本生成应用程序，接下来让我们看看聊天应用程序是如何实现的</p>
+<p>聊天应用程序已融入我们的日常生活，提供的不仅仅是一种随意交谈的方式。 已经成为客户服务、技术支持甚至复杂的咨询系统不可或缺的一部分。 您可能已经从聊天应用程序获得了一些帮助。 随着我们将生成式人工智能等更先进的技术集成到这些平台中，复杂性随之增加，挑战也随之增加。</p>
+<p>我们需要回答的一些问题是：</p>
+<ul>
+<li><strong>构建应用程序</strong> 我们如何针对特定场景高效构建并无缝集成这些人工智能驱动的应用程序？</li>
+<li><strong>有效监控</strong> 部署后，我们如何监控并确保应用程序在功能方面遵守<a href="https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst">负责任的人工智能六项原则</a>?</li>
+</ul>
+<p>随着我们进一步进入自动化和无缝人机交互的时代，了解生成式人工智能如何改变聊天应用程序的范围、深度和适应性变得至关重要。 本课程将研究支持这些复杂系统的架构的各个方面，深入研究针对特定场景进行微调的方法，并评估和确保负责任的人工智能部署相关的指标和注意事项。</p>
+<h2 id="_2">本章概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在本章中，您将学习到：</p>
+<ul>
+<li>有效构建和集成聊天应用程序的技术。</li>
+<li>如何对应用程序进行定制和微调。</li>
+<li>有效监控聊天应用程序的策略和注意事项。</li>
+</ul>
+<h2 id="_3">学习目标<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在完成本章的学习，您将能够：</p>
+<ul>
+<li>描述构建聊天应用程序并将其集成到现有系统中的注意事项。</li>
+<li>针对特定场景定制聊天应用程序。</li>
+<li>确定关键指标和注意事项，以有效监控和维护人工智能聊天应用程序的质量。</li>
+<li>确保聊天应用程序负责任地使用人工智能。</li>
+</ul>
+<h2 id="_4">将生成式人工智能集成到聊天应用程序中<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>通过生成式人工智能提升聊天应用程序不仅是为了让它们变得更智能，也是为了让它们变得更聪明。 这是关于优化其架构、性能和用户界面以提供优质的用户体验。 这涉及研究架构基础、API 集成和用户界面注意事项。 本章旨在为您提供一个全面的路线图，用于导航这些复杂的环境，无论您是将它们插入现有系统还是将它们构建为独立平台。</p>
+<p>读完本节后，您将具备高效构建和合并聊天应用程序所需的专业知识。</p>
+<h3 id="_5">聊天机器人还是聊天应用程序？<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>在我们深入构建聊天应用程序之前，让我们将“传统聊天机器人”与“生成式人工智能驱动的人工智能”进行比较，它们具有不同的角色和功能。 传统聊天机器人的主要目的是自动执行特定的对话任务，例如回答常见问题或跟踪包裹。 它通常由基于规则的逻辑或复杂的人工智能算法控制。 相比之下，人工智能驱动的聊天应用程序是一个更加广泛的环境，旨在促进各种形式的数字通信，例如用户之间的文本、语音和视频聊天。 其定义特征是集成了生成式人工智能模型，该模型可以模拟细致入微的拟人对话，并根据各种输入和上下文提示生成响应。 生成式人工智能驱动的聊天应用程序可以参与开放领域的讨论，适应不断变化的对话环境，甚至产生创造性或复杂的对话。</p>
+<p>下表概述了主要差异和相似之处，以帮助我们了解它们在数字通信中的独特作用。</p>
+<table>
+<thead>
+<tr>
+<th>传统聊天机器人</th>
+<th>生成式人工智能驱动的人工智能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>以任务为中心、基于预定义规则</td>
+<td>情境感知</td>
+</tr>
+<tr>
+<td>集成到大型的行业系统中</td>
+<td>可以托管一个或多个聊天机器人</td>
+</tr>
+<tr>
+<td>通过编程实现</td>
+<td>结合生成式人工智能模型</td>
+</tr>
+<tr>
+<td>专业相对固化的交互</td>
+<td>能够进行更开放关于专业领域讨论</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sdk-api">结合成熟的 SDK 和 API 构建生成式人工智能驱动的人工智能<a class="headerlink" href="#sdk-api" title="Permanent link">&para;</a></h3>
+<p>在构建聊天应用程序时，重要的第一步是评估已有的内容。 基于多种原因，使用 SDK 和 API 构建聊天应用程序是一种有利的策略。 通过集成成熟的 SDK 和 API，可以战略性地定位您的应用程序，以实现长期成功，并解决可扩展性和维护问题。</p>
+<ul>
+<li><strong>加快开发过程并减少开销</strong>：依靠预构建的功能而不是自己构建它们的昂贵过程，可以让您专注于您可能发现更重要的应用程序的其他方面，例如业务逻辑。</li>
+<li><strong>更好的性能</strong>：从头开始构建功能时，您最终会问自己“它如何扩展？这个应用程序是否能够处理突然涌入的用户？” 维护功能好的 SDK 和 API 通常针对这些问题内置了解决方案。</li>
+<li><strong>更容易维护</strong>：更新和改进更易于管理，因为大多数 API 和 SDK 在发布新版本时只需要更新库。</li>
+<li><strong>获得尖端技术</strong>：利用经过微调和在广泛数据集上训练的模型为您的应用程序提供自然语言功能。</li>
+</ul>
+<p>访问 SDK 或 API 的功能通常涉及获取使用所提供服务的许可，这通常是通过使用唯一 key 或身份验证 token 来实现的。 我们将使用 OpenAI Python library 来探索它是什么样子。 您也可以在本章的<a href="../../python/oai-assignment.ipynb?WT.mc_id=academic-105485-koreyst">notebook</a> 中自行尝试。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span>
+    <span class="p">)</span>
+
+<span class="n">chat_completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Suggest two titles for an instructional lesson on chat applications for generative AI.&quot;</span><span class="p">}])</span>
+</code></pre></div></td></tr></table></div>
+<p>上面的示例使用 GPT-3.5 Turbo 模型来完成提示，但请注意，API 密钥是在执行此操作之前设置的。 如果未设置 key，您将收到以下错误。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">AuthenticationError: No API key provided. You can set your API key in code using &#39;openai.api_key = &lt;API-KEY&gt;&#39;, or you can set the environment variable OPENAI_API_KEY=&lt;API-KEY&gt;). If your API key is stored in a file, you can point the openai module at it with &#39;openai.api_key_path = &lt;PATH&gt;&#39;. You can generate API keys in the OpenAI web interface. See https://platform.openai.com/account/api-keys for details.</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="ux">用户体验（UX）<a class="headerlink" href="#ux" title="Permanent link">&para;</a></h2>
+<p>一般用户体验原则适用于聊天应用程序，但由于涉及机器学习组件，这里有一些额外考虑因素，这就变得特别重要。</p>
+<ul>
+<li><strong>解决模糊性的机制</strong>：生成式人工智能模型偶尔会生成模糊的答案。 如果用户遇到此问题，允许用户要求进行澄清可能会有所帮助。</li>
+<li><strong>上下文保留</strong>：先进的生成式人工智能模型能够记住对话中的上下文，这可能是用户体验的必要资产。 赋予用户控制和管理上下文的能力可以改善用户体验，但会带来保留敏感用户信息的风险。 考虑这些信息的存储时间（例如引入保留策略）可以平衡上下文需求和隐私。</li>
+<li><strong>个性化</strong>：人工智能模型具有学习和适应能力，为用户提供个性化体验。 通过用户个人资料等功能定制用户体验，不仅让用户感到亲切，而且还有助于他们得到特定答案，创造更高效、令人满意的交互。</li>
+</ul>
+<p>个性化的一个例子是 OpenAI 的 ChatGPT 中的“自定义指令”设置。 它允许您提供有关您自己的信息，这些信息可能是您的提示的重要背景。 以下是自定义指令的示例。</p>
+<p><img alt="Custom Instructions Settings in ChatGPT" src="../../images/custom-instructions.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>“配置文件”提示 ChatGPT 在链接列表上创建课程计划。 请注意，ChatGPT 可以按照用户的特点获得更深入的课程计划。</p>
+<p><img alt="A prompt in ChatGPT for a lesson plan about linked lists" src="../../images/lesson-plan-prompt.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h3 id="llms">微软的 LLMs 系统消息框架<a class="headerlink" href="#llms" title="Permanent link">&para;</a></h3>
+<p><a href="https://learn.microsoft.com/azure/ai-services/openai/concepts/system-message#define-the-models-output-format?WT.mc_id=academic-105485-koreyst">微软指引</a> 用于在 LLM 生成响应时编写有效的系统消息，分为 4 个区域：</p>
+<ol>
+<li>定义模型的适用对象及其功能和限制。</li>
+<li>定义模型的输出格式。</li>
+<li>提供展示模型预期行为的具体示例。</li>
+<li>提供额外的行为护栏。</li>
+</ol>
+<h3 id="_6">辅助功能<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>无论用户是否有视觉、听觉、运动或认知障碍，设计良好的聊天应用程序都应该可供所有人使用。 以下列表详细列出了旨在增强各种用户障碍的可访问性的特定功能。</p>
+<ul>
+<li><strong>针对视觉障碍的功能</strong>：高对比度主题和可调整大小的文本、屏幕阅读器兼容性。</li>
+<li><strong>针对听觉障碍的功能</strong>：文本转语音和语音转文本功能、音频通知的视觉提示。</li>
+<li><strong>针对运动障碍的功能</strong>：键盘导航支持、语音命令。</li>
+<li><strong>认知障碍功能</strong>：简化的语言选项。</li>
+</ul>
+<h2 id="_7">特定领域语言模型的定制和微调<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>想象一下，一个聊天应用程序可以理解您公司的行话并预测其用户群通常有的特定查询。 有几种方法值得一提：</p>
+<ul>
+<li><strong>利用 DSL 模型</strong>。 DSL 代表领域特定语言。 您可以利用在特定领域训练的所谓 DSL 模型来了解其概念和场景。</li>
+<li><strong>应用微调</strong>。 微调是使用特定数据进一步训练模型的过程。</li>
+</ul>
+<h2 id="dsl">定制：使用 DSL<a class="headerlink" href="#dsl" title="Permanent link">&para;</a></h2>
+<p>利用特定于领域的语言模型（DSL 模型）可以通过提供专门的、上下文相关的交互来增强用户参与度。 它是一个经过训练或微调的模型，可以理解和生成与特定领域、行业或主题相关的文本。 使用 DSL 模型的选项多种多样，从头开始训练到通过 SDK 和 API 使用预先存在的模型。 另一种选择是微调，其中涉及采用现有的预训练模型并将其适应特定领域。</p>
+<h2 id="_8">定制：应用微调<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>当预训练模型在专门领域或特定任务中达不到要求时，通常会考虑微调。</p>
+<p>例如，医疗查询很复杂并且需要大量上下文。 当医疗专业人员诊断患者时，它会基于多种因素，例如生活方式或既往病史，甚至可能依赖最近的医学期刊来验证他们的诊断。 在这种微妙的场景中，通用的人工智能聊天应用程序不可能成为可靠的来源。</p>
+<h3 id="_9">场景：医疗应用**<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>考虑一个聊天应用程序，旨在通过提供治疗指南、药物相互作用或最新研究结果的快速参考来帮助医生。</p>
+<p>通用模型可能足以回答基本的医学问题或提供一般建议，但可能会遇到以下问题：</p>
+<ul>
+<li><strong>高度具体或复杂的案例</strong>。 例如，神经科医生可能会询问应用程序：“目前治疗儿科患者耐药性癫痫的最佳实践是什么？”</li>
+<li><strong>缺乏最新进展</strong>。 通用模型可能很难提供包含神经学和药理学最新进展的当前答案。</li>
+</ul>
+<p>在此类情况下，使用专门的医疗数据集对模型进行微调可以显着提高其更准确、更可靠地处理这些复杂的医疗查询的能力。 这需要访问大型且相关的数据集，这些数据集代表了需要解决的特定领域的挑战和问题。</p>
+<h2 id="ai">高质量 AI 驱动的聊天体验的注意事项<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h2>
+<p>本节概述了“高质量”聊天应用程序的标准，其中包括捕获可操作的指标以及遵守负责任地利用人工智能技术的框架。</p>
+<h3 id="_10">关键指标<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>为了保持应用程序的高质量性能，跟踪关键指标和注意事项至关重要。 这些测量不仅可以确保应用程序的功能，还可以评估人工智能模型和用户体验的质量。 下面的列表涵盖了需要考虑的基本、人工智能和用户体验指标。</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>定义</th>
+<th>开发人员需要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>正常运行时间</strong></td>
+<td>衡量应用程序运行和用户访问的时间。</td>
+<td>您将如何最大限度地减少停机时间？</td>
+</tr>
+<tr>
+<td><strong>响应时间</strong></td>
+<td>应用程序回复用户查询所花费的时间。</td>
+<td>如何优化查询处理以缩短响应时间？</td>
+</tr>
+<tr>
+<td><strong>精确</strong></td>
+<td>真阳性预测占阳性预测总数的比率</td>
+<td>您将如何验证模型的精度？</td>
+</tr>
+<tr>
+<td><strong>召回率（灵敏度）</strong></td>
+<td>真阳性预测与实际阳性数量的比率</td>
+<td>您将如何衡量和提高召回率？</td>
+</tr>
+<tr>
+<td><strong>F1 得分</strong></td>
+<td>精确率和召回率的调和平均值，平衡两者之间的权衡。</td>
+<td>您的目标 F1 分数是多少？ 您将如何平衡精确度和召回率？</td>
+</tr>
+<tr>
+<td><strong>困惑</strong></td>
+<td>衡量模型预测的概率分布与数据实际分布的吻合程度。</td>
+<td>您将如何最大程度地减少困惑？</td>
+</tr>
+<tr>
+<td><strong>用户满意度指标</strong></td>
+<td>衡量用户对应用程序的感知。 通常通过调查捕获。</td>
+<td>您多久收集一次用户反馈？ 在此基础上你将如何适应？</td>
+</tr>
+<tr>
+<td><strong>错误率</strong></td>
+<td>模型在理解或输出方面出错的比率。</td>
+<td>您采取了哪些策略来降低错误率？</td>
+</tr>
+<tr>
+<td><strong>再培训周期</strong></td>
+<td>更新模型以纳入新数据和见解的频率。</td>
+<td>您多久重新训练一次模型？ 是什么触发了再培训周期？</td>
+</tr>
+<tr>
+<td><strong>异常检测</strong></td>
+<td>用于识别不符合预期行为的异常模式的工具和技术。</td>
+<td>您将如何应对异常情况？</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">在聊天应用程序中实施负责任的人工智能实践<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>Microsoft 的 Responsible AI 方法确定了指导 AI 开发和使用的六项原则。 以下是聊天开发人员应该考虑的原则、定义以及聊天开发人员应该考虑的事项以及为什么他们应该认真对待它们。</p>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>微软的定义</th>
+<th>聊天开发人员的注意事项</th>
+<th>为什么它很重要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公平</td>
+<td>人工智能系统应该公平对待所有人。</td>
+<td>确保聊天应用程序不会根据用户数据进行歧视。</td>
+<td>在用户之间建立信任和包容性； 避免法律后果。</td>
+</tr>
+<tr>
+<td>可靠性和安全性</td>
+<td>人工智能系统应该可靠、安全地运行。</td>
+<td>实施测试和故障保护以最大限度地减少错误和风险。</td>
+<td>确保用户满意度并防止潜在危害。</td>
+</tr>
+<tr>
+<td>隐私与安全</td>
+<td>人工智能系统应该安全并尊重隐私。</td>
+<td>实施强有力的加密和数据保护措施。</td>
+<td>保护敏感的用户数据并遵守隐私法。</td>
+</tr>
+<tr>
+<td>包容性</td>
+<td>人工智能系统应该赋予每个人力量并吸引人们。</td>
+<td>设计适合不同受众且易于使用的 UI/UX。</td>
+<td>确保更广泛的人可以有效地使用该应用程序。</td>
+</tr>
+<tr>
+<td>透明度</td>
+<td>人工智能系统应该是可以理解的。</td>
+<td>为人工智能响应提供清晰的文档和推理。</td>
+<td>如果用户能够理解决策的制定方式，他们就更有可能信任系统。</td>
+</tr>
+<tr>
+<td>问责制</td>
+<td>人们应该对人工智能系统负责。</td>
+<td>建立清晰的审核和改进人工智能决策的流程。</td>
+<td>允许持续改进并在出现错误时采取纠正措施。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">作业<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>请查看<a href="../../python?WT.mc_id=academic-105485-koreyst">作业</a>，它将引导您完成一系列练习，从运行第一个聊天提示到对文本进行分类和总结等等。</p>
+<h2 id="great-work-continue-the-journey">Great Work! Continue the Journey<a class="headerlink" href="#great-work-continue-the-journey" title="Permanent link">&para;</a></h2>
+<p>Want to learn more about creating chat applications with Generative AI? Go to the <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">continued learning page</a> to find other great resources on this topic.</p>
+<p>Head over to Lesson 8 to see how you can start <a href="/08-building-search-applications/README.md?WT.mc_id=academic-105485-koreyst">building search applications</a>!</p>
+<h2 id="_13">继续学习<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>想要了解有关创建聊天应用的更多信息？ 转至<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">进阶学习的页面</a> 查找有关此主章节的其他学习资源。</p>
+<p>前往第八章，我们将学习<a href="../../../08-building-search-applications/translations/cn/?WT.mc_id=academic-105485-koreyst">构建搜索应用程序</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

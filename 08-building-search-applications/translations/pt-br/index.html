@@ -1,0 +1,1305 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/08-building-search-applications/translations/pt-br/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Criando Aplicações de Busca - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#criando-aplicacoes-de-busca" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Criando Aplicações de Busca
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metas-de-aprendizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metas de Aprendizado
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-criar-uma-aplicacao-de-busca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por que criar uma aplicação de busca?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e-busca-semantica" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que é busca semântica?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-sao-embeddings-de-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que são Embeddings de Texto?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-o-indice-de-embeddings-e-criado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como o Índice de Embeddings é criado?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Como o Índice de Embeddings é criado?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#banco-de-dados-vetorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Banco de Dados Vetorial
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compreendendo-a-similaridade-de-cosseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compreendendo a similaridade de cosseno
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compreendendo a similaridade de cosseno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-e-similaridade-de-cosseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que é similaridade de cosseno?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-sua-primeira-aplicacao-de-busca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando sua primeira aplicação de busca
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assignment-building-a-search-application-to-enable-students" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assignment - building a search application, to enable students
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarefa-criando-uma-aplicacao-de-busca-para-habilitar-os-estudantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarefa - criando uma aplicação de busca para habilitar os estudantes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarefa - criando uma aplicação de busca para habilitar os estudantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inicie-o-azure-cloud-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicie o Azure Cloud Shell
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excelente-trabalho-continue-aprendendo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Excelente trabalho! Continue aprendendo!
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="criando-aplicacoes-de-busca">Criando Aplicações de Busca<a class="headerlink" href="#criando-aplicacoes-de-busca" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson8-gh?WT.mc_id=academic-105485-koreyst"><img alt="Introduction to Generative AI and Large Language Models" src="../../images/08-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<p>Há muito mais nas LLMs do que chatbots e geração de texto. Também é possível criar aplicações de busca usando <code>Embeddings</code>. <code>Embeddings</code> são representações numéricas de dados, também conhecidas como vetores, e podem ser usados para busca semântica de dados.</p>
+<p>Nesta lição, você vai criar uma aplicação de busca para a nossa startup de educação. Nossa startup é uma organização sem fins lucrativos que fornece educação gratuita para estudantes em países em desenvolvimento. Nossa startup possui uma grande quantidade de vídeos no YouTube que os estudantes podem usar para aprender sobre IA. Nossa startup deseja criar uma aplicação de busca que permita aos estudantes procurar por um vídeo no YouTube digitando uma pergunta.</p>
+<p>Por exemplo, um estudante pode digitar: 'O que é Jupyter Notebooks?' ou 'O que é Azure ML' e a aplicação de busca retornará uma lista de vídeos do YouTube relevantes para a pergunta. E melhor ainda, a aplicação de busca retornará um link para o local no vídeo onde está localizada a resposta para a pergunta.</p>
+<h2 id="introducao">Introdução<a class="headerlink" href="#introducao" title="Permanent link">&para;</a></h2>
+<p>Nesta lição, vamos cobrir:</p>
+<ul>
+<li>Busca semântica vs busca por palavras-chave.</li>
+<li>O que são Embeddings de Texto.</li>
+<li>Criando um Índice de Embeddings de Texto.</li>
+<li>Buscando em um Índice de Embeddings de Texto.</li>
+</ul>
+<h2 id="metas-de-aprendizado">Metas de Aprendizado<a class="headerlink" href="#metas-de-aprendizado" title="Permanent link">&para;</a></h2>
+<p>Após completar esta lição, você será capaz de:</p>
+<ul>
+<li>Diferenciar entre busca semântica e busca por palavras-chave.</li>
+<li>Explicar o que são Embeddings de Texto.</li>
+<li>Criar uma aplicação usando Embeddings para buscar dados.</li>
+</ul>
+<h2 id="por-que-criar-uma-aplicacao-de-busca">Por que criar uma aplicação de busca?<a class="headerlink" href="#por-que-criar-uma-aplicacao-de-busca" title="Permanent link">&para;</a></h2>
+<p>Criar uma aplicação de busca ajudará você a entender como usar Embeddings para buscar dados. Você também aprenderá como construir uma aplicação de busca que pode ser usada por estudantes para encontrar informações rapidamente.</p>
+<p>A lição inclui um Índice de Embeddings dos transcritos do YouTube para o canal <a href="https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1">AI Show</a> da Microsoft no YouTube. O AI Show é um canal do YouTube que ensina sobre IA e aprendizado de máquina. O Índice de Embeddings contém os Embeddings para cada um dos transcritos do YouTube até outubro de 2023. Você usará o Índice de Embeddings para construir uma aplicação de busca para nossa startup. A aplicação de busca retorna um link para o local no vídeo onde está localizada a resposta para a pergunta. Esta é uma ótima maneira para os estudantes encontrarem rapidamente as informações de que precisam.</p>
+<p>Abaixo nós temos um exemplo de uma consulta semântica para a pergunta: 'É possível usar o RStudio com o Azure ML?'. Confira a URL do YouTube, você verá que a URL contém um carimbo de data/hora que o leva para o local no vídeo onde está localizada</p>
+<p><img alt="Semantic query for the question &quot;can you use rstudio with Azure ML&quot;" src="../../images/query-results.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="o-que-e-busca-semantica">O que é busca semântica?<a class="headerlink" href="#o-que-e-busca-semantica" title="Permanent link">&para;</a></h2>
+<p>Agora você pode estar se perguntando, o que é busca semântica? A busca semântica é uma técnica de busca que utiliza a semântica, ou significado, das palavras em uma consulta para retornar resultados relevantes.</p>
+<p>Aqui está um exemplo de busca semântica. Digamos que você esteja procurando comprar um carro, você pode buscar por 'meu carro dos sonhos', a busca semântica entende que você não está <code>sonhando</code> com um carro, mas sim procurando comprar o seu carro <code>ideal</code>. A busca semântica compreende sua intenção e retorna resultados relevantes. A alternativa é a <code>busca por palavras-chave</code>, que literalmente procuraria sonhos sobre carros e frequentemente retornaria resultados irrelevantes.</p>
+<h2 id="o-que-sao-embeddings-de-texto">O que são Embeddings de Texto?<a class="headerlink" href="#o-que-sao-embeddings-de-texto" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.wikipedia.org/wiki/Word_embedding?WT.mc_id=academic-105485-koreyst">Embeddings de texto</a> são uma técnica de representação de texto usada em <a href="https://en.wikipedia.org/wiki/Natural_language_processing?WT.mc_id=academic-105485-koreyst">processamento de linguagem natural</a>. Embeddings de texto são representações numéricas semânticas de texto. Embeddings são usados para representar dados de uma maneira fácil para uma máquina entender. Existem muitos modelos para construir embeddings de texto, nesta lição, vamos nos concentrar em gerar embeddings usando o Modelo de Embedding da OpenAI.</p>
+<p>Aqui está um exemplo, imagine que o seguinte texto está em um transcrição de um dos episódios no canal do YouTube AI Show:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>Today we are going to learn about Azure Machine Learning.
+</code></pre></div></td></tr></table></div>
+<p>Nós passaríamos o texto para a API de Embedding da OpenAI e ela retornaria o seguinte embedding consistindo de 1536 números, também conhecido como um vetor. Cada número no vetor representa um aspecto diferente do texto. Para brevidade, aqui estão os primeiros 10 números do vetor.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">[</span><span class="o">-</span><span class="mf">0.006655829958617687</span><span class="p">,</span> <span class="mf">0.0026128944009542465</span><span class="p">,</span> <span class="mf">0.008792596869170666</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02446001023054123</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.008540431968867779</span><span class="p">,</span> <span class="mf">0.022071078419685364</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.010703742504119873</span><span class="p">,</span> <span class="mf">0.003311325330287218</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.011632772162556648</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02187200076878071</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="como-o-indice-de-embeddings-e-criado">Como o Índice de Embeddings é criado?<a class="headerlink" href="#como-o-indice-de-embeddings-e-criado" title="Permanent link">&para;</a></h2>
+<p>O Índice de Embeddings para esta lição foi criado com uma série de scripts Python. Você encontrará os scripts juntamente com as instruções no <a href="../../scripts/?WT.mc_id=academic-105485-koreyst">README</a> na pasta 'scripts' para esta lição. Você não precisa executar esses scripts para completar esta lição, pois o Índice de Embeddings é fornecido para você.</p>
+<p>Os scripts executam as seguintes operações:</p>
+<ol>
+<li>
+<p>A transcrição de cada vídeo do YouTube na lista de reprodução <a href="https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1">AI Show</a> é baixada.</p>
+</li>
+<li>
+<p>Usando <a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling?WT.mc_id=academic-105485-koreyst">OpenAI Functions</a>, uma tentativa é feita para extrair o nome do orador dos primeiros 3 minutos do transcrição do YouTube. O nome do orador para cada vídeo é armazenado no Índice de Embeddings chamado <code>embedding_index_3m.json</code>.</p>
+</li>
+<li>
+<p>O texto da transcrição é então dividido em <strong>segmentos de texto de 3 minutos</strong>. O segmento inclui cerca de 20 palavras sobrepostas do próximo segmento para garantir que o Embedding para o segmento não seja cortado e para fornecer um melhor contexto de busca.</p>
+</li>
+<li>
+<p>Cada segmento de texto é então passado para a API de Chat da OpenAI para resumir o texto em 60 palavras. O resumo também é armazenado no Índice de Embeddings <code>embedding_index_3m.json</code>.</p>
+</li>
+<li>
+<p>Finalmente, o texto do segmento é passado para a API de Embedding da OpenAI. A API de Embedding retorna um vetor de 1536 números que representam o significado semântico do segmento. O segmento juntamente com o vetor de Embedding da OpenAI é armazenado em um Índice de Embeddings <code>embedding_index_3m.json</code>.</p>
+</li>
+</ol>
+<h3 id="banco-de-dados-vetorial">Banco de Dados Vetorial<a class="headerlink" href="#banco-de-dados-vetorial" title="Permanent link">&para;</a></h3>
+<p>Para simplificar a lição, o Índice de Embeddings é armazenado em um arquivo JSON chamado <code>embedding_index_3m.json</code> e carregado em um DataFrame Pandas. No entanto, em produção, o Índice de Embeddings seria armazenado em um banco de dados vetorial como <a href="https://learn.microsoft.com/training/modules/improve-search-results-vector-search?WT.mc_id=academic-105485-koreyst">Azure Cognitive Search</a>, <a href="https://cookbook.openai.com/examples/vector_databases/redis/readme?WT.mc_id=academic-105485-koreyst">Redis</a>, <a href="https://cookbook.openai.com/examples/vector_databases/pinecone/readme?WT.mc_id=academic-105485-koreyst">Pinecone</a>, <a href="https://cookbook.openai.com/examples/vector_databases/weaviate/readme?WT.mc_id=academic-105485-koreyst">Weaviate</a>, para citar apenas alguns.</p>
+<h2 id="compreendendo-a-similaridade-de-cosseno">Compreendendo a similaridade de cosseno<a class="headerlink" href="#compreendendo-a-similaridade-de-cosseno" title="Permanent link">&para;</a></h2>
+<p>Aprendemos sobre embeddings de texto, o próximo passo é aprender como usar embeddings de texto para buscar dados e, em particular, encontrar os embeddings mais semelhantes a uma consulta dada usando a similaridade de cosseno.</p>
+<h3 id="o-que-e-similaridade-de-cosseno">O que é similaridade de cosseno?<a class="headerlink" href="#o-que-e-similaridade-de-cosseno" title="Permanent link">&para;</a></h3>
+<p>A similaridade de cosseno é uma medida de similaridade entre dois vetores, você também ouvirá isso referido como <code>busca por vizinho mais próximo</code>. Para realizar uma busca por similaridade de cosseno, é necessário <em>vetorizar</em> o texto da <em>consulta</em> usando a API de Embedding da OpenAI. Em seguida, calcular a <em>similaridade de cosseno</em> entre o vetor de consulta e cada vetor no Índice de Embeddings. Lembre-se, o Índice de Embeddings tem um vetor para cada segmento de texto do transcrição do YouTube. Finalmente, ordene os resultados por similaridade de cosseno, e os segmentos de texto com a maior similaridade de cosseno são os mais semelhantes à consulta.</p>
+<p>De uma perspectiva matemática, a similaridade de cosseno mede o cosseno do ângulo entre dois vetores projetados em um espaço multidimensional. Essa medida é benéfica, porque se dois documentos estão distantes pela distância euclidiana devido ao tamanho, eles ainda podem ter um ângulo menor entre eles e, portanto, uma maior similaridade de cosseno. Para mais informações sobre as equações de similaridade de cosseno, consulte <a href="https://en.wikipedia.org/wiki/Cosine_similarity?WT.mc_id=academic-105485-koreyst">Similaridade de cosseno</a>.</p>
+<h2 id="criando-sua-primeira-aplicacao-de-busca">Criando sua primeira aplicação de busca<a class="headerlink" href="#criando-sua-primeira-aplicacao-de-busca" title="Permanent link">&para;</a></h2>
+<p>A seguir, vamos aprender como construir uma aplicação de busca usando Embeddings. A aplicação de busca permitirá que os estudantes procurem por um vídeo digitando uma pergunta. A aplicação de busca retornará uma lista de vídeos relevantes para a pergunta. A aplicação de busca também retornará um link para o local no vídeo onde está localizada a resposta para a pergunta.</p>
+<p>Esta solução foi construída e testada no Windows 11, macOS e Ubuntu 22.04 usando Python 3.10 ou posterior. Você pode baixar o Python em <a href="https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst">python.org</a>.</p>
+<h2 id="assignment-building-a-search-application-to-enable-students">Assignment - building a search application, to enable students<a class="headerlink" href="#assignment-building-a-search-application-to-enable-students" title="Permanent link">&para;</a></h2>
+<h2 id="tarefa-criando-uma-aplicacao-de-busca-para-habilitar-os-estudantes">Tarefa - criando uma aplicação de busca para habilitar os estudantes<a class="headerlink" href="#tarefa-criando-uma-aplicacao-de-busca-para-habilitar-os-estudantes" title="Permanent link">&para;</a></h2>
+<p>Nós introduzimos nossa startup no início desta lição. Agora é hora de habilitar os estudantes para criar uma aplicação de busca para suas avaliações.</p>
+<p>Nessa tarefa, você criará os Serviços Azure OpenAI que serão usados para construir a aplicação de busca. Você criará os seguintes Serviços Azure OpenAI. Você precisará de uma assinatura Azure para completar esta tarefa.</p>
+<h3 id="inicie-o-azure-cloud-shell">Inicie o Azure Cloud Shell<a class="headerlink" href="#inicie-o-azure-cloud-shell" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Entre no <a href="https://portal.azure.com/?WT.mc_id=academic-105485-koreyst">portal Azure</a>.</li>
+<li>Selecione o ícone do Cloud Shell no canto superior direito do portal Azure.</li>
+<li>Selecione <strong>Bash</strong> para o tipo de ambiente.</li>
+</ol>
+<h4 id="crie-um-grupo-de-recursos">Crie um grupo de recursos<a class="headerlink" href="#crie-um-grupo-de-recursos" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Para estas instruções, estamos usando o grupo de recursos chamado "semantic-video-search" no East US.
+Você pode alterar o nome do grupo de recursos, mas ao alterar o local dos recursos,
+verifique a <a href="https://aka.ms/oai/models?WT.mc_id=academic-105485-koreyst">tabela de disponibilidade do modelo</a>.</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>group<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>semantic-video-search<span class="w"> </span>--location<span class="w"> </span>eastus
+</code></pre></div></td></tr></table></div>
+<h4 id="crie-um-recurso-do-servico-do-azure-openai">Crie um recurso do Serviço do Azure OpenAI<a class="headerlink" href="#crie-um-recurso-do-servico-do-azure-openai" title="Permanent link">&para;</a></h4>
+<p>No Azure Cloud Shell, execute o seguinte comando para criar um recurso do Serviço Azure OpenAI.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>semantic-video-openai<span class="w"> </span>--resource-group<span class="w"> </span>semantic-video-search<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="w"> </span>eastus<span class="w"> </span>--kind<span class="w"> </span>OpenAI<span class="w"> </span>--sku<span class="w"> </span>s0
+</code></pre></div></td></tr></table></div>
+<h4 id="obtenha-o-endpoint-e-as-chaves-para-uso-nesta-aplicacao">Obtenha o endpoint e as chaves para uso nesta aplicação<a class="headerlink" href="#obtenha-o-endpoint-e-as-chaves-para-uso-nesta-aplicacao" title="Permanent link">&para;</a></h4>
+<p>No Azure Cloud Shell, execute os seguintes comandos para obter o endpoint e as chaves para o recurso do Serviço Azure OpenAI.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>show<span class="w"> </span>--name<span class="w"> </span>semantic-video-openai<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--resource-group<span class="w">  </span>semantic-video-search<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span>.properties.endpoint
+az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>keys<span class="w"> </span>list<span class="w"> </span>--name<span class="w"> </span>semantic-video-openai<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--resource-group<span class="w"> </span>semantic-video-search<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span>.key1
+</code></pre></div></td></tr></table></div>
+<h4 id="implemente-o-modelo-de-embedding-da-openai">Implemente o modelo de Embedding da OpenAI<a class="headerlink" href="#implemente-o-modelo-de-embedding-da-openai" title="Permanent link">&para;</a></h4>
+<p>No Azure Cloud Shell, execute o seguinte comando para implantar o modelo de Embedding da OpenAI.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>deployment<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="w"> </span>semantic-video-openai<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--resource-group<span class="w">  </span>semantic-video-search<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--deployment-name<span class="w"> </span>text-embedding-ada-002<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model-name<span class="w"> </span>text-embedding-ada-002<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model-version<span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="w">  </span><span class="se">\</span>
+<span class="w">    </span>--model-format<span class="w"> </span>OpenAI<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--sku-capacity<span class="w"> </span><span class="m">100</span><span class="w"> </span>--sku-name<span class="w"> </span><span class="s2">&quot;Standard&quot;</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="solucao">Solução<a class="headerlink" href="#solucao" title="Permanent link">&para;</a></h2>
+<p>Abre a <a href="../../python/aoai-solution.ipynb?WT.mc_id=academic-105485-koreyst">notebook de solução</a> no GitHub Codespaces e siga as instruções no Jupyter Notebook.</p>
+<p>Quando você executar o notebook, será solicitado a inserir uma consulta. A caixa de entrada será assim:</p>
+<p><img alt="Input box for the user to input a query" src="../../images/notebook-search.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="excelente-trabalho-continue-aprendendo">Excelente trabalho! Continue aprendendo!<a class="headerlink" href="#excelente-trabalho-continue-aprendendo" title="Permanent link">&para;</a></h2>
+<p>Após completar esta lição, confira nossa <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">coleção de aprendizado de IA generativa</a> para continuar a aprimorar seu conhecimento em IA generativa!</p>
+<p>Aqui vamos, para a Lição 9, onde veremos como <a href="../../../09-building-image-applications/translations/pt-br/?WT.mc_id=academic-105485-koreyst">criar aplicações de geração de imagens</a>!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

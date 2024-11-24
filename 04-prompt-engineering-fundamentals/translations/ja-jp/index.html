@@ -1,0 +1,1796 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/04-prompt-engineering-fundamentals/translations/ja-jp/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>プロンプト・エンジニアリングの基礎 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              プロンプト・エンジニアリングの基礎
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      学習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      サンドボックス (Sandbox) とは
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      スタートアップ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロンプト・エンジニアリングとは何ですか？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プロンプト・エンジニアリングとは何ですか？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tokenization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tokenization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      概念: ファウンデーション・モデル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      概念: インストラクション・チューニングされた LLM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロンプト・エンジニアリングはなぜ必要なのでしょうか？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プロンプト・エンジニアリングはなぜ必要なのでしょうか？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      捏造の例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      ケーススタディ：GitHub Copilot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロンプトの組み立て
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プロンプトの組み立て">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本的なプロンプト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      複雑なプロンプト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      指示 (Instruction) を含むプロンプト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要コンテンツ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="主要コンテンツ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロンプト・キュー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロンプト・テンプレート
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      サポートコンテンツ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロンプト作成のベストプラクティス
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プロンプト作成のベストプラクティス">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      プロンプト・エンジニアリングの考え方
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      ベストプラクティス
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      課題
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="課題">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      作業を開始するには、リポジトリをフォークしてください
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      次に、環境変数を設定してください
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      次に、Jupyter Notebook を開いてください
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      知識チェック
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 チャレンジ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      お疲れ様でした! 次のレッスンを続ける
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">プロンプト・エンジニアリングの基礎<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson4-gh?WT.mc_id=academic-105485-koreyst"><img alt="Prompt Engineering Fundamentals" src="../../images/04-lesson-banner.png?WT.mc_id=academic-105485-yoterada" /></a></p>
+<p>大規模言語モデル (LLM) では、プロンプトの書き方がとても重要で、慎重に作成したプロンプトは、そうでないものに比べ良い結果をもたらします。しかし、プロンプトやプロンプト・エンジニアリングとは一体どういう物なのでしょうか？また、LLM に送信する内容をどのようにして改善すればいいのでしょうか？この章と次の章では、そうした疑問に答えたいと思います。</p>
+<p>「<em>生成 AI</em>」は、利用者からのリクエストに対して、テキスト、画像、オーディオ、コード等の新しいコンテンツを生成する能力を持っています。これを実現するために、OpenAI の GPT（Generative Pre-trained Transformer）シリーズのような、自然言語とコードの使用目的でトレーニングされた「<em>大規模言語モデル（LLM）</em>」を利用できます。</p>
+<p>利用者は、チャットのような馴染み深い手法で、特別な技術の知識や研修を受講しなくても、これらのモデルと対話できるようになります。これらのモデルは、「<em>プロンプト</em>」で操作し、利用者がテキストの入力（プロンプト）をモデルに送信すると、AI モデルからの回答（コンプリーション）が得られます。その後、利用者は何度も 「AI と対話」を重ね、複数回のやり取りを通じてプロンプトを洗練させ、期待する回答が得られるまで調整を行っていきます。</p>
+<p>現在、「プロンプト」は生成 AI アプリケーションの主要なプログラミング・インターフェースとなっており、モデルに対して何を行うべきか指示し、そして返される回答の品質にも影響を与えています。「プロンプト・エンジニアリング」は、大規模で一貫性のある高品質な回答を得るためのプロンプトの設計と最適化に焦点を当てた、急速に成長している研究分野です。</p>
+<h2 id="_2">学習目標<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>このレッスンでは、プロンプト・エンジニアリングとは何か、そしてその重要性、また特定のモデルやアプリケーションの目的に応じた、効果的なプロンプトの作成方法について学習します。プロンプト・エンジニアリングの基本概念とベスト・プラクティスを理解し、これらを適用する例を、インタラクティブな Jupyter Notebook の「サンドボックス」環境上で動かし、その操作方法も学びます。</p>
+<p>このレッスンの終了後、下記ができるようになります：</p>
+<ol>
+<li>プロンプト・エンジニアリングとは何か、またその重要性について説明できる</li>
+<li>プロンプトの構成要素とその使用方法について述べる</li>
+<li>プロンプト・エンジニアリングのベストプラクティスと技術を習得する</li>
+<li>OpenAI のエンドポイントにアクセスし、学んだテクニックを実際に試す</li>
+</ol>
+<p>プロンプト・エンジニアリングは現在、科学というよりは、むしろ芸術に近いものです。これに対する感覚を高めるには、「<em>より多くの練習</em>」を積み重ね、アプリケーション専門知識で推奨される技術や、モデル固有の最適化を組み合わせた、試行錯誤による検証が重要です。</p>
+<h2 id="sandbox">サンドボックス (Sandbox) とは<a class="headerlink" href="#sandbox" title="Permanent link">&para;</a></h2>
+<p>このレッスンに付随する Jupyter ノートブックは、学んだ内容を実際に試せる「<em>サンドボックス</em>」環境を提供します。レッスン中、もしくは最終的なコードチャレンジで利用できます。演習を行うためには、下記が必要です：</p>
+<ol>
+<li>OpenAI API キー - デプロイした大規模言語モデル（LLM）のサービスエンドポイント</li>
+<li>Python の実行環境 - ノートブックを実行する環境</li>
+</ol>
+<p>このリポジトリは、Python 3 の実行環境を含むコンテナ・イメージを「<em>.devcontainer</em>」ディレクトリ配下の設定ファイルで提供しています。VS Code でこのリポジトリを開くと、GitHub Codespaces、もしくは Docker Desktop をインストールしたご自身のローカル環境で、コンテナ・イメージを自動的に起動できます。その後、ノートブックを開いて Python 3.x カーネルを選択すると、ノートブックを実行する準備が整います。</p>
+<p>デフォルトで用意されているノートブックは、OpenAI の API キーを利用する設定になっています。フォルダのルート・ディレクトリにある <code>.env.copy</code> を <code>.env</code> にリネームし、<code>OPENAI_API_KEY=</code> の行に API キーを入力するだけで、準備が完了します。</p>
+<p>このノートブックには基本的な演習が用意されていますが、より多くのサンプルやアイディアを試すために、ご自身で <em>Markdown</em>（説明文）や <em>Code</em>（プロンプトのリクエスト）のセクションを追加できます。これにより、プロンプト・デザインに対する感覚をより養えます。</p>
+<h2 id="_3">スタートアップ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>それでは、<em>このトピック</em> がスタートアップのミッションである「<a href="https://educationblog.microsoft.com/2023/06/collaborating-to-bring-ai-innovation-to-education?WT.mc_id=academic-105485-yoterada">教育へ AI 革新をもたらす</a>」とどのように結びついているのかについて見て行きましょう。私たちは「<em>個別学習</em>」を実現する AI アプリケーションの開発を目指しています。そこで、私たちのアプリケーションを利用する様々な利用者がプロンプトをどのように「デザイン」するのかを考えてみましょう。</p>
+<ul>
+<li><strong>管理者</strong>: AI に「<em>カリキュラムのデータを分析し、カバーしてない領域を特定してください</em>」と指示する可能性があります。AI はその結果をまとめたり、コードを用いて可視化できます。</li>
+<li><strong>教員</strong>: AI に「<em>特定の生徒と授業科目に応じた授業計画を作成してください</em> 」と指示する可能性があります。AI は指定されたフォーマットに従って個別に計画を作成できます。</li>
+<li><strong>生徒</strong>: AI に「<em>苦手な科目に対して個別指導をしてください</em>」と指示する可能性があります。AI は生徒のレベルに合わせたレッスン、ヒント、例を提供して指導できます。</li>
+</ul>
+<p>これらは、ほんの一例です。教育専門家から厳選された、オープンソースのプロンプト・ライブラリ「<a href="https://github.com/microsoft/prompts-for-edu/tree/main?WT.mc_id=academic-105485-yoterada">Prompts For Education</a>」を確認し、さらに広い視野で可能性を探ってみてください！ <em>サンドボックスでそれらのプロンプトを試しに実行したり、OpenAI Playground で試してどのような結果が得られるかを試してください！</em></p>
+<!--
+LESSON TEMPLATE:
+このユニットでは、基本となる下記の CONCEPT #1 をカバーするべきです。
+例や参照を用いてその概念を強化します。
+
+CONCEPT #1:
+プロンプトエンジニアリング
+それが何であり、なぜ必要なのかを定義し説明します。
+-->
+
+<h2 id="_4">プロンプト・エンジニアリングとは何ですか？<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>レッスンの冒頭で、<strong>プロンプト・エンジニアリング</strong>は、特定のアプリケーションとモデルに対して、一貫性があり質の高い回答（コンプリーション）を得るために、テキスト入力（プロンプト）を <em>設計して最適化する</em> 作業と説明しました。これは下記の 2 段階のプロセスとして考えられます。</p>
+<ul>
+<li>特定のモデルと目的に合わせた初期プロンプトを「<em>設計する</em>」</li>
+<li>回答品質を向上させるために、プロンプトを反復して「<em>改善する</em>」</li>
+</ul>
+<p>最適な結果を導き出すためには、利用者の勘と努力を要する試行錯誤の過程が必要不可欠です。それがどうして重要なのかというと、その答えを出す前に、我々は下記の 3 つの概念を理解する必要があります。</p>
+<ul>
+<li><em>Tokenization</em> = モデルがプロンプトを「理解する」方法</li>
+<li><em>Base LLM</em> = ファウンデーション・モデルがプロンプトを「処理する」方法</li>
+<li><em>Instruction-Tuned LLM</em> = モデルが「タスク」を理解する方法</li>
+</ul>
+<h3 id="tokenization">Tokenization<a class="headerlink" href="#tokenization" title="Permanent link">&para;</a></h3>
+<p>LLM は、プロンプトを「<em>トークンの連続</em>」として見ています。異なるモデル（またはモデルの異なるバージョン）を利用すると、同じプロンプトでも異なる方法でトークン化する場合があります。LLM は生のテキストではなくトークンを使ってトレーニングしているため、プロンプトがどのようにトークン化されるかは、生成される回答品質に直接影響を及ぼします。</p>
+<p>トークン化の仕組みを理解するには、こちらの <a href="https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-yoterada">OpenAI Tokenizer</a> などのツールを使ってご確認いただくのが良いかもしれません。プロンプトをコピーして、それがどのようにトークンに変換されるかをツールからご確認ください。特に空白文字や句読点の扱いに注意してください。下記の例では、古い LLM（GPT-3）の例を示していますが、新しいモデルを利用すると異なる結果が得られるかもしれません。</p>
+<p><img alt="Tokenization" src="../../images/04-tokenizer-example.png?WT.mc_id=academic-105485-yoterada" /></p>
+<blockquote>
+<p>[!TIP]
+訳者追記：<br />
+太陽の 1000 分の 1 の質量を持つ巨大ガス惑星ですが、太陽系の他のすべての惑星を合わせた質量の 2 倍です。木星は、夜空で肉眼で見える天体の中で最も明るい天体の一つで、有史以前から古代文明に知られていました。ローマの神ジュピターにちなんで名付けられました。[19]地球から見ると、木星は反射光が目に見える影を落とすのに十分な明るさであり[20]、夜空では月と金星に次いで平均して 3 番目に明るい天体です。</p>
+</blockquote>
+<h3 id="_5">概念: ファウンデーション・モデル<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>プロンプトをトークンに分割した後、「<a href="https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-yoterada">Base LLM</a>」（またはファウンデーションモデル）は、その分割したトークンの連続した文字列の中で、次に来るトークンは何かを予測します。LLM は膨大な量のテキスト・データでトレーニングされているため、トークン間の統計的な関連性を十分に把握しており、ある程度の自信を持ってその予測を行えます。ただしモデルは、プロンプトやトークンに含まれる単語の「<em>意味</em>」 を理解しているわけではなく、次にくるトークンの確率的な予測から「完成」できるパターンを単純に見ているだけです。利用者が操作を停止するか、あらかじめ定められた条件が満たされるまで、予測を続けます。</p>
+<p>ベースモデルの補完 (completion) がどのように機能するか確認したいですか？上記のプロンプトの出力結果をデフォルトの設定のままで Azure OpenAI Studio の<a href="https://oai.azure.com/playground?WT.mc_id=academic-105485-yoterada"><em>チャットプレイグラウンド</em></a>にコピー＆ペーストしてください。システムは、プロンプトをリクエストとして処理するように構成されているので、文脈に適した回答結果が得られるはずです。</p>
+<p><img alt="Base LLM Chat Completion" src="../../images/04-playground-chat-base.png?WT.mc_id=academic-105485-yoterada" /></p>
+<blockquote>
+<p>[!TIP]
+訳者追記:<br />
+はい、その通りです。木星は太陽から 5 番目の惑星であり、太陽系で最大の惑星です。主に水素で構成されており、その質量の 4 分の 1 はヘリウムです。木星の強い内部熱は、雲の帯や、少なくとも 17 世紀から存在がわかっている巨大な嵐である大赤斑など、大気中に多くの半永久的な特徴を生み出します。
+木星は、顕著な環（リング）システムと多数の衛星でも知られています。現在、木星の周りを回っている衛星は 79 個あり、そのうち 4 個はガニメデ、イオ、エウロパ、カリストです。</p>
+</blockquote>
+<p>それでは、利用者がある特定の基準やタスクの目標に対して適する、特定結果を望む場合はどうでしょうか？そのような場合には、「<em>インストラクション・チューニングされた LLM</em>」が役立ちます。</p>
+<h3 id="llm">概念: インストラクション・チューニングされた LLM<a class="headerlink" href="#llm" title="Permanent link">&para;</a></h3>
+<p><a href="https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-yoterada">インストラクション・チューニングされた LLM</a> は、ファウンデーションモデルを基に、明確な指示を含む、例や入出力の組み合わせ（例えば、複数回わたる「質問とそれに対する回答例のメッセージ」など）で微調整を施します。すると、AI はその指示に従うような回答の作成を試みるようになります。</p>
+<p>これには、人間のフィードバックを取り入れた強化学習（Reinforcement Learning with Human Feedback : RLHF）などの技術が使われます。RLHF を利用すると、モデルが利用者からの「<em>指示に従って</em>」、「<em>フィードバックから学習する</em>」ようにトレーニングでき、これにより実用的なアプリケーションに適した利用者の目的に一致する回答が、より得られるようになります。</p>
+<p>それでは、実際に試してみましょう。
+先ほどのプロンプトに戻り、今度は <em>システムメッセージ</em> を変更して、下記の指示をコンテキストとして加えてみてください：</p>
+<blockquote>
+<p><em>提供された内容を小学 2 年生が理解できるように要約してください。結果は 3〜5 項目を箇条書きで 1 段落にまとめてください。</em></p>
+</blockquote>
+<p>結果が、期待する内容とフォーマットに合わせて調整されているのをお分かり頂けますか？教員は、この回答を授業のスライドに直接利用できるようになります。</p>
+<p><img alt="Instruction Tuned LLM Chat Completion" src="../../images/04-playground-chat-instructions.png?WT.mc_id=academic-105485-yoterada" /></p>
+<blockquote>
+<p>[!TIP]
+訳者追記：</p>
+<ul>
+<li>木星は太陽から 5 番目の惑星で、太陽系で最大の惑星です。</li>
+<li>太陽よりは軽いのですが、他のすべての惑星を合わせた重量よりも重いガス惑星です。</li>
+<li>望遠鏡なしで夜空に木星が見えます、それは本当に明るいです!</li>
+<li>惑星はローマの神、Jupiter にちなんで名付けられました。</li>
+<li>木星はとても明るく輝いているので、その光は地球に影を落とす場合もあります。通常、夜に月と金星に次いで 3 番目に明るい星です。</li>
+</ul>
+</blockquote>
+<h2 id="_6">プロンプト・エンジニアリングはなぜ必要なのでしょうか？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>LLM がプロンプトをどのように処理するかを理解したところで、<em>なぜ</em> プロンプト・エンジニアリングが必要なのかについて考えてみましょう。その答えは、現在の LLM にはいくつかの課題を抱えているためです。適切なプロンプトの作成と最適化に取り組まなければ、「<em>信頼性のある一貫した回答</em>」を得られません。具体的には、下記のような課題が存在しています。</p>
+<ol>
+<li>
+<p><strong>モデルの回答は確率的な性質を持っています</strong>：たとえ「<em>同一プロンプト</em>」でも、異なるモデルやモデルのバージョンの違いによって、異なる回答を出力する場合があります。そして「<em>同じモデル</em> 」でも、異なる時期に実行すると異なる結果を生じる場合があります。「<em>プロンプト・エンジニアリングの手法は、より適切なガイドラインを提供し、こうしたばらつきを減らすのに役立ちます。</em>」</p>
+</li>
+<li>
+<p><strong>モデルは回答を捏造する場合があります</strong>：モデルは「<em>大規模ながら有限の</em>」データセットで事前トレーニングされているため、トレーニングの範囲を超える知識は不足しています。その結果、不正確、もしくは架空、あるいは既知の事実と明らかに矛盾する回答を出力する場合があります。「<em>プロンプトエンジニアリングの手法は、利用者がこのような捏造を特定し軽減するのに役立ちます。例えば、AI に出典や論理的根拠の説明を求めて防ぎます。</em>」</p>
+</li>
+<li>
+<p><strong>モデルの能力は異なります</strong>：新しいモデルや新世代のモデルは、より高度な機能を持つ一方で、独自の特性やコストと複雑さの面でトレード・オフをもたらします。「<em>プロンプト・エンジニアリングは、これらの違いを取り除き、スケーラブルでシームレスな方法でモデル固有の要件に適するベスト・プラクティスとワークフローの開発に役立ちます。</em>」</p>
+</li>
+</ol>
+<p>OpenAI や Azure OpenAI プレイグラウンドで実際に試してみましょう：</p>
+<ul>
+<li>「<em>異なる</em>」 LLM 環境（例えば OpenAI、Azure OpenAI、Hugging Face）で同じプロンプトを使って実行してください - 変化に気づきましたか？</li>
+<li>「<em>同じ</em>」 LLM 環境（例えば：Azure OpenAI プレイグラウンド）で同じプロンプトを繰り返し実行してみてください - これらの変化はどのように変わりましたか？</li>
+</ul>
+<h3 id="_7">捏造の例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>この講座では、LLM がトレーニングの制限やその他の制約により、事実に反する情報を回答する現象を「<strong>捏造</strong>」という用語で説明します。一般的な記事や研究論文で「<em>幻覚</em>」と表現される場合もありますが、機械が生み出した回答に対して人間の特性を誤って当てはめる擬人化を避けるために、「<em>捏造</em>」という用語の使用を強く推奨します。これは、用語の観点から<a href="https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-yoterada">責任ある AI のガイドライン</a>を強化するものであり、また、一部の文脈で不快感を与えたり排他的であると考えられる用語を排除できます。</p>
+<p>捏造がどのように行われるかを理解したいですか？AI に対して、トレーニング・データに含まれていない、架空のトピックに関するコンテンツ作成をプロンプトで指示してみてください。例えば、私は下記のプロンプトを試しました：</p>
+<blockquote>
+<p><strong>プロンプト：</strong> 2076 年の火星戦争についての授業計画を生成してください。</p>
+</blockquote>
+<p>Web で検索を行ったところ、火星の戦争についてのフィクション（例：テレビドラマや書籍）はいくつか見つかりましたが、2076 年に関するものは存在しませんでした。常識的に考えても、2076 年は「<em>未来</em>」であり、実際の出来事との関連付けできません。</p>
+<p>それでは、このプロンプトを異なる LLM サービス・プロバイダで試した場合、どのような結果が得られるのでしょうか？</p>
+<blockquote>
+<p><strong>回答 1</strong>: OpenAI Playground (GPT-35)</p>
+</blockquote>
+<p><img alt="Response 1" src="../../images/04-fabrication-oai.png?WT.mc_id=academic-105485-yoterada" /></p>
+<blockquote>
+<p><strong>回答 2</strong>: Azure OpenAI Playground (GPT-35)</p>
+</blockquote>
+<p><img alt="Response 2" src="../../images/04-fabrication-aoai.png?WT.mc_id=academic-105485-yoterada" /></p>
+<blockquote>
+<p><strong>回答 3</strong>: : Hugging Face Chat Playground (LLama-2)</p>
+</blockquote>
+<p><img alt="Response 3" src="../../images/04-fabrication-huggingchat.png?WT.mc_id=academic-105485-yoterada" /></p>
+<blockquote>
+<p>[!TIP]
+訳者追記<br />
+上記の個々の回答結果はあえて翻訳していません。ここで重要なのは、下記の説明にあるように、同じ質問をした場合でも、モデル毎に違う回答結果が得られる点と、いずれのモデルも回答を捏造しているという点です。</p>
+</blockquote>
+<p>予想通り、モデルごと（またはモデルのバージョンごと）に、確率的なふるまいやモデルの能力差によって、微妙に異なる回答が得られました。たとえば、一つのモデルは中学 2 年生を対象に回答しているのに対し、別のモデルは高校生を対象に回答しています。しかし、どのモデルも、情報を全く持たない利用者に対して、その出来事が実際にあったかのように誤解生じさせる回答を生成しました。</p>
+<p>「<em>メタプロンプティング</em> 」や「<em>温度調整</em>」といったプロンプトエンジニアリングの手法は、モデルによる捏造をある程度抑制できます。新しいプロンプト・エンジニアリングの「<em>アーキテクチャ</em>」は、これらの影響を緩和または削減させるために、新しいツールや手法をプロンプト・フローにシームレスに取り入れています。</p>
+<h2 id="github-copilot">ケーススタディ：GitHub Copilot<a class="headerlink" href="#github-copilot" title="Permanent link">&para;</a></h2>
+<p>このセクションを終えるにあたり、<a href="https://github.com/features/copilot?WT.mc_id=academic-105485-yoterada">GitHub Copilot</a> の事例を通じて、プロンプト・エンジニアリングが実際のソリューションでどのように活用されているかを具体的に見ていきましょう。</p>
+<p>GitHub Copilot は「AI ペア・プログラマー」として機能し、開発環境（例：Visual Studio Code）に統合し、テキスト・プロンプトからコードに変換するなど開発者にシームレスな開発体験を提供します。下記のブログ・シリーズに記述されているように、初期バージョンは OpenAI Codex モデルをベースにしていました。しかしエンジニアはすぐにコード品質をより向上させるため、モデルをファイン・チューニングし、より良いプロンプト・エンジニアリング技術を開発する必要性を認識しました。7 月には、<a href="https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-yoterada">Codex を越える改良版 AI モデルを発表し</a>、これにより、さらに素早い提案が可能になりました。</p>
+<p>投稿を順番に読んで、GitHub Copilot の学習の過程をたどってください。</p>
+<ul>
+<li><strong>2023 年 5 月</strong> | <a href="https://github.blog/2023-05-17-how-github-copilot-is-getting-better-at-understanding-your-code/?WT.mc_id=academic-105485-yoterada">GitHub Copilot、コード理解能力を向上</a></li>
+<li><strong>2023 年 5 月</strong> | <a href="https://github.blog/2023-05-17-inside-github-working-with-the-llms-behind-github-copilot/?WT.mc_id=academic-105485-yoterada">GitHub の内部：GitHub Copilot の背後にある LLM との連携</a>.</li>
+<li><strong>2023 年 6 月</strong> | <a href="https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/?WT.mc_id=academic-105485-yoterada">GitHub Copilot 用のより効果的なプロンプトの作成方法</a>.</li>
+<li><strong>2023 年 7 月</strong> | <a href="https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-yoterada">改良した AI モデルで Codex を超越した GitHub Copilot</a></li>
+<li><strong>2023 年 7 月</strong> | <a href="https://github.blog/2023-07-17-prompt-engineering-guide-generative-ai-llms/?WT.mc_id=academic-105485-yoterada">開発者向けプロンプト・エンジニアリングと LLM のガイド </a></li>
+<li><strong>2023 年 9 月</strong> | <a href="https://github.blog/2023-09-06-how-to-build-an-enterprise-llm-application-lessons-from-github-copilot/?WT.mc_id=academic-105485-yoterada">企業向け LLM アプリの構築方法：GitHub Copilot の事例から学ぶ</a></li>
+</ul>
+<p>また、これらのモデルやテクニックを実際のアプリケーションに適用する方法をまとめた<a href="https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-yoterada">こちらの記事</a>のように、
+より多くの知見を得たい場合は、<a href="https://github.blog/category/engineering/?WT.mc_id=academic-105485-yoterada">エンジニア・ブログ</a>もどうぞご覧ください。</p>
+<hr />
+<!--
+LESSON TEMPLATE:
+このユニットでは、下記の基本となる CONCEPT #2 を取り扱うべきです。
+例や参照を用いてその概念を強化します。
+
+CONCEPT #2:
+プロンプトデザイン
+例を用いて説明します
+-->
+
+<h2 id="_8">プロンプトの組み立て<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>ここまで、プロンプト・エンジニアリングがなぜ大切なのかを見てきました。次に、プロンプトをどのようにして「<em>作成する</em>」のかを把握し、より効果的なプロンプトを設計するための、様々な手法を見ていきましょう。</p>
+<h3 id="_9">基本的なプロンプト<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>基本的なプロンプトから始めましょう：モデルに送信するテキスト入力で、他のコンテキストを含めません。例を挙げると、OpenAI の<a href="https://platform.openai.com/docs/api-reference/completions?WT.mc_id=academic-105485-yoterada">Completion API</a> にアメリカ国歌の最初の数語を送ると、すぐに次の数行で回答を <em>完成させる</em>、基本的な予測動作を行います。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">プロンプト (入力)</th>
+<th style="text-align: left;">回答 (出力)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Oh say can you see</td>
+<td style="text-align: left;">アメリカ合衆国の国歌「星条旗」の歌詞から始めているように聞こえますね。完全な歌詞は...</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">複雑なプロンプト<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>次に、基本的なプロンプトにコンテキストと指示を加えてみましょう。<a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/chatgpt?WT.mc_id=academic-105485-yoterada">Chat Completion API</a> を利用する際、以下の要素をメッセージに含め、高度なプロンプトを作成できます：</p>
+<ul>
+<li>「<em>利用者</em>」の入力(質問)と「<em>アシスタント</em>」からの回答例を含む入出力ペア</li>
+<li>「<em>システムメッセージ</em>」：アシスタントの振る舞いや、人格のコンテキストを設定</li>
+</ul>
+<p>実際のリクエストは下記のようになります。トークン化によってシステム・コンテキストと会話履歴から関連情報を効果的に捉えられるようになります。システム・コンテキストの変更は、利用者の入力内容と同じくらい、回答品質に影響を与える可能性があります。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;あなたは頼りになる助手です。&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;2020年のワールドシリーズで優勝したのはどのチームですか？&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;2020年のワールドシリーズはロサンゼルス・ドジャースが優勝しました。&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;その試合はどこでプレイされましたか？&quot;</span><span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="instruction">指示 (Instruction) を含むプロンプト<a class="headerlink" href="#instruction" title="Permanent link">&para;</a></h3>
+<p>上記の例では、利用者のプロンプトは情報を求めるだけの単純なテキストの問い合わせでした。 <em>指示 (Instruction)</em> を含むプロンプトを使用すると、テキストを通じてより詳細にタスクを指定し、AI に対する指示を改善できます。以下に例を示します：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">プロンプト (入力)</th>
+<th style="text-align: left;">回答 (出力)</th>
+<th style="text-align: left;">指示 (Instruction) の型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">南北戦争について教えてください</td>
+<td style="text-align: left;"><em>単純な説明文を返す</em></td>
+<td style="text-align: left;">シンプル</td>
+</tr>
+<tr>
+<td style="text-align: left;">南北戦争について教えてください。戦争における重要な日付とその出来事、そしてその重要性を教えてください。</td>
+<td style="text-align: left;"><em>説明段落の後に、主要なイベントの日付リストとイベント名、それに関する説明が箇条書きで出力されます。</em></td>
+<td style="text-align: left;">複雑</td>
+</tr>
+<tr>
+<td style="text-align: left;">南北戦争について 1 段落で説明を書いてください。戦争における重要な日付とその重要性を 3 つの箇条書きにしてください。さらに、主要な歴史上の人物とその貢献について 3 つの箇条書きで記述してください。出力は JSON フォーマットで返してください。</td>
+<td style="text-align: left;"><em>テキスト・ボックス内でより詳細な情報を返し、必要に応じてファイルにコピー＆ペーストして検証できるように JSON 形式で整形されたデータを出力します</em></td>
+<td style="text-align: left;">複雑、出力フォーマット指定</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">主要コンテンツ<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>上記の例では、プロンプトは比較的自由度が高く、LLM が事前にトレーニングされたデータセットのどの部分が関連するかを決定する余地がありました。<em>主要コンテンツ</em> のデザイン・パターンでは、入力テキストは二つのパートに分割されます：</p>
+<ul>
+<li>指示（行動）</li>
+<li>関連する内容（行動に影響を及ぼす）</li>
+</ul>
+<p>以下は、「これを 2 つの短い文にまとめてください」という指示の例です。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">プロンプト (入力)</th>
+<th style="text-align: left;">回答 (出力)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">木星は太陽から五番目の惑星で、太陽系で最も大きな惑星です。質量は太陽の千分の一ですが、太陽系内の他のすべての惑星を合わせたものの 2.5 倍の巨大ガス惑星です。木星は夜空に肉眼で見える最も明るい天体の一つで、記録された歴史以前から古代文明に知られていました。ローマ神話の神ジュピターにちなんで名付けられました。[19] 地球から見ると、木星は反射光が目に見える影を投げるほど明るくなる場合があり[20]、平均して月と金星に次いで夜空で三番目に明るい天体です。<br/> <strong>これを 2 つの短い文にまとめてください</strong></td>
+<td style="text-align: left;">木星は太陽系で最も大きい惑星で、太陽系の他の全惑星の質量合計の 2.5 倍に相当します。夜空で 3 番目に明るく輝くこの巨大ガス惑星は、古代から知られ、ローマ神話の最高神ジュピターの名を冠しています。</td>
+</tr>
+</tbody>
+</table>
+<p>主要コンテンツの部分は、より効果的な指示を出すためにさまざまな方法で利用できます：</p>
+<ul>
+<li><strong>実例</strong> - モデルに明確な指示を出す代わりに、実行すべき実例を与えて、そのパターンを推測させます。</li>
+<li><strong>キュー(手がかり)</strong> - 完了を促す「キュー（合図）」の指示に従って、モデルをより関連性の高い回答に誘導します。</li>
+<li><strong>テンプレート</strong> - 繰り返し再利用できるプロンプトの「レシピ」で、特定の用途に合わせて入力データをカスタマイズできるプレースホルダー（変数）を持ちます。</li>
+</ul>
+<p>これらを実際により詳しく見ていきましょう。</p>
+<h3 id="_12">使用例<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>この手法では、特定の指示に対して期待する出力のサンプルをいくつか「モデルに提供し」、主要コンテンツを使用し、期待する出力パターンをモデルに推測させるアプローチです。提供する例の数に応じて、ゼロショット、ワンショット、フューショット・プロンプティングなどがあります。</p>
+<p>プロンプトは、下記の３つの要素から構成されます：</p>
+<ul>
+<li>タスクの説明</li>
+<li>期待する出力の例</li>
+<li>新しい問い合わせの開始部分（これが暗黙的にタスク説明となります）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">学習の型</th>
+<th style="text-align: left;">プロンプト (入力)</th>
+<th style="text-align: left;">回答 (出力)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ゼロ・ショット</td>
+<td style="text-align: left;">「太陽は輝いている」をスペイン語に翻訳してください</td>
+<td style="text-align: left;">"El Sol está brillando".</td>
+</tr>
+<tr>
+<td style="text-align: left;">ワン・ショット</td>
+<td style="text-align: left;">「太陽は輝いている」 =&gt; "El Sol está brillando". <br> "寒くて風の強い日です" =&gt;</td>
+<td style="text-align: left;">"Es un día frío y ventoso".</td>
+</tr>
+<tr>
+<td style="text-align: left;">フュー・ショット</td>
+<td style="text-align: left;">プレーヤーは塁を回った =&gt; 野球 <br/> プレーヤーはサービス・エースと取った =&gt; テニス <br/> プレーヤーは 6 ランを打った =&gt; クリケット <br/> プレーヤーはスラムダンクをした =&gt;</td>
+<td style="text-align: left;">バスケットボール</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>ゼロ・ショット・プロンプトでは明示的な指示(「スペイン語に翻訳してください」)を提供する必要がありましたが、ワン・ショット・プロンプトの例では、回答が推測されているのをご確認ください。フュー・ショットの例では、さらに複数の例を追加して、モデルが追加の指示なしで、より正確な推論を行えるようになっているのを示しています。</p>
+<h3 id="_13">プロンプト・キュー<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>利用者が主要コンテンツにアクセスする際には、実例の代わりに「キュー（手がかり）」を提供する選択肢もあります。この場合、期待する回答フォーマットを反映した一部で「<em>始めて</em>」、モデルを正しい方向に誘導します。その後、モデルはそのキュー（手がかり）を受け取って、流れに従って続けます。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">キューの数</th>
+<th style="text-align: left;">プロンプト (入力)</th>
+<th style="text-align: left;">回答 (出力)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">木星は太陽から五番目の惑星で、太陽系で最も大きな惑星です。質量は太陽の千分の一ですが、太陽系内の他のすべての惑星を合わせたものの 2.5 倍の巨大ガス惑星です。木星は夜空に肉眼で見える最も明るい天体の一つで、記録された歴史以前から古代文明に知られていました。 <br/><strong>これを要約してください</strong></td>
+<td style="text-align: left;">木星は太陽系で最も巨大な惑星であり、質量は太陽系の他のすべての惑星の合計の 2.5 倍に達します。夜空で非常に明るく輝き、古代から人類に認識されていた天体です。</td>
+</tr>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">木星は太陽から五番目の惑星で、太陽系で最も大きな惑星です。質量は太陽の千分の一ですが、太陽系内の他のすべての惑星を合わせたものの 2.5 倍の巨大ガス惑星です。木星は夜空に肉眼で見える最も明るい天体の一つで、記録された歴史以前から古代文明に知られていました。 <br/><strong>要約すると、私たちが学んだのは、木星が</strong> <br/></td>
+<td style="text-align: left;">太陽系で最も大きい惑星で、太陽から五番目に位置し、質量は太陽系の他の惑星を合わせたものより 2.5 倍大きいです。また、夜空でよく見える明るい天体の一つで、古代文明の時代から知られています。</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">木星は太陽から五番目の惑星で、太陽系で最も大きな惑星です。質量は太陽の千分の一ですが、太陽系内の他のすべての惑星を合わせたものの 2.5 倍の巨大ガス惑星です。木星は夜空に肉眼で見える最も明るい天体の一つで、記録された歴史以前から古代文明に知られていました。<br/><strong>事実から学んだ３つの要約は：</strong> <br/></td>
+<td style="text-align: left;">1. 木星は太陽から五番目の位置にある太陽系で最も大きな惑星です。</br>2. 木星の質量は太陽系の他の惑星を合わせたものよりも 2.5 倍大きく、太陽の千分の一に相当します。</br>3. 木星は夜空で肉眼によく見える明るい天体であり、古代文明の時代から人類に知られていました。</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_14">プロンプト・テンプレート<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>プロンプト・テンプレートは、必要に応じて保存し再利用できる「<em>事前に定義したプロンプトのレシピ</em>」で、大規模向けに一貫したユーザー・エクスペリエンスを実現するために使用します。最も基本的な形式は、<a href="https://platform.openai.com/examples?WT.mc_id=academic-105485-yoterada">OpenAI の例</a>のようなプロンプト例のコレクションで、インタラクティブなプロンプト要素(ユーザー・メッセージとシステム・メッセージ) と API 駆動型のリクエスト・フォーマットの両方を提供しており、再利用を促進しています</p>
+<p><a href="https://python.langchain.com/docs/modules/model_io/prompts/prompt_templates/?WT.mc_id=academic-105485-yoterada">LangChain の例</a>に示されるような複雑な形式では、利用者の入力、システム・コンテキスト、外部データソースなど多岐にわたる情報源から得たデータを置き換える「<em>プレースホルダー</em>」も含まれ、プロンプトを動的に生成しています。これにより、大規模な「<strong>プログラムによる</strong>」一貫したユーザー・エクスペリエンスをもたらす再利用可能なプロンプトのライブラリを作成できます。</p>
+<p>最後に、テンプレートの真の価値は、特定業界 (例、医療、金融、製造など) 用アプリケーションの「<em>プロンプト・ライブラリ</em>」を作成し、公開できる点です。プロンプト・テンプレートを、業界に特化したアプリケーション固有のコンテキストや例を反映するように最適化し、ターゲットの利用者にとって回答をより適切で正確なものにします。<a href="https://github.com/microsoft/prompts-for-edu?WT.mc_id=academic-105485-yoterada">Prompts For Edu</a>は、教育分野に特化したプロンプト・ライブラリを集めたリポジトリで、レッスン計画やカリキュラムの設計、学生の個別指導など、教育関連の重要な項目に焦点を当てたプロンプト・ライブラリを提供する、とても良い例です。</p>
+<h2 id="_15">サポートコンテンツ<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>プロンプトの作成を、指示（タスク）と目的（主要コンテンツ）を含むものと考えた場合、「<em>セカンダリ・コンテンツ</em>」は、「<strong>何らかの形で出力に影響を与える</strong>」追加情報のようなものです。モデルに対するチューニング・パラメータ、フォーマット指示、トピック分類などをセカンダリ・コンテンツに指定すると、利用者の目的や期待にあわせて回答を「調整」できるようになります。</p>
+<p>例えば、カリキュラムで利用可能な、全コースのカタログがあるとします。そしてカタログには、コースに関する広範なメタデータ（名前、説明、レベル、メタデータタグ、講師など）も含まれています。この場合、次のような指示とコンテンツを与えることができます。</p>
+<ul>
+<li>指示：2023 年秋のコースカタログを要約してください</li>
+<li>主要コンテンツ：要約したいコースカタログの内容</li>
+<li>セカンダリ・コンテンツ：興味のあるトップ 5 の「タグ」</li>
+</ul>
+<p>これで、モデルはいくつかの例に示したフォーマットで要約を提供しますが、仮に結果に複数のタグが含まれている場合は、セカンダリ・コンテンツで指定した 5 つのタグも出力結果に含めます。</p>
+<hr />
+<!--
+LESSON TEMPLATE:
+このユニットでは、下記の基本となる CONCEPT #3 を取り扱うべきです。
+例や参照を用いてその概念を強化します。
+
+CONCEPT #3:
+プロンプト・エンジニアリングのテクニック
+プロンプト・エンジニアリングの基本的なテクニックとは何ですか？
+いくつかの練習問題を通じて紹介してください。
+-->
+
+<h2 id="_16">プロンプト作成のベストプラクティス<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p>プロンプトがどのように「<em>組み立てられる</em>」かを理解したので、ベスト・プラクティスを反映するように「<em>プロンプトを設計</em>」する方法について考えます。これは、「<em>適切な考え方</em>」と、「<em>適切な技術の適用</em>」という 2 つの側面に分けて検討します。</p>
+<h3 id="_17">プロンプト・エンジニアリングの考え方<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>プロンプト・エンジニアリングは試行錯誤が必要なので、以下の 3 つの幅広い指針を念頭にご検討ください.</p>
+<ol>
+<li>
+<p><strong>ドメインの理解が大切です。</strong> 回答の精度や関連性は、アプリケーションや利用者が活動する「<em>ドメイン（業界・業種・業務）</em>」に依存します。直感とドメインの専門知識を用いて、<strong>テクニックをさらにカスタマイズ</strong>してください。たとえば、システム・プロンプトに「<em>ドメイン固有のパーソナリティ</em>」を定義したり、ユーザー・プロンプトに「<em>ドメイン固有のテンプレート</em>」を使用します。ドメイン固有の文脈を反映するセカンダリ・コンテンツを提供したり、「<em>ドメイン固有の手がかりや例</em>」を使用して、慣れ親しんだユースケースにモデルを誘導します。</p>
+</li>
+<li>
+<p><strong>モデル理解が大切です。</strong> モデルは本質的に確率的な性質を持っていますが、使用するトレーニング・データ（事前学習した知識）、提供する機能（例えば API や SDK を通じて）、最適化されたコンテンツの種類（例えばコード、画像、テキスト）によっても実装は異なります。使用するモデルの長所と制限を理解し、その知識を用いて「<em>タスクに優先順位を付けたり</em>」、モデルの能力に最適化した「<em>カスタマイズしたテンプレート</em>」を作成してください。</p>
+</li>
+<li>
+<p><strong>反復と検証が重要です。</strong> モデルは急速に進化しており、プロンプト・エンジニアリングの手法も急速に進化しています。ドメインの専門家として、広範囲のコミュニティの中には、 「<em>あなたが実装したプロンプト</em>」が適さない場合、つまり独自のコンテキストや基準を持つコミュニティもあるかもしれません。プロンプト・エンジニアリングのツールやテクニックを使用してプロンプトを「いち早く試し」、その後、自分の直感とドメインの専門知識を使用して、結果の検証を繰り返しながら行なってください。そして知見を記録し、他者が将来的により迅速に反復できるよう、そして新基準として再利用できる「<strong>ナレッジベース</strong>（例えばプロンプトライブラリ）」を作成してください。</p>
+</li>
+</ol>
+<h2 id="_18">ベストプラクティス<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p>次に、<a href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api?WT.mc_id=academic-105485-yoterada">Open AI</a> と <a href="https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering#best-practices?WT.mc_id=academic-105485-yoterada">Azure OpenAI</a> の実践者が推奨する一般的なベスト プラクティスを見てみましょう。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">最新モデルの評価</td>
+<td style="text-align: left;">新世代のモデルは、機能や品質が向上している可能性があります。一方でコストが高くなる可能性もあります。影響を評価し移行の可否を検討します。</td>
+</tr>
+<tr>
+<td style="text-align: left;">指示とコンテキストの分離</td>
+<td style="text-align: left;">使用しているモデルやサービス提供者が、指示やプライマリコンテンツ、セカンダリコンテンツを明確に区別するために、「<em>区切り文字</em>」を定義しているか確認してください。これにより、モデルはトークンに対して重みをより正確に割り当てられます。</td>
+</tr>
+<tr>
+<td style="text-align: left;">具体的かつ明確</td>
+<td style="text-align: left;">目的のコンテキスト、結果、長さ、フォーマット、スタイルなどについて詳細を記入してください。これにより、回答の品質と一貫性の両方が向上します。再利用可能なテンプレートにレシピを取り込みます。</td>
+</tr>
+<tr>
+<td style="text-align: left;">詳細に説明し、実例を示す</td>
+<td style="text-align: left;">モデルは「示しながら教える」アプローチにより適切に回答する可能性があります。まずはゼロショット・アプローチからはじめます、最初は指示を出すだけで例を示さないでください。次にフューショット・アプローチで期待する出力例をいくつか提供し改善します。推論させてください。</td>
+</tr>
+<tr>
+<td style="text-align: left;">キュー（手がかり）を用いて出力を促進</td>
+<td style="text-align: left;">回答の起点となる、いくつかの単語やフレーズを与え期待する結果を得てください。</td>
+</tr>
+<tr>
+<td style="text-align: left;">ダブル・ダウン</td>
+<td style="text-align: left;">場合によっては、モデルに対して自身で反復させる必要があります。メイン・コンテンツの前後で指示を出したり、指示やキュー（手がかり）を使ったりします。反復して検証し、何が機能するかを確認します。</td>
+</tr>
+<tr>
+<td style="text-align: left;">順序の重要性</td>
+<td style="text-align: left;">モデルに対する情報提示の順番は出力に影響を及ぼす可能性があります。それが学習例の提示だとしても、最後の情報に過敏に影響を受ける認知バイアス (recency bias) によって影響します。どの順番が最良かを見極めるために、異なる順番で試すのもお勧めします。</br>（訳者追記：プロンプトの末尾にある情報が出力に大きな影響を与える場合があります）</td>
+</tr>
+<tr>
+<td style="text-align: left;">モデルに「代替案」を用意する</td>
+<td style="text-align: left;">何らかの理由でタスクを完了できない場合に備えて、モデルが回答する「<em>代替案</em>」を用意してください。これにより、モデルが誤ったり、捏造した回答を生成する可能性を低減します。</td>
+</tr>
+</tbody>
+</table>
+<p>すべてのベストプラクティスに共通して、「<em>実際の効果はケース・バイ・ケースである</em>」というのをご認識ください。モデルの種類、タスクの内容、専門分野によっても結果は変わります。上記の指針を手始めに、ご自身にとって何が最も効果的かを見つけるために、試行錯誤を繰り返してください。新しいモデルやツールが登場するたびに、プロセスのスケーラビリティと回答の品質に注目し、プロンプト・エンジニアリングの手法をを継続的に再評価しましょう。</p>
+<!--
+LESSON TEMPLATE:
+このユニットは、可能であればコードチャレンジを提供するべきです。
+
+CHALLENGE:
+指示中には、コードコメントのみが含まれている Jupyter ノートブックへのリンクを提供（コード部分は空）。
+
+SOLUTION:
+実行可能なプロンプトが記入された、ノートブックのコピーへのリンクです。これは一つの例を示しています。
+-->
+
+<h2 id="_19">課題<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>おめでとうございます！レッスンの最後までたどり着きました！これから、実際の例を使って、いくつかの概念や技術を試す時が来ました！</p>
+<p>課題では、対話式で取り組める演習問題がセットされた Jupyter Notebook を使用します。また、ご自身でアイデアや技術を検証するために、独自の Markdown やコードセルを Notebook に追加できます。</p>
+<h3 id="_20">作業を開始するには、リポジトリをフォークしてください<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<ul>
+<li>(推奨) GitHub Codespaces を起動</li>
+<li>(代替案 1) リポジトリをローカル・デバイスにクローンして、ローカルの Docker Desktop で実行</li>
+<li>(代替案 2) 好みのノートブック実行環境でノートブックを開く</li>
+</ul>
+<h3 id="_21">次に、環境変数を設定してください<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li>リポジトリのルートにある <code>.env.copy</code> ファイルを <code>.env</code> にコピーし、<code>OPENAI_API_KEY</code> の値を入力してください。API キーは <a href="https://beta.openai.com/account/api-keys?WT.mc_id=academic-105485-yoterada">OpenAI Dashboard</a> から取得できます。</li>
+</ul>
+<h3 id="jupyter-notebook">次に、Jupyter Notebook を開いてください<a class="headerlink" href="#jupyter-notebook" title="Permanent link">&para;</a></h3>
+<ul>
+<li>使用する実行環境のカーネルを選択してください。オプション 1 や 2 をご利用される場合は、.devcontainer で提供するコンテナ・イメージの、Python 3.10.x カーネルを選んでください。</li>
+</ul>
+<p>これで、演習を行う準備が整いました。この演習には「<em>正解や不正解はありません</em>」。与えられたモデルとアプリケーション・ドメインに対して、何が効果的かを試行錯誤しながら感覚を養ってください。</p>
+<p><em>このため、このレッスンにはコードの解答例は含めていません。代わりに、ノートブックには 「My Solution」 と書いた Markdown セルがあり、参考の出力例を示しています。</em></p>
+<!--
+LESSON TEMPLATE:
+このセクションをまとめと、自己学習のためのリソースを紹介して締めくくります
+-->
+
+<h2 id="_22">知識チェック<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
+<p>以下のプロンプトの中で、適切なベストプラクティスに沿ったものはどれですか？</p>
+<ol>
+<li>赤い車の写真を画像を表示してください</li>
+<li>夕日が沈む崖のそばに駐車した、赤いボルボの XC90 モデルの画像を表示してください</li>
+<li>赤いボルボの XC90 モデルの画像を表示してください</li>
+</ol>
+<p>A: 2 番が最良のプロンプトです。それは「何を」求めているのかの詳細を提供し、具体的な情報（任意の車ではなく、特定のメーカーとモデル）を含んでいる上、周囲の環境についても描写しています。次に良いのは 3 番で、これも詳細な記述が含まれています。</p>
+<h2 id="_23">🚀 チャレンジ<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
+<p>プロンプトで 「キュー（手がかり）」のテクニックを利用してください。<br />
+例文：「赤いボルボの車の画像を見せて、そして...」という文を完成させてください。どのような回答が返ってきますか？また、それをどう改善できますか？</p>
+<h2 id="_24">お疲れ様でした! 次のレッスンを続ける<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<p>プロンプト・エンジニアリングに関して、さらに概念をもっと深く学びたい方は、この話題に関する他の素晴らしい情報を見つけるために<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">継続的学習のページ</a>をご参照ください。</p>
+<p>それでは、レッスン 5 に移り、<a href="../../../05-advanced-prompts/translations/ja-jp/?WT.mc_id=academic-105485-yoterada">高度なプロンプト技術</a>を見ていきましょう！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

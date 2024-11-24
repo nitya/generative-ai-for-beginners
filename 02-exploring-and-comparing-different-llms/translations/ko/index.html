@@ -1,0 +1,1337 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/02-exploring-and-comparing-different-llms/translations/ko/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>다양한 LLM 탐색과 비교 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#llm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              다양한 LLM 탐색과 비교
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      소개
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      다양한 유형의 LLM 이해하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="다양한 유형의 LLM 이해하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#foundation-models-vs-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Foundation Models VS LLMs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-proprietary-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      오픈 소스 VS 독점 모델 (Proprietary Models)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      임베딩 VS 이미지 생성 VS 텍스트 및 코드 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-encoder-decoder-vs-decoder-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      인코더-디코더 (Encoder-Decoder) VS 디코더 전용 (Decoder-only)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      서비스 VS 모델
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure에서 성능을 이해하기 위해 다른 모델로 테스트하고 반복하는 방법
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM 결과 개선하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LLM 결과 개선하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      컨텍스트를 고려한 프롬프트 엔지니어링
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieval-augmented-generation-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      검색 증강 생성 (Retrieval Augmented Generation, RAG)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fine-tuning된 모델
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      훈련된 모델
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      지식 확인
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 도전과제
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      수고하셨습니다. 학습을 계속하세요!
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="llm">다양한 LLM 탐색과 비교<a class="headerlink" href="#llm" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson2-gh?WT.mc_id=academic-105485-koreyst"><img alt="Exploring and comparing different LLMs" src="../../images/02-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<blockquote>
+<p><em>위의 이미지를 클릭하여 이 레슨의 비디오를 시청하세요.</em></p>
+</blockquote>
+<p>이전 레슨에서 우리는 생성형 AI가 기술적인 환경을 변화시키고, 대형 언어 모델 (LLM)이 어떻게 작동하는지, 그리고 우리 스타트업과 같은 비즈니스가 그들을 사용하여 사용 사례를 적용하고 성장할 수 있는지를 보았습니다. 이 장에서는 다른 유형의 대형 언어 모델인 LLM을 비교하고 대조하여 그들의 장단점을 이해하기 위해 탐색할 것입니다.</p>
+<p>우리 스타트업의 여정에서 다음 단계는 현재의 대형 언어 모델 (LLM) 환경을 탐색하고 우리의 사용 사례에 적합한 모델을 이해하는 것입니다.</p>
+<h2 id="_1">소개<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>이 레슨에서는 다음을 다룰 것입니다:</p>
+<ul>
+<li>현재 풍경에서 다양한 유형의 LLM.</li>
+<li>Azure에서 사용 사례에 대한 다른 모델을 테스트, 반복 및 비교하는 방법.</li>
+<li>LLM을 배포하는 방법.</li>
+</ul>
+<h2 id="_2">학습 목표<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>이 레슨을 마치면 다음을 할 수 있게 될 것입니다:</p>
+<ul>
+<li>사용 사례에 적합한 적절한 모델 선택.</li>
+<li>모델의 테스트, 반복 및 성능 개선 방법 이해.</li>
+<li>비즈니스가 모델을 배포하는 방법 알기.</li>
+</ul>
+<h2 id="llm_1">다양한 유형의 LLM 이해하기<a class="headerlink" href="#llm_1" title="Permanent link">&para;</a></h2>
+<p>대형 언어 모델 (LLM)은 아키텍처, 훈련 데이터 및 사용 사례에 따라 여러 가지 범주로 나뉠 수 있습니다. 이러한 차이점을 이해하면 우리 스타트업이 시나리오에 맞는 올바른 모델을 선택하고 성능을 테스트, 반복 및 개선하는 방법을 이해할 수 있습니다.</p>
+<p>LLM 모델에는 텍스트, 오디오, 비디오, 이미지 생성 등을 위한 다양한 유형이 있습니다. 모델 선택은 사용 목적, 데이터, 비용 등에 따라 달라집니다.</p>
+<ul>
+<li>
+<p><strong>오디오 및 음성 인식</strong>. 이를 위해 Whisper 유형의 모델은 음성 인식을 위해 훌륭한 선택입니다. 일반적인 용도로 사용되며, 다양한 오디오로 훈련되어 다국어 음성 인식을 수행할 수 있습니다. <a href="https://platform.openai.com/docs/models/whisper?WT.mc_id=academic-105485-koreyst">여기에서 Whisper 유형 모델에 대해 자세히 알아보세요</a>.</p>
+</li>
+<li>
+<p><strong>이미지 생성</strong>. 이미지 생성을 위해 DALL-E와 Midjourney는 매우 잘 알려진 선택지입니다. DALL-E는 Azure OpenAI에서 제공됩니다. <a href="https://platform.openai.com/docs/models/dall-e?WT.mc_id=academic-105485-koreyst">DALL-E에 대해 더 알아보세요</a> 및 이 커리큘럼의 9장에서도 자세히 다룹니다.</p>
+</li>
+<li>
+<p><strong>텍스트 생성</strong>. 대부분의 모델은 텍스트 생성을 위해 훈련되었으며, GPT-3.5에서 GPT-4까지 다양한 선택지가 있습니다. 각 모델은 다른 비용이 발생하며, GPT-4가 가장 비싸다는 점을 유념해야 합니다. 능력과 비용 측면에서 어떤 모델이 가장 적합한지 평가하기 위해 <a href="https://oai.azure.com/portal/playground?WT.mc_id=academic-105485-koreyst">Azure Open AI playground</a>을 살펴보는 것이 좋습니다.</p>
+</li>
+</ul>
+<p>모델을 선택하면 기본 기능을 얻을 수 있지만, 종종 회사별 데이터를 LLM에게 알려줘야 할 필요가 있습니다. 이에 대한 접근 방식에는 몇 가지 다른 선택지가 있으며, 이후 섹션에서 자세히 알아보겠습니다.</p>
+<h3 id="foundation-models-vs-llms">Foundation Models VS LLMs<a class="headerlink" href="#foundation-models-vs-llms" title="Permanent link">&para;</a></h3>
+<p>Foundation Model이라는 용어는 <a href="https://arxiv.org/abs/2108.07258?WT.mc_id=academic-105485-koreyst">스탠포드 연구원들에 의해 만들어졌으며</a>, 다음과 같은 기준을 따르는 AI 모델을 의미합니다:</p>
+<ul>
+<li><strong>비지도 학습 또는 자기 지도 학습을 사용하여 훈련됩니다</strong>, 즉, 레이블이 없는 멀티 모달 데이터로 훈련되며, 훈련 과정에서 인간의 주석 또는 데이터 레이블링이 필요하지 않습니다.</li>
+<li><strong>매우 큰 모델</strong>로, 수십억 개의 매개변수로 훈련된 매우 깊은 신경망을 기반으로 합니다.</li>
+<li><strong>일반적으로 다른 모델을 위한 '기반'으로 사용됩니다</strong>, 즉, 다른 모델을 구축하기 위한 출발점으로 사용될 수 있으며, 이는 세밀한 조정을 통해 이루어질 수 있습니다.</li>
+</ul>
+<p><img alt="Foundation Models versus LLMs" src="../../images/FoundationModel.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>이미지 출처: <a href="https://thebabar.medium.com/essential-guide-to-foundation-models-and-large-language-models-27dab58f7404">Essential Guide to Foundation Models and Large Language Models | by Babar M Bhatti | Medium
+</a></p>
+<p>이 구분을 더 명확히 하기 위해 ChatGPT를 예로 들어보겠습니다. ChatGPT의 첫 번째 버전을 구축하기 위해 GPT-3.5라는 모델이 Foundation Model로 사용되었습니다. 이는 OpenAI가 일부 채팅 관련 데이터를 사용하여 GPT-3.5의 튜닝된 버전을 만들었으며, 이 모델은 채팅봇과 같은 대화 시나리오에서 잘 동작하는 것에 특화되었습니다.</p>
+<p><img alt="Foundation Model" src="../../images/Multimodal.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>이미지 출처: <a href="https://arxiv.org/pdf/2108.07258.pdf?WT.mc_id=academic-105485-koreyst">2108.07258.pdf (arxiv.org)</a></p>
+<h3 id="vs-proprietary-models">오픈 소스 VS 독점 모델 (Proprietary Models)<a class="headerlink" href="#vs-proprietary-models" title="Permanent link">&para;</a></h3>
+<p>LLM을 분류하는 또 다른 방법은 오픈 소스인지 독점 모델인지에 따라 나눌 수 있습니다.</p>
+<p>오픈 소스 모델은 일반에 공개되어 누구나 사용할 수 있는 모델입니다. 이러한 모델은 일반적으로 해당 모델을 개발한 회사나 연구 커뮤니티에 의해 제공됩니다. 이러한 모델은 검토, 수정 및 사용 사례에 맞게 사용자 정의할 수 있습니다. 그러나 이러한 모델은 항상 프로덕션 환경에 최적화되지 않을 수 있으며, 독점 모델만큼 성능이 우수하지 않을 수도 있습니다. 또한, 오픈 소스 모델의 자금 지원은 제한적일 수 있으며, 장기적으로 유지되지 않거나 최신 연구로 업데이트되지 않을 수도 있습니다. 대표적인 오픈 소스 모델로는 <a href="https://crfm.stanford.edu/2023/03/13/alpaca.html?WT.mc_id=academic-105485-koreyst">Alpaca</a>, <a href="https://huggingface.co/bigscience/bloom">Bloom</a> 및 <a href="https://llama.meta.com">LLaMA</a>이 있습니다.</p>
+<p>독점 모델 (Proprietary models)은 회사에 소유되어 일반에 공개되지 않는 모델입니다. 이러한 모델은 일반적으로 프로덕션 환경에 최적화되어 있습니다. 그러나 이러한 모델은 사용자가 검토, 수정 또는 사용 사례에 맞게 사용자 정의할 수 없습니다. 또한, 이러한 모델은 항상 무료로 제공되지 않을 수 있으며, 사용을 위해 구독 또는 결제가 필요할 수 있습니다. 또한, 사용자는 모델을 훈련하는 데 사용되는 데이터를 제어할 수 없으므로 데이터 프라이버시와 AI의 책임있는 사용을 보장하기 위해 모델 소유자에게 의존해야 합니다. 대표적인 독점 모델로는 <a href="https://platform.openai.com/docs/models/overview?WT.mc_id=academic-105485-koreyst">OpenAI 모델</a>, <a href="https://sapling.ai/llm/bard?WT.mc_id=academic-105485-koreyst">Google Bard</a> 및 <a href="https://www.anthropic.com/index/claude-2?WT.mc_id=academic-105485-koreyst">Claude 2</a>가 있습니다.</p>
+<h3 id="vs-vs">임베딩 VS 이미지 생성 VS 텍스트 및 코드 생성<a class="headerlink" href="#vs-vs" title="Permanent link">&para;</a></h3>
+<p>LLM은 생성하는 출력에 따라 다양한 범주로 분류될 수 있습니다.</p>
+<p>임베딩은 텍스트를 숫자 형태로 변환하는 모델의 집합으로, 입력 텍스트의 수치적 표현인 임베딩을 생성합니다. 임베딩은 기계가 단어나 문장 간의 관계를 이해하기 쉽게 만들어주며, 분류 모델이나 클러스터링 모델과 같은 다른 모델의 입력으로 사용될 수 있습니다. 임베딩 모델은 전이 학습(transfer learning)에 자주 사용되며, 풍부한 데이터가 있는 대리 과제를 위해 모델이 구축되고, 그런 다음 모델 가중치(임베딩)가 다른 하위 작업에 재사용됩니다. 이 범주의 예로는 <a href="https://platform.openai.com/docs/models/embeddings?WT.mc_id=academic-105485-koreyst">OpenAI embeddings</a>가 있습니다.</p>
+<p><img alt="Embedding" src="../../images/Embedding.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>이미지 생성 모델은 이미지를 생성하는 모델입니다. 이러한 모델은 이미지 편집, 이미지 합성 및 이미지 변환에 자주 사용됩니다. 이미지 생성 모델은 대규모 이미지 데이터셋(예: <a href="https://laion.ai/blog/laion-5b/?WT.mc_id=academic-105485-koreyst">LAION-5B</a>)으로 훈련되며, 새로운 이미지를 생성하거나 인페인팅, 초해상도 및 색상화 기술을 사용하여 기존 이미지를 편집하는 데 사용될 수 있습니다. 예시로는 <a href="https://openai.com/dall-e-3?WT.mc_id=academic-105485-koreyst">DALL-E-3</a>와 <a href="https://github.com/Stability-AI/StableDiffusion?WT.mc_id=academic-105485-koreyst">Stable Diffusion 모델</a>이 있습니다.</p>
+<p><img alt="이미지 생성" src="../../images/Image.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>텍스트 및 코드 생성 모델은 텍스트나 코드를 생성하는 모델입니다. 이러한 모델은 텍스트 요약, 번역 및 질문에 대한 답변과 같은 작업에 자주 사용됩니다. 텍스트 생성 모델은 대규모 텍스트 데이터셋(예: <a href="https://www.cv-foundation.org/openaccess/content_iccv_2015/html/Zhu_Aligning_Books_and_ICCV_2015_paper.html?WT.mc_id=academic-105485-koreyst">BookCorpus</a>)으로 훈련되며, 새로운 텍스트를 생성하거나 질문에 답변하는 데 사용될 수 있습니다. 코드 생성 모델인 <a href="https://huggingface.co/codeparrot?WT.mc_id=academic-105485-koreyst">CodeParrot</a>과 같은 모델은 대규모 코드 데이터셋(예: GitHub)으로 훈련되며, 새로운 코드를 생성하거나 기존 코드의 버그를 수정하는 데 사용될 수 있습니다.</p>
+<p><img alt="Text and code generation" src="../../images/Text.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h3 id="-encoder-decoder-vs-decoder-only">인코더-디코더 (Encoder-Decoder) VS 디코더 전용 (Decoder-only)<a class="headerlink" href="#-encoder-decoder-vs-decoder-only" title="Permanent link">&para;</a></h3>
+<p>LLM의 다양한 아키텍처에 대해 이야기하기 위해 비유를 사용해보겠습니다.</p>
+<p>상사가 학생들을 위한 퀴즈 작성 과제를 주었습니다. 두 명의 동료가 있습니다. 한 명은 콘텐츠 작성을 담당하고 다른 한 명은 검토를 담당합니다.</p>
+<p>콘텐츠 작성자는 디코더 전용 (Decoder-only) 모델과 비슷합니다. 그들은 주제를 살펴보고 이미 작성된 내용을 확인한 후에 그에 기반하여 코스를 작성할 수 있습니다. 그들은 매력적이고 유익한 콘텐츠 작성에 능숙하지만, 주제와 학습 목표를 이해하는 데는 그리 능숙하지 않습니다. GPT-3와 같은 GPT 계열 모델이 디코더 모델의 예입니다.</p>
+<p>검토자는 인코더 전용 모델과 비슷합니다. 그들은 작성된 코스와 답변을 살펴보고 그들 사이의 관계를 인지하며 문맥을 이해하지만, 콘텐츠 생성에는 능숙하지 않습니다. 인코더 전용 모델의 예로는 BERT가 있습니다.</p>
+<p>퀴즈를 작성하고 검토할 수 있는 사람이 있다고 상상해보세요. 이것이 인코더-디코더 (Encoder-Decoder) 모델입니다. BART와 T5가 그 예입니다.</p>
+<h3 id="vs">서비스 VS 모델<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h3>
+<p>이제 서비스와 모델의 차이에 대해 이야기해보겠습니다. 서비스는 클라우드 서비스 제공업체가 제공하는 제품으로, 종종 모델, 데이터 및 기타 구성 요소의 조합입니다. 모델은 서비스의 핵심 구성 요소이며, 종종 LLM과 같은 기반 모델입니다.</p>
+<p>서비스는 종종 프로덕션 사용에 최적화되어 있으며, 그래픽 사용자 인터페이스를 통해 모델보다 쉽게 사용할 수 있습니다. 그러나 서비스는 항상 무료로 제공되지 않을 수 있으며, 서비스를 사용하기 위해 구독 또는 결제가 필요할 수 있습니다. 이는 서비스 소유자의 장비와 리소스를 활용하여 비용을 최적화하고 쉽게 확장할 수 있도록 하는 대가입니다. Azure OpenAI 서비스는 이러한 예로, 사용자는 서비스를 사용한 양에 비례하여 비용을 지불하는 pay-as-you-go 요금제를 제공합니다. 또한, Azure OpenAI 서비스는 모델의 기능에 더해 기업용 보안 및 책임 있는 AI 프레임워크를 제공합니다.</p>
+<p>모델은 매개변수, 가중치 등을 포함한 신경망 자체입니다. 회사는 이러한 모델을 로컬에서 실행할 수 있지만, 장비를 구매하고 확장할 구조를 구축하고 라이선스를 구매하거나 오픈 소스 모델을 사용해야 합니다. LLaMA와 같은 모델은 계산 성능이 필요하며, 모델을 실행하기 위해 컴퓨팅 자원이 필요합니다.</p>
+<h2 id="azure">Azure에서 성능을 이해하기 위해 다른 모델로 테스트하고 반복하는 방법<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h2>
+<p>팀은 현재 LLMs의 현황을 조사하고 시나리오에 적합한 몇 가지 좋은 후보 모델을 식별한 후, 다음 단계는 해당 데이터와 작업 부하에서 이들을 테스트하는 것입니다. 이는 실험과 측정을 통해 반복적으로 수행되는 과정입니다.
+이전 단락에서 언급한 대부분의 모델들(OpenAI 모델, Llama2와 같은 오픈 소스 모델, Hugging Face transformers)은 <a href="https://ml.azure.com/?WT.mc_id=academic-105485-koreyst">Azure Machine Learning studio</a>의 <a href="https://learn.microsoft.com/azure/machine-learning/concept-foundation-models?WT.mc_id=academic-105485-koreyst">Foundation Models</a> 카탈로그에서 사용할 수 있습니다.</p>
+<p><a href="https://azure.microsoft.com/products/machine-learning/?WT.mc_id=academic-105485-koreyst">Azure Machine Learning</a>은 데이터 과학자와 ML 엔지니어를 위해 설계된 클라우드 서비스로, ML 수명주기 전체(학습, 테스트, 배포 및 MLOps 처리)를 단일 플랫폼에서 관리할 수 있도록 지원합니다. Machine Learning studio는 이 서비스에 대한 그래픽 사용자 인터페이스를 제공하며 사용자가 다음을 수행할 수 있도록 합니다:</p>
+<ul>
+<li>카탈로그에서 관심 있는 Foundation Model을 태스크, 라이선스 또는 이름으로 필터링하여 찾을 수 있습니다. 카탈로그에 아직 포함되지 않은 새로운 모델을 가져올 수도 있습니다.</li>
+<li>상세한 설명과 코드 샘플을 포함한 모델 카드를 검토하고, 샘플 프롬프트를 제공하여 결과를 테스트하는 샘플 추론 위젯을 사용하여 모델을 테스트할 수 있습니다.</li>
+</ul>
+<p><img alt="Model card" src="../../images/Llama1.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ul>
+<li>특정 작업 부하와 입력으로 제공된 특정 데이터 세트에 대한 객관적인 평가 메트릭을 사용하여 모델 성능을 평가할 수 있습니다.</li>
+</ul>
+<p><img alt="Model evaluation" src="../../images/Llama2.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ul>
+<li>Azure Machine Learning의 실험 및 추적 기능을 활용하여 특정 작업 부하에서 모델 성능을 개선하기 위해 사용자 지정 훈련 데이터로 모델을 세밀하게 조정할 수 있습니다.</li>
+</ul>
+<p><img alt="Model fine-tuning" src="../../images/Llama3.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ul>
+<li>원래의 사전 훈련된 모델 또는 세밀하게 조정된 버전을 원격 실시간 추론 또는 배치 엔드포인트에 배포하여 응용 프로그램에서 사용할 수 있도록 할 수 있습니다.</li>
+</ul>
+<p><img alt="Model deployment" src="../../images/Llama4.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="llm_2">LLM 결과 개선하기<a class="headerlink" href="#llm_2" title="Permanent link">&para;</a></h2>
+<p>우리 스타트업 팀은 다양한 종류의 LLM과 Cloud Platform (Azure Machine Learning)을 탐색하여 다른 모델을 비교하고, 테스트 데이터로 평가하고, 성능을 개선하고, 추론 엔드포인트에 배포할 수 있는 기능을 활용했습니다.</p>
+<p>그러나 언제 모델을 fine-tuning하여 사전 훈련된 모델 대신 사용해야 할까요? 특정 작업 부하에서 모델 성능을 개선하기 위한 다른 접근 방식이 있을까요?</p>
+<p>비즈니스가 LLM에서 필요한 결과를 얻기 위해 사용할 수 있는 여러 가지 접근 방식이 있습니다. 다양한 수준의 훈련을 거친 다른 유형의 모델을 선택할 수 있으며, 복잡성, 비용 및 품질이 다른 LLM을 프로덕션에 배포할 수 있습니다. 다음은 몇 가지 다른 접근 방식입니다:</p>
+<ul>
+<li>
+<p><strong>컨텍스트를 고려한 프롬프트 엔지니어링</strong>. 프롬프트할 때 충분한 컨텍스트를 제공하여 필요한 응답을 얻을 수 있도록 하는 것입니다.</p>
+</li>
+<li>
+<p><strong>검색 증강 생성 (Retrieval Augmented Generation), RAG</strong>. 데이터가 데이터베이스나 웹 엔드포인트에 존재할 수 있습니다. 프롬프트할 때 해당 데이터 또는 그 일부를 포함하도록하여 관련 데이터를 가져와 사용자의 프롬프트의 일부로 만들 수 있습니다.</p>
+</li>
+<li>
+<p><strong>파인튜닝 모델</strong>. 여기서는 자체 데이터로 모델을 추가로 훈련시켜 모델이 더 정확하고 사용자의 요구에 더 잘 대응하지만 비용이 발생할 수 있습니다.</p>
+</li>
+</ul>
+<p><img alt="LLMs deployment" src="../../images/Deploy.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>이미지 출처: <a href="https://www.fiddler.ai/blog/four-ways-that-enterprises-deploy-llms?WT.mc_id=academic-105485-koreyst">Four Ways that Enterprises Deploy LLMs | Fiddler AI Blog</a></p>
+<h3 id="_3">컨텍스트를 고려한 프롬프트 엔지니어링<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>사전 훈련된 LLM은 일반적인 자연어 작업에서 매우 잘 작동합니다. 짧은 프롬프트(문장을 완성하거나 질문하는 것과 같은)로도 호출하면 "제로샷" 학습이라고 할 수 있습니다.</p>
+<p>그러나 사용자가 자세한 요청과 예제를 포함한 "컨텍스트"로 쿼리를 구성할수록 정확도가 높아지고 사용자의 기대에 가장 가까워집니다. 이 경우, 프롬프트에 하나의 예제만 포함되어 있다면 "원샷" 학습이라고 하며, 여러 개의 예제가 포함되어 있다면 "퓨샷" 학습이라고 합니다.
+컨텍스트를 고려한 프롬프트 엔지니어링은 가장 비용 효율적인 접근 방식입니다.</p>
+<h3 id="retrieval-augmented-generation-rag">검색 증강 생성 (Retrieval Augmented Generation, RAG)<a class="headerlink" href="#retrieval-augmented-generation-rag" title="Permanent link">&para;</a></h3>
+<p>LLM은 훈련 과정에서 사용된 데이터만을 사용하여 답변을 생성할 수 있는 제한이 있습니다. 이는 LLM이 훈련 과정 이후에 발생한 사실에 대해 알지 못하며, 회사 데이터와 같은 비공개 정보에 접근할 수 없다는 것을 의미합니다.
+이러한 제한은 RAG를 통해 극복할 수 있습니다. RAG는 프롬프트를 외부 데이터로 확장하는 기술로, 문장 길이 제한을 고려하여 문서의 일부인 청크 형태로 외부 데이터를 프롬프트 컨텍스트에 추가합니다. 이는 벡터 데이터베이스 도구(예: <a href="https://learn.microsoft.com/azure/search/vector-search-overview?WT.mc_id=academic-105485-koreyst">Azure Vector Search</a>)에 의해 지원되며, 다양한 사전 정의된 데이터 소스에서 유용한 청크를 검색하여 프롬프트에 추가합니다.</p>
+<p>이 기술은 비즈니스가 충분한 데이터, 충분한 시간 또는 리소스가 없어 LLM을 fine-tuning하는 것이 어려운 경우에 매우 유용합니다. 특정 작업 부하에서 성능을 개선하고 현실의 왜곡이나 유해한 콘텐츠의 위험을 줄이기 위해 사용됩니다.</p>
+<h3 id="fine-tuning">Fine-tuning된 모델<a class="headerlink" href="#fine-tuning" title="Permanent link">&para;</a></h3>
+<p>Fine-tuning은 전이 학습을 활용하여 모델을 '적응(adapt)'시켜 다운스트림 작업을 수행하거나 특정 문제를 해결하는 과정입니다. Few-shot learning과 RAG와는 달리, 가중치와 편향이 업데이트된 새로운 모델이 생성됩니다. 이는 다음 경우에 선호되는 접근 방식입니다:</p>
+<ul>
+<li>
+<p><strong>Fine-tuned 모델 사용</strong>. 비즈니스가 고성능 모델 대신 임베딩 모델과 같은 능력이 덜한 모델을 사용하고자 하는 경우로, 더 비용 효율적이고 빠른 솔루션을 얻을 수 있습니다.</p>
+</li>
+<li>
+<p><strong>지연 시간 고려</strong>. 특정 사용 사례에서 지연 시간이 중요하므로 매우 긴 프롬프트를 사용할 수 없거나 모델에서 학습해야 할 예제 수가 프롬프트 길이 제한과 일치하지 않는 경우입니다.</p>
+</li>
+<li>
+<p><strong>최신 상태 유지</strong>. 비즈니스가 많은 양의 고품질 데이터와 실제 레이블을 보유하고 있으며, 이러한 데이터를 시간이 지나도 최신 상태로 유지하기 위해 필요한 리소스를 갖추고 있는 경우입니다.</p>
+</li>
+</ul>
+<h3 id="_4">훈련된 모델<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>LLM을 처음부터 훈련하는 것은 의심할 여지없이 가장 어렵고 복잡한 접근 방식으로, 대량의 데이터, 숙련된 리소스 및 적절한 컴퓨팅 파워가 필요합니다. 이 옵션은 비즈니스가 도메인 특정 사용 사례와 대량의 도메인 중심 데이터를 보유한 경우에만 고려해야 합니다.</p>
+<h2 id="_5">지식 확인<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>LLM 완성 결과를 개선하기 위한 좋은 접근 방식은 무엇일까요?</p>
+<ol>
+<li>컨텍스트를 고려한 프롬프트 엔지니어링</li>
+<li>RAG</li>
+<li>파인튜닝된 모델</li>
+</ol>
+<p>A:3, 시간과 리소스, 고품질 데이터가 있는 경우, 파인튜닝은 최신 상태를 유지하기 위한 더 나은 옵션입니다. 그러나 시간이 부족하고 개선을 고려하는 경우에는 RAG를 먼저 고려하는 것이 좋습니다.</p>
+<h2 id="_6">🚀 도전과제<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>비즈니스에 <a href="https://learn.microsoft.com/azure/search/retrieval-augmented-generation-overview?WT.mc_id=academic-105485-koreyst">RAG를 사용하는 방법</a>에 대해 더 알아보세요.</p>
+<h2 id="_7">수고하셨습니다. 학습을 계속하세요!<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>이 레슨을 완료한 후 <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">Generative AI 학습 컬렉션</a>을 확인하여 Generative AI 지식을 계속 향상시킬 수 있습니다!</p>
+<p>Lesson 3로 이동하여 <a href="../../../03-using-generative-ai-responsibly/translations/ko/?WT.mc_id=academic-105485-koreyst">책임감 있게 생성형 AI 사용하기 </a>을 살펴보세요!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2215 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/04-prompt-engineering-fundamentals/">
+      
+      
+        <link rel="prev" href="../03-using-generative-ai-responsibly/">
+      
+      
+        <link rel="next" href="../05-advanced-prompts/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>4. Prompt Engineering - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#prompt-engineering-fundamentals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. Prompt Engineering
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Terms
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Sandbox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#illustrated-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Illustrated Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#our-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Our Startup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Prompt Engineering?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Prompt Engineering?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tokenization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tokenization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concept-foundation-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concept: Foundation Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concept-instruction-tuned-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concept: Instruction Tuned LLMs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-do-we-need-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why do we need Prompt Engineering?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why do we need Prompt Engineering?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fabrications-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fabrications Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#case-study-github-copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Case Study: GitHub Copilot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prompt-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Construction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompt Construction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complex-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complex Prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instruction Prompt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primary-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary Content
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primary Content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-cues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Cues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Templates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supporting-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supporting Content
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prompting-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompting Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompting Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompt-engineering-mindset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Engineering Mindset
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assignment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Assignment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#to-get-started-fork-the-repo-then" class="md-nav__link">
+    <span class="md-ellipsis">
+      To get started, fork the repo, then
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-configure-your-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next, configure your environment variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-open-the-jupyter-notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next, open the Jupyter Notebook
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knowledge check
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Challenge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#great-work-continue-your-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Great Work! Continue Your Learning
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Goals
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Terms
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Sandbox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#illustrated-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Illustrated Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#our-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Our Startup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Prompt Engineering?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Prompt Engineering?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tokenization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tokenization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concept-foundation-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concept: Foundation Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concept-instruction-tuned-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concept: Instruction Tuned LLMs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-do-we-need-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why do we need Prompt Engineering?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why do we need Prompt Engineering?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fabrications-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fabrications Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#case-study-github-copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Case Study: GitHub Copilot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prompt-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Construction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompt Construction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complex-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complex Prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instruction Prompt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primary-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary Content
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primary Content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-cues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Cues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Templates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supporting-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supporting Content
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prompting-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompting Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prompting Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompt-engineering-mindset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Engineering Mindset
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assignment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Assignment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#to-get-started-fork-the-repo-then" class="md-nav__link">
+    <span class="md-ellipsis">
+      To get started, fork the repo, then
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-configure-your-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next, configure your environment variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-open-the-jupyter-notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next, open the Jupyter Notebook
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knowledge check
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Challenge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#great-work-continue-your-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Great Work! Continue Your Learning
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="prompt-engineering-fundamentals">Prompt Engineering Fundamentals<a class="headerlink" href="#prompt-engineering-fundamentals" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson4-gh?WT.mc_id=academic-105485-koreyst"><img alt="Prompt Engineering Fundamentals" src="images/04-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This module covers essential concepts and techniques for creating effective prompts in generative AI models. The way your write your prompt to an LLM also matters. A carefully-crafted prompt can achieve a better quality of response. But what exactly do terms like <em>prompt</em> and <em>prompt engineering</em> mean? And how do I improve the prompt <em>input</em> that I send to the LLM? These are the questions we'll try to answer with in this chapter and the next.</p>
+<p><em>Generative AI</em> is capable of creating new content (e.g., text, images, audio, code etc.) in response to user requests. It achieves this using <em>Large Language Models</em> like OpenAI's GPT ("Generative Pre-trained Transformer") series that are trained for using natural language and code.</p>
+<p>Users can now interact with these models using familiar paradigms like chat, without needing any technical expertise or training. The models are <em>prompt-based</em> - users send a text input (prompt) and get back the AI response (completion). They can then "chat with the AI" iteratively, in multi-turn conversations, refining their prompt until the response matches their expectations.</p>
+<p>"Prompts" now become the primary <em>programming interface</em> for generative AI apps, telling the models what to do and influencing the quality of returned responses. "Prompt Engineering" is a fast-growing field of study that focuses on the <em>design and optimization</em> of prompts to deliver consistent and quality responses at scale.</p>
+<h2 id="learning-goals">Learning Goals<a class="headerlink" href="#learning-goals" title="Permanent link">&para;</a></h2>
+<p>In this lesson, we learn what Prompt Engineering is, why it matters, and how we can craft more effective prompts for a given model and application objective. We'll understand core concepts and best practices for prompt engineering - and learn about an interactive Jupyter Notebooks "sandbox" environment where we can see these concepts applied to real examples.</p>
+<p>By the end of this lesson we will be able to:</p>
+<ol>
+<li>Explain what prompt engineering is and why it matters.</li>
+<li>Describe the components of a prompt and how they are used.</li>
+<li>Learn best practices and techniques for prompt engineering.</li>
+<li>Apply learned techniques to real examples, using an OpenAI endpoint.</li>
+</ol>
+<h2 id="key-terms">Key Terms<a class="headerlink" href="#key-terms" title="Permanent link">&para;</a></h2>
+<p>Prompt Engineering: The practice of designing and refining inputs to guide AI models toward producing desired outputs.
+Tokenization: The process of converting text into smaller units, called tokens, that a model can understand and process.
+Instruction-Tuned LLMs: Large Language Models (LLMs) that have been fine-tuned with specific instructions to improve their response accuracy and relevance.</p>
+<h2 id="learning-sandbox">Learning Sandbox<a class="headerlink" href="#learning-sandbox" title="Permanent link">&para;</a></h2>
+<p>Prompt engineering is currently more art than science. The best way to improve our intuition for it is to <em>practice more</em> and adopt a trial-and-error approach that combines application domain expertise with recommended techniques and model-specific optimizations.</p>
+<p>The Jupyter Notebook accompanying this lesson provides a <em>sandbox</em> environment where you can try out what you learn - as you go or as part of the code challenge at the end. To execute the exercises, you will need:</p>
+<ol>
+<li><strong>An Azure OpenAI API key</strong> - the service endpoint for a deployed LLM.</li>
+<li><strong>A Python Runtime</strong> - in which the Notebook can be executed.</li>
+<li><strong>Local Env Variables</strong> - <em>complete the <a href="../00-course-setup/SETUP/?WT.mc_id=academic-105485-koreyst">SETUP</a> steps now to get ready</em>.</li>
+</ol>
+<p>The notebook comes with <em>starter</em> exercises - but you are encouraged to add your own <em>Markdown</em> (description) and <em>Code</em> (prompt requests) sections to try out more examples or ideas - and build your intuition for prompt design.</p>
+<h2 id="illustrated-guide">Illustrated Guide<a class="headerlink" href="#illustrated-guide" title="Permanent link">&para;</a></h2>
+<p>Want to get the big picture of what this lesson covers before you dive in? Check out this illustrated guide, which gives you a sense of the main topics covered and the key takeaways for you to think about in each one. The lesson roadmap takes you from understanding the core concepts and challenges to addressing them with relevant prompt engineering techniques and best practices. Note that the "Advanced Techniques" section in this guide refers to content covered in the <em>next</em> chapter of this curriculum.</p>
+<p><img alt="Illustrated Guide to Prompt Engineering" src="images/04-prompt-engineering-sketchnote.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="our-startup">Our Startup<a class="headerlink" href="#our-startup" title="Permanent link">&para;</a></h2>
+<p>Now, let's talk about how <em>this topic</em> relates to our startup mission to <a href="https://educationblog.microsoft.com/2023/06/collaborating-to-bring-ai-innovation-to-education?WT.mc_id=academic-105485-koreyst">bring AI innovation to education</a>. We want to build AI-powered applications of <em>personalized learning</em> - so let's think about how different users of our application might "design" prompts:</p>
+<ul>
+<li><strong>Administrators</strong> might ask the AI to <em>analyze curriculum data to identify gaps in coverage</em>. The AI can summarize results or visualize them with code.</li>
+<li><strong>Educators</strong> might ask the AI to <em>generate a lesson plan for a target audience and topic</em>. The AI can build the personalized plan in a specified format.</li>
+<li><strong>Students</strong> might ask the AI to <em>tutor them in a difficult subject</em>. The AI can now guide students with lessons, hints &amp; examples tailored to their level.</li>
+</ul>
+<p>That's just the tip of the iceberg. Check out <a href="https://github.com/microsoft/prompts-for-edu/tree/main?WT.mc_id=academic-105485-koreyst">Prompts For Education</a> - an open-source prompts library curated by education experts - to get a broader sense of the possibilities! <em>Try running some of those prompts in the sandbox or using the OpenAI Playground to see what happens!</em></p>
+<!--
+LESSON TEMPLATE:
+This unit should cover core concept #1.
+Reinforce the concept with examples and references.
+
+CONCEPT #1:
+Prompt Engineering.
+Define it and explain why it is needed.
+-->
+
+<h2 id="what-is-prompt-engineering">What is Prompt Engineering?<a class="headerlink" href="#what-is-prompt-engineering" title="Permanent link">&para;</a></h2>
+<p>We started this lesson by defining <strong>Prompt Engineering</strong> as the process of <em>designing and optimizing</em> text inputs (prompts) to deliver consistent and quality responses (completions) for a given application objective and model. We can think of this as a 2-step process:</p>
+<ul>
+<li><em>designing</em> the initial prompt for a given model and objective</li>
+<li><em>refining</em> the prompt iteratively to improve the quality of the response</li>
+</ul>
+<p>This is necessarily a trial-and-error process that requires user intuition and effort to get optimal results. So why is it important? To answer that question, we first need to understand three concepts:</p>
+<ul>
+<li><em>Tokenization</em> = how the model "sees" the prompt</li>
+<li><em>Base LLMs</em> = how the foundation model "processes" a prompt</li>
+<li><em>Instruction-Tuned LLMs</em> = how the model can now see "tasks"</li>
+</ul>
+<h3 id="tokenization">Tokenization<a class="headerlink" href="#tokenization" title="Permanent link">&para;</a></h3>
+<p>An LLM sees prompts as a <em>sequence of tokens</em> where different models (or versions of a model) can tokenize the same prompt in different ways. Since LLMs are trained on tokens (and not on raw text), the way prompts get tokenized has a direct impact on the quality of the generated response.</p>
+<p>To get an intuition for how tokenization works, try tools like the <a href="https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-koreyst">OpenAI Tokenizer</a> shown below. Copy in your prompt - and see how that gets converted into tokens, paying attention to how whitespace characters and punctuation marks are handled. Note that this example shows an older LLM (GPT-3) - so trying this with a newer model may produce a different result.</p>
+<p><img alt="Tokenization" src="images/04-tokenizer-example.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h3 id="concept-foundation-models">Concept: Foundation Models<a class="headerlink" href="#concept-foundation-models" title="Permanent link">&para;</a></h3>
+<p>Once a prompt is tokenized, the primary function of the <a href="https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst">"Base LLM"</a> (or Foundation model) is to predict the token in that sequence. Since LLMs are trained on massive text datasets, they have a good sense of the statistical relationships between tokens and can make that prediction with some confidence. Note that they don't understand the <em>meaning</em> of the words in the prompt or token; they just see a pattern they can "complete" with their next prediction. They can continue predicting the sequence till terminated by user intervention or some pre-established condition.</p>
+<p>Want to see how prompt-based completion works? Enter the above prompt into the Azure OpenAI Studio <a href="https://oai.azure.com/playground?WT.mc_id=academic-105485-koreyst"><em>Chat Playground</em></a> with the default settings. The system is configured to treat prompts as requests for information - so you should see a completion that satisfies this context.</p>
+<p>But what if the user wanted to see something specific that met some criteria or task objective? This is where <em>instruction-tuned</em> LLMs come into the picture.</p>
+<p><img alt="Base LLM Chat Completion" src="images/04-playground-chat-base.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h3 id="concept-instruction-tuned-llms">Concept: Instruction Tuned LLMs<a class="headerlink" href="#concept-instruction-tuned-llms" title="Permanent link">&para;</a></h3>
+<p>An <a href="https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst">Instruction Tuned LLM</a> starts with the foundation model and fine-tunes it with examples or input/output pairs (e.g., multi-turn "messages") that can contain clear instructions - and the response from the AI attempt to follow that instruction.</p>
+<p>This uses techniques like Reinforcement Learning with Human Feedback (RLHF) that can train the model to <em>follow instructions</em> and <em>learn from feedback</em> so that it produces responses that are better-suited to practical applications and more relevant to user objectives.</p>
+<p>Let's try it out - revisit the prompt above, but now change the <em>system message</em> to provide the following instruction as context:</p>
+<blockquote>
+<p><em>Summarize content you are provided with for a second-grade student. Keep the result to one paragraph with 3-5 bullet points.</em></p>
+</blockquote>
+<p>See how the result is now tuned to reflect the desired goal and format? An educator can now directly use this response in their slides for that class.</p>
+<p><img alt="Instruction Tuned LLM Chat Completion" src="images/04-playground-chat-instructions.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="why-do-we-need-prompt-engineering">Why do we need Prompt Engineering?<a class="headerlink" href="#why-do-we-need-prompt-engineering" title="Permanent link">&para;</a></h2>
+<p>Now that we know how prompts are processed by LLMs, let's talk about <em>why</em> we need prompt engineering. The answer lies in the fact that current LLMs pose a number of challenges that make <em>reliable and consistent completions</em> more challenging to achieve without putting effort into prompt construction and optimization. For instance:</p>
+<ol>
+<li>
+<p><strong>Model responses are stochastic.</strong> The <em>same prompt</em> will likely produce different responses with different models or model versions. And it may even produce different results with the <em>same model</em> at different times. <em>Prompt engineering techniques can help us minimize these variations by providing better guardrails</em>.</p>
+</li>
+<li>
+<p><strong>Models can fabricate responses.</strong> Models are pre-trained with <em>large but finite</em> datasets, meaning they lack knowledge about concepts outside that training scope. As a result, they can produce completions that are inaccurate, imaginary, or directly contradictory to known facts. <em>Prompt engineering techniques help users identify and mitigate such fabrications e.g., by asking AI for citations or reasoning</em>.</p>
+</li>
+<li>
+<p><strong>Models capabilities will vary.</strong> Newer models or model generations will have richer capabilities but also bring unique quirks and tradeoffs in cost &amp; complexity. <em>Prompt engineering can help us develop best practices and workflows that abstract away differences and adapt to model-specific requirements in scalable, seamless ways</em>.</p>
+</li>
+</ol>
+<p>Let's see this in action in the OpenAI or Azure OpenAI Playground:</p>
+<ul>
+<li>Use the same prompt with different LLM deployments (e.g, OpenAI, Azure OpenAI, Hugging Face) - did you see the variations?</li>
+<li>Use the same prompt repeatedly with the <em>same</em> LLM deployment (e.g., Azure OpenAI playground) - how did these variations differ?</li>
+</ul>
+<h3 id="fabrications-example">Fabrications Example<a class="headerlink" href="#fabrications-example" title="Permanent link">&para;</a></h3>
+<p>In this course, we use the term <strong>"fabrication"</strong> to reference the phenomenon where LLMs sometimes generate factually incorrect information due to limitations in their training or other constraints. You may also have heard this referred to as <em>"hallucinations"</em> in popular articles or research papers. However, we strongly recommend using <em>"fabrication"</em> as the term so we don't accidentally anthropomorphize the behavior by attributing a human-like trait to a machine-driven outcome. This also reinforces <a href="https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst">Responsible AI guidelines</a> from a terminology perspective, removing terms that may also be considered offensive or non-inclusive in some contexts.</p>
+<p>Want to get a sense of how fabrications work? Think of a prompt that instructs the AI to generate content for a non-existent topic (to ensure it is not found in the training dataset). For example - I tried this prompt:</p>
+<blockquote>
+<p><strong>Prompt:</strong> generate a lesson plan on the Martian War of 2076.</p>
+</blockquote>
+<p>A web search showed me that there were fictional accounts (e.g., television series or books) on Martian wars - but none in 2076. Commonsense also tells us that 2076 is <em>in the future</em> and thus, cannot be associated with a real event.</p>
+<p>So what happens when we run this prompt with different LLM providers?</p>
+<blockquote>
+<p><strong>Response 1</strong>: OpenAI Playground (GPT-35)</p>
+</blockquote>
+<p><img alt="Response 1" src="images/04-fabrication-oai.png?WT.mc_id=academic-105485-koreyst" /></p>
+<blockquote>
+<p><strong>Response 2</strong>: Azure OpenAI Playground (GPT-35)</p>
+</blockquote>
+<p><img alt="Response 2" src="images/04-fabrication-aoai.png?WT.mc_id=academic-105485-koreyst" /></p>
+<blockquote>
+<p><strong>Response 3</strong>: : Hugging Face Chat Playground (LLama-2)</p>
+</blockquote>
+<p><img alt="Response 3" src="images/04-fabrication-huggingchat.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>As expected, each model (or model version) produces slightly different responses thanks to stochastic behavior and model capability variations. For instance, one model targets an 8th grade audience while the other assumes a high-school student. But all three models did generate responses that could convince an uninformed user that the event was real</p>
+<p>Prompt engineering techniques like <em>metaprompting</em> and <em>temperature configuration</em> may reduce model fabrications to some extent. New prompt engineering <em>architectures</em> also incorporate new tools and techniques seamlessly into the prompt flow, to mitigate or reduce some of these effects.</p>
+<h2 id="case-study-github-copilot">Case Study: GitHub Copilot<a class="headerlink" href="#case-study-github-copilot" title="Permanent link">&para;</a></h2>
+<p>Let's wrap this section by getting a sense of how prompt engineering is used in real-world solutions by looking at one Case Study: <a href="https://github.com/features/copilot?WT.mc_id=academic-105485-koreyst">GitHub Copilot</a>.</p>
+<p>GitHub Copilot is your "AI Pair Programmer" - it converts text prompts into code completions and is integrated into your development environment (e.g., Visual Studio Code) for a seamless user experience. As documented in the series of blogs below, the earliest version was based on the OpenAI Codex model - with engineers quickly realizing the need to fine-tune the model and develop better prompt engineering techniques, to improve code quality. In July, they <a href="https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst">debuted an improved AI model that goes beyond Codex</a> for even faster suggestions.</p>
+<p>Read the posts in order, to follow their learning journey.</p>
+<ul>
+<li><strong>May 2023</strong> | <a href="https://github.blog/2023-05-17-how-github-copilot-is-getting-better-at-understanding-your-code/?WT.mc_id=academic-105485-koreyst">GitHub Copilot is Getting Better at Understanding Your Code</a></li>
+<li><strong>May 2023</strong> | <a href="https://github.blog/2023-05-17-inside-github-working-with-the-llms-behind-github-copilot/?WT.mc_id=academic-105485-koreyst">Inside GitHub: Working with the LLMs behind GitHub Copilot</a>.</li>
+<li><strong>Jun 2023</strong> | <a href="https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/?WT.mc_id=academic-105485-koreyst">How to write better prompts for GitHub Copilot</a>.</li>
+<li><strong>Jul 2023</strong> | <a href="https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst">.. GitHub Copilot goes beyond Codex with improved AI model</a></li>
+<li><strong>Jul 2023</strong> | <a href="https://github.blog/2023-07-17-prompt-engineering-guide-generative-ai-llms/?WT.mc_id=academic-105485-koreyst">A Developer's Guide to Prompt Engineering and LLMs</a></li>
+<li><strong>Sep 2023</strong> | <a href="https://github.blog/2023-09-06-how-to-build-an-enterprise-llm-application-lessons-from-github-copilot/?WT.mc_id=academic-105485-koreyst">How to build an enterprise LLM app: Lessons from GitHub Copilot</a></li>
+</ul>
+<p>You can also browse their <a href="https://github.blog/category/engineering/?WT.mc_id=academic-105485-koreyst">Engineering blog</a> for more posts like <a href="https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-koreyst">this one</a> that shows how these models and techniques are <em>applied</em> for driving real-world applications.</p>
+<hr />
+<!--
+LESSON TEMPLATE:
+This unit should cover core concept #2.
+Reinforce the concept with examples and references.
+
+CONCEPT #2:
+Prompt Design.
+Illustrated with examples.
+-->
+
+<h2 id="prompt-construction">Prompt Construction<a class="headerlink" href="#prompt-construction" title="Permanent link">&para;</a></h2>
+<p>We've seen why prompt engineering is important - now let's understand how prompts are <em>constructed</em> so we can evaluate different techniques for more effective prompt design.</p>
+<h3 id="basic-prompt">Basic Prompt<a class="headerlink" href="#basic-prompt" title="Permanent link">&para;</a></h3>
+<p>Let's start with the basic prompt: a text input sent to the model with no other context. Here's an example - when we send the first few words of the US national anthem to the OpenAI <a href="https://platform.openai.com/docs/api-reference/completions?WT.mc_id=academic-105485-koreyst">Completion API</a> it instantly <em>completes</em> the response with the next few lines, illustrating the basic prediction behavior.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Prompt (Input)</th>
+<th style="text-align: left;">Completion (Output)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Oh say can you see</td>
+<td style="text-align: left;">It sounds like you're starting the lyrics to "The Star-Spangled Banner," the national anthem of the United States. The full lyrics are ...</td>
+</tr>
+</tbody>
+</table>
+<h3 id="complex-prompt">Complex Prompt<a class="headerlink" href="#complex-prompt" title="Permanent link">&para;</a></h3>
+<p>Now let's add context and instructions to that basic prompt. The <a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/chatgpt?WT.mc_id=academic-105485-koreyst">Chat Completion API</a> lets us construct a complex prompt as a collection of <em>messages</em> with:</p>
+<ul>
+<li>Input/output pairs reflecting <em>user</em> input and <em>assistant</em> response.</li>
+<li>System message setting the context for assistant behavior or personality.</li>
+</ul>
+<p>The request is now in the form below, where the <em>tokenization</em> effectively captures relevant information from context and conversation. Now, changing the system context can be as impactful on the quality of completions, as the user inputs provided.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Who won the world series in 2020?&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;The Los Angeles Dodgers won the World Series in 2020.&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Where was it played?&quot;</span><span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="instruction-prompt">Instruction Prompt<a class="headerlink" href="#instruction-prompt" title="Permanent link">&para;</a></h3>
+<p>In the above examples, the user prompt was a simple text query that can be interpreted as a request for information. With <em>instruction</em> prompts, we can use that text to specify a task in more detail, providing better guidance to the AI. Here's an example:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Prompt (Input)</th>
+<th style="text-align: left;">Completion (Output)</th>
+<th style="text-align: left;">Instruction Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Write a description of the Civil War</td>
+<td style="text-align: left;"><em>returned a simple paragraph</em></td>
+<td style="text-align: left;">Simple</td>
+</tr>
+<tr>
+<td style="text-align: left;">Write a description of the Civil War. Provide key dates and events and describe their significance</td>
+<td style="text-align: left;"><em>returned a paragraph followed by a list of key event dates with descriptions</em></td>
+<td style="text-align: left;">Complex</td>
+</tr>
+<tr>
+<td style="text-align: left;">Write a description of the Civil War in 1 paragraph. Provide 3 bullet points with key dates and their significance. Provide 3 more bullet points with key historical figures and their contributions. Return the output as a JSON file</td>
+<td style="text-align: left;"><em>returns more extensive details in a text box, formatted as JSON that you can copy-paste to a file and validate as needed</em></td>
+<td style="text-align: left;">Complex. Formatted.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="primary-content">Primary Content<a class="headerlink" href="#primary-content" title="Permanent link">&para;</a></h2>
+<p>In the above examples, the prompt was still fairly open-ended, allowing the LLM to decide what part of its pre-trained dataset was relevant. With the <em>primary content</em> design pattern, the input text is divided into two parts:</p>
+<ul>
+<li>an instruction (action)</li>
+<li>relevant content (that influences action)</li>
+</ul>
+<p>Here's an example where the instruction is to "summarize this in 2 sentences".</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Prompt (Input)</th>
+<th style="text-align: left;">Completion (Output)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. It is named after the Roman god Jupiter.[19] When viewed from Earth, Jupiter can be bright enough for its reflected light to cast visible shadows,[20] and is on average the third-brightest natural object in the night sky after the Moon and Venus. <br/> <strong>Summarize this in 2 short sentences</strong></td>
+<td style="text-align: left;">Jupiter, the fifth planet from the Sun, is the largest in the Solar System and is known for being one of the brightest objects in the night sky. Named after the Roman god Jupiter, it's a gas giant whose mass is two-and-a-half times that of all other planets in the Solar System combined.</td>
+</tr>
+</tbody>
+</table>
+<p>The primary content segment can be used in various ways to drive more effective instructions:</p>
+<ul>
+<li><strong>Examples</strong> - instead of telling the model what to do with an explicit instruction, give it examples of what to do and let it infer the pattern.</li>
+<li><strong>Cues</strong> - follow the instruction with a "cue" that primes the completion, guiding the model towards more relevant responses.</li>
+<li><strong>Templates</strong> - these are repeatable 'recipes' for prompts with placeholders (variables) that can be customized with data for specific use cases.</li>
+</ul>
+<p>Let's explore these in action.</p>
+<h3 id="using-examples">Using Examples<a class="headerlink" href="#using-examples" title="Permanent link">&para;</a></h3>
+<p>This is an approach where you use the primary content to "feed the model" some examples of the desired output for a given instruction, and let it infer the pattern for the desired output. Based on the number of examples provided, we can have zero-shot prompting, one-shot prompting, few-shot prompting etc.</p>
+<p>The prompt now consists of three components:</p>
+<ul>
+<li>A task description</li>
+<li>A few examples of the desired output</li>
+<li>The start of a new example (which becomes an implicit task description)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Learning Type</th>
+<th style="text-align: left;">Prompt (Input)</th>
+<th style="text-align: left;">Completion (Output)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Zero-shot</td>
+<td style="text-align: left;">"The Sun is Shining". Translate to Spanish</td>
+<td style="text-align: left;">"El Sol está brillando".</td>
+</tr>
+<tr>
+<td style="text-align: left;">One-shot</td>
+<td style="text-align: left;">"The Sun is Shining" =&gt; ""El Sol está brillando". <br> "It's a Cold and Windy Day" =&gt;</td>
+<td style="text-align: left;">"Es un día frío y ventoso".</td>
+</tr>
+<tr>
+<td style="text-align: left;">Few-shot</td>
+<td style="text-align: left;">The player ran the bases =&gt; Baseball <br/> The player hit an ace =&gt; Tennis <br/> The player hit a six =&gt; Cricket <br/> The player made a slam-dunk =&gt;</td>
+<td style="text-align: left;">Basketball</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>Note how we had to provide explicit instruction ("Translate to Spanish") in zero-shot prompting, but it gets inferred in the one-shot prompting example. The few-shot example shows how adding more examples allows models to make more accurate inferences with no added instructions.</p>
+<h3 id="prompt-cues">Prompt Cues<a class="headerlink" href="#prompt-cues" title="Permanent link">&para;</a></h3>
+<p>Another technique for using primary content is to provide <em>cues</em> rather than examples. In this case, we are giving the model a nudge in the right direction by <em>starting it off</em> with a snippet that reflects the desired response format. The model then "takes the cue" to continue in that vein.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Number of Cues</th>
+<th style="text-align: left;">Prompt (Input)</th>
+<th style="text-align: left;">Completion (Output)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. <br/><strong>Summarize This</strong></td>
+<td style="text-align: left;">Jupiter is the largest planet in our Solar System and the fifth one from the Sun. It is a gas giant with a mass 1/1000th of the Sun's, but it is heavier than all the other planets combined. Ancient civilizations have known about Jupiter for a long time, and it is easily visible in the night sky..</td>
+</tr>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. <br/><strong>Summarize This</strong> <br/> What we learned is that Jupiter</td>
+<td style="text-align: left;">is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets combined. It is easily visible to the naked eye and has been known since ancient times.</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. <br/><strong>Summarize This</strong> <br/> Top 3 Facts We Learned:</td>
+<td style="text-align: left;">1. Jupiter is the fifth planet from the Sun and the largest in the Solar System. <br/> 2. It is a gas giant with a mass one-thousandth that of the Sun...<br/> 3. Jupiter has been visible to the naked eye since ancient times ...</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="prompt-templates">Prompt Templates<a class="headerlink" href="#prompt-templates" title="Permanent link">&para;</a></h3>
+<p>A prompt template is a <em>pre-defined recipe for a prompt</em> that can be stored and reused as needed, to drive more consistent user experiences at scale. In its simplest form, it is simply a collection of prompt examples like <a href="https://platform.openai.com/examples?WT.mc_id=academic-105485-koreyst">this one from OpenAI</a> that provides both the interactive prompt components (user and system messages) and the API-driven request format - to support reuse.</p>
+<p>In it's more complex form like <a href="https://python.langchain.com/docs/modules/model_io/prompts/prompt_templates/?WT.mc_id=academic-105485-koreyst">this example from LangChain</a> it contains <em>placeholders</em> that can be replaced with data from a variety of sources (user input, system context, external data sources etc.) to generate a prompt dynamically. This allows us to create a library of reusable prompts that can be used to drive consistent user experiences <strong>programmatically</strong> at scale.</p>
+<p>Finally, the real value of templates lies in the ability to create and publish <em>prompt libraries</em> for vertical application domains - where the prompt template is now <em>optimized</em> to reflect application-specific context or examples that make the responses more relevant and accurate for the targeted user audience. The <a href="https://github.com/microsoft/prompts-for-edu?WT.mc_id=academic-105485-koreyst">Prompts For Edu</a> repository is a great example of this approach, curating a library of prompts for the education domain with emphasis on key objectives like lesson planning, curriculum design, student tutoring etc.</p>
+<h2 id="supporting-content">Supporting Content<a class="headerlink" href="#supporting-content" title="Permanent link">&para;</a></h2>
+<p>If we think about prompt construction as having a instruction (task) and a target (primary content), then <em>secondary content</em> is like additional context we provide to <strong>influence the output in some way</strong>. It could be tuning parameters, formatting instructions, topic taxonomies etc. that can help the model <em>tailor</em> its response to be suit the desired user objectives or expectations.</p>
+<p>For example: Given a course catalog with extensive metadata (name, description, level, metadata tags, instructor etc.) on all the available courses in the curriculum:</p>
+<ul>
+<li>we can define an instruction to "summarize the course catalog for Fall 2023"</li>
+<li>we can use the primary content to provide a few examples of the desired output</li>
+<li>we can use the secondary content to identify the top 5 "tags" of interest.</li>
+</ul>
+<p>Now, the model can provide a summary in the format shown by the few examples - but if a result has multiple tags, it can prioritize the 5 tags identified in secondary content.</p>
+<hr />
+<!--
+LESSON TEMPLATE:
+This unit should cover core concept #1.
+Reinforce the concept with examples and references.
+
+CONCEPT #3:
+Prompt Engineering Techniques.
+What are some basic techniques for prompt engineering?
+Illustrate it with some exercises.
+-->
+
+<h2 id="prompting-best-practices">Prompting Best Practices<a class="headerlink" href="#prompting-best-practices" title="Permanent link">&para;</a></h2>
+<p>Now that we know how prompts can be <em>constructed</em>, we can start thinking about how to <em>design</em> them to reflect best practices. We can think about this in two parts - having the right <em>mindset</em> and applying the right <em>techniques</em>.</p>
+<h3 id="prompt-engineering-mindset">Prompt Engineering Mindset<a class="headerlink" href="#prompt-engineering-mindset" title="Permanent link">&para;</a></h3>
+<p>Prompt Engineering is a trial-and-error process so keep three broad guiding factors in mind:</p>
+<ol>
+<li>
+<p><strong>Domain Understanding Matters.</strong> Response accuracy and relevance is a function of the <em>domain</em> in which that application or user operates. Apply your intuition and domain expertise to <strong>customize techniques</strong> further. For instance, define <em>domain-specific personalities</em> in your system prompts, or use <em>domain-specific templates</em> in your user prompts. Provide secondary content that reflects domain-specific contexts, or use <em>domain-specific cues and examples</em> to guide the model towards familiar usage patterns.</p>
+</li>
+<li>
+<p><strong>Model Understanding Matters.</strong> We know models are stochastic by nature. But model implementations can also vary in terms of the training dataset they use (pre-trained knowledge), the capabilities they provide (e.g., via API or SDK) and the type of content they are optimized for (e.g, code vs. images vs. text). Understand the strengths and limitations of the model you are using, and use that knowledge to <em>prioritize tasks</em> or build <em>customized templates</em> that are optimized for the model's capabilities.</p>
+</li>
+<li>
+<p><strong>Iteration &amp; Validation Matters.</strong> Models are evolving rapidly, and so are the techniques for prompt engineering. As a domain expert, you may have other context or criteria <em>your</em> specific application, that may not apply to the broader community. Use prompt engineering tools &amp; techniques to "jump start" prompt construction, then iterate and validate the results using your own intuition and domain expertise. Record your insights and create a <strong>knowledge base</strong> (e.g, prompt libraries) that can be used as a new baseline by others, for faster iterations in the future.</p>
+</li>
+</ol>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<p>Now let's look at common best practices that are recommended by <a href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api?WT.mc_id=academic-105485-koreyst">OpenAI</a> and <a href="https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering#best-practices?WT.mc_id=academic-105485-koreyst">Azure OpenAI</a> practitioners.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">What</th>
+<th style="text-align: left;">Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Evaluate the latest models.</td>
+<td style="text-align: left;">New model generations are likely to have improved features and quality - but may also incur higher costs. Evaluate them for impact, then make migration decisions.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Separate instructions &amp; context</td>
+<td style="text-align: left;">Check if your model/provider defines <em>delimiters</em> to distinguish instructions, primary and secondary content more clearly. This can help models assign weights more accurately to tokens.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Be specific and clear</td>
+<td style="text-align: left;">Give more details about the desired context, outcome, length, format, style etc. This will improve both the quality and consistency of responses. Capture recipes in reusable templates.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Be descriptive, use examples</td>
+<td style="text-align: left;">Models may respond better to a "show and tell" approach. Start with a <code>zero-shot</code> approach where you give it an instruction (but no examples) then try <code>few-shot</code> as a refinement, providing a few examples of the desired output. Use analogies.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Use cues to jumpstart completions</td>
+<td style="text-align: left;">Nudge it towards a desired outcome by giving it some leading words or phrases that it can use as a starting point for the response.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Double Down</td>
+<td style="text-align: left;">Sometimes you may need to repeat yourself to the model. Give instructions before and after your primary content, use an instruction and a cue, etc. Iterate &amp; validate to see what works.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Order Matters</td>
+<td style="text-align: left;">The order in which you present information to the model may impact the output, even in the learning examples, thanks to recency bias. Try different options to see what works best.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Give the model an “out”</td>
+<td style="text-align: left;">Give the model a <em>fallback</em> completion response it can provide if it cannot complete the task for any reason. This can reduce chances of models generating false or fabricated responses.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>As with any best practice, remember that <em>your mileage may vary</em> based on the model, the task and the domain. Use these as a starting point, and iterate to find what works best for you. Constantly re-evaluate your prompt engineering process as new models and tools become available, with a focus on process scalability and response quality.</p>
+<!--
+LESSON TEMPLATE:
+This unit should provide a code challenge if applicable
+
+CHALLENGE:
+Link to a Jupyter Notebook with only the code comments in the instructions (code sections are empty).
+
+SOLUTION:
+Link to a copy of that Notebook with the prompts filled in and run, showing what one example could be.
+-->
+
+<h2 id="assignment">Assignment<a class="headerlink" href="#assignment" title="Permanent link">&para;</a></h2>
+<p>Congratulations! You made it to the end of the lesson! It's time to put some of those concepts and techniques to the test with real examples!</p>
+<p>For our assignment, we'll be using a Jupyter Notebook with exercises you can complete interactively. You can also extend the Notebook with your own Markdown and Code cells to explore ideas and techniques on your own.</p>
+<h3 id="to-get-started-fork-the-repo-then">To get started, fork the repo, then<a class="headerlink" href="#to-get-started-fork-the-repo-then" title="Permanent link">&para;</a></h3>
+<ul>
+<li>(Recommended) Launch GitHub Codespaces</li>
+<li>(Alternatively) Clone the repo to your local device and use it with Docker Desktop</li>
+<li>(Alternatively) Open the Notebook with your preferred Notebook runtime environment.</li>
+</ul>
+<h3 id="next-configure-your-environment-variables">Next, configure your environment variables<a class="headerlink" href="#next-configure-your-environment-variables" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Copy the <code>.env.copy</code> file in repo root to <code>.env</code> and fill in the <code>AZURE_OPENAI_API_KEY</code>, <code>AZURE_OPENAI_ENDPOINT</code> and <code>AZURE_OPENAI_DEPLOYMENT</code> values. Come back to <a href="./04-prompt-engineering-fundamentals#learning-sandbox">Learning Sandbox section</a> to learn how.</li>
+</ul>
+<h3 id="next-open-the-jupyter-notebook">Next, open the Jupyter Notebook<a class="headerlink" href="#next-open-the-jupyter-notebook" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Select the runtime kernel. If using options 1 or 2, simply select the default Python 3.10.x kernel provided by the dev container.</li>
+</ul>
+<p>You're all set to run the exercises. Note that there are no <em>right and wrong</em> answers here - just exploring options by trial-and-error and building intuition for what works for a given model and application domain.</p>
+<p><em>For this reason there are no Code Solution segments in this lesson. Instead, the Notebook will have Markdown cells titled "My Solution:" that shows one example output for reference.</em></p>
+<!--
+LESSON TEMPLATE:
+Wrap the section with a summary and resources for self-guided learning.
+-->
+
+<h2 id="knowledge-check">Knowledge check<a class="headerlink" href="#knowledge-check" title="Permanent link">&para;</a></h2>
+<p>Which of the following is a good prompt following some reasonable best practices?</p>
+<ol>
+<li>Show me an image of red car</li>
+<li>Show me an image of red car of make Volvo and model XC90 parked by a cliff with the sun setting</li>
+<li>Show me an image of red car of make Volvo and model XC90</li>
+</ol>
+<p>A: 2, it's the best prompt as it provides details on "what" and goes into specifics (not just any car but a specific make and model) and it also describes the overall setting. 3 is next best as it also contains a lot of description.</p>
+<h2 id="challenge">🚀 Challenge<a class="headerlink" href="#challenge" title="Permanent link">&para;</a></h2>
+<p>See if you can leverage the "cue" technique with the prompt: Complete the sentence "Show me an image of red car of make Volvo and ". What does it respond with, and how would you improve it?</p>
+<h2 id="great-work-continue-your-learning">Great Work! Continue Your Learning<a class="headerlink" href="#great-work-continue-your-learning" title="Permanent link">&para;</a></h2>
+<p>Want to learn more about different Prompt Engineering concepts? Go to the <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">continued learning page</a> to find other great resources on this topic.</p>
+<p>Head over to Lesson 5 where we will look at <a href="../05-advanced-prompts/?WT.mc_id=academic-105485-koreyst">advanced prompting techniques</a>!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../03-using-generative-ai-responsibly/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3. Responsible AI">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3. Responsible AI
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../05-advanced-prompts/" class="md-footer__link md-footer__link--next" aria-label="Next: 5. Advanced Prompts">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                5. Advanced Prompts
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

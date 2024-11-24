@@ -1,0 +1,2128 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/06-text-generation-apps/translations/tw/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>建構文本生成應用程式 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              建構文本生成應用程式
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      簡介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      學習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      什麼是文字生成應用程式?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="什麼是文字生成應用程式?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制台和 UI 應用程式是有限的
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      文字生成應用程式的好處
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      我可以用文字生成應用程式建構什麼？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      我該如何開始？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdks" class="md-nav__link">
+    <span class="md-ellipsis">
+      函式庫/SDKs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一個使用 openai 的應用程式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一個使用 openai 的應用程式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安裝 openai
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      建立資源
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      找到 API 金鑰和端點
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定配置 Azure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      產生文字
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="產生文字">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      聊天完成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      練習 - 您的第一個文本生成應用程序
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      不同類型的提示，用於不同的事情
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      更實用的使用案例: 秘訣產生器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      練習 - 建構一個秘訣產生器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="練習 - 建構一個秘訣產生器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      改進：新增篩選和購物清單
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      改善你的設定
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      作業
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      解決方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="解決方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      學習夥伴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      歷史機器人
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      知識檢查
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 挑戰
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      很棒的工作！繼續學習
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">建構文本生成應用程式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson6-gh?WT.mc_id=academic-105485-koreyst"><img alt="建構文本生成應用程式" src="../../images/06-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<blockquote>
+<p><em>(點擊上方圖片以觀看本課的影片)</em></p>
+</blockquote>
+<p>你已經透過這個課程看到了核心概念，如提示，甚至還有一個叫做「提示工程」的整個學科。許多工具如ChatGPT、Office 365、Microsoft Power Platform等，都支持你使用提示來完成某些事情。</p>
+<p>為了讓你將這樣的體驗添加到應用程式中，你需要了解提示、完成等概念，並選擇一個函式庫來使用。這正是你在本章中將學到的內容。</p>
+<h2 id="_2">簡介<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在本章中，你將：</p>
+<ul>
+<li>了解 openai 函式庫及其核心概念。</li>
+<li>使用 openai 建構一個文字產生應用程式。</li>
+<li>了解如何使用提示、溫度和代幣等概念來建構一個文字產生應用程式。</li>
+</ul>
+<h2 id="_3">學習目標<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在本課程結束時，你將能夠：</p>
+<ul>
+<li>解釋什麼是文字生成應用程式。</li>
+<li>使用 openai 建立一個文字生成應用程式。</li>
+<li>配置你的應用程式以使用更多或更少的 tokens，並且改變溫度，以獲得多樣化的輸出。</li>
+</ul>
+<h2 id="_4">什麼是文字生成應用程式?<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>通常當你建構一個應用程式時，它會有某種介面，如下所示:</p>
+<ul>
+<li>基於命令。控制台應用程式是典型的應用程式，你輸入一個命令，它就會執行一個任務。例如，<code>git</code> 是一個基於命令的應用程式。</li>
+<li>使用者介面 (UI)。有些應用程式有圖形使用者介面 (GUI)，你可以點擊按鈕、輸入文字、選擇選項等。</li>
+</ul>
+<h3 id="ui">控制台和 UI 應用程式是有限的<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h3>
+<p>將其與基於命令的應用程式進行比較，在那裡你輸入一個命令:</p>
+<ul>
+<li><strong>它有限制</strong>。你不能隨便輸入任何命令，只能輸入應用程式支援的命令。</li>
+<li><strong>特定語言</strong>。有些應用程式支援多種語言，但預設情況下應用程式是為特定語言建構的，即使你可以添加更多語言支援。</li>
+</ul>
+<h3 id="_5">文字生成應用程式的好處<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>那麼文本生成應用程式有什麼不同呢?</p>
+<p>在一個文本生成應用中，你有更多的靈活性，你不會被限制於一組命令或特定的輸入語言。相反，你可以使用自然語言與應用互動。另一個好處是，因為你已經在與一個經過大量資訊訓練的數據源互動，而傳統應用可能會被限制於資料庫中的內容。</p>
+<h3 id="_6">我可以用文字生成應用程式建構什麼？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>有許多事情你可以建構。例如:</p>
+<ul>
+<li><strong>聊天機器人</strong>。一個回答有關主題問題的聊天機器人，比如你的公司及其產品，可能是一個很好的匹配。</li>
+<li><strong>助手</strong>。LLM 在總結文本、從文本中獲取見解、生成像簡歷這樣的文本等方面非常出色。</li>
+<li><strong>程式碼助手</strong>。根據你使用的語言模型，你可以建構一個幫助你編寫程式碼的程式碼助手。例如，你可以使用像 GitHub Copilot 以及 ChatGPT 這樣的產品來幫助你編寫程式碼。</li>
+</ul>
+<h2 id="_7">我該如何開始？<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>嗯，你需要找到一種方式來整合 LLM，這通常涉及以下兩種方法：</p>
+<ul>
+<li>使用 API。在這裡，你正在使用提示來構建網路請求並獲取生成的文本。</li>
+<li>使用函式庫。函式庫有助於封裝 API 呼叫並使其更易於使用。</li>
+</ul>
+<h2 id="sdks">函式庫/SDKs<a class="headerlink" href="#sdks" title="Permanent link">&para;</a></h2>
+<p>有一些知名的函式庫可用於處理 LLM，例如:</p>
+<ul>
+<li><strong>openai</strong>，此函式庫讓連接到您的模型並發送提示變得容易。</li>
+</ul>
+<p>然後有一些函式庫在更高層次上運作，例如:</p>
+<ul>
+<li><strong>Langchain</strong>。Langchain 眾所周知並且支援 Python。</li>
+<li><strong>Semantic Kernel</strong>。Semantic Kernel 是 Microsoft 的一個函式庫，支援 C#、Python 和 Java 語言。</li>
+</ul>
+<h2 id="openai">第一個使用 openai 的應用程式<a class="headerlink" href="#openai" title="Permanent link">&para;</a></h2>
+<p>讓我們看看如何建構我們的第一個應用程式，需要哪些函式庫，需要多少等等。</p>
+<h3 id="openai_1">安裝 openai<a class="headerlink" href="#openai_1" title="Permanent link">&para;</a></h3>
+<p>有許多函式庫可以與 OpenAI 或 Azure OpenAI 互動。也可以使用多種程式語言，如 C#、Python、JavaScript、Java 等。我們選擇使用 <code>openai</code> Python 函式庫，因此我們將使用 <code>pip</code> 來安裝它。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>openai
+</code></pre></div></td></tr></table></div>
+<h3 id="_8">建立資源<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>你需要執行以下步驟:</p>
+<ul>
+<li>在 Azure 上建立帳戶 <a href="https://azure.microsoft.com/free/?WT.mc_id=academic-105485-koreyst">https://azure.microsoft.com/free/</a>。</li>
+<li>獲取 Azure OpenAI 的存取權。前往 <a href="https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai?WT.mc_id=academic-105485-koreyst">https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai</a> 並請求存取權。</li>
+</ul>
+<blockquote>
+<p>[!NOTE]
+在撰寫本文時，您需要申請存取 Azure OpenAI。</p>
+</blockquote>
+<ul>
+<li>安裝 Python <a href="https://www.python.org/">https://www.python.org/</a></li>
+<li>已建立 Azure OpenAI 服務資源。請參閱此指南了解如何<a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal?WT.mc_id=academic-105485-koreyst">建立資源</a>。</li>
+</ul>
+<h3 id="api">找到 API 金鑰和端點<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<p>此時，你需要告訴你的 <code>openai</code> 函式庫要使用哪個 API 金鑰。要找到你的 API 金鑰，請前往 Azure OpenAI 資源的 "Keys and Endpoint" 部分並複製 "Key 1" 值。</p>
+<p><img alt="金鑰和端點資源頁面在 Azure Portal 中" src="https://learn.microsoft.com/azure/ai-services/openai/media/quickstarts/endpoint.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>現在你已經複製了這些資訊，讓我們指示函式庫使用它。</p>
+<blockquote>
+<p>[!NOTE]
+值得將您的 API 金鑰與程式碼分開。您可以使用環境變數來做到這一點。</p>
+<ul>
+<li>將環境變數 <code>OPENAI_API_KEY</code> 設定為您的 API 金鑰。
+  <code>export OPENAI_API_KEY='sk-...'</code></li>
+</ul>
+</blockquote>
+<h3 id="azure">設定配置 Azure<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
+<p>如果你正在使用 Azure OpenAI，以下是設定配置的方法:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-05-15&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;API_BASE&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>以上我們設定以下內容:</p>
+<ul>
+<li><code>api_type</code> 設為 <code>azure</code>。這告訴函式庫使用 Azure OpenAI 而非 OpenAI。</li>
+<li><code>api_key</code>，這是你在 Azure Portal 中找到的 API 金鑰。</li>
+<li><code>api_version</code>，這是你想使用的 API 版本。在撰寫本文時，最新的版本是 <code>2023-05-15</code>。</li>
+<li><code>api_base</code>，這是 API 的端點。你可以在 Azure Portal 中的 API 金鑰旁找到。</li>
+</ul>
+<blockquote>
+<p>[!NOTE] &gt; <code>os.getenv</code> 是一個讀取環境變數的函式。你可以使用它來讀取像是 <code>OPENAI_API_KEY</code> 和 <code>API_BASE</code> 的環境變數。在你的終端機中設定這些環境變數或使用像 <code>dotenv</code> 這樣的函式庫。</p>
+</blockquote>
+<h2 id="_9">產生文字<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>生成文本的方法是使用 <code>Completion</code> 類別。以下是一個範例:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Complete the following: Once upon a time there was a&quot;</span>
+
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>在上述程式碼中，我們建立一個完成物件並傳入我們想要使用的模型和提示。然後我們列印產生的文字。</p>
+<h3 id="_10">聊天完成<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>到目前為止，你已經看到我們如何使用 <code>Completion</code> 來產生文本。但還有另一個更適合聊天機器人的類別，稱為 <code>ChatCompletion</code>。以下是使用它的範例：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;sk-...&quot;</span>
+
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello world&quot;</span><span class="p">}])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>更多關於此功能的資訊在即將到來的章節中。</p>
+<h2 id="-">練習 - 您的第一個文本生成應用程序<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<p>現在我們已經學會如何設定和配置 openai，是時候建構你的第一個文字產生應用了。要建構你的應用，請按照以下步驟操作:</p>
+<ol>
+<li>建立虛擬環境並安裝 openai:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>openai
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!NOTE]
+如果你使用的是 Windows，請輸入 <code>venv\Scripts\activate</code> 而不是 <code>source venv/bin/activate</code>。</p>
+<p>[!NOTE]
+前往 <a href="https://portal.azure.com/?WT.mc_id=academic-105485-koreyst">https://portal.azure.com/</a> 並搜尋 <code>Open AI</code>，選擇 <code>Open AI resource</code>，然後選擇 <code>Keys and Endpoint</code> 並複製 <code>Key 1</code> 的值來找到你的 Azure OpenAI 金鑰。</p>
+</blockquote>
+<ol>
+<li>建立一個 <em>app.py</em> 文件並給它以下程式碼:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;&lt;replace this value with your open ai key or Azure OpenAI key&gt;&quot;</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-05-15&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;&lt;endpoint found in Azure Portal where your API key is&gt;&quot;</span>
+<span class="n">deployment_name</span> <span class="o">=</span> <span class="s2">&quot;&lt;deployment name&gt;&quot;</span>
+
+<span class="c1"># 添加你的完成程式碼</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Complete the following: Once upon a time there was a&quot;</span>
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+
+<span class="c1"># 進行完成</span>
+<span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">)</span>
+
+<span class="c1"># 打印回應</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!NOTE]
+如果你使用的是 Azure OpenAI，你需要將 <code>api_type</code> 設置為 <code>azure</code> 並將 <code>api_key</code> 設置為你的 Azure OpenAI 金鑰。</p>
+</blockquote>
+<p>你應該會看到如下輸出:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go"> very unhappy _____.</span>
+
+<span class="go">Once upon a time there was a very unhappy mermaid.</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_11">不同類型的提示，用於不同的事情<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>現在你已經看到了如何使用提示生成文本。你甚至有一個正在執行的程式碼，可以修改和更改以生成不同類型的文本。</p>
+<p>提示可以用於各種任務。例如:</p>
+<ul>
+<li><strong>生成一種類型的文本</strong>。例如，你可以生成一首詩、測驗的問題等。</li>
+<li><strong>查找資訊</strong>。你可以使用提示來查找資訊，例如以下範例'在網頁開發中，CORS 是什麼意思？'。</li>
+<li><strong>生成程式碼</strong>。你可以使用提示來生成程式碼，例如開發用於驗證電子郵件的正則表達式，或者為什麼不生成整個程式，例如一個網頁應用程式？</li>
+</ul>
+<h2 id="_12">更實用的使用案例: 秘訣產生器<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>想像一下你在家裡有食材，並且你想做些料理。為此，你需要一個秘訣。一種找到秘訣的方法是使用搜尋引擎，或者你可以使用 LLM 來完成。</p>
+<p>你可以這樣寫一個提示：</p>
+<blockquote>
+<p>"給我 5 個使用以下食材的菜餚秘訣: 雞肉、馬鈴薯和胡蘿蔔。每個秘訣列出所有使用的食材"</p>
+</blockquote>
+<p>根據上述提示，你可能會得到類似的回應:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">1. 烤雞和蔬菜:</span>
+<span class="go">材料:</span>
+<span class="go">- 4 塊雞腿</span>
+<span class="go">- 2 個馬鈴薯，切成塊</span>
+<span class="go">- 2 根胡蘿蔔，切成塊</span>
+<span class="go">- 2 湯匙橄欖油</span>
+<span class="go">- 2 瓣大蒜，切碎</span>
+<span class="go">- 1 茶匙乾百里香</span>
+<span class="go">- 1 茶匙乾牛至</span>
+<span class="go">- 鹽和胡椒，適量</span>
+
+<span class="go">2. 雞肉和馬鈴薯燉菜:</span>
+<span class="go">材料:</span>
+<span class="go">- 2 湯匙橄欖油</span>
+<span class="go">- 1 個洋蔥，切丁</span>
+<span class="go">- 2 瓣大蒜，切碎</span>
+<span class="go">- 2 塊雞胸肉，切成塊</span>
+<span class="go">- 2 個馬鈴薯，切成塊</span>
+<span class="go">- 2 根胡蘿蔔，切成塊</span>
+<span class="go">- 1 茶匙乾牛至</span>
+<span class="go">- 1 茶匙乾百里香</span>
+<span class="go">- 1 杯雞湯</span>
+<span class="go">- 鹽和胡椒，適量</span>
+
+<span class="go">3. 雞肉和馬鈴薯烤盤:</span>
+<span class="go">材料:</span>
+<span class="go">- 2 湯匙橄欖油</span>
+<span class="go">- 2 塊雞胸肉，切成塊</span>
+<span class="go">- 2 個馬鈴薯，切成塊</span>
+<span class="go">- 2 根胡蘿蔔，切成塊</span>
+<span class="go">- 1 個洋蔥，切丁</span>
+<span class="go">- 2 瓣大蒜，切碎</span>
+<span class="go">- 1 茶匙乾牛至</span>
+<span class="go">- 1 茶匙乾百里香</span>
+<span class="go">- 1 杯雞湯</span>
+<span class="go">- 鹽和胡椒，適量</span>
+
+<span class="go">4. 雞肉和馬鈴薯湯:</span>
+<span class="go">材料:</span>
+<span class="go">- 2 湯匙橄欖油</span>
+<span class="go">- 1 個洋蔥，切丁</span>
+<span class="go">- 2 瓣大蒜，切碎</span>
+<span class="go">- 2 塊雞胸肉，切成塊</span>
+<span class="go">- 2 個馬鈴薯，切成塊</span>
+<span class="go">- 2 根胡蘿蔔，切成塊</span>
+<span class="go">- 1 茶匙乾牛至</span>
+<span class="go">- 1 茶匙乾百里香</span>
+<span class="go">- 4 杯雞湯</span>
+<span class="go">- 鹽和胡椒，適量</span>
+
+<span class="go">5. 雞肉和馬鈴薯雜燴:</span>
+<span class="go">材料:</span>
+<span class="go">- 2 湯匙橄欖油</span>
+<span class="go">- 2 塊雞胸肉，切成塊</span>
+<span class="go">- 2 個馬鈴薯，切成塊</span>
+<span class="go">- 2 根胡蘿蔔，切成塊</span>
+<span class="go">- 1 個洋蔥，切丁</span>
+<span class="go">- 2 瓣大蒜，切碎</span>
+<span class="go">- 1 茶匙乾牛至</span>
+</code></pre></div></td></tr></table></div>
+<p>這個結果很棒，我知道要煮什麼。此時，可能有用的改進是:</p>
+<ul>
+<li>過濾掉我不喜歡或過敏的食材。</li>
+<li>產生購物清單，以防我家裡沒有所有食材。</li>
+</ul>
+<p>對於上述情況，讓我們添加一個額外的提示:</p>
+<blockquote>
+<p>"請移除含有大蒜的秘訣，因為我對大蒜過敏，並用其他東西替代。另外，請為這些秘訣製作一個購物清單，考慮到我家裡已經有雞肉、馬鈴薯和胡蘿蔔。"</p>
+</blockquote>
+<p>現在你有一個新結果，即：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">1. 烤雞和蔬菜:</span>
+<span class="go">食材:</span>
+<span class="go">- 4 隻雞腿</span>
+<span class="go">- 2 個馬鈴薯，切成塊</span>
+<span class="go">- 2 根胡蘿蔔，切成塊</span>
+<span class="go">- 2 湯匙橄欖油</span>
+<span class="go">- 1 茶匙乾百里香</span>
+<span class="go">- 1 茶匙乾牛至</span>
+<span class="go">- 鹽和胡椒，適量</span>
+
+<span class="go">2. 雞肉和馬鈴薯燉菜:</span>
+<span class="go">食材:</span>
+<span class="go">- 2 湯匙橄欖油</span>
+<span class="go">- 1 個洋蔥，切丁</span>
+<span class="go">- 2 塊雞胸肉，切成塊</span>
+<span class="go">- 2 個馬鈴薯，切成塊</span>
+<span class="go">- 2 根胡蘿蔔，切成塊</span>
+<span class="go">- 1 茶匙乾牛至</span>
+<span class="go">- 1 茶匙乾百里香</span>
+<span class="go">- 1 杯雞湯</span>
+<span class="go">- 鹽和胡椒，適量</span>
+
+<span class="go">3. 雞肉和馬鈴薯烤盤:</span>
+<span class="go">食材:</span>
+<span class="go">- 2 湯匙橄欖油</span>
+<span class="go">- 2 塊雞胸肉，切成塊</span>
+<span class="go">- 2 個馬鈴薯，切成塊</span>
+<span class="go">- 2 根胡蘿蔔，切成塊</span>
+<span class="go">- 1 個洋蔥，切丁</span>
+<span class="go">- 1 茶匙乾牛至</span>
+<span class="go">- 1 茶匙乾百里香</span>
+<span class="go">- 1 杯雞湯</span>
+<span class="go">- 鹽和胡椒，適量</span>
+
+<span class="go">4. 雞肉和馬鈴薯湯:</span>
+<span class="go">食材:</span>
+<span class="go">- 2 湯匙橄欖油</span>
+<span class="go">- 1 個洋蔥，切丁</span>
+<span class="go">- 2 塊雞胸肉，切成塊</span>
+<span class="go">- 2 個馬鈴薯，切成塊</span>
+<span class="go">- 2 根胡蘿蔔，切成塊</span>
+<span class="go">- 1 茶匙乾牛至</span>
+<span class="go">- 1 茶匙乾百里香</span>
+<span class="go">- 4 杯雞湯</span>
+<span class="go">- 鹽和胡椒，適量</span>
+
+<span class="go">5. 雞肉和馬鈴薯雜燴:</span>
+<span class="go">食材:</span>
+<span class="go">- 2 湯匙橄欖油</span>
+<span class="go">- 2 塊雞胸肉，切成塊</span>
+<span class="go">- 2 個馬鈴薯，切成塊</span>
+<span class="go">- 2 根胡蘿蔔，切成塊</span>
+<span class="go">- 1 個洋蔥，切丁</span>
+<span class="go">- 1 茶匙乾牛至</span>
+
+<span class="go">購物清單:</span>
+<span class="go">- 橄欖油</span>
+<span class="go">- 洋蔥</span>
+<span class="go">- 百里香</span>
+<span class="go">- 牛至</span>
+<span class="go">- 鹽</span>
+<span class="go">- 胡椒</span>
+</code></pre></div></td></tr></table></div>
+<p>這就是你的五個秘訣，沒有提到大蒜，並且你還有一個購物清單，考慮到你家裡已經有的東西。</p>
+<h2 id="-_1">練習 - 建構一個秘訣產生器<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h2>
+<p>現在我們已經演示了一個場景，讓我們寫程式碼來匹配演示的場景。要做到這一點，請按照以下步驟操作:</p>
+<ol>
+<li>使用現有的 <em>app.py</em> 文件作為起點</li>
+<li>找到 <code>prompt</code> 變數並將其程式碼更改為以下內容：</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Show me 5 recipes for a dish with the following ingredients: chicken, potatoes, and carrots. Per recipe, list all the ingredients used&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>如果你現在執行程式碼，你應該會看到類似以下的輸出：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">-Chicken Stew with Potatoes and Carrots: 3 tablespoons oil, 1 onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 bay leaf, 1 thyme sprig, 1/2 teaspoon salt, 1/4 teaspoon black pepper, 1 1/2 cups chicken broth, 1/2 cup dry white wine, 2 tablespoons chopped fresh parsley, 2 tablespoons unsalted butter, 1 1/2 pounds boneless, skinless chicken thighs, cut into 1-inch pieces</span>
+<span class="go">-Oven-Roasted Chicken with Potatoes and Carrots: 3 tablespoons extra-virgin olive oil, 1 tablespoon Dijon mustard, 1 tablespoon chopped fresh rosemary, 1 tablespoon chopped fresh thyme, 4 cloves garlic, minced, 1 1/2 pounds small red potatoes, quartered, 1 1/2 pounds carrots, quartered lengthwise, 1/2 teaspoon salt, 1/4 teaspoon black pepper, 1 (4-pound) whole chicken</span>
+<span class="go">-Chicken, Potato, and Carrot Casserole: cooking spray, 1 large onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and shredded, 1 potato, peeled and shredded, 1/2 teaspoon dried thyme leaves, 1/4 teaspoon salt, 1/4 teaspoon black pepper, 2 cups fat-free, low-sodium chicken broth, 1 cup frozen peas, 1/4 cup all-purpose flour, 1 cup 2% reduced-fat milk, 1/4 cup grated Parmesan cheese</span>
+
+<span class="go">-One Pot Chicken and Potato Dinner: 2 tablespoons olive oil, 1 pound boneless, skinless chicken thighs, cut into 1-inch pieces, 1 large onion, chopped, 3 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 bay leaf, 1 thyme sprig, 1/2 teaspoon salt, 1/4 teaspoon black pepper, 2 cups chicken broth, 1/2 cup dry white wine</span>
+
+<span class="go">-Chicken, Potato, and Carrot Curry: 1 tablespoon vegetable oil, 1 large onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 teaspoon ground coriander, 1 teaspoon ground cumin, 1/2 teaspoon ground turmeric, 1/2 teaspoon ground ginger, 1/4 teaspoon cayenne pepper, 2 cups chicken broth, 1/2 cup dry white wine, 1 (15-ounce) can chickpeas, drained and rinsed, 1/2 cup raisins, 1/2 cup chopped fresh cilantro</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>注意，你的 LLM 是非確定性的，所以每次執行程式時可能會得到不同的結果。</p>
+</blockquote>
+<p>很好，讓我們看看如何改進。為了改進，我們希望確保程式碼是靈活的，以便可以改進和更改食材和食譜數量。</p>
+<ol>
+<li>讓我們以以下方式更改程式碼：</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">no_recipes</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;No of recipes (for example, 5: &quot;</span><span class="p">)</span>
+
+<span class="n">ingredients</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;List of ingredients (for example, chicken, potatoes, and carrots: &quot;</span><span class="p">)</span>
+
+<span class="c1"># interpolate the number of recipes into the prompt an ingredients</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Show me </span><span class="si">{</span><span class="n">no_recipes</span><span class="si">}</span><span class="s2"> recipes for a dish with the following ingredients: </span><span class="si">{</span><span class="n">ingredients</span><span class="si">}</span><span class="s2">. Per recipe, list all the ingredients used&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>測試執行程式碼，可能看起來像這樣：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">No of recipes (for example, 5: 3</span>
+<span class="go">List of ingredients (for example, chicken, potatoes, and carrots: milk,strawberries</span>
+
+<span class="go">-Strawberry milk shake: milk, strawberries, sugar, vanilla extract, ice cubes</span>
+<span class="go">-Strawberry shortcake: milk, flour, baking powder, sugar, salt, unsalted butter, strawberries, whipped cream</span>
+<span class="go">-Strawberry milk: milk, strawberries, sugar, vanilla extract</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_13">改進：新增篩選和購物清單<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>我們現在有一個可運作的應用程式，能夠產生秘訣，並且它很靈活，因為它依賴於使用者的輸入，不僅是秘訣的數量，還有使用的成分。</p>
+<p>為了進一步改進它，我們想添加以下內容:</p>
+<ul>
+<li><strong>篩選食材</strong>。我們希望能夠篩選出我們不喜歡或過敏的食材。為了完成這個變更，我們可以編輯現有的提示，並在其末尾添加一個篩選條件，如下所示：</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">filter</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;篩選（例如，素食，純素，或無麩質: &quot;</span><span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;給我</span><span class="si">{</span><span class="n">no_recipes</span><span class="si">}</span><span class="s2">道菜的食譜，包含以下食材: </span><span class="si">{</span><span class="n">ingredients</span><span class="si">}</span><span class="s2">。每個食譜列出所有使用的食材，不包含</span><span class="si">{</span><span class="nb">filter</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>上述程式碼中，我們在提示的末尾添加了<code>{filter}</code>，並且從用戶那裡獲取篩選值。</p>
+<p>現在，執行程式的範例輸入可以如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">食譜數量（例如，5: 3</span>
+<span class="go">食材列表（例如，雞肉，馬鈴薯和胡蘿蔔: 洋蔥,牛奶</span>
+<span class="go">篩選（例如，素食，純素，或無麩質: 不含牛奶</span>
+
+<span class="go">1. 法式洋蔥湯</span>
+
+<span class="go">食材:</span>
+
+<span class="go">-1個大洋蔥，切片</span>
+<span class="go">-3杯牛肉湯</span>
+<span class="go">-1杯牛奶</span>
+<span class="go">-6片法國麵包</span>
+<span class="go">-1/4杯磨碎的帕瑪森起司</span>
+<span class="go">-1湯匙黃油</span>
+<span class="go">-1茶匙乾百里香</span>
+<span class="go">-1/4茶匙鹽</span>
+<span class="go">-1/4茶匙黑胡椒</span>
+
+<span class="go">做法:</span>
+
+<span class="go">1. 在大鍋中，用黃油將洋蔥炒至金黃色。</span>
+<span class="go">2. 加入牛肉湯、牛奶、百里香、鹽和胡椒。煮沸。</span>
+<span class="go">3. 降低火候，煮10分鐘。</span>
+<span class="go">4. 將法國麵包片放在湯碗中。</span>
+<span class="go">5. 將湯舀在麵包上。</span>
+<span class="go">6. 撒上帕瑪森起司。</span>
+
+<span class="go">2. 洋蔥和馬鈴薯湯</span>
+
+<span class="go">食材:</span>
+
+<span class="go">-1個大洋蔥，切碎</span>
+<span class="go">-2杯馬鈴薯，切丁</span>
+<span class="go">-3杯蔬菜湯</span>
+<span class="go">-1杯牛奶</span>
+<span class="go">-1/4茶匙黑胡椒</span>
+
+<span class="go">做法:</span>
+
+<span class="go">1. 在大鍋中，用黃油將洋蔥炒至金黃色。</span>
+<span class="go">2. 加入馬鈴薯、蔬菜湯、牛奶和胡椒。煮沸。</span>
+<span class="go">3. 降低火候，煮10分鐘。</span>
+<span class="go">4. 熱食。</span>
+
+<span class="go">3. 奶油洋蔥湯</span>
+
+<span class="go">食材:</span>
+
+<span class="go">-1個大洋蔥，切碎</span>
+<span class="go">-3杯蔬菜湯</span>
+<span class="go">-1杯牛奶</span>
+<span class="go">-1/4茶匙黑胡椒</span>
+<span class="go">-1/4杯通用麵粉</span>
+<span class="go">-1/2杯磨碎的帕瑪森起司</span>
+
+<span class="go">做法:</span>
+
+<span class="go">1. 在大鍋中，用黃油將洋蔥炒至金黃色。</span>
+<span class="go">2. 加入蔬菜湯、牛奶和胡椒。煮沸。</span>
+<span class="go">3. 降低火候，煮10分鐘。</span>
+<span class="go">4. 在小碗中，將麵粉和帕瑪森起司攪拌均勻，直到光滑。</span>
+<span class="go">5. 加入湯中，繼續煮5分鐘，或直到湯變稠。</span>
+</code></pre></div></td></tr></table></div>
+<p>如你所見，任何含有牛奶的食譜都被篩選掉了。但是，如果你對乳糖不耐，你可能還想篩選掉含有起司的食譜，因此需要明確說明。</p>
+<ul>
+<li><strong>生成購物清單</strong>。我們希望生成購物清單，考慮到我們家裡已經有的食材。</li>
+</ul>
+<p>對於這個功能，我們可以嘗試在一個提示中解決所有問題，或者我們可以將其分成兩個提示。讓我們嘗試後者的方法。這裡我們建議添加一個額外的提示，但為了使其工作，我們需要將前一個提示的結果作為上下文添加到後一個提示中。</p>
+<p>找到程式碼中打印出第一個提示結果的部分，並在其下方添加以下程式碼：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">old_prompt_result</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;為生成的食譜生成購物清單，請不要包括我已經有的食材。&quot;</span>
+
+<span class="n">new_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">old_prompt_result</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">new_prompt</span><span class="p">}]</span>
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">deployment_name</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span>
+
+<span class="c1"># 打印回應</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;購物清單:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>注意以下幾點：</p>
+<ol>
+<li>
+<p>我們通過將第一個提示的結果添加到新提示中來構建一個新提示：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">new_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">old_prompt_result</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>我們發出一個新請求，但也考慮到我們在第一個提示中請求的 token 數量，所以這次我們說 <code>max_tokens</code> 是1200。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">deployment_name</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">new_prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>試用這段程式碼，我們現在得到以下輸出：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">食譜數量（例如，5: 2</span>
+<span class="go">食材列表（例如，雞肉，馬鈴薯和胡蘿蔔: 蘋果,麵粉</span>
+<span class="go">篩選（例如，素食，純素，或無麩質: 糖</span>
+
+
+<span class="go">-蘋果和麵粉煎餅: 1杯麵粉，1/2茶匙泡打粉，1/2茶匙小蘇打，1/4茶匙鹽，1湯匙糖，1個雞蛋，1杯酪乳或酸奶，1/4杯融化的黃油，1個格蘭尼史密斯蘋果，去皮並磨碎</span>
+<span class="go">-蘋果油炸圈餅: 1-1/2杯麵粉，1茶匙泡打粉，1/4茶匙鹽，1/4茶匙小蘇打，1/4茶匙肉豆蔻，1/4茶匙肉桂，1/4茶匙五香粉，1/4杯糖，1/4杯植物油，1/4杯牛奶，1個雞蛋，2杯磨碎的去皮蘋果</span>
+<span class="go">購物清單:</span>
+<span class="go">-麵粉，泡打粉，小蘇打，鹽，糖，雞蛋，酪乳，黃油，蘋果，肉豆蔻，肉桂，五香粉</span>
+</code></pre></div></td></tr></table></div>
+</li>
+</ol>
+<h2 id="_14">改善你的設定<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>我們目前擁有的是可以運作的程式碼, 但我們應該做一些調整來進一步改進。一些我們應該做的事情是:</p>
+<ul>
+<li>
+<p><strong>將秘密從程式碼中分離</strong>，例如 API 金鑰。秘密不應該存在於程式碼中，應該儲存在安全的位置。要將秘密從程式碼中分離，我們可以使用環境變數和像 <code>python-dotenv</code> 這樣的函式庫從文件中載入它們。以下是程式碼中的做法：</p>
+</li>
+<li>
+<p>建立一個 <code>.env</code> 文件，內容如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-...
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>注意，對於 Azure，你需要設定以下環境變數：</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">OPENAI_API_TYPE</span><span class="o">=</span>azure
+<span class="nv">OPENAI_API_VERSION</span><span class="o">=</span><span class="m">2023</span>-05-15
+<span class="nv">OPENAI_API_BASE</span><span class="o">=</span>&lt;replace&gt;
+</code></pre></div></td></tr></table></div>
+<p>在程式碼中，你可以這樣載入環境變數：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p><strong>關於 token 長度的一句話</strong>。我們應該考慮需要多少 token 來生成我們想要的文本。token 是要花錢的，所以在可能的情況下，我們應該嘗試節省使用的 token 數量。例如，我們能否調整提示語句以使用更少的 token？</p>
+</li>
+</ul>
+<p>要更改使用的 token 數量，你可以使用 <code>max_tokens</code> 參數。例如，如果你想使用 100 個 token，你可以這樣做：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>嘗試調整 temperature</strong>。temperature 是我們到目前為止還沒有提到的，但它對我們程式的表現有重要影響。temperature 值越高，輸出就越隨機。相反，temperature 值越低，輸出就越可預測。考慮你是否希望輸出有變化。</li>
+</ul>
+<p>要改變 temperature，你可以使用 <code>temperature</code> 參數。例如，如果你想使用 0.5 的 temperature，你可以這樣做：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>注意，越接近 1.0，輸出越多樣化。</p>
+</blockquote>
+<h2 id="_15">作業<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>在這個作業中，你可以選擇要建構什麼。</p>
+<p>以下是一些建議：</p>
+<ul>
+<li>調整秘訣產生器應用程式以進一步改進。嘗試不同的溫度值和提示，看看你能想出什麼。</li>
+<li>建立一個「學習夥伴」。這個應用程式應該能夠回答關於某個主題的問題，例如 Python，你可以有類似「Python 中的某個主題是什麼？」的提示，或者你可以有一個提示說，顯示某個主題的程式碼等。</li>
+<li>歷史機器人，讓歷史重現，指示機器人扮演某個歷史人物，並詢問它關於其生活和時代的問題。</li>
+</ul>
+<h2 id="_16">解決方案<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<h3 id="_17">學習夥伴<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>以下是一個入門提示，看看你如何使用它並根據自己的喜好進行調整。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>- &quot;你是 Python 語言的專家
+
+    建議一個適合初學者的 Python 課程，格式如下:
+
+    格式:
+    - 概念:
+    - 課程簡要說明:
+    - 帶解答的程式碼練習&quot;
+</code></pre></div></td></tr></table></div>
+<h3 id="_18">歷史機器人<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>以下是一些你可以使用的提示:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>- &quot;你是 Abe Lincoln，用三句話告訴我你自己，並使用 Abe 會使用的語法和詞彙來回答&quot;
+- &quot;你是 Abe Lincoln，使用 Abe 會使用的語法和詞彙來回答：
+
+   用 300 字告訴我你最大的成就&quot;
+</code></pre></div></td></tr></table></div>
+<h2 id="_19">知識檢查<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>概念溫度是做什麼的？</p>
+<ol>
+<li>它控制輸出的隨機程度。</li>
+<li>它控制回應的大小。</li>
+<li>它控制使用的標記數量。</li>
+</ol>
+<h2 id="_20">🚀 挑戰<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<p>在完成作業時，嘗試變更溫度，嘗試將其設為 0、0.5 和 1。記住，0 是變化最小的，1 是變化最大的，哪個值最適合你的應用程式？</p>
+<h2 id="_21">很棒的工作！繼續學習<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h2>
+<p>完成本課程後，請查看我們的<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">生成式 AI 學習集合</a>以繼續提升您的生成式 AI 知識！</p>
+<p>前往第7課，我們將探討如何<a href="../../../07-building-chat-applications/translations/tw/?WT.mc_id=academic-105485-koreyst">建構聊天應用程式</a>！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1495 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/07-building-chat-applications/translations/pt-br/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Building Generative AI-Powered Chat Applications - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-generative-ai-powered-chat-applications" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building Generative AI-Powered Chat Applications
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#criando-aplicacoes-chat-com-ia-generativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando Aplicações Chat com IA Generativa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metas-de-aprendizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metas de Aprendizado
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrando-ia-generativa-em-aplicativos-de-chat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrando IA Generativa em Aplicativos de Chat
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integrando IA Generativa em Aplicativos de Chat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chatbot-ou-aplicacao-de-chat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chatbot ou Aplicação de Chat?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alavancando-funcionalidades-pre-criadas-com-sdks-e-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alavancando funcionalidades pré-criadas com SDKs e APIs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiencia-do-usuario-ux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiência do Usuário (UX)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experiência do Usuário (UX)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-de-mensagens-do-sistema-da-microsoft-para-grandes-modelos-de-linguagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura de Mensagens do Sistema da Microsoft para Grandes Modelos de Linguagem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acessibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acessibilidade
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customizacao-e-ajuste-fino-para-modelos-de-linguagem-especificos-de-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customização e Ajuste Fino para Modelos de Linguagem Específicos de Domínio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customizacao-usando-um-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customização: Usando um DSL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customizacao-aplicar-ajuste-fino" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customização: Aplicar Ajuste Fino
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customização: Aplicar Ajuste Fino">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cenario-um-aplicativo-medico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cenário: um aplicativo médico
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consideracoes-para-uma-experiencia-de-chat-impulsionada-por-ia-de-alta-qualidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Considerações para uma Experiência de Chat Impulsionada por IA de Alta Qualidade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Considerações para uma Experiência de Chat Impulsionada por IA de Alta Qualidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metricas-chave" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métricas-Chave
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementando-praticas-de-ia-responsavel-em-aplicacoes-de-chat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementando Práticas de IA Responsável em Aplicações de Chat
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarefa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarefa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excelente-trabalho-continue-no-aprendizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Excelente Trabalho! Continue no Aprendizado!
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="building-generative-ai-powered-chat-applications">Building Generative AI-Powered Chat Applications<a class="headerlink" href="#building-generative-ai-powered-chat-applications" title="Permanent link">&para;</a></h1>
+<h2 id="criando-aplicacoes-chat-com-ia-generativa">Criando Aplicações Chat com IA Generativa<a class="headerlink" href="#criando-aplicacoes-chat-com-ia-generativa" title="Permanent link">&para;</a></h2>
+<p><a href="https://aka.ms/gen-ai-lessons7-gh?WT.mc_id=academic-105485-koreyst"><img alt="Building Generative AI-Powered Chat Applications" src="../../images/07-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<blockquote>
+<p><em>(Clique na imagem acima para ver o vídeo da lição)</em></p>
+</blockquote>
+<p>Agora que vimos como podemos criar aplicativos de geração de texto, vamos dar uma olhada nos aplicativos de bate-papo.</p>
+<p>Aplicativos de chat (bate-papo) tornaram-se integrados em nossas vidas diárias, oferecendo mais do que apenas um meio de conversa casual. Eles são partes integrantes do atendimento ao cliente, suporte técnico e até mesmo sistemas de consultoria sofisticados. É provável que você tenha recebido alguma ajuda de um aplicativo de bate-papo não há muito tempo. À medida que integramos tecnologias mais avançadas, como a IA generativa, nessas plataformas, a complexidade aumenta e, com ela, os desafios.</p>
+<p>Algumas perguntas que precisamos responder são:</p>
+<ul>
+<li>
+<p><strong>Criação de um aplicativo</strong>: Como podemos criar de forma eficiente e integrar de maneira transparente esses aplicativos impulsionados por IA para casos de uso específicos?</p>
+</li>
+<li>
+<p><strong>Monitoramento</strong>: Uma vez implantados, como podemos monitorar e garantir que os aplicativos estejam operando no mais alto nível de qualidade, tanto em termos de funcionalidade quanto na aderência aos <a href="https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst">seis princípios de IA responsável</a>?</p>
+</li>
+</ul>
+<p>À medida que avançamos para uma era definida pela automação e interações homem-máquina sem emendas, entender como a IA generativa transforma o escopo, a profundidade e a adaptabilidade dos aplicativos de chat torna-se essencial. Esta lição investigará os aspectos da arquitetura que suportam esses sistemas intricados, explorará as metodologias para ajustá-los para tarefas específicas de domínio e avaliará as métricas e considerações pertinentes para garantir a implantação responsável de IA.</p>
+<h2 id="introducao">Introdução<a class="headerlink" href="#introducao" title="Permanent link">&para;</a></h2>
+<p>Esta lição abrange:</p>
+<ul>
+<li>Técnicas para criar e integrar eficientemente aplicativos de chat.</li>
+<li>Como aplicar personalização e ajuste fino a aplicativos.</li>
+<li>Estratégias e considerações para monitorar efetivamente aplicativos de chat.</li>
+</ul>
+<h2 id="metas-de-aprendizado">Metas de Aprendizado<a class="headerlink" href="#metas-de-aprendizado" title="Permanent link">&para;</a></h2>
+<p>Até o final desta lição, você será capaz de:</p>
+<ul>
+<li>Descrever considerações para construir e integrar aplicativos de chat em sistemas existentes.</li>
+<li>Personalizar aplicativos de chat para casos de uso específicos.</li>
+<li>Identificar métricas-chave e considerações para monitorar e manter a qualidade de aplicativos de chat impulsionados por IA.</li>
+<li>Garantir que os aplicativos de chat utilizem a IA de maneira responsável.</li>
+</ul>
+<h2 id="integrando-ia-generativa-em-aplicativos-de-chat">Integrando IA Generativa em Aplicativos de Chat<a class="headerlink" href="#integrando-ia-generativa-em-aplicativos-de-chat" title="Permanent link">&para;</a></h2>
+<p>Elevar aplicativos de chat por meio de IA generativa não se concentra apenas em torná-los mais inteligentes; trata-se de otimizar sua arquitetura, desempenho e interface do usuário para oferecer uma experiência de usuário de qualidade. Isso envolve investigar as bases arquitetônicas, integrações de API e considerações de interface do usuário. Esta seção visa oferecer a você um roteiro abrangente para navegar por essas paisagens complexas, seja você integrando-os em sistemas existentes ou construindo-os como plataformas independentes.</p>
+<p>Ao final desta seção, você estará equipado com a experiência necessária para construir e incorporar eficientemente aplicativos de chat.</p>
+<h3 id="chatbot-ou-aplicacao-de-chat">Chatbot ou Aplicação de Chat?<a class="headerlink" href="#chatbot-ou-aplicacao-de-chat" title="Permanent link">&para;</a></h3>
+<p>Antes de nos aprofundarmos na criação de aplicativos de chat, vamos comparar 'chatbots' com 'aplicações de chat impulsionadas por IA', que desempenham papéis e funcionalidades distintas. O principal propósito de um chatbot é automatizar tarefas conversacionais específicas, como responder a perguntas frequentes ou rastrear um pacote. Normalmente, ele é governado por lógica baseada em regras ou algoritmos complexos de IA. Em contraste, uma aplicação de chat impulsionada por IA é um ambiente muito mais expansivo projetado para facilitar várias formas de comunicação digital, como chats de texto, voz e vídeo entre usuários humanos. Sua característica definidora é a integração de um modelo de IA generativa que simula conversas matizadas e semelhantes às humanas, gerando respostas com base em uma ampla variedade de entradas e indicações contextuais. Uma aplicação de chat impulsionada por IA generativa pode participar de discussões em domínio aberto, adaptar-se a contextos conversacionais em evolução e até mesmo produzir diálogos criativos ou complexos.</p>
+<p>A tabela abaixo destaca as principais diferenças e semelhanças para nos ajudar a entender seus papéis únicos na comunicação digital.</p>
+<table>
+<thead>
+<tr>
+<th>Chatbot</th>
+<th>Aplicação de Chat Impulsionada por IA Generativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Focado em tarefas e baseado em regras</td>
+<td>Consciente do contexto</td>
+</tr>
+<tr>
+<td>Frequentemente integrado a sistemas maiores</td>
+<td>Pode hospedar um ou vários chatbots</td>
+</tr>
+<tr>
+<td>Limitado a funções programadas</td>
+<td>Incorpora modelos de IA generativa</td>
+</tr>
+<tr>
+<td>Interações especializadas e estruturadas</td>
+<td>Capaz de discussões em domínio aberto</td>
+</tr>
+</tbody>
+</table>
+<h3 id="alavancando-funcionalidades-pre-criadas-com-sdks-e-apis">Alavancando funcionalidades pré-criadas com SDKs e APIs<a class="headerlink" href="#alavancando-funcionalidades-pre-criadas-com-sdks-e-apis" title="Permanent link">&para;</a></h3>
+<p>Ao criar uma aplicação de chat, um ótimo primeiro passo é avaliar o que já está disponível. Utilizar SDKs e APIs para construir aplicações de chat é uma estratégia vantajosa por várias razões. Ao integrar SDKs e APIs bem documentados, você posiciona estrategicamente sua aplicação para o sucesso a longo prazo, abordando preocupações de escalabilidade e manutenção.</p>
+<ul>
+<li>
+<p><strong>Acelera o processo de desenvolvimento e reduz o overhead</strong>: Contar com funcionalidades pré-construídas, em vez do processo caro de construí-las, permite que você se concentre em outros aspectos da sua aplicação que possam ser mais importantes, como a lógica de negócios.</p>
+</li>
+<li>
+<p><strong>Melhor desempenho</strong>: Ao construir funcionalidades do zero, eventualmente você se perguntará "Como ela escala? Esta aplicação é capaz de lidar com um aumento repentino de usuários?" SDKs e APIs bem mantidos frequentemente têm soluções embutidas para essas preocupações.</p>
+</li>
+<li>
+<p><strong>Manutenção mais fácil</strong>: Atualizações e melhorias são mais fáceis de gerenciar, pois a maioria das APIs e SDKs simplesmente requer uma atualização de biblioteca quando uma versão mais recente é lançada.</p>
+</li>
+<li>
+<p><strong>Acesso a tecnologia de ponta</strong>: Alavancar modelos que foram ajustados e treinados em conjuntos de dados extensivos proporciona à sua aplicação capacidades de linguagem natural.</p>
+</li>
+</ul>
+<p>Acesso à funcionalidade de um SDK ou API geralmente envolve a obtenção de permissão para usar os serviços fornecidos, frequentemente por meio do uso de uma chave única ou token de autenticação. Utilizaremos a Biblioteca Python da OpenAI para explorar como isso é feito. Você também pode experimentar por conta própria no seguinte <a href="../../python/oai-assigment-simple.ipynb?WT.mc_id=academic-105485-koreyst">notebook para OpenAI</a> ou <a href="../../python/aoai-assignment.ipynb?WT.mc_id=academic-105485-koreys">Notebook para Serviços Azure OpenAI</a> para esta lição.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span>
+    <span class="p">)</span>
+
+<span class="n">chat_completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Suggest two titles for an instructional lesson on chat applications for generative AI.&quot;</span><span class="p">}])</span>
+</code></pre></div></td></tr></table></div>
+<p>No exemplo acima é usado o modelo GPT-3.5 Turbo para completar o prompt. Mas observe que a chave da API é definida antes de fazê-lo. Você receberia o seguinte erro se não definisse a chave.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">AuthenticationError: No API key provided. You can set your API key in code using &#39;openai.api_key = &lt;API-KEY&gt;&#39;, or you can set the environment variable OPENAI_API_KEY=&lt;API-KEY&gt;). If your API key is stored in a file, you can point the openai module at it with &#39;openai.api_key_path = &lt;PATH&gt;&#39;. You can generate API keys in the OpenAI web interface. See https://platform.openai.com/account/api-keys for details.</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="experiencia-do-usuario-ux">Experiência do Usuário (UX)<a class="headerlink" href="#experiencia-do-usuario-ux" title="Permanent link">&para;</a></h2>
+<p>Os princípios gerais de UX se aplicam aos aplicativos de chat. Porém, aqui estão algumas considerações adicionais que se tornam particularmente importantes devido aos componentes de aprendizado de máquina envolvidos.</p>
+<ul>
+<li>
+<p><strong>Mecanismo para lidar com ambiguidade</strong>: Modelos de IA generativa ocasionalmente geram respostas ambíguas. Uma funcionalidade que permite aos usuários solicitar esclarecimentos pode ser útil caso se deparem com esse problema.</p>
+</li>
+<li>
+<p><strong>Retenção de contexto</strong>: Modelos avançados de IA generativa têm a capacidade de lembrar o contexto dentro de uma conversa, o que pode ser um ativo necessário para a experiência do usuário. Dar aos usuários a capacidade de controlar e gerenciar o contexto melhora a experiência do usuário, mas introduz o risco de retenção de informações sensíveis do usuário. Considerações sobre por quanto tempo essas informações são armazenadas, como a introdução de uma política de retenção, podem equilibrar a necessidade de contexto contra a privacidade.</p>
+</li>
+<li>
+<p><strong>Personalização</strong>: Com a capacidade de aprender e se adaptar, os modelos de IA oferecem uma experiência individualizada para o usuário. Personalizar a experiência do usuário por meio de recursos como perfis de usuário não apenas faz com que o usuário se sinta compreendido, mas também auxilia na busca por respostas específicas, criando uma interação mais eficiente e satisfatória.</p>
+</li>
+</ul>
+<p>Um exemplo de personalização é o ajuste de "Instruções Personalizadas" no ChatGPT da OpenAI. Ele permite que você forneça informações sobre si mesmo que podem ser um contexto importante para seus prompts. Aqui está um exemplo de uma instrução personalizada.</p>
+<p><img alt="Custom Instructions Settings in ChatGPT" src="../../images/custom-instructions.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>Esse prompt "perfil" faz com que o ChatGPT crie um plano de aula sobre listas vinculadas. Observe que o ChatGPT leva em consideração que o usuário pode querer um plano de aula mais aprofundado com base em sua experiência.</p>
+<p><img alt="A prompt in ChatGPT for a lesson plan about linked lists" src="../../images/lesson-plan-prompt.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h3 id="estrutura-de-mensagens-do-sistema-da-microsoft-para-grandes-modelos-de-linguagem">Estrutura de Mensagens do Sistema da Microsoft para Grandes Modelos de Linguagem<a class="headerlink" href="#estrutura-de-mensagens-do-sistema-da-microsoft-para-grandes-modelos-de-linguagem" title="Permanent link">&para;</a></h3>
+<p><a href="https://learn.microsoft.com/azure/ai-services/openai/concepts/system-message#define-the-models-output-format?WT.mc_id=academic-105485-koreyst">Microsoft has provided guidance</a> para escrever mensagens de sistema eficazes ao gerar respostas de LLMs divididas em 4 áreas:</p>
+<ol>
+<li>Definindo para quem o modelo se destina, assim como suas capacidades e limitações.</li>
+<li>Definindo o formato de saída do modelo.</li>
+<li>Fornecendo exemplos específicos que demonstrem o comportamento pretendido do modelo.</li>
+<li>Estabelecendo barreiras comportamentais adicionais.</li>
+</ol>
+<h3 id="acessibilidade">Acessibilidade<a class="headerlink" href="#acessibilidade" title="Permanent link">&para;</a></h3>
+<p>Seja o usuário portador de deficiência visual, auditiva, motora ou cognitiva, uma aplicação de chat bem projetada deve ser utilizável por todos. A lista a seguir detalha características específicas destinadas a aprimorar a acessibilidade para várias deficiências de usuários.</p>
+<ul>
+<li><strong>Recursos para Deficiência Visual</strong>: Temas de alto contraste e texto redimensionável, compatibilidade com leitores de tela.</li>
+<li><strong>Recursos para Deficiência Auditiva</strong>: Funções de texto para fala e fala para texto, indicações visuais para notificações sonoras.</li>
+<li><strong>Recursos para Deficiência Motora</strong>: Suporte à navegação por teclado, comandos de voz.</li>
+<li><strong>Recursos para Deficiência Cognitiva</strong>: Opções de linguagem simplificada.</li>
+</ul>
+<h2 id="customizacao-e-ajuste-fino-para-modelos-de-linguagem-especificos-de-dominio">Customização e Ajuste Fino para Modelos de Linguagem Específicos de Domínio<a class="headerlink" href="#customizacao-e-ajuste-fino-para-modelos-de-linguagem-especificos-de-dominio" title="Permanent link">&para;</a></h2>
+<p>Imagine uma aplicação de chat que compreende o jargão da sua empresa e antecipa as consultas específicas que sua base de usuários comumente faz. Existem algumas abordagens que valem a pena mencionar:</p>
+<ul>
+<li><strong>Alavancar modelos DSL</strong>. DSL significa linguagem específica de domínio. Você pode aproveitar um modelo chamado DSL treinado em um domínio específico para entender seus conceitos e cenários.</li>
+<li><strong>Aplicar ajuste fino</strong>. O ajuste fino é o processo de treinar ainda mais seu modelo com dados específicos.</li>
+</ul>
+<h2 id="customizacao-usando-um-dsl">Customização: Usando um DSL<a class="headerlink" href="#customizacao-usando-um-dsl" title="Permanent link">&para;</a></h2>
+<p>Aproveitar modelos de linguagem específicos de domínio (Modelos DSL) pode aprimorar o engajamento do usuário ao fornecer interações especializadas e contextualmente relevantes. É um modelo treinado ou ajustado para entender e gerar texto relacionado a um campo, indústria ou assunto específico. As opções para usar um modelo DSL podem variar desde treiná-lo do zero até usar modelos pré-existentes por meio de SDKs e APIs. Outra opção é o ajuste fino, que envolve pegar um modelo pré-treinado existente e adaptá-lo para um domínio específico.</p>
+<h2 id="customizacao-aplicar-ajuste-fino">Customização: Aplicar Ajuste Fino<a class="headerlink" href="#customizacao-aplicar-ajuste-fino" title="Permanent link">&para;</a></h2>
+<p>O ajuste fino é frequentemente considerado quando um modelo pré-treinado não atende a um domínio especializado ou tarefa específica.</p>
+<p>Por exemplo, consultas médicas são complexas e exigem muito contexto. Quando um profissional de saúde faz um diagnóstico, isso se baseia em uma variedade de fatores, como estilo de vida ou condições pré-existentes, e pode até depender de periódicos médicos recentes para validar o diagnóstico. Em cenários tão nuances, um aplicativo de chat de IA de propósito geral não pode ser uma fonte confiável.</p>
+<h3 id="cenario-um-aplicativo-medico">Cenário: um aplicativo médico<a class="headerlink" href="#cenario-um-aplicativo-medico" title="Permanent link">&para;</a></h3>
+<p>Considere um aplicativo de chat projetado para auxiliar profissionais de saúde, fornecendo referências rápidas a diretrizes de tratamento, interações medicamentosas ou descobertas recentes de pesquisas.</p>
+<p>Um modelo de propósito geral pode ser adequado para responder a perguntas médicas básicas ou fornecer conselhos gerais, mas pode ter dificuldades com o seguinte:</p>
+<ul>
+<li><strong>Casos altamente específicos ou complexos</strong>. Por exemplo, um neurologista pode perguntar ao aplicativo: "Quais são as melhores práticas atuais para o manejo da epilepsia resistente a medicamentos em pacientes pediátricos?"</li>
+<li><strong>Falta de avanços recentes</strong>. Um modelo de propósito geral pode ter dificuldade em fornecer uma resposta atualizada que incorpore os avanços mais recentes em neurologia e farmacologia.</li>
+</ul>
+<p>Em casos como esses, o ajuste fino do modelo com um conjunto de dados médicos especializados pode melhorar significativamente sua capacidade de lidar com essas consultas médicas intrincadas de maneira mais precisa e confiável. Isso requer acesso a um conjunto de dados grande e relevante que represente os desafios e perguntas específicos do domínio que precisam ser abordados.</p>
+<h2 id="consideracoes-para-uma-experiencia-de-chat-impulsionada-por-ia-de-alta-qualidade">Considerações para uma Experiência de Chat Impulsionada por IA de Alta Qualidade<a class="headerlink" href="#consideracoes-para-uma-experiencia-de-chat-impulsionada-por-ia-de-alta-qualidade" title="Permanent link">&para;</a></h2>
+<p>Esta seção delineia os critérios para aplicações de chat consideradas "de alta qualidade", que incluem a captura de métricas acionáveis e a adesão a um framework que utiliza de forma responsável a tecnologia de IA.</p>
+<h3 id="metricas-chave">Métricas-Chave<a class="headerlink" href="#metricas-chave" title="Permanent link">&para;</a></h3>
+<p>Para manter o desempenho de alta qualidade de uma aplicação, é essencial acompanhar métricas-chave e considerações. Essas medições não apenas garantem a funcionalidade da aplicação, mas também avaliam a qualidade do modelo de IA e a experiência do usuário. Abaixo está uma lista que abrange métricas básicas, de IA e de experiência do usuário a serem consideradas.</p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Definição</th>
+<th>Considerações para o Desenvolvedor de Chat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tempo de Atividade (Uptime)</strong></td>
+<td>Mede o tempo em que a aplicação está operacional e acessível pelos usuários.</td>
+<td>Como você irá minimizar o tempo de inatividade?</td>
+</tr>
+<tr>
+<td><strong>Tempo de Resposta</strong></td>
+<td>O tempo que a aplicação leva para responder a uma consulta do usuário.</td>
+<td>Como você pode otimizar o processamento de consultas para melhorar o tempo de resposta?</td>
+</tr>
+<tr>
+<td><strong>Precisão</strong></td>
+<td>A razão entre previsões verdadeiras positivas e o número total de previsões positivas.</td>
+<td>Como você irá validar a precisão do seu modelo?</td>
+</tr>
+<tr>
+<td><strong>Revocação (Sensibilidade)</strong></td>
+<td>A razão entre previsões verdadeiras positivas e o número real de positivos.</td>
+<td>Como você irá medir e melhorar a revocação?</td>
+</tr>
+<tr>
+<td><strong>Escore F1</strong></td>
+<td>A média harmônica de precisão e revocação, que equilibra o compromisso entre ambos.</td>
+<td>Qual é o seu Escore F1 alvo? Como você irá equilibrar precisão e revocação?</td>
+</tr>
+<tr>
+<td><strong>Perplexidade</strong></td>
+<td>Mede quão bem a distribuição de probabilidade prevista pelo modelo se alinha com a distribuição real dos dados.</td>
+<td>Como você irá minimizar a perplexidade?</td>
+</tr>
+<tr>
+<td><strong>Métricas de Satisfação do Usuário</strong></td>
+<td>Mede a percepção do usuário em relação à aplicação. Frequentemente capturado por meio de pesquisas.</td>
+<td>Com que frequência você irá coletar feedback do usuário? Como você irá se adaptar a isso?</td>
+</tr>
+<tr>
+<td><strong>Taxa de Erro</strong></td>
+<td>A taxa na qual o modelo comete erros na compreensão ou saída.</td>
+<td>Quais estratégias você tem para reduzir as taxas de erro?</td>
+</tr>
+<tr>
+<td><strong>Ciclos de Retreinamento</strong></td>
+<td>A frequência com que o modelo é atualizado para incorporar novos dados e insights.</td>
+<td>Com que frequência você irá retrainer o modelo? O que desencadeia um ciclo de retratamento?</td>
+</tr>
+<tr>
+<td><strong>Detecção de Anomalias</strong></td>
+<td>Ferramentas e técnicas para identificar padrões incomuns que não seguem o comportamento esperado.</td>
+<td>Como você irá responder a anomalias?</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="implementando-praticas-de-ia-responsavel-em-aplicacoes-de-chat">Implementando Práticas de IA Responsável em Aplicações de Chat<a class="headerlink" href="#implementando-praticas-de-ia-responsavel-em-aplicacoes-de-chat" title="Permanent link">&para;</a></h3>
+<p>A abordagem da Microsoft para a IA Responsável identificou seis princípios que devem orientar o desenvolvimento e uso de IA. Abaixo estão os princípios, suas definições e o que um desenvolvedor de chat deve considerar e por que deve levar isso a sério.</p>
+<table>
+<thead>
+<tr>
+<th>Princípios</th>
+<th>Definição pela Microsoft</th>
+<th>Considerações para o Desenvolvedor de Chat</th>
+<th>Por que é Importante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Justiça</td>
+<td>Sistemas de IA devem tratar todas as pessoas de forma justa.</td>
+<td>Garantir que a aplicação de chat não discrimine com base nos dados do usuário.</td>
+<td>Construir confiança e inclusividade entre os usuários; evita ramificações legais.</td>
+</tr>
+<tr>
+<td>Confiabilidade e Segurança</td>
+<td>Sistemas de IA devem ter desempenho confiável e seguro.</td>
+<td>Implementar testes e mecanismos de segurança para minimizar erros e riscos.</td>
+<td>Garante satisfação do usuário e evita possíveis danos.</td>
+</tr>
+<tr>
+<td>Privacidade e Segurança</td>
+<td>Sistemas de IA devem ser seguros e respeitar a privacidade.</td>
+<td>Implementar criptografia forte e medidas de proteção de dados.</td>
+<td>Proteger dados sensíveis do usuário e cumprir leis de privacidade.</td>
+</tr>
+<tr>
+<td>Inclusividade</td>
+<td>Sistemas de IA devem capacitar todos e envolver as pessoas.</td>
+<td>Projetar uma interface acessível e fácil de usar para diversos públicos.</td>
+<td>Garante que uma variedade maior de pessoas possa usar a aplicação de forma eficaz.</td>
+</tr>
+<tr>
+<td>Transparência</td>
+<td>Sistemas de IA devem ser compreensíveis.</td>
+<td>Fornecer documentação clara e justificativa para as respostas da IA.</td>
+<td>Os usuários têm mais probabilidade de confiar em um sistema se puderem entender como são tomadas as decisões.</td>
+</tr>
+<tr>
+<td>Responsabilidade</td>
+<td>As pessoas devem ser responsáveis pelos sistemas de IA.</td>
+<td>Estabelecer um processo claro para auditoria e melhoria das decisões de IA.</td>
+<td>Possibilita melhorias contínuas e medidas corretivas em caso de erros.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tarefa">Tarefa<a class="headerlink" href="#tarefa" title="Permanent link">&para;</a></h2>
+<p>Veja a <a href="../../python?WT.mc_id=academic-105485-koreyst">tarefa</a> que o levará por uma série de exercícios, desde a execução de seus primeiros prompts de chat até a classificação e resumo de texto e muito mais.</p>
+<h2 id="excelente-trabalho-continue-no-aprendizado">Excelente Trabalho! Continue no Aprendizado!<a class="headerlink" href="#excelente-trabalho-continue-no-aprendizado" title="Permanent link">&para;</a></h2>
+<p>Depois de concluir esta lição, confira nossa <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">coleção de aprendizado de IA generativa</a> para continuar a aprimorar seus conhecimentos sobre IA generativa!</p>
+<p>Agora, vamos seguir para a Lição 8 para ver como você pode começar a <a href="../../../08-building-search-applications/translations/pt-br/?WT.mc_id=academic-105485-koreyst">criar aplicativos de pesquisa</a>!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

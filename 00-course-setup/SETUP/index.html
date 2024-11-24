@@ -1,0 +1,1484 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/00-course-setup/SETUP/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../01-introduction-to-genai/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Setup - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setup-your-dev-environment" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-executing-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Executing Assignments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Executing Assignments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-python-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Python Assignments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configuring-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configuring Providers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Configuring Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Create .env file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-populate-env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Populate .env file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-configure-azure-from-portal" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Configure Azure: From Portal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-configure-azure-from-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Configure Azure: From Studio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-configure-openai-from-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Configure OpenAI: From Profile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-configure-hugging-face-from-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Configure Hugging Face: From Profile
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-executing-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Executing Assignments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Executing Assignments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-python-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Python Assignments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configuring-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configuring Providers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Configuring Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Create .env file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-populate-env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Populate .env file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-configure-azure-from-portal" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Configure Azure: From Portal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-configure-azure-from-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Configure Azure: From Studio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-configure-openai-from-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Configure OpenAI: From Profile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-configure-hugging-face-from-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Configure Hugging Face: From Profile
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="setup-your-dev-environment">Setup Your Dev Environment<a class="headerlink" href="#setup-your-dev-environment" title="Permanent link">&para;</a></h1>
+<p>We setup this repository and course with a <a href="https://containers.dev?WT.mc_id=academic-105485-koreyst">development container</a> that has a Universal runtime that can support Python3, .NET, Node.js and Java development. The related configuration is defined in the <code>devcontainer.json</code> file located in the <code>.devcontainer/</code> folder at the root of this repository.</p>
+<p>To activate the dev container, launch it in <a href="https://docs.github.com/en/codespaces/overview?WT.mc_id=academic-105485-koreyst">GitHub Codespaces</a> (for a cloud-hosted runtime) or in <a href="https://docs.docker.com/desktop/?WT.mc_id=academic-105485-koreyst">Docker Desktop</a> (for a local device-hosted runtime). Read <a href="https://code.visualstudio.com/docs/devcontainers/containers?WT.mc_id=academic-105485-koreyst">this documentation</a> for more details on how dev containers work within VS Code.  </p>
+<blockquote>
+<p>[!TIP]<br />
+We recommend using GitHub Codespaces for a quick start with minimal effort. It provides a generous <a href="https://docs.github.com/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts?WT.mc_id=academic-105485-koreyst">free usage quota</a> for personal accounts. Configure <a href="https://docs.github.com/codespaces/setting-your-user-preferences/setting-your-timeout-period-for-github-codespaces?WT.mc_id=academic-105485-koreyst">timeouts</a> to stop or delete inactive codespaces to maximize your quota usage.</p>
+</blockquote>
+<h2 id="1-executing-assignments">1. Executing Assignments<a class="headerlink" href="#1-executing-assignments" title="Permanent link">&para;</a></h2>
+<p>Each lesson will have <em>optional</em> assignments that may be provided in one or more programming languages including: Python, .NET/C#, Java and JavaScript/TypeScript. This section provides general guidance related to executing those assignments.</p>
+<h3 id="11-python-assignments">1.1 Python Assignments<a class="headerlink" href="#11-python-assignments" title="Permanent link">&para;</a></h3>
+<p>Python assignments are provided either as applications (<code>.py</code> files) or Jupyter notebooks (<code>.ipynb</code> files). 
+- To run the notebook, open it in Visual Studio Code then click <em>Select Kernel</em> (at top right) and select the default Python 3 option shown. You can now <em>Run All</em> to execute the notebook.
+- To run Python applications from command-line, follow assignment-specific instructions to ensure you select the right files and provide required arguments</p>
+<h2 id="2-configuring-providers">2. Configuring Providers<a class="headerlink" href="#2-configuring-providers" title="Permanent link">&para;</a></h2>
+<p>Assignments <strong>may</strong> also be setup to work against one or more Large Language Model (LLM) deployments through a supported service provider like OpenAI, Azure or Hugging Face. These provide a <em>hosted endpoint</em> (API) that we can access programmatically with the right credentials (API key or token). In this course, we discuss these providers:</p>
+<ul>
+<li><a href="https://platform.openai.com/docs/models?WT.mc_id=academic-105485-koreyst">OpenAI</a> with diverse models including the core GPT series.</li>
+<li><a href="https://learn.microsoft.com/azure/ai-services/openai/?WT.mc_id=academic-105485-koreyst">Azure OpenAI</a> for OpenAI models with enterprise readiness in focus</li>
+<li><a href="https://huggingface.co/docs/hub/index?WT.mc_id=academic-105485-koreyst">Hugging Face</a> for open-source models and inference server</li>
+</ul>
+<p><strong>You will need to use your own accounts for these exercises</strong>. Assignments are optional so you can choose to setup one, all - or none - of the providers based on your interests. Some guidance for signup:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Signup</th>
+<th style="text-align: left;">Cost</th>
+<th style="text-align: left;">API Key</th>
+<th style="text-align: left;">Playground</th>
+<th style="text-align: left;">Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="https://platform.openai.com/signup?WT.mc_id=academic-105485-koreyst">OpenAI</a></td>
+<td style="text-align: left;"><a href="https://openai.com/pricing#language-models?WT.mc_id=academic-105485-koreyst">Pricing</a></td>
+<td style="text-align: left;"><a href="https://platform.openai.com/api-keys?WT.mc_id=academic-105485-koreyst">Project-based</a></td>
+<td style="text-align: left;"><a href="https://platform.openai.com/playground?WT.mc_id=academic-105485-koreyst">No-Code, Web</a></td>
+<td style="text-align: left;">Multiple Models Available</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://aka.ms/azure/free?WT.mc_id=academic-105485-koreyst">Azure</a></td>
+<td style="text-align: left;"><a href="https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/?WT.mc_id=academic-105485-koreyst">Pricing</a></td>
+<td style="text-align: left;"><a href="https://learn.microsoft.com/azure/ai-services/openai/quickstart?WT.mc_id=academic-105485-koreyst">SDK Quickstart</a></td>
+<td style="text-align: left;"><a href="https://learn.microsoft.com/azure/ai-services/openai/quickstart?WT.mc_id=academic-105485-koreyst">Studio Quickstart</a></td>
+<td style="text-align: left;"><a href="https://learn.microsoft.com/azure/ai-services/openai/?WT.mc_id=academic-105485-koreyst">Must Apply Ahead For Access</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://huggingface.co/join?WT.mc_id=academic-105485-koreyst">Hugging Face</a></td>
+<td style="text-align: left;"><a href="https://huggingface.co/pricing">Pricing</a></td>
+<td style="text-align: left;"><a href="https://huggingface.co/docs/hub/security-tokens?WT.mc_id=academic-105485-koreyst">Access Tokens</a></td>
+<td style="text-align: left;"><a href="https://huggingface.co/chat/?WT.mc_id=academic-105485-koreyst">Hugging Chat</a></td>
+<td style="text-align: left;"><a href="https://huggingface.co/chat/models?WT.mc_id=academic-105485-koreyst">Hugging Chat has limited models</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>Follow the directions below to <em>configure</em> this repository for use with different providers. Assignments that require a specific provider will contain one of these tags in their filename:
+ - <code>aoai</code> - requires Azure OpenAI endpoint, key
+ - <code>oai</code> - requires OpenAI endpoint, key
+ - <code>hf</code> - requires Hugging Face token</p>
+<p>You can configure one, none, or all providers. Related assignments will simply error out on missing credentials.</p>
+<h3 id="21-create-env-file">2.1. Create <code>.env</code> file<a class="headerlink" href="#21-create-env-file" title="Permanent link">&para;</a></h3>
+<p>We assume that you have already read the guidance above and signed up with the relevant provider, and obtained the required authentication credentials (API_KEY or token). In the case of Azure OpenAI, we assume you also have a valid deployment of an Azure OpenAI Service (endpoint) with at least one GPT model deployed for chat completion.</p>
+<p>The next step is to configure your <strong>local environment variables</strong> as follows:</p>
+<ol>
+<li>Look in the root folder for a <code>.env.copy</code> file that should have contents like this:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># OpenAI Provider</span>
+<span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s1">&#39;&lt;add your OpenAI API key here&gt;&#39;</span>
+
+<span class="c1">## Azure OpenAI</span>
+<span class="nv">AZURE_OPENAI_API_VERSION</span><span class="o">=</span><span class="s1">&#39;2024-02-01&#39;</span><span class="w"> </span><span class="c1"># Default is set!</span>
+<span class="nv">AZURE_OPENAI_API_KEY</span><span class="o">=</span><span class="s1">&#39;&lt;add your AOAI key here&gt;&#39;</span>
+<span class="nv">AZURE_OPENAI_ENDPOINT</span><span class="o">=</span><span class="s1">&#39;&lt;add your AOIA service endpoint here&gt;&#39;</span>
+<span class="nv">AZURE_OPENAI_DEPLOYMENT</span><span class="o">=</span><span class="s1">&#39;&lt;add your chat completion model name here&gt;&#39;</span><span class="w"> </span>
+<span class="nv">AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT</span><span class="o">=</span><span class="s1">&#39;&lt;add your embeddings model name here&gt;&#39;</span>
+
+<span class="c1">## Hugging Face</span>
+<span class="nv">HUGGING_FACE_API_KEY</span><span class="o">=</span><span class="s1">&#39;&lt;add your HuggingFace API or token here&gt;&#39;</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>Copy that file to <code>.env</code> using the command below. This file is <em>gitignore-d</em>, keeping secrets safe.</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cp<span class="w"> </span>.env.copy<span class="w"> </span>.env
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>
+<p>Fill in the values (replace placeholders on right side of <code>=</code>) as described in the next section.</p>
+</li>
+<li>
+<p>(Option) If you use GitHub Codespaces, you have the option to save environment variables as <em>Codespaces secrets</em> associated with this repository. In that case, you won't need to setup a local .env file. <strong>However, note that this option works only if you use GitHub Codespaces.</strong> You will still need to setup the .env file if you use Docker Desktop instead.</p>
+</li>
+</ol>
+<h3 id="22-populate-env-file">2.2. Populate <code>.env</code> file<a class="headerlink" href="#22-populate-env-file" title="Permanent link">&para;</a></h3>
+<p>Let's take a quick look at the variable names to understand what they represent:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">HUGGING_FACE_API_KEY</td>
+<td style="text-align: left;">This is the user access token you setup in your profile</td>
+</tr>
+<tr>
+<td style="text-align: left;">OPENAI_API_KEY</td>
+<td style="text-align: left;">This is the authorization key for using the service for non-Azure OpenAI endpoints</td>
+</tr>
+<tr>
+<td style="text-align: left;">AZURE_OPENAI_API_KEY</td>
+<td style="text-align: left;">This is the authorization key for using that service</td>
+</tr>
+<tr>
+<td style="text-align: left;">AZURE_OPENAI_ENDPOINT</td>
+<td style="text-align: left;">This is the deployed endpoint for an Azure OpenAI resource</td>
+</tr>
+<tr>
+<td style="text-align: left;">AZURE_OPENAI_DEPLOYMENT</td>
+<td style="text-align: left;">This is the <em>text generation</em> model deployment endpoint</td>
+</tr>
+<tr>
+<td style="text-align: left;">AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT</td>
+<td style="text-align: left;">This is the <em>text embeddings</em> model deployment endpoint</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>Note: The last two Azure OpenAI variables reflect a default model for chat completion (text generation) and vector search (embeddings) respectively. Instructions for setting them will be defined in relevant assignments.</p>
+<h3 id="23-configure-azure-from-portal">2.3 Configure Azure: From Portal<a class="headerlink" href="#23-configure-azure-from-portal" title="Permanent link">&para;</a></h3>
+<p>The Azure OpenAI endpoint and key values will be found in the <a href="https://portal.azure.com?WT.mc_id=academic-105485-koreyst">Azure Portal</a> so let's start there.</p>
+<ol>
+<li>Go to the <a href="https://portal.azure.com?WT.mc_id=academic-105485-koreyst">Azure Portal</a></li>
+<li>Click the <strong>Keys and Endpoint</strong> option in the sidebar (menu at left).</li>
+<li>Click <strong>Show Keys</strong> - you should see the following: KEY 1, KEY 2 and Endpoint.</li>
+<li>Use the KEY 1 value for AZURE_OPENAI_API_KEY</li>
+<li>Use the Endpoint value for AZURE_OPENAI_ENDPOINT</li>
+</ol>
+<p>Next, we need the endpoints for the specific models we've deployed.</p>
+<ol>
+<li>Click the <strong>Model deployments</strong> option in the sidebar (left menu) for Azure OpenAI resource.</li>
+<li>In the destination page, click <strong>Manage Deployments</strong></li>
+</ol>
+<p>This will take you to the Azure OpenAI Studio website, where we'll find the other values as described below.</p>
+<h3 id="24-configure-azure-from-studio">2.4 Configure Azure: From Studio<a class="headerlink" href="#24-configure-azure-from-studio" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Navigate to <a href="https://oai.azure.com?WT.mc_id=academic-105485-koreyst">Azure OpenAI Studio</a> <strong>from your resource</strong> as described above.</li>
+<li>Click the <strong>Deployments</strong> tab (sidebar, left) to view currently deployed models.</li>
+<li>If your desired model is not deployed, use <strong>Create new deployment</strong> to deploy it.</li>
+<li>You will need a <em>text-generation</em> model - we recommend: <strong>gpt-35-turbo</strong></li>
+<li>You will need a <em>text-embedding</em> model - we recommend <strong>text-embedding-ada-002</strong></li>
+</ol>
+<p>Now update the environment variables to reflect the <em>Deployment name</em> used. This will typically be the same as the model name unless you changed it explcitly. So, as an example, you might have:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">AZURE_OPENAI_DEPLOYMENT</span><span class="o">=</span><span class="s1">&#39;gpt-35-turbo&#39;</span>
+<span class="nv">AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT</span><span class="o">=</span><span class="s1">&#39;text-embedding-ada-002&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Don't forget to save the .env file when done</strong>. You can now exit the file and return to the instructions for running the notebook.</p>
+<h3 id="25-configure-openai-from-profile">2.5 Configure OpenAI: From Profile<a class="headerlink" href="#25-configure-openai-from-profile" title="Permanent link">&para;</a></h3>
+<p>Your OpenAI API key can be found in your <a href="https://platform.openai.com/api-keys?WT.mc_id=academic-105485-koreyst">OpenAI account</a>. If you don't have one, you can sign up for an account and create an API key. Once you have the key, you can use it to populate the <code>OPENAI_API_KEY</code> variable in the <code>.env</code> file.</p>
+<h3 id="26-configure-hugging-face-from-profile">2.6 Configure Hugging Face: From Profile<a class="headerlink" href="#26-configure-hugging-face-from-profile" title="Permanent link">&para;</a></h3>
+<p>Your Hugging Face token can be found in your profile under <a href="https://huggingface.co/settings/tokens?WT.mc_id=academic-105485-koreyst">Access Tokens</a>. Don't post or share these publicly. Instead, create a new token for this project usage and copy that into the <code>.env</code> file under the <code>HUGGING_FACE_API_KEY</code> variable. <em>Note:</em> This is technically not an API key but is used for authentication so we are keeping that naming convention for consistency.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: About">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                About
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../01-introduction-to-genai/" class="md-footer__link md-footer__link--next" aria-label="Next: 1. Introduction">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                1. Introduction
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

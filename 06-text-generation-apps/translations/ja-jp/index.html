@@ -1,0 +1,2119 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/06-text-generation-apps/translations/ja-jp/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>テキスト生成アプリケーションの構築 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              テキスト生成アプリケーションの構築
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      学習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      テキスト生成アプリについて
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="テキスト生成アプリについて">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      コンソールや UI アプリには制限があります
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      テキスト生成アプリの利点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      テキスト生成アプリで何が作れるのでしょうか？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      どこから始めればよいのでしょうか？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      ライブラリ/SDK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenAI を使用した最初のアプリ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenAI を使用した最初のアプリ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenAI のインストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      リソースの作成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API キーとエンドポイントを取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure の設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      テキストの生成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="テキストの生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chat-completions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chat completions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      エクササイズ - 初めてのテキスト生成アプリ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      さまざまな種類のプロンプト、さまざまな用途
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      より実用的な使用例：料理レシピの作成
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      演習 - レシピ作成を構築する
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="演習 - レシピ作成を構築する">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      フィルターと買い物リストを追加して改善する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      セットアップを改善しましょう
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      課題
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      解法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="解法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      勉強仲間
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      歴史ボット
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      知識チェック
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 チャレンジ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      お疲れ様でした! 学習を続ける
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">テキスト生成アプリケーションの構築<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson6-gh?WT.mc_id=academic-105485-koreyst"><img alt="Building Text Generation Applications" src="../../images/06-lesson-banner.png?WT.mc_id=academic-105485-yoterada" /></a></p>
+<blockquote>
+<p><em>(上記の画像をクリックすると、レッスン・ビデオを表示します)</em></p>
+</blockquote>
+<p>これまでのレッスンを通じて、プロンプトの基本的な概念や、「プロンプト・エンジニアリング」と呼ぶテクニックについて学んできました。ChatGPT、Office 365、Microsoft Power Platform 　など、プロンプトで操作可能な多くのツールは、皆様が何かを成し遂げるためのサポートを行います。</p>
+<p>皆様のアプリケーションに、このような機能を追加するためには、プロンプトや Completion といった概念を理解し、使用するライブラリを選択する必要があります。この章では、それらを具体的に学んでいきます。</p>
+<h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>このレッスンでは、下記の内容について説明します。</p>
+<ul>
+<li>OpenAI のライブラリとその基本概念について学習します</li>
+<li>OpenAI を使用して、テキスト生成アプリを構築します</li>
+<li>プロンプト、温度、トークンなどの概念を使用してテキスト生成アプリを構築する方法を理解します</li>
+</ul>
+<h2 id="_3">学習目標<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>このレッスンを修了すると、下記を理解できます：</p>
+<ul>
+<li>テキスト生成アプリケーションとは何かを説明できる</li>
+<li>OpenAI を使用してテキスト生成アプリを構築する</li>
+<li>使用するトークン数を増減させたり、温度を変更し、さまざまな出力が得られるようにアプリを構成する</li>
+</ul>
+<h2 id="_4">テキスト生成アプリについて<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>通常、アプリを作る際、下記のようなインターフェースがあります：</p>
+<ul>
+<li>コマンドベース：コンソール・アプリは典型的な例で、コマンドを入力するとタスクを実行できます。例えば、git はコマンド・ベースのアプリです</li>
+<li>ユーザー・インターフェース（UI）：一部のアプリは、ボタンをクリックしたり、テキストを入力したり、オプションを選択したりするグラフィカル・ユーザーインターフェース（GUI）を持っています。</li>
+</ul>
+<h3 id="ui">コンソールや UI アプリには制限があります<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h3>
+<p>コマンドを入力するコマンド・ベースのアプリと比較してください。</p>
+<ul>
+<li><strong>入力可能なコマンド数は有限</strong>：任意のコマンドを入力できるわけではなく、アプリがサポートしているコマンドのみ入力可能です。</li>
+<li><strong>言語特有</strong>：一部のアプリはまれに多言語をサポートしていますが、たとえ追加言語のサポートがされている場合でも、基本的には特定の言語用にアプリは実装されています。</li>
+</ul>
+<h3 id="_5">テキスト生成アプリの利点<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>それでは、テキスト生成アプリはどう違うのでしょうか?</p>
+<p>テキスト生成アプリは、コマンド数や特定の入力言語に制約されず、より柔軟に操作でき、自然言語を使ってアプリと対話できます。さらに、既に大量のテキストや音声データの情報から訓練されたデータ・ソースを利用しているため、従来のアプリがデータベースの内容に限定されるのとは対照的に、利用可能な情報量が大幅に増えます。</p>
+<h3 id="_6">テキスト生成アプリで何が作れるのでしょうか？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>作れるものはたくさんあります。例えば：</p>
+<ul>
+<li><strong>チャットボット</strong>：所属する会社や、提供する製品について質問に答えられるチャットボットは有用です</li>
+<li><strong>ヘルパー</strong>：LLM は、テキストの要約、テキストから知見の抽出、履歴書作成のように、様々なテキスト生成で利用できます</li>
+<li><strong>コード・アシスタント</strong>：使用する言語モデルによっては、プログラミング・コードの作成を支援するコード・アシスタントも作れます。例えば、GitHub Copilot や ChatGPT のような製品を使って、コード作成の支援もできます。</li>
+</ul>
+<h2 id="_7">どこから始めればよいのでしょうか？<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>まず、LLM と統合する方法を理解する必要があります。これには通常、以下の 2 つのアプローチが含まれます：</p>
+<ul>
+<li>API の使用：プロンプトを含む HTTP (RESTful) リクエストを作成し、生成されたテキストを取得</li>
+<li>ライブラリの使用：上記の API 呼び出しより簡単に利用可能で、API 呼び出しを隠蔽したライブラリを使用</li>
+</ul>
+<h2 id="sdk">ライブラリ/SDK<a class="headerlink" href="#sdk" title="Permanent link">&para;</a></h2>
+<p>LLM を操作するために、いくつかの有名なライブラリがあります：</p>
+<ul>
+<li><strong>OpenAI</strong> このライブラリを使用すると、モデルに対する接続とプロンプトの送信が簡単になります</li>
+</ul>
+<p>また、より高レベルで動作するライブラリもあります：</p>
+<ul>
+<li><strong>Langchain</strong>：Langchain はよく知られており、Python をサポートしています</li>
+<li><strong>Semantic Kernel</strong>：Semantic Kernel は、C#、Python、Java をサポートする Microsoft 純正のライブラリです</li>
+</ul>
+<h2 id="openai">OpenAI を使用した最初のアプリ<a class="headerlink" href="#openai" title="Permanent link">&para;</a></h2>
+<p>以降で、最初のアプリを実装する方法、実装に必要なライブラリ、どの位のコード量が必要かなど、ご確認ください。</p>
+<h3 id="openai_1">OpenAI のインストール<a class="headerlink" href="#openai_1" title="Permanent link">&para;</a></h3>
+<p>OpenAI や Azure OpenAI と対話するためのライブラリはたくさんあります。また、C#、Python、JavaScript、Java など、さまざまなプログラミング言語で利用可能です。今回は、Python 用の <code>OpenAI</code> ライブラリを使用します。そして、ライブラリのインストールには <code>pip</code> を使用します。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>openai
+</code></pre></div></td></tr></table></div>
+<h3 id="_8">リソースの作成<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>下記の手順に従い操作を行なってください：</p>
+<ul>
+<li>Azure のアカウントを作成します。<a href="https://azure.microsoft.com/free/?WT.mc_id=academic-105485-yoterada">https://azure.microsoft.com/free/</a></li>
+<li>Azure Open AI へのアクセス権限を取得します。<a href="https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai?WT.mc_id=academic-105485-yoterada">https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai</a> からアクセス申請を提出します</li>
+</ul>
+<blockquote>
+<p>[!NOTE]
+本記事の執筆時には、Azure Open AI へのアクセスを申請する必要があります。</p>
+</blockquote>
+<ul>
+<li>Python をインストールします。 <a href="https://www.python.org/">https://www.python.org/</a></li>
+<li>Azure OpenAI Service リソースを作成します。<a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal?WT.mc_id=academic-105485-yoterada">リソースの作成方法</a>については、こちらのガイドをご参照ください。</li>
+</ul>
+<h3 id="api">API キーとエンドポイントを取得<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<p>ここで、<code>OpenAI</code> ライブラリに対してどの API キーを使用するか指定します。API キーを見つけるためには、Azure OpenAI リソースの「Keys and Endpoint」セクションに移動し、「Key 1」の値をコピーしてください。</p>
+<p><img alt="Keys and Endpoint resource blade in Azure Portal" src="https://learn.microsoft.com/azure/ai-services/openai/media/quickstarts/endpoint.png?WT.mc_id=academic-105485-yoterada" /></p>
+<p>キーをコピーしたので、それをライブラリで利用できるように指定します。</p>
+<blockquote>
+<p>[!NOTE]
+API キーはコード中に直接書き込まずに管理すべきです。下記のように環境変数を使用して設定できます。</p>
+<ul>
+<li>環境変数 <code>OPENAI_API_KEY</code> に API キーを設定します<br />
+<code>export OPENAI_API_KEY='sk-...'</code></li>
+</ul>
+</blockquote>
+<h3 id="azure">Azure の設定<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
+<p>Azure OpenAI を使用している場合、下記の設定を追加で行います：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-05-15&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;API_BASE&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>上記は、それぞれ下記の設定を行っています：</p>
+<ul>
+<li><code>api_type</code>を<code>azure</code>に設定します。これにより、ライブラリは OpenAI ではなく Azure Open AI に接続します。</li>
+<li><code>api_key</code>は、Azure Portal で取得した API キーを設定します。</li>
+<li><code>api_version</code>は、使用する API のバージョンです。執筆時点での最新バージョンは<code>2023-05-15</code>です。</li>
+<li><code>api_base</code> は API のエンドポイントです。これは、Azure Portal の API キーの下側に記載されています。</li>
+</ul>
+<blockquote>
+<p>[!NOTE] &gt; <code>os.getenv</code> は環境変数を読み取る関数です。<code>OPENAI_API_KEY</code> や <code>API_BASE</code> などの環境変数を読み取るために使用します。これらの環境変数は、ターミナルで設定するか、もしくは <code>dotenv</code> のようなライブラリを使用して設定します。</p>
+<p>[!NOTE]
+訳者追記<br />
+訳者が確認した所、記載している OpenAI の Python ライブラリが古い 0.28.1 で記載されています。
+現在はより新しい、OpenAI Python 1.x がリリースされています。
+新しい 1.x のライブラリへバージョン・アップするため際には、こちらの <a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/migration?WT.mc_id=academic-105485-yoterada">Migrating to the OpenAI Python API library 1.x</a> をご参照ください</p>
+</blockquote>
+<h2 id="_9">テキストの生成<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p><code>Completion</code> クラスを使用してテキストを生成する方法をご覧ください。下記にサンプルを記述しています：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;次の文を完成させてください: むかしむかしある所に&quot;</span>
+
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>上記のコードでは、Completion オブジェクトを作成し、使用するモデルに対してプロンプトを渡しています。その後、生成されたテキストを出力しています。</p>
+<h3 id="chat-completions">Chat completions<a class="headerlink" href="#chat-completions" title="Permanent link">&para;</a></h3>
+<p>上記では、<code>Completion</code> クラスを使用してテキストを生成する方法を見てきました。
+しかし、チャット・ボット用には、より適した <code>ChatCompletion</code> という別のクラスが用意されています。下記にサンプルを記述しています。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;sk-...&quot;</span>
+
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;こんにちは世界 (Hello world)&quot;</span><span class="p">}])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>この機能の詳細は、次の章で詳しく説明します。</p>
+<h2 id="-">エクササイズ - 初めてのテキスト生成アプリ<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<p>OpenAI のセットアップと設定方法を学んだので、次に初めてのテキスト生成アプリを実装してみましょう。アプリの実装は、下記の手順で行ないます：</p>
+<ol>
+<li>仮想環境を作成し、OpenAI をインストールします：</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>openai
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!NOTE]
+Windows 環境で行う場合は、<code>source venv/bin/activate</code> の代わりに<code>venv\Scripts\activate</code> を入力してください。</p>
+<p>[!NOTE]
+Azure OpenAI キーは、<a href="https://portal.azure.com/?WT.mc_id=academic-105485-yoterada">https://portal.azure.com/</a> から <code>OpenAI</code> を検索し、<code>OpenAI Resource</code> を選択してください。その後 <code>Keys and Endpoint</code> を選択し、<code>Key 1</code> の値をコピーてください。</p>
+</blockquote>
+<ol>
+<li><em>app.py</em> ファイルを作成し、下記のコードを記述してください：</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;&lt;OpenAI のキーまたは Azure OpenAI のキーを入力&gt;&quot;</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-05-15&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;&lt;Azure Portal でキーと同一の場所に記載されている接続用エンドポイント&gt;&quot;</span>
+<span class="n">deployment_name</span> <span class="o">=</span> <span class="s2">&quot;&lt;デプロイ名&gt;&quot;</span>
+
+<span class="c1"># ここに Completion コードを追加</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;次の文を完成させてください: むかしむかし、あるところに&quot;</span>
+
+<span class="c1"># Completion を作成</span>
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span> <span class="n">deployment_name</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
+
+<span class="c1"># レスポンスを出力</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!NOTE]
+Azure OpenAI を使用している場合、<code>api_type</code> として <code>azure</code> を設定し、<code>api_key</code> に Azure OpenAI キーを設定する必要があります。</p>
+</blockquote>
+<p>下記のような結果が表示されるはずです：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">おじいさんとおばあさんが住んでいました。</span>
+
+<span class="go">(※ 上記の回答内容は、訳者が日本語環境での実行にあわせて変更しました。英語で実行した場合と異なる結果が得られます。)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_10">さまざまな種類のプロンプト、さまざまな用途<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>これまで、プロンプトを使用してテキストを生成する方法を見てきました。色々な種類のテキストを生成するため、今動いているアプリケーションに対して修正・変更を加えテキスト生成機能を追加できます。</p>
+<p>プロンプトは様々なタスクに使用できます。例えば：</p>
+<ul>
+<li><strong>様々なテキストを生成</strong>：詩やクイズの質問などを生成できます</li>
+<li><strong>情報の検索</strong>：「Web 開発における CORS の意味は何ですか？」のような情報を検索するためにプロンプトを使用できます</li>
+<li><strong>コード生成</strong>：電子メール・アドレスの検証に使用する正規表現を作成したり、Web アプリケーションのようなプログラム全体のコードを生成するためにプロンプトを使用できます。</li>
+</ul>
+<h2 id="_11">より実用的な使用例：料理レシピの作成<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>家に食材があって、何か料理を作りたい場合を想像してください。そのためにレシピが必要です。適切なレシピを見つける方法の一つに検索エンジンがありますが、LLM（大規模言語モデル）もレシピを出力できます。</p>
+<p>たとえば、下記のようなプロンプトを記述できます：</p>
+<blockquote>
+<p>「鶏肉、じゃがいも、にんじん」を使った料理のレシピを 5 つ教えてください。レシピごとに使用する全ての食材をリストしてください。</p>
+</blockquote>
+<p>上記のプロンプトを使用すると、以下のようなレスポンスが得られるかもしれません：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">1. ローストチキンと野菜：</span>
+<span class="go">材料：</span>
+<span class="go">- チキンのもも肉 4 枚</span>
+<span class="go">- じゃがいも 2 個、角切り</span>
+<span class="go">- にんじん 2 本、角切り</span>
+<span class="go">- オリーブオイル大さじ 2 杯</span>
+<span class="go">- にんにく 2 片、みじん切り</span>
+<span class="go">- ドライタイム小さじ 1 杯</span>
+<span class="go">- ドライオレガノ小さじ 1</span>
+<span class="go">- 塩と胡椒、適量</span>
+
+<span class="go">2. チキンとポテトのシチュー：</span>
+<span class="go">材料：</span>
+<span class="go">- オリーブオイル大さじ 2 杯</span>
+<span class="go">- 玉ねぎ 1 個、みじん切り</span>
+<span class="go">- にんにく 2 片、みじん切り</span>
+<span class="go">- チキンの胸肉 2 枚、角切り</span>
+<span class="go">- じゃがいも 2 個、角切り</span>
+<span class="go">- にんじん 2 本、角切り</span>
+<span class="go">- ドライオレガノ小さじ 1</span>
+<span class="go">- ドライタイム小さじ 1</span>
+<span class="go">- チキンブロス 1 カップ</span>
+<span class="go">- 塩と胡椒、適量</span>
+
+<span class="go">3. チキンとポテトのベイク：</span>
+<span class="go">材料：</span>
+<span class="go">- オリーブオイル大さじ 2</span>
+<span class="go">- チキンの胸肉 2 枚、角切り</span>
+<span class="go">- じゃがいも 2 個、角切り</span>
+<span class="go">- にんじん 2 本、角切り</span>
+<span class="go">- 玉ねぎ 1 個、みじん切り</span>
+<span class="go">- にんにく 2 片、みじん切り</span>
+<span class="go">- ドライオレガノ小さじ 1</span>
+<span class="go">- ドライタイム小さじ 1</span>
+<span class="go">- チキンブロス 1 カップ</span>
+<span class="go">- 塩と胡椒、適量</span>
+
+<span class="go">4. チキンとポテトのスープ：</span>
+<span class="go">材料：</span>
+<span class="go">- オリーブオイル大さじ2</span>
+<span class="go">- 玉ねぎ 1 個、みじん切り</span>
+<span class="go">- にんにく 2 片、みじん切り</span>
+<span class="go">- チキンの胸肉 2 枚、角切り</span>
+<span class="go">- じゃがいも 2 個、角切り</span>
+<span class="go">- にんじん 2 本、角切り</span>
+<span class="go">- ドライオレガノ小さじ 1</span>
+<span class="go">- ドライタイム小さじ 1</span>
+<span class="go">- チキンブロス 4 カップ</span>
+<span class="go">- 塩と胡椒、適量</span>
+
+<span class="go">5. チキンとポテトのハッシュ：</span>
+<span class="go">材料：</span>
+<span class="go">- オリーブオイル大さじ 2</span>
+<span class="go">- チキンの胸肉 2 枚、角切り</span>
+<span class="go">- じゃがいも 2 個、角切り</span>
+<span class="go">- にんじん 2 本、角切り</span>
+<span class="go">- 玉ねぎ 1 個、みじん切り</span>
+<span class="go">- にんにく 2 片、みじん切り</span>
+<span class="go">- ドライオレガノ小さじ1</span>
+</code></pre></div></td></tr></table></div>
+<p>この結果は素晴らしいですね、食材からどのような料理を作れるかわかりました。ここで役に立つ、改善点２つをご覧ください：</p>
+<ul>
+<li>好きでない食材やアレルギーのある食材を除外する</li>
+<li>家に全ての食材がない場合に備え、買い物リストを作成する</li>
+</ul>
+<p>上記に対して、追加のプロンプトを作成しましょう：</p>
+<blockquote>
+<p>"ニンニク・アレルギーがあるので、ニンニクを含むレシピを除外し、別のものに置き換えてください。また、家にはすでに鶏肉、じゃがいも、にんじんがあります、それ以外でレシピに必要な買い物リストを作成してください。"</p>
+</blockquote>
+<p>これで、下記のような新しい結果が得られます</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">1. ローストチキンと野菜：</span>
+<span class="go">材料：</span>
+<span class="go">- チキンのもも肉 4 枚</span>
+<span class="go">- じゃがいも 2 個、角切り</span>
+<span class="go">- にんじん 2 本、角切り</span>
+<span class="go">- オリーブオイル大さじ 2</span>
+<span class="go">- ドライタイム小さじ 1</span>
+<span class="go">- ドライオレガノ小さじ 1</span>
+<span class="go">- 塩と胡椒、適量</span>
+
+<span class="go">2. チキンとポテトのシチュー：</span>
+<span class="go">材料：</span>
+<span class="go">- オリーブオイル大さじ 2</span>
+<span class="go">- 玉ねぎ 1 個、みじん切り</span>
+<span class="go">- チキンの胸肉 2 枚、角切り</span>
+<span class="go">- じゃがいも 2 個、角切り</span>
+<span class="go">- にんじん 2 本、角切り</span>
+<span class="go">- ドライオレガノ小さじ 1</span>
+<span class="go">- ドライタイム小さじ 1</span>
+<span class="go">- チキンブロス 1 カップ</span>
+<span class="go">- 塩と胡椒、適量</span>
+
+<span class="go">3. チキンとポテトのベイク：</span>
+<span class="go">材料：</span>
+<span class="go">- オリーブオイル大さじ 2</span>
+<span class="go">- チキンの胸肉 2 枚、角切り</span>
+<span class="go">- じゃがいも 2 個、角切り</span>
+<span class="go">- にんじん 2 本、角切り</span>
+<span class="go">- 玉ねぎ 1 個、みじん切り</span>
+<span class="go">- ドライオレガノ小さじ 1</span>
+<span class="go">- ドライタイム小さじ 1</span>
+<span class="go">- チキンブロス 1 カップ</span>
+<span class="go">- 塩と胡椒、適量</span>
+
+<span class="go">4. チキンとポテトのスープ：</span>
+<span class="go">材料：</span>
+<span class="go">- オリーブオイル大さじ 2</span>
+<span class="go">- 玉ねぎ 1 個、みじん切り</span>
+<span class="go">- チキンの胸肉 2 枚、角切り</span>
+<span class="go">- じゃがいも 2 個、角切り</span>
+<span class="go">- にんじん 2 本、角切り</span>
+<span class="go">- ドライオレガノ小さじ 1</span>
+<span class="go">- ドライタイム小さじ 1</span>
+<span class="go">- チキンブロス 4 カップ</span>
+<span class="go">- 塩と胡椒、適量</span>
+
+<span class="go">5. チキンとポテトのハッシュ：</span>
+<span class="go">材料：</span>
+<span class="go">- オリーブオイル大さじ 2</span>
+<span class="go">- チキンの胸肉 2 枚、角切り</span>
+<span class="go">- じゃがいも 2 個、角切り</span>
+<span class="go">- にんじん 2 本、角切り</span>
+<span class="go">- 玉ねぎ 1 個、みじん切り</span>
+<span class="go">- ドライオレガノ小さじ 1</span>
+
+<span class="go">買い物リスト：</span>
+<span class="go">- オリーブオイル</span>
+<span class="go">- 玉ねぎ</span>
+<span class="go">- タイム</span>
+<span class="go">- オレガノ</span>
+<span class="go">- 塩</span>
+<span class="go">- 胡椒</span>
+</code></pre></div></td></tr></table></div>
+<p>以上が新しい、5 つのレシピで、ニンニクは記載されておらず、家にすでにあるものを考慮し、買い物リストも記載されています。</p>
+<h2 id="-_1">演習 - レシピ作成を構築する<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h2>
+<p>シナリオを一通り試したところで、そのシナリオに合わせたコードを実装してみましょう。下記の手順に従い実装してください。</p>
+<ol>
+<li>既存の <em>app.py</em> ファイルを利用します。</li>
+<li><code>prompt</code>という変数を探し、下記のようにコードを修正してください。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;鶏肉、じゃがいも、にんじんを使った料理のレシピを 5 つ教えてください。レシピごとに、使用するすべての食材をリストしてください&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>コードを実行すると、下記のような結果が表示されます。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">-鶏肉とじゃがいも、人参のシチュー: サラダ油大さじ3, 玉ねぎ1個（みじん切り）, ニンニク2片（みじん切り）, 人参1本（皮をむいてみじん切り）, じゃがいも1個（皮をむいてみじん切り）, ローリエ1枚, タイム1枝, 塩小さじ1/2, 黒コショウ小さじ1/4, 鶏ガラスープ1 1/2カップ, ドライホワイトワイン1/2カップ, パセリ（みじん切り）大さじ2, 無塩バター大さじ2, 骨なし鶏もも肉1 1/2ポンド（1インチ角に切る）</span>
+
+<span class="go">-オーブン焼き鶏肉とじゃがいも、人参: エキストラバージンオリーブオイル大さじ3, ディジョンマスタード大さじ1, ローズマリー（みじん切り）大さじ1, タイム（みじん切り）大さじ1, ニンニク4片（みじん切り）, 小さめの赤じゃがいも1 1/2ポンド（4等分に切る）, 人参1 1/2ポンド（縦に4等分に切る）, 塩小さじ1/2, 黒コショウ小さじ1/4, 丸鶏1羽（4ポンド）</span>
+
+<span class="go">-鶏肉、じゃがいも、人参のキャセロール: クッキングスプレー, 大きめの玉ねぎ1個（みじん切り）, ニンニク2片（みじん切り）, 人参1本（皮をむいてみじん切り）, じゃがいも1個（皮をむいてみじん切り）, タイム（乾燥）小さじ1/2, 塩小さじ1/4, 黒コショウ小さじ1/4, 脂肪無添加、低ナトリウムの鶏ガラスープ2カップ, 冷凍グリーンピース1カップ, 中力粉1/4カップ, 低脂肪牛乳1カップ, パルメザンチーズ（おろしたもの）1/4カップ</span>
+
+<span class="go">-ワンポットチキンとじゃがいもディナー: オリーブオイル大さじ2, 骨なし鶏もも肉1ポンド（1インチ角に切る）, 大きめの玉ねぎ1個（みじん切り）, ニンニク3片（みじん切り）, 人参1本（皮をむいてみじん切り）, じゃがいも1個（皮をむいてみじん切り）, ローリエ1枚, タイム1枝, 塩小さじ1/2, 黒コショウ小さじ1/4, 鶏ガラスープ2カップ, ドライホワイトワイン1/2カップ</span>
+
+<span class="go">-鶏肉、じゃがいも、人参のカレー: サラダ油大さじ1, 大きめの玉ねぎ1個（みじん切り）, ニンニク2片（みじん切り）, 人参1本（皮をむいてみじん切り）, じゃがいも1個（皮をむいてみじん切り）, コリアンダー（パウダー）小さじ1, クミン（パウダー）小さじ1, ターメリック（パウダー）小さじ1/2, ジンジャー（パウダー）小さじ1/2, ケイエンペッパー小さじ1/4, 鶏ガラスープ2カップ, ドライホワイトワイン1/2カップ, ヒヨコ豆1缶（15オンス、水切り）, レーズン1/2カップ, シラントロ（みじん切り）1/2カップ</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>注意: LLM 　は非決定的(非確実)なので、プログラムを実行するたびに上記とは異なる結果が得られるかもしれません。</p>
+</blockquote>
+<p>さてそれでは、どうすれば改善できるのかを見てみましょう。改善するために、コードに柔軟性を持たせ、材料やレシピの数を変更できるようにします。</p>
+<ol>
+<li>以下のようにコードを修正してください。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">no_recipes</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;レシピの数を入力してください（例：5）: &quot;</span><span class="p">)</span>
+
+<span class="n">ingredients</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;食材のリストを入力してください（例：鶏肉、じゃがいも、人参）: &quot;</span><span class="p">)</span>
+
+<span class="c1"># レシピの数と材料をプロンプトに挿入</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ingredients</span><span class="si">}</span><span class="s2"> を使った料理のレシピを </span><span class="si">{</span><span class="n">no_recipes</span><span class="si">}</span><span class="s2"> つ教えてください。レシピごとに、使用するすべての食材をリストしてください&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>このコードを実行すると、下記のような結果が得られます。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">レシピの数を入力してください（例：5）: 3</span>
+<span class="go">材料のリストを入力してください（例：鶏肉、じゃがいも、人参）: ミルク、イチゴ</span>
+
+<span class="go">-イチゴのミルクシェイク: ミルク、イチゴ、砂糖、バニラエキス、氷</span>
+<span class="go">-イチゴのショートケーキ: ミルク、小麦粉、ベーキングパウダー、砂糖、塩、無塩バター、イチゴ、ホイップクリーム</span>
+<span class="go">-イチゴミルク: ミルク、イチゴ、砂糖、バニラエキス</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_12">フィルターと買い物リストを追加して改善する<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>上記で、入力に基づいてレシピを生成し、その数や使用する食材を柔軟に変更できるアプリが完成しました。</p>
+<p>さらに改善するために、下記の機能を追加したいと思います。</p>
+<ul>
+<li><strong>材料のフィルタリング</strong>。嫌いな食材やアレルギーのある食材をフィルタリングできるようにしたいと考えています。これを実現するために、既存のプロンプトを編集し、下記のようにフィルター条件をプロンプトの最後に追加してください。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">filter</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;フィルター（例：ベジタリアン、ビーガン、グルテンフリー）: &quot;</span><span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ingredients</span><span class="si">}</span><span class="s2"> を使った料理のレシピを </span><span class="si">{</span><span class="n">no_recipes</span><span class="si">}</span><span class="s2"> つ教えてください。レシピごとに、使用するすべての食材をリストしてください。ただし、</span><span class="si">{</span><span class="nb">filter</span><span class="si">}</span><span class="s2">は除外してください。&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>上記では、プロンプトの最後に <code>{filter}</code> を追加し、利用者からフィルターの値も取得しています。</p>
+<p>プログラムを実行すると、下記のような入出力結果が得られます。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">レシピの数を入力してください（例：5）: 3</span>
+<span class="go">材料のリストを入力してください（例：鶏肉、じゃがいも、人参）: 玉ねぎ、ミルク</span>
+<span class="go">フィルター（例：ベジタリアン、ビーガン、グルテンフリー）: ミルクなし</span>
+
+<span class="go">1. フレンチオニオンスープ</span>
+<span class="go">材料:</span>
+<span class="go">-大きな玉ねぎ1個、スライス</span>
+<span class="go">-ビーフブロス3カップ</span>
+<span class="go">-ミルク1カップ</span>
+<span class="go">-フレンチブレッド6枚</span>
+<span class="go">-パルメザンチーズ、おろしたもの1/4カップ</span>
+<span class="go">-バター大さじ1</span>
+<span class="go">-乾燥タイム小さじ1</span>
+<span class="go">-塩小さじ1/4</span>
+<span class="go">-黒コショウ小さじ1/4</span>
+
+<span class="go">作り方:</span>
+<span class="go">1. 大きな鍋で、バターで玉ねぎをゴールデンブラウンになるまで炒めます。</span>
+<span class="go">2. ビーフブロス、ミルク、タイム、塩、コショウを加えて沸騰させます。</span>
+<span class="go">3. 火を弱めて10分間煮ます。</span>
+<span class="go">4. スープボウルにフレンチブレッドのスライスを置きます。</span>
+<span class="go">5. スープをパンの上にかけます。</span>
+<span class="go">6. パルメザンチーズを振りかけます。</span>
+
+<span class="go">2. 玉ねぎとじゃがいものスープ</span>
+<span class="go">材料:</span>
+<span class="go">-大きな玉ねぎ1個、みじん切り</span>
+<span class="go">-じゃがいも2カップ、さいの目に切る</span>
+<span class="go">-野菜ブロス3カップ</span>
+<span class="go">-ミルク1カップ</span>
+<span class="go">-黒コショウ小さじ1/4</span>
+
+<span class="go">作り方:</span>
+<span class="go">1. 大きな鍋で、バターで玉ねぎをゴールデンブラウンになるまで炒めます。</span>
+<span class="go">2. じゃがいも、野菜ブロス、ミルク、コショウを加えて沸騰させます。</span>
+<span class="go">3. 火を弱めて10分間煮ます。</span>
+<span class="go">4. 熱々で提供します。</span>
+
+<span class="go">3. クリーミーオニオンスープ</span>
+<span class="go">材料:</span>
+<span class="go">-大きな玉ねぎ1個、みじん切り</span>
+<span class="go">-野菜ブロス3カップ</span>
+<span class="go">-ミルク1カップ</span>
+<span class="go">-黒コショウ小さじ1/4</span>
+<span class="go">-中力粉1/4カップ</span>
+<span class="go">-パルメザンチーズ、おろしたもの1/2カップ</span>
+
+<span class="go">作り方:</span>
+<span class="go">1. 大きな鍋で、バターで玉ねぎをゴールデンブラウンになるまで炒めます。</span>
+<span class="go">2. 野菜ブロス、ミルク、コショウを加えて沸騰させます。</span>
+<span class="go">3. 火を弱めて10分間煮ます。</span>
+<span class="go">4. 小さなボウルで、中力粉とパルメザンチーズを滑らかになるまで混ぜます。</span>
+<span class="go">5. スープに加えてさらに5分間煮ます、またはスープがとろみを帯びるまで。</span>
+</code></pre></div></td></tr></table></div>
+<p>ご覧頂いたの通り、ミルクを含むレシピは全てフィルタリングされています。しかし、もし乳製品を摂取すると体調が悪くなる方であれば、チーズを含むレシピもフィルタリングしたいとお考えになるでしょう。その場合は、明確化にフィルタリングで指示する必要があります。</p>
+<ul>
+<li><strong>買い物リストを作成</strong> 次に、家にすでにあるものを考慮して、買い物リストを作成したいと考えています。</li>
+</ul>
+<p>この機能は、一つのプロンプト内に全てを記述できますし、二つのプロンプトに分けて記述できます。ここでは後者の二つに分けるアプローチを採用します。ここでは、追加のプロンプトを提案していますが、それを機能させるためには、前のプロンプトの結果を後ろのプロンプトのコンテキストに追加する必要があります。</p>
+<p>最初のプロンプトの結果を出力するコードを見つけ、下記のコードを追加します：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">old_prompt_result</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;生成されたレシピの買い物リストを作成してください。ただし、すでに持っている食材は含めないでください。&quot;</span>
+
+<span class="n">new_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">old_prompt_result</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">deployment_name</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">new_prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span>
+
+<span class="c1"># レスポンスを出力</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;買い物リスト:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>以下の点にご注意ください：</p>
+<ol>
+<li>最初のプロンプトの結果を新しいプロンプトに追加して、新しいプロンプトを作成します：</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">new_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">old_prompt_result</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>新しいリクエストを作成しますが、最初のプロンプトで要求したトークン数も考慮に入れて、今回は <code>max_tokens</code> を 1200 とします。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">deployment_name</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">new_prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>このコードを実行すると、下記のような結果が得られます：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">レシピの数（例えば、5）: 2</span>
+<span class="go">食材のリスト（例えば、チキン、ポテト、キャロット）: リンゴ、小麦粉</span>
+<span class="go">フィルター（例えば、ベジタリアン、ビーガン、グルテンフリー）: 砂糖</span>
+
+<span class="go">-リンゴと小麦粉のパンケーキ: 小麦粉1カップ、ベーキングパウダー1/2小さじ、ベーキングソーダ1/2小さじ、塩1/4小さじ、砂糖1大さじ、卵1個、バターミルクまたはサワーミルク1カップ、溶かしたバター1/4カップ、皮を剥いてすりおろしたグラニースミスリンゴ1個</span>
+<span class="go">-リンゴのフリッター: 小麦粉1-1/2カップ、ベーキングパウダー1小さじ、塩1/4小さじ、ベーキングソーダ1/4小さじ、ナツメグ1/4小さじ、シナモン1/4小さじ、オールスパイス1/4小さじ、砂糖1/4カップ、植物性ショートニング1/4カップ、ミルク1/4カップ、卵1個、皮を剥いて細かく刻んだリンゴ2カップ</span>
+
+<span class="go">買い物リスト:</span>
+<span class="go">-小麦粉、ベーキングパウダー、ベーキングソーダ、塩、砂糖、卵、バターミルク、バター、リンゴ、ナツメグ、シナモン、オールスパイス</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!NOTE]
+訳者追記<br />
+上記の買い物リストの結果は、自宅にある食材（リンゴ、小麦粉）も含まれています。これらを除外するには、プロンプトを修正する必要があります。これは追加課題として、ご自身で実装してみてください。</p>
+</blockquote>
+<h2 id="_13">セットアップを改善しましょう<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>現状で、動作するコードができていますが、さらに改善するためにはいくつかの調整が必要です。以下に、改善すべき点をいくつか挙げてみます。</p>
+<ul>
+<li>
+<p><strong>API キーの機密情報をコードから分離する</strong>　機密情報はコードに含めるべきではなく、安全な場所に保存すべきです。機密情報をコードから分離するために、環境変数や <code>python-dotenv</code> のようなライブラリを使ってファイルから読み込めます。実装は下記のようになります：</p>
+</li>
+<li>
+<p>下記の内容を含む <code>.env</code> ファイルを作成します：</p>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-...
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>ご注意：Azure を使用する場合は、下記の環境変数を設定する必要があります：</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">OPENAI_API_TYPE</span><span class="o">=</span>azure
+<span class="nv">OPENAI_API_VERSION</span><span class="o">=</span><span class="m">2023</span>-05-15
+<span class="nv">OPENAI_API_BASE</span><span class="o">=</span>&lt;replace&gt;
+</code></pre></div></td></tr></table></div>
+<p>コード上では、下記のように記述し環境変数から読み込めます：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>トークンの長さ</strong> 生成するテキストに必要なトークン数を考慮してください。トークンは増えれば増えるほど費用がかかるため、可能な限りトークン数を節約するようにしましょう。例えば、プロンプトをどのように表現すればトークンを少なくできるかご検討ください。</li>
+</ul>
+<p>扱うトークン数を変更するには、<code>max_tokens</code> パラメータを使用します。例えば、100 トークンを使用したい場合は、以下のようにします：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>温度 (Temperature)</strong> これまで触れていなかった温度ですが、プログラムの実行結果に大きな影響を与えます。温度が高いほど（値が 1 に近いほど）、出力はランダムになります。逆に、温度値が低いほど(値が 0 に近いほど)、出力結果は予測可能になります。ご自身のアプリで出力にバリエーションが必要かどうかを考えてください。</li>
+</ul>
+<p>温度を変更するには、<code>temperature</code> パラメータを使用します。例えば、温度を 0.5 に設定したい場合は、以下のようにします：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>注意：1.0 に近づくほど、出力のバリエーションが大きくなります。</p>
+</blockquote>
+<h2 id="_14">課題<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>この課題で何を作るかは任意です。</p>
+<p>下記にいくつかの例を挙げます：</p>
+<ul>
+<li>レシピ生成アプリを微調整してさらに改善しましょう。温度の値やプロンプトを変えて、どのような結果が得られるかお試しください。</li>
+<li>「勉強仲間」を作ってみましょう。このアプリは、例えば Python に関する質問に対して答えます。「Python の "特定のトピック" は何ですか？」といったプロンプトを受け付けたり、「"特定のトピック" に関するコードを教えてください」といったプロンプトを受け付けられます。</li>
+<li>「歴史ボット」を作って、歴史を鮮やかに再現してみましょう。ボットに特定の歴史的人物を演じさせ、その人物の生涯やその時代について質問してみましょう。</li>
+</ul>
+<h2 id="_15">解法<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h3 id="_16">勉強仲間<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>下記は、あくまでも参考のプロンプトですので、使い方を確認し、お好みに合わせて微調整してください。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>- &quot;あなたは Python 言語のエキスパートです
+
+下記の形式で Python の初心者用レッスンを提案してください：
+
+形式：
+    - 概念：
+    - レッスンの簡単な説明：
+    - 解答付きのコード演習&quot;
+</code></pre></div></td></tr></table></div>
+<h3 id="_17">歴史ボット<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>ここで、使用できるプロンプトをいくつか紹介します。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>- &quot;あなたはエイブラハム・リンカーンです。あなたご自身について 3 つの文章を使って教えてください、そしてエイブラハムが使ったであろう文法と言葉を使って答えてください&quot;
+- &quot;あなたはエイブラハム・リンカーンです。エイブラハムが使ったであろう文法と言葉を使って答えてください：
+
+   あなたの最大の功績について、300文字で教えてください&quot;
+</code></pre></div></td></tr></table></div>
+<h2 id="_18">知識チェック<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p>概念「温度」は何を行うのでしょうか？</p>
+<ol>
+<li>出力のランダム性を制御します。</li>
+<li>応答の規模を制御します。</li>
+<li>使用するトークンの数を制御します。</li>
+</ol>
+<h2 id="_19">🚀 チャレンジ<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>課題に取り組む際、温度を 0、0.5、1 に変えて設定してみてください。0 が最も変化が少なく、1 が最も大きくなります。ぜひ覚えておいてください、皆様のアプリにとって最適な値は何ですか?</p>
+<h2 id="_20">お疲れ様でした!　学習を続ける<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<p>このレッスン修了後、<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-yoterada">生成 AI 学習コレクション</a> をチェックして、Generative AI の知識をレベルアップさせましょう。</p>
+<p>レッスン 7 では、<a href="../../../07-building-chat-applications/translations/ja-jp/?WT.mc_id=academic-105485-yoterada">チャットアプリケーションの構築</a>方法を見ていきます。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

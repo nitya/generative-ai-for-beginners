@@ -1,0 +1,1283 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/01-introduction-to-genai/translations/ja-jp/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>生成 AI と大規模言語モデルの紹介 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ai" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              生成 AI と大規模言語モデルの紹介
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      レッスン内容の紹介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      学習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      シナリオ: 教育関連事業をターゲットにするスタートアップ企業
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成 AI はどのようにして生まれたのでしょうか？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="生成 AI はどのようにして生まれたのでしょうか？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      統計学的手法を基にした AI 技術： 機械学習
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ニューラルネットワーク(神経回路網)と最新の仮想アシスタント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      現在の生成 AI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      大規模言語モデルの仕組みを教えてください
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      スタートアップは、大規模言語モデルをどのように活用できるでしょうか？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      課題
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      知識チェック
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      お疲れ様でした! 次のレッスンを続ける
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="ai">生成 AI と大規模言語モデルの紹介<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson-1-gh?WT.mc_id=academic-105485-koreyst"><img alt="Introduction to Generative AI and Large Language Models" src="../../images/01-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<blockquote>
+<p><em>(上記の画像をクリックすると、レッスン・ビデオを表示します)</em></p>
+</blockquote>
+<p>生成 AI は、テキストや画像などのコンテンツを生成する人工知能 (Artificial Intelligence) です。この技術が素晴らしいのは、AI を誰でも使えるようにしている所で、自然言語で書いた文章やテキスト・プロンプトだけで利用できます。
+皆様にとって価値のある何らかの成果を生み出すために、Java や SQL のような言語を学ぶ必要はありません。普段使っている自分の言葉で要望を伝えるだけで、AI モデルから提案が返ってきます。この技術を使えば、報告書を書いたり、その内容を理解するためのアプリケーションが、わずか数秒でできるようになります。その可能性と影響力は計り知れません。</p>
+<p>このカリキュラムで、スタートアップ企業が教育分野で新たな可能性を切り開くために生成 AI をどのように利用しているか、またその適用に伴う社会的影響や、技術的な制限で避けられない問題にどう対処していくのかを詳しく見ていきます。</p>
+<h2 id="_1">レッスン内容の紹介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>このレッスンでは、下記の内容について説明します。</p>
+<ul>
+<li>ビジネスシナリオの紹介: スタートアップのアイデアとミッション</li>
+<li>生成 AI と、技術的な歴史背景</li>
+<li>大規模言語モデルの内部動作</li>
+<li>大規模言語モデルの主な機能と実用的なユースケース</li>
+</ul>
+<h2 id="_2">学習目標<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>このレッスンを修了すると、下記を理解できます：</p>
+<ul>
+<li>生成 AI とは何か、そして大規模言語モデルの仕組みを理解する</li>
+<li>教育シナリオに重点を置き、さまざまなユース・ケースで大規模言語モデルを活用する方法を理解する</li>
+</ul>
+<h2 id="_3">シナリオ:　教育関連事業をターゲットにするスタートアップ企業<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>生成 AI は AI 技術の最高峰に位置付けられ、かつて不可能と思われていた領域にも挑戦し、新たな可能性を広げています。
+生成 AI モデルは様々な機能と用途で利用可能ですが、このカリキュラムでは、架空のスタートアップ企業を通じて教育分野でどのように革新していくのかを学んでいきます。この新興企業を「スタートアップ」と呼びます。
+スタートアップは、教育の領域において下記の野心的な目標を持って事業を行っています。</p>
+<blockquote>
+<p><em>世界規模で学習の利便性を高め、教育に対する平等な機会を実現し、学習者一人ひとりの要望に応える個別学習体験を提供します。</em></p>
+</blockquote>
+<p>スタートアップチームは、大規模言語モデル（LLM）という現在最も強力なツールを使わなければ、上記の目標を達成するのが難しいと考えています。</p>
+<p>生成 AI を利用すると、生徒は 24 時間いつでも問い合わせ可能な、バーチャルの教師から大量の情報や例を学べるようになり、教師も生徒の成績を評価しフィードバックするために、新しいツールが使えるようになると期待しています。これは、現在の学習方法や指導方法に革命をもたらすと考えられています。</p>
+<p><img alt="モニターを見つめる5人の若い学生 -  DALLE2 による画像" src="../../images/students-by-DALLE2.png?WT.mc_id=academic-105485-yoterada" /></p>
+<p>まず、カリキュラム全体を通じて使用する、基本的な概念と用語を定義しましょう。</p>
+<h2 id="ai_1">生成 AI はどのようにして生まれたのでしょうか？<a class="headerlink" href="#ai_1" title="Permanent link">&para;</a></h2>
+<p>最近発表された、生成 AI モデルは大きな注目を集めていますが、この技術は過去数十年にわたる開発の歴史があり、初期の研究は 1960 年代までさかのぼります。そして今、AI 技術は <a href="https://openai.com/chatgpt">OpenAI の ChatGPT</a> や <a href="https://www.microsoft.com/edge/features/bing-chat?WT.mc_id=academic-105485-yoterada">Bing Chat</a> のように会話能力を有するなど、人間の認知能力を持つレベルにまで達しています。また、これらのチャットシステムは、Bing の Web 検索における対話でも GPT モデルを採用しています。</p>
+<p>AI の歴史を振り返ると、初期の AI のプロトタイプは、テキストの手入力した内容（打ち込んだ文字情報）に基づいて回答するチャットボットで、専門家集団から抽出した知識をベースに、それをコンピューターに表現していました。知識ベースによる回答は、入力テキスト内に出現するキーワードがトリガーになっていました。しかし、人間による手入力形式のチャットボットは、スケール・アウトが難しいのに気づきました。</p>
+<h3 id="ai_2">統計学的手法を基にした AI 技術： 機械学習<a class="headerlink" href="#ai_2" title="Permanent link">&para;</a></h3>
+<p>1990 年代に入り、テキスト解析に統計学的手法を応用し、転換点が訪れました。<br />
+これにより、データからパターンを学習する新しいアルゴリズムが開発されました。これは「機械学習」として知られ、学習にプログラミングを必要としませんでした。この手法により、機械は人間の言語理解を再現できるようになります。テキストとラベルの組み合わせで訓練された統計モデルが、メッセージの意図を示す定義済みのラベルで、未知の入力テキストを分類できるようになります。</p>
+<h3 id="_4">ニューラルネットワーク(神経回路網)と最新の仮想アシスタント<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>最近では、より大量のデータと、複雑な計算を処理できるハードウェアの進化が、AI 分野の研究をさらに促進し、ニューラル・ネットワークやディープラーニング・アルゴリズムと呼ばれる高度な機械学習アルゴリズムの開発につながりました。</p>
+<p>ニューラルネットワーク（特に再帰型ニューラルネットワーク - RNN と呼ばれる）は、自然言語処理を飛躍的に進化させ、文章中に含まれる単語の意味を、文脈を考慮して評価し、より有益な方法でテキストの意図を表現できるようになりました。</p>
+<p>この技術は、21 世紀の初頭に登場したバーチャル・アシスタントの基盤となり、人の言葉を読み取って要求を識別し、それに応じて行動を取れるようになります。例えば、事前に用意したスクリプトで応答したり、外部サービスを利用する等が含まれます。</p>
+<h3 id="ai_3">現在の生成 AI<a class="headerlink" href="#ai_3" title="Permanent link">&para;</a></h3>
+<p>このような経緯を経て、今日における生成 AI が誕生しました。これはディープラーニングのサブセットとして考えられます。</p>
+<p><img alt="AI, ML, DL and Generative AI" src="../../images/AI-diagram.png?WT.mc_id=academic-105485-yoterada" /></p>
+<p>長年の AI 研究を経て、<em>トランスフォーマー</em> と呼ばれる新しいモデルのアーキテクチャが登場し、RNN の限界を越え、より長文テキストのシーケンスを入力として受け取れるようになりました。トランスフォーマーは、アテンションメカニズム(注意機構)を採用しており、モデルが、受け取った入力に対して異なる重み付けを行います。これにより、テキスト内の単語の並ぶ順番に関わらず、最も関連性の高い情報が集中している部分に「より多くの注意を払う」ようになります。</p>
+<p>最近の生成 AI モデルの多くは、文章の入出力を行う「大規模言語モデル（LLM）」とも呼ばれており、実際にこのアーキテクチャに基づいています。これらのモデルが注目される理由は、書籍、記事、ウェブサイトなど様々な情報源から、膨大なラベルなしデータとして訓練されているにも関わらず、創造性を備え文法も正しい文章を作り出すのが特筆すべき点です。したがって、これらのモデルは、機械が入力されたテキストを「理解」する能力を飛躍的に向上させただけでなく、人間の言葉で独自の回答を作り出す能力も実現しました。</p>
+<h2 id="_5">大規模言語モデルの仕組みを教えてください<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>次の章では、さまざまな種類の生成 AI モデルについて詳しく説明しますが、その前に、OpenAI の GPT（Generative Pre-trained Transformer）モデルを中心に、大規模言語モデルがどのように機能するのかを確認しましょう。</p>
+<ul>
+<li><strong>トークナイザー、テキストから数値へ</strong>: 大規模言語モデルは、テキストを入力として受け取り、テキストを出力として生成します。ただし、統計モデルのため、テキスト・シーケンスよりも数値の方が、とてもうまく機能します。そこでモデルに対するすべての入力は、コア・モデルが使用する前に、トークナイザーで処理されます。トークンは文字の塊で、可変数の文字から構成されています。トークナイザーは、入力された文字列をトークン毎に分割し、トークン配列に格納する処理を行います。その後、各トークンはトークン・インデックスと結びつけられます。トークン・インデックスは元のテキストのチャンク(断片)を整数で符号化したものになります。</li>
+</ul>
+<p><img alt="トークン化の例" src="../../images/tokenizer-example.png?WT.mc_id=academic-105485-yoterada" /></p>
+<ul>
+<li>
+<p><strong>出力トークンの予測</strong>: 入力として n 個のトークンを受け取ると（モデルによって n の最大値は異なります）、モデルは出力として 1 個のトークンを予測する力を持っています。この予測されたトークンは次の反復処理の入力に追加され、拡張ウィンドウ・パターンにより、利用者が 1 つ以上の文を回答として得られるようになります。これは、ChatGPT を試した時に、文の途中で時々処理が停止するような動きにつながる理由です。</p>
+</li>
+<li>
+<p><strong>選考過程、確率分布</strong>: モデルは、現在のテキストの順番の後ろに続く文字を、確率的に可能性の高い結果に基づいて出力トークンを選びます。これは、モデルが過去の訓練に基づいて、「次に出現するトークン」の各選択肢についてどれだけ確率が高いかを計算し、その全体の確率分布を推論しているからです。ただし、得られた分布から最も確率の高いトークンが必ず選ばれるとは限りません。この選択には、ある程度のランダム性が導入されており、モデルが決定的に振る舞わないようにしています。つまり同じ入力に対して必ずしも同じ出力結果が得られるわけではありません。このランダム性は、創造的な思考過程を模倣するために導入され、温度 (temperature) というパラメータで調整できます。</p>
+</li>
+</ul>
+<h2 id="_6">スタートアップは、大規模言語モデルをどのように活用できるでしょうか？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>大規模言語モデルについて、内部動作の理解が深まったところで、ビジネス・シナリオも視野に入れて、大規模言語モデルをうまく活用するための、実践的な例をいくつか見てみましょう。</p>
+<p>大規模言語モデルは、自然言語で記述した入力テキストから、新しいテキストを作る処理が最も得意です。</p>
+<p>しかし、具体的にどのようなテキストの入力と出力を想定しているのでしょうか？
+大規模言語モデルの入力は「プロンプト」と呼ばれ、出力は「コンプリーション」と呼ばれています。これは、モデルが現在の入力に続く次のトークンを生成する仕組みを表しています。これからプロンプトの意味や、モデルを最大限に活用するための設計方法について詳しく確認していきますが、とりあえず現時点では、プロンプトは以下のような要素が含まれるとお考えください：</p>
+<ul>
+<li>
+<p><strong>プロンプト（指示）</strong>：モデルに対して、期待する出力結果や、出力フォーマットの種類を指定する。この指示には、場合によっては具体例やその他のデータを追加で埋め込めます。</p>
+</li>
+<li>
+<p>記事、書籍、製品レビューなどの要約と、非構造化データから知見（インサイト）の抽出</p>
+</li>
+</ul>
+<p>訳者追記：</p>
+<ul>
+<li>Can you please summarize the following text for me ?</li>
+<li>以下のテキストの内容を要約していただけますか？</li>
+</ul>
+<p><img alt="Example of summarization" src="../../images/summarization-example.png?WT.mc_id=academic-105485-yoterada" /></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>&lt;br&gt;
+
+1. 記事、エッセイ、課題などのアイデアとデザインの作成
+</code></pre></div></td></tr></table></div>
+<p>訳者追記：</p>
+<ul>
+<li>Please write an assignment for high school students including four open-ended questions about Louis XIV and his court.</li>
+<li>高校生用の課題を作成します。ルイ 14 世と彼の宮廷について、自由に回答できる 4 つの質問を作成してください。</li>
+</ul>
+<p><img alt="Example of creative writing" src="../../images/creative-writing-example.png?WT.mc_id=academic-105485-yoterada" /></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>&lt;br&gt;
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><strong>質問</strong>：エージェントに対して会話形式で質問を尋ねる</p>
+<p>訳者追記：
+  - Who is Louis XIV and why he is an important historical character?
+  - ルイ14世はどういう人で、なぜ彼は歴史的に重要な人物なのですか？</p>
+</li>
+</ul>
+<p><img alt="Example of conversation" src="../../images/conversation-example.png?WT.mc_id=academic-105485-yoterada" /></p>
+<p><br></p>
+<ul>
+<li><strong>テキストの補完</strong>　： 続きを書く。文章を完成させるための執筆依頼をしています</li>
+</ul>
+<p>訳者追記：</p>
+<ul>
+<li>Louis XIV is an important historical character because</li>
+<li>ルイ 14 世が歴史的に重要な人物である理由は</li>
+</ul>
+<p><img alt="Example of text completion" src="../../images/text-completion-example.png?WT.mc_id=academic-105485-yoterada" /></p>
+<p><br></p>
+<ul>
+<li><strong>プログラムコード</strong>： プログラムに関する説明や、コード記述を求める依頼。または特定の作業を行うコード生成を依頼します。</li>
+</ul>
+<p>訳者追記：</p>
+<ul>
+<li>A Python function to sum two numbers a and b</li>
+<li>二つの数値 a と b を合計する Python の関数</li>
+</ul>
+<p><img alt="Coding example" src="../../images/coding-example.png?WT.mc_id=academic-105485-yoterada" /></p>
+<p><br></p>
+<p>上記に挙げた例は基本的なものであり、大規模言語モデルの機能を全て網羅したわけではありません。教育分野に限らず、生成 AI が持つ潜在的な可能性と利点を示しています。</p>
+<p>また、生成 AI モデルの出力結果は決して完璧ではなく、場合によってはモデルの創造性が逆効果となって、現実を曲解するような言葉を組み合わせたり、不快な言葉を組み合わせて回答を作り出します。また、生成 AI は知能を持っているわけではありません。少なくとも、批判的思想や創造的な推理、感情を含む広い意味における知能はありません。そして決定論的でもなく、信頼性もありません。なぜなら、誤った参照や内容、声明などから作り出された話が、正しい情報と混ざり合い、説得力のある自信に満ちた言葉で、結果が提示される場合もあるからです。次のレッスンでは、これらすべての制限に対処し、それらを軽減するために何ができるかを見ていきます。</p>
+<h2 id="_7">課題<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>この課題では、「生成 AI」に関する知識を深め、まだ生成 AI が導入されていない領域を特定し、そこにどう取り込めるかを検討してください。</p>
+<p>従来の方法と比べて、どのような違いがあるでしょうか？これまでにできなかった処理が、実現可能になるか、作業の速度が上がるかをご検討ください。「問題点」「AI の活用方法」「導入による効果」といった見出しを用いて、皆様がこれから創業する理想の AI スタートアップを 300 文字でまとめてください。可能であれば、ビジネスプランも記述してください。</p>
+<p>この課題を達成すれば、マイクロソフトのスタートアップ用インキュベータープログラム、<a href="https://www.microsoft.com/startups?WT.mc_id=academic-105485-yoterada">Microsoft for Startups Founders Hub</a> への応募資格が得られるかもしれません。Azure や OpenAI の使用クレジット、メンタリング、その他多くの支援を提供していますので、詳細はウェブサイトをご覧ください。</p>
+<h2 id="_8">知識チェック<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>大規模言語モデルについてどれが正しいですか?</p>
+<ol>
+<li>毎回まったく同じ回答が返ってきます</li>
+<li>物事を完璧に行い、計算をしたり、正しく動作するコードを生成するのに最適です</li>
+<li>同じプロンプトを使用しても、回答が異なる場合があります。また、テキストやコードなど最初に何らかのヒントを得るために利用するのには最適です。しかし、得られた結果は改善する必要があります。</li>
+</ol>
+<p>A: 3, 大規模言語モデル（LLM）は決定的ではなく、出力結果にはばらつきがありますが、温度設定を調整し、回答のばらつきを制御できます。完璧な回答結果を期待するべきではありません。LLM は皆様の負担を軽減するために存在し、物事を始める際に最初の良い出発点を提供します。 ただし多くの場合、段階的に改善していく必要があるでしょう。</p>
+<h2 id="_9">お疲れ様でした! 次のレッスンを続ける<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>このレッスンを修了後、<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-yoterada">生成 AI 学習コレクション</a> に進んで、生成 AI の知識をさらに深めましょう!</p>
+<p>レッスン 2 にお進みください。そこでは、<a href="../../../02-exploring-and-comparing-different-llms/translations/ja-jp/?WT.mc_id=academic-105485-yoterada">様々な LLM の調査と比較</a>方法に焦点を当てます！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

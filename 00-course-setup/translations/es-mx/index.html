@@ -1,0 +1,1250 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/00-course-setup/translations/es-mx/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Comenzando con este curso - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#comenzando-con-este-curso" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Comenzando con este curso
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pasos-de-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pasos de configuración
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pasos de configuración">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fork-bifurca-este-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Fork (Bifurca) este repo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-crea-un-espacio-en-codespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Crea un espacio en codespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-almacena-tus-claves-de-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Almacena tus claves de API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-ejecutar-localmente-en-tu-computadora" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cómo ejecutar localmente en tu computadora
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cómo ejecutar localmente en tu computadora">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-miniconda-paso-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación de Miniconda (paso opcional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usando-visual-studio-code-con-la-extension-de-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando Visual Studio Code con la Extensión de Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usando-jupyter-en-el-navegador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando Jupyter en el navegador
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejecutando-en-un-contenedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejecutando en un contenedor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lecciones-y-requisitos-tecnicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lecciones y Requisitos Técnicos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usando-el-servicio-azure-openai-por-primera-vez" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando el Servicio Azure OpenAI por Primera Vez
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conocer-a-otros-aprendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conocer a Otros Aprendices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribuye" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contribuye
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#empecemos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Empecemos 😄
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="comenzando-con-este-curso">Comenzando con este curso<a class="headerlink" href="#comenzando-con-este-curso" title="Permanent link">&para;</a></h1>
+<p>¡Estamos muy emocionados de que comiences este curso y ver con qué te inspiras para crear con la ayuda de la Inteligencia Artificial Generativa!</p>
+<p>Para apoyarte, hemos creado esta página que describe los pasos de configuración, los requisitos técnicos y cómo obtener ayuda cuando la necesites.</p>
+<h2 id="pasos-de-configuracion">Pasos de configuración<a class="headerlink" href="#pasos-de-configuracion" title="Permanent link">&para;</a></h2>
+<p>Para comenzar este curso, deberás completar los siguientes pasos.</p>
+<h3 id="1-fork-bifurca-este-repo">1. Fork (Bifurca) este repo<a class="headerlink" href="#1-fork-bifurca-este-repo" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst">Fork (Bifurca) todo el repositorio</a> A tu propia cuenta de GitHub para poder modificar cualquier código y completar los desafíos. También puedes <a href="https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst">marcar con una estrella (🌟) este repositorio</a> para encontrarlo más fácilmente.</p>
+<h3 id="2-crea-un-espacio-en-codespace">2. Crea un espacio en codespace<a class="headerlink" href="#2-crea-un-espacio-en-codespace" title="Permanent link">&para;</a></h3>
+<p>Para evitar problemas de dependencias al ejecutar el código, recomendamos realizar este curso en un codespace de GitHub.</p>
+<p>Esto se puede hacer seleccionando la opción <code>Code</code> en tu propia versión bifurcada (forked) de este repositorio y luego seleccionando la opción <strong>Codespaces</strong> .</p>
+<h3 id="3-almacena-tus-claves-de-api">3. Almacena tus claves de API<a class="headerlink" href="#3-almacena-tus-claves-de-api" title="Permanent link">&para;</a></h3>
+<p>Mantenen seguras y protegidas tus claves de API es importante al desarrollar cualquier tipo de aplicación. Te recomendamos no almacenar las claves de API directamente en el código con el que estás trabajando, ya que comprometer esos detalles en un repositorio público podría ocasionar costos no deseados e issues.</p>
+<p><img alt="Diálogo mostrando botones para crear un espacio de código" src="../../images/who-will-pay.webp?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="como-ejecutar-localmente-en-tu-computadora">Cómo ejecutar localmente en tu computadora<a class="headerlink" href="#como-ejecutar-localmente-en-tu-computadora" title="Permanent link">&para;</a></h2>
+<p>Para ejecutar el código localmente en tu computadora, necesitarás tener alguna versión de <a href="https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst">Python instalada</a>.</p>
+<p>Para utilizar el repositorio, necesitas clonarlo:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/microsoft/generative-ai-for-beginners
+<span class="nb">cd</span><span class="w"> </span>generative-ai-for-beginners
+</code></pre></div></td></tr></table></div>
+<p>Ahora tienes todo listo y puedes comenzar a aprender y trabajar con el código.</p>
+<h3 id="instalacion-de-miniconda-paso-opcional">Instalación de Miniconda (paso opcional)<a class="headerlink" href="#instalacion-de-miniconda-paso-opcional" title="Permanent link">&para;</a></h3>
+<p>Hay ventajas en instalar <strong><a href="https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst">miniconda</a></strong> - es una instalación bastante ligera que admite <code>conda</code> administrador de paquetes para diferentes versiones de Python <strong>virtual environments</strong>. <code>conda</code> facilita la instalación y el cambio entre diferentes versiones de Python y paquetes, además de permitir la instalación de paquetes que no están disponibles a través de <code>pip</code>.</p>
+<p>Después de instalar Miniconda, necesitas clonar el repositorio (si aún no lo has hecho) y crear un entorno virtual para utilizar en este curso:</p>
+<p>Antes de ejecutar el siguiente paso, asegúrate primero de tener un <em>environment.yml</em> file. El <em>environment.yml</em> archivo se utiliza para crear un entorno conda con las dependencias necesarias y puede lucir así:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>name: &lt;environment-name&gt;
+channels:  
+ - defaults
+dependencies:  
+- python=&lt;python-version&gt;  
+- openai  
+- python-dotenv
+</code></pre></div></td></tr></table></div>
+<p>Puedes reemplazar <code>&lt;environment-name&gt;</code> con el nombre de tu entorno conda, y <code>&lt;python-version&gt;</code> con la versión de Python que desees usar. Coloca tu archivo <em>environment.yml</em>  creado
+en la capeta <em>.devcontainer</em> de tu repo.</p>
+<p>Ahora que idealmente has creado un archivo <em>environment.yml</em> , puedes crear un entorno conda con el siguiente comando:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>ai4beg<span class="w"> </span>--file<span class="w"> </span>.devcontainer/environment.yml
+conda<span class="w"> </span>activate<span class="w"> </span>ai4beg
+</code></pre></div></td></tr></table></div>
+<p>Consulta este enlace sobre cómo crear un <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst">conda environments</a> 
+si encuentras algún problema.</p>
+<h3 id="usando-visual-studio-code-con-la-extension-de-python">Usando Visual Studio Code con la Extensión de Python<a class="headerlink" href="#usando-visual-studio-code-con-la-extension-de-python" title="Permanent link">&para;</a></h3>
+<p>Probablemente la mejor manera de usar el plan de estudios sea abrirlo en <a href="http://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst">Visual Studio Code</a> con <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python&amp;WT.mc_id=academic-105485-koreyst">Python Extension</a>.</p>
+<blockquote>
+<p><strong>Nota</strong>: Una vez que clones y abras el directorio en VS Code, automáticamente te sugerirá instalar las extensiones de Python. También tendrás que instalar Miniconda como se describe arriba.</p>
+<p><strong>Nota</strong>: Si VS Code te sugiere volver a abrir el repositorio en un contenedor, debes rechazarlo para utilizar la instalación local de Python.</p>
+</blockquote>
+<h3 id="usando-jupyter-en-el-navegador">Usando Jupyter en el navegador<a class="headerlink" href="#usando-jupyter-en-el-navegador" title="Permanent link">&para;</a></h3>
+<p>También puedes utilizar el entorno Jupyter directamente desde el navegador en tu propia computadora. De hecho, tanto Jupyter clásico como Jupyter Hub ofrecen un entorno de desarrollo bastante conveniente con autocompletado, resaltado de código, etc.</p>
+<p>Para iniciar Jupyter localmente, ve al directorio del curso y ejecuta:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>jupyter<span class="w"> </span>notebook
+</code></pre></div></td></tr></table></div>
+<p>or</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>jupyterhub
+</code></pre></div></td></tr></table></div>
+<p>Luego puedes navegar a cualquiera de los <code>.ipynb</code> archivos, abrirlos y empezar a trabajar.</p>
+<h3 id="ejecutando-en-un-contenedor">Ejecutando en un contenedor<a class="headerlink" href="#ejecutando-en-un-contenedor" title="Permanent link">&para;</a></h3>
+<p>Una alternativa a la instalación de Python sería ejecutar el código en un contenedor. Dado que nuestro repositorio contiene una carpeta especial <code>.devcontainer</code> que indica cómo construir un contenedor para este repositorio, VS Code te ofrecería volver a abrir el código en un contenedor. Esto requerirá la instalación de Docker y será más complejo, así que lo recomendamos para usuarios más experimentados.</p>
+<p>Una de las mejores formas de mantener seguras tus claves de API al usar GitHub Codespaces es mediante el uso de Secrets (Secretos) de Codespace. Sigue esta guía sobre cómo <a href="https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst">Administrar secrets para tus codespaces.</a>.</p>
+<h2 id="lecciones-y-requisitos-tecnicos">Lecciones y Requisitos Técnicos<a class="headerlink" href="#lecciones-y-requisitos-tecnicos" title="Permanent link">&para;</a></h2>
+<p>El curso consta de 6 lecciones conceptuales y 6 lecciones de codificación.</p>
+<p>Para las lecciones de codificación, estamos utilizando el servicio Azure OpenAI. Necesitarás acceso al servicio Azure OpenAI y una clave de API para ejecutar este código. Puedes solicitar acceso <a href="https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst">completando esta solicitud</a>.</p>
+<p>Mientras esperas que procesen tu solicitud, cada lección de codificación también incluye un archivo <code>README.md</code> donde puedes ver el código y los resultados.</p>
+<h2 id="usando-el-servicio-azure-openai-por-primera-vez">Usando el Servicio Azure OpenAI por Primera Vez<a class="headerlink" href="#usando-el-servicio-azure-openai-por-primera-vez" title="Permanent link">&para;</a></h2>
+<p>Si es la primera vez que trabajas con el servicio Azure OpenAI, por favor sigue esta guía sobre cómo <a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&amp;WT.mc_id=academic-105485-koreyst">crear y desplegar un recurso de Azure OpenAI Service.</a></p>
+<h2 id="conocer-a-otros-aprendices">Conocer a Otros Aprendices<a class="headerlink" href="#conocer-a-otros-aprendices" title="Permanent link">&para;</a></h2>
+<p>Hemos creado canales en nuestro oficial <a href="https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst">Servidor de Discord de la Comunidad de IA</a> para conocer a otros estudiantes. Esta es una excelente manera de conectarte con otros emprendedores, creadores, estudiantes y cualquier persona interesada en avanzar en el campo de la Inteligencia Artificial Generativa.</p>
+<p><a href="https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst"><img alt="Unete al canal de Discord" src="https://dcbadge.vercel.app/api/server/ByRwuEEgH4" /></a></p>
+<p>El equipo del proyecto también estará en este servidor de Discord para ayudar a cualquier estudiante.</p>
+<h2 id="contribuye">Contribuye<a class="headerlink" href="#contribuye" title="Permanent link">&para;</a></h2>
+<p>Este curso es una iniciativa de código abierto. Si encuentras áreas de mejora o problemas, por favor crea un <a href="https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst">Pull Request</a> o registrar un <a href="https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst">GitHub issue</a>.</p>
+<p>El equipo del proyecto estará siguiendo todas las contribuciones y contribuir al código abierto es una manera increíble de construir tu carrera en la Inteligencia Artificial Generativa.</p>
+<p>La mayoría de las contribuciones requieren que aceptes un Acuerdo de Licencia para Colaboradores (CLA) en el que declaras que tienes derecho, y de hecho lo haces, a otorgarnos los derechos para usar tu contribución. Para más detalles, visita <a href="https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst">CLA, sitio web del Acuerdo de Licencia para Colaboradores</a>.</p>
+<p>Importante: al traducir texto en este repositorio, asegúrate de no utilizar traducción automática. Verificaremos las traducciones a través de la comunidad, así que por favor ofrécete como voluntario solo para traducir a idiomas en los que seas competente.</p>
+<p>Cuando envíes un pull request, un bot del Acuerdo de Licencia para Colaboradores (CLA-bot) determinará automáticamente si necesitas proporcionar un CLA y decorará la PR apropiadamente (por ejemplo, etiqueta, comentario). Simplemente sigue las instrucciones proporcionadas por el bot. Solo necesitarás hacer esto una vez en todos los repositorios que utilicen nuestro CLA.</p>
+<p>Este proyecto ha adoptado el <a href="https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst">Código de Conducta de Código Abierto de Microsoft</a>. Para más información, lee las Preguntas Frecuentes del Código de Conducta o contacta al <a href="opencode@microsoft.com">opencode Email</a> con cualquier pregunta o comentario adicional.</p>
+<h2 id="empecemos">Empecemos 😄<a class="headerlink" href="#empecemos" title="Permanent link">&para;</a></h2>
+<p>Ahora que has completado los pasos necesarios para terminar este curso, comencemos obteniendo una <a href="../../../01-introduction-to-genai/?WT.mc_id=academic-105485-koreyst">Introducción a la Inteligencia Artificial Generativa y Modelos de Lenguaje de Aprendizaje Profundo (LLMs, por sus siglas en inglés).</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

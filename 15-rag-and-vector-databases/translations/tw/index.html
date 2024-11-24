@@ -1,0 +1,1567 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/15-rag-and-vector-databases/translations/tw/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>檢索增強生成（RAG）和向量資料庫 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rag" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              檢索增強生成（RAG）和向量資料庫
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      簡介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      學習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      我們的場景: 使用我們自己的資料增強我們的 LLMs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      檢索增強生成 (RAG)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="檢索增強生成 (RAG)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rags" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAGs（檢索增強生成）的工作原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rags_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      為什麼要使用 RAGs?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      建立知識庫
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="建立知識庫">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      向量資料庫
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      從文本到嵌入
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      檢索和向量搜尋
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="檢索和向量搜尋">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      檢索
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      向量相似度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      搜尋索引
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      重新排序
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      將所有內容整合在一起
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      評估我們的應用程式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="評估我們的應用程式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      評估指標
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rag_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 RAG (檢索增強生成) 和向量資料庫的用例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      摘要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      作業
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      學習不止於此，繼續旅程
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="rag">檢索增強生成（RAG）和向量資料庫<a class="headerlink" href="#rag" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson15-gh?WT.mc_id=academic-105485-koreyst"><img alt="檢索增強生成 (RAG) 和向量資料庫" src="../../images/15-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<p>在搜尋應用課程中，我們簡要學習了如何將自己的資料整合到大型語言模型（LLMs）中。在本課程中，我們將深入探討在LLM應用中將資料基礎化的概念、過程的機制以及儲存資料的方法，包括嵌入和文本。</p>
+<blockquote>
+<p><strong>影片即將推出</strong></p>
+</blockquote>
+<h2 id="_1">簡介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在本課程中，我們將涵蓋以下內容:</p>
+<ul>
+<li>
+<p>介紹 RAG，它是什麼以及為什麼在 AI（人工智慧）中使用它。</p>
+</li>
+<li>
+<p>了解什麼是向量資料庫並為我們的應用程式建立一個。</p>
+</li>
+<li>
+<p>一個關於如何將 RAG 整合到應用程式中的實際範例。</p>
+</li>
+</ul>
+<h2 id="_2">學習目標<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>完成本課程後，你將能夠：</p>
+<ul>
+<li>
+<p>解釋 RAG 在資料檢索和處理中的重要性。</p>
+</li>
+<li>
+<p>設定 RAG 應用並將您的資料接入 LLM</p>
+</li>
+<li>
+<p>在 LLM 應用中有效整合 RAG 和向量資料庫。</p>
+</li>
+</ul>
+<h2 id="llms">我們的場景: 使用我們自己的資料增強我們的 LLMs<a class="headerlink" href="#llms" title="Permanent link">&para;</a></h2>
+<p>為了這節課，我們希望將我們自己的筆記添加到教育創業中，這樣可以讓聊天機器人獲取更多關於不同主題的資訊。使用我們已有的筆記，學習者將能夠更好地學習和理解不同的主題，使他們更容易復習考試。要建立我們的情境，我們將使用:</p>
+<ul>
+<li>
+<p><code>Azure OpenAI:</code> 我們將用來建立我們聊天機器人的 LLM</p>
+</li>
+<li>
+<p><code>AI for beginners' lesson on Neural Networks</code>: 這將是我們 LLM 的基礎資料</p>
+</li>
+<li>
+<p><code>Azure AI Search</code> 和 <code>Azure Cosmos DB:</code> 用來儲存我們資料並建立搜尋索引的向量資料庫</p>
+</li>
+</ul>
+<p>使用者將能夠從他們的筆記中建立練習測驗、修訂抽認卡並將其摘要為簡明的概述。要開始，讓我們看看什麼是 RAG 以及它如何運作:</p>
+<h2 id="rag_1">檢索增強生成 (RAG)<a class="headerlink" href="#rag_1" title="Permanent link">&para;</a></h2>
+<p>LLM 驅動的聊天機器人處理用戶提示以生成回應。它被設計為互動的，並與用戶在廣泛的主題上進行交流。然而，它的回應僅限於提供的上下文和其基礎訓練數據。例如，GPT-4 的知識截止於 2021 年 9 月，這意味著它缺乏對此期間之後發生的事件的了解。此外，用於訓練 LLM 的數據排除了機密資訊，如個人筆記或公司的產品手冊。</p>
+<h3 id="rags">RAGs（檢索增強生成）的工作原理<a class="headerlink" href="#rags" title="Permanent link">&para;</a></h3>
+<p><img alt="圖示顯示 RAGs 的工作原理" src="../../images/how-rag-works.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>假設你想要部署一個從筆記中建立測驗的聊天機器人，你將需要連接到知識庫。這就是 RAG 派上用場的地方。RAG 的運作方式如下:</p>
+<ul>
+<li>
+<p><strong>知識庫:</strong> 在檢索之前，這些文件需要被攝取和預處理，通常是將大型文件分解成較小的部分，將它們轉換為文本嵌入並存儲在資料庫中。</p>
+</li>
+<li>
+<p><strong>用戶查詢:</strong> 用戶提出問題</p>
+</li>
+<li>
+<p><strong>檢索:</strong> 當用戶提出問題時，嵌入模型會從我們的知識庫中檢索相關資訊，以提供更多將被納入提示的上下文。</p>
+</li>
+<li>
+<p><strong>增強生成:</strong> LLM 根據檢索到的數據增強其回應。這使得生成的回應不僅基於預訓練數據，還基於新增上下文中的相關資訊。檢索到的數據用於增強 LLM 的回應。然後 LLM 向用戶的問題返回答案。</p>
+</li>
+</ul>
+<p><img alt="drawing showing how RAGs architecture" src="../../images/encoder-decode.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>RAGs 的架構是使用由兩部分組成的 transformers 實現的: 一個編碼器和一個解碼器。例如，當使用者提出問題時，輸入文字會被「編碼」成捕捉單詞意義的向量，這些向量會被「解碼」到我們的文件索引中，並根據使用者查詢生成新文字。LLM 使用編碼器-解碼器模型來生成輸出。</p>
+<p>根據提議的論文：<a href="https://arxiv.org/pdf/2005.11401.pdf?WT.mc_id=academic-105485-koreyst">Retrieval-Augmented Generation for Knowledge intensive NLP (natural language processing software) Tasks</a>實現 RAG 的兩種方法是:</p>
+<ul>
+<li>
+<p><strong><em>RAG-Sequence</em></strong> 使用檢索到的文件來預測對用戶查詢的最佳答案</p>
+</li>
+<li>
+<p><strong>RAG-Token</strong> 使用文件生成下一個標記，然後檢索它們來回答用戶的查詢</p>
+</li>
+</ul>
+<h3 id="rags_1">為什麼要使用 RAGs?<a class="headerlink" href="#rags_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>資訊豐富度:</strong> 確保文字回應是最新且符合現況。因此，通過訪問內部知識庫來增強在特定領域任務上的表現。</p>
+</li>
+<li>
+<p>通過利用知識庫中的<strong>可驗證數據</strong>來減少捏造，為用戶查詢提供上下文。</p>
+</li>
+<li>
+<p>它是<strong>成本效益</strong>的，因為與微調LLM相比，它們更經濟。</p>
+</li>
+</ul>
+<h2 id="_3">建立知識庫<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>我們的應用程式基於我們的個人資料，即 AI 初學者課程中的神經網路課程。</p>
+<h3 id="_4">向量資料庫<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>一個向量資料庫，不同於傳統資料庫，是一種專門設計來儲存、管理和搜尋嵌入向量的資料庫。它儲存文件的數值表示。將資料分解為數值嵌入使我們的 AI 系統更容易理解和處理這些資料。</p>
+<p>我們將嵌入儲存在向量資料庫中，因為LLM有接受作為輸入的token數量限制。由於無法將整個嵌入傳遞給LLM，我們需要將它們分解成塊，當使用者問問題時，最像問題的嵌入將與提示一起返回。分塊還可以減少通過LLM傳遞的token數量的成本。</p>
+<p>一些流行的向量資料庫包括 Azure Cosmos DB、Clarifyai、Pinecone、Chromadb、ScaNN、Qdrant 和 DeepLake。你可以使用以下命令透過 Azure CLI 建立一個 Azure Cosmos DB 模型:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>login
+az<span class="w"> </span>group<span class="w"> </span>建立<span class="w"> </span>-n<span class="w"> </span>&lt;resource-group-name&gt;<span class="w"> </span>-l<span class="w"> </span>&lt;location&gt;
+az<span class="w"> </span>cosmosdb<span class="w"> </span>建立<span class="w"> </span>-n<span class="w"> </span>&lt;cosmos-db-name&gt;<span class="w"> </span>-r<span class="w"> </span>&lt;resource-group-name&gt;
+az<span class="w"> </span>cosmosdb<span class="w"> </span>list-keys<span class="w"> </span>-n<span class="w"> </span>&lt;cosmos-db-name&gt;<span class="w"> </span>-g<span class="w"> </span>&lt;resource-group-name&gt;
+</code></pre></div></td></tr></table></div>
+<h3 id="_5">從文本到嵌入<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>在我們儲存資料之前，我們需要先將其轉換為向量嵌入，然後再儲存在資料庫中。如果你正在處理大型文件或長文本，可以根據預期的查詢將它們分塊。分塊可以在句子層級或段落層級進行。由於分塊從周圍的詞語中衍生出意義，你可以為分塊添加一些其他的上下文，例如，添加文件標題或在分塊前後包含一些文本。你可以按如下方式分塊資料：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">split_text</span><span class="p">(</span><span class="n">文字</span><span class="p">,</span> <span class="n">最大長度</span><span class="p">,</span> <span class="n">最小長度</span><span class="p">):</span>
+    <span class="n">單詞</span> <span class="o">=</span> <span class="n">文字</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">塊</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">當前塊</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">單詞</span> <span class="ow">in</span> <span class="n">單詞</span><span class="p">:</span>
+        <span class="n">當前塊</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">單詞</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">當前塊</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">最大長度</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">當前塊</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">最小長度</span><span class="p">:</span>
+            <span class="n">塊</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">當前塊</span><span class="p">))</span>
+            <span class="n">當前塊</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># 如果最後一塊沒有達到最小長度，無論如何都要添加</span>
+    <span class="k">if</span> <span class="n">當前塊</span><span class="p">:</span>
+        <span class="n">塊</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">當前塊</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">塊</span>
+</code></pre></div></td></tr></table></div>
+<p>一旦分塊後，我們可以使用不同的嵌入模型來嵌入我們的文本。您可以使用的一些模型包括: word2vec、OpenAI 的 ada-002、Azure Computer Vision 等等。選擇使用的模型將取決於您使用的語言、編碼的內容類型（文本/圖像/音頻）、它可以編碼的輸入大小以及嵌入輸出的長度。</p>
+<p>範例使用 OpenAI 的 <code>text-embedding-ada-002</code> 模型嵌入文字如下:
+<img alt="an embedding of the word cat" src="../../images/cat.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="_6">檢索和向量搜尋<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>當使用者提出問題時，檢索器會使用查詢編碼器將其轉換為向量，然後在我們的文件搜尋索引中搜尋與輸入相關的向量。完成後，它會將輸入向量和文件向量轉換為文字，並通過 LLM。</p>
+<h3 id="_7">檢索<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>檢索發生在系統嘗試從索引中快速找到滿足搜索標準的文件時。檢索器的目標是獲取將用於提供上下文並基於您的數據定位LLM的文件。</p>
+<p>在我們的資料庫中執行搜尋有幾種方法，例如:</p>
+<ul>
+<li>
+<p><strong>關鍵字搜尋</strong> - 用於文字搜尋</p>
+</li>
+<li>
+<p><strong>語意搜尋</strong> - 使用單詞的語意</p>
+</li>
+<li>
+<p><strong>向量搜尋</strong> - 使用嵌入模型將文件從文字轉換為向量表示。檢索將通過查詢向量表示最接近用戶問題的文件來完成。</p>
+</li>
+<li>
+<p><strong>混合</strong> - 關鍵字搜尋和向量搜尋的結合。</p>
+</li>
+</ul>
+<p>在資料庫中沒有與查詢相似的回應時，檢索會面臨挑戰，系統將返回他們能獲得的最佳資訊。然而，你可以使用一些策略，比如設定相關性的最大距離或使用結合關鍵字和向量搜索的混合搜索。在本課中，我們將使用混合搜索，結合向量和關鍵字搜索。我們將把數據存儲到一個數據框中，列包含了數據塊以及嵌入。</p>
+<h3 id="_8">向量相似度<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>檢索器將在知識資料庫中搜尋相近的嵌入，最接近的鄰居，因為它們是相似的文本。在使用者提出查詢的情況下，首先會嵌入查詢，然後與相似的嵌入進行匹配。用來衡量不同向量相似度的常見方法是基於兩個向量之間角度的余弦相似度。</p>
+<p>我們可以使用其他替代方法來測量相似性，例如歐幾里得距離（即向量端點之間的直線）和點積（測量兩個向量對應元素的乘積之和）。</p>
+<h3 id="_9">搜尋索引<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>在進行檢索時，我們需要在執行搜尋之前為我們的知識庫建構一個搜尋索引。索引將儲存我們的嵌入並且即使在大型資料庫中也能快速檢索到最相似的區塊。我們可以使用以下方式在本地建立我們的索引:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">flattened_df</span><span class="p">[</span><span class="s1">&#39;embeddings&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+
+<span class="c1"># 建立搜尋索引</span>
+<span class="n">nbrs</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;ball_tree&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+
+<span class="c1"># 要查詢索引，可以使用 kneighbors 方法</span>
+<span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">nbrs</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_10">重新排序<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>一旦你查詢了資料庫，你可能需要將結果從最相關的排序。一個重新排序的LLM利用機器學習通過將搜索結果從最相關的排序來提高其相關性。使用Azure AI Search，重新排序會自動為你完成，使用語義重新排序器。以下是一個使用最近鄰重新排序如何工作的範例:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 找到最相似的文件</span>
+<span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">nbrs</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">([</span><span class="n">query_vector</span><span class="p">])</span>
+
+<span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># 列印最相似的文件</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">flattened_df</span><span class="p">[</span><span class="s1">&#39;chunks&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">flattened_df</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">flattened_df</span><span class="p">[</span><span class="s1">&#39;distances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2"> not found in DataFrame&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_11">將所有內容整合在一起<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>最後一步是將我們的 LLM 添加到混合中，以便能夠獲得基於我們資料的回應。我們可以如下實現:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">user_input</span> <span class="o">=</span> <span class="s2">&quot;什麼是感知器？&quot;</span>
+
+<span class="k">def</span> <span class="nf">chatbot</span><span class="p">(</span><span class="n">user_input</span><span class="p">):</span>
+    <span class="c1"># 將問題轉換為查詢向量</span>
+    <span class="n">query_vector</span> <span class="o">=</span> <span class="n">create_embeddings</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+
+    <span class="c1"># 找到最相似的文件</span>
+    <span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">nbrs</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">([</span><span class="n">query_vector</span><span class="p">])</span>
+
+    <span class="c1"># 將文件添加到查詢中以提供上下文</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flattened_df</span><span class="p">[</span><span class="s1">&#39;chunks&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+
+    <span class="c1"># 結合歷史記錄和用戶輸入</span>
+    <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+
+    <span class="c1"># 建立一個訊息物件</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;你是一個幫助解答 AI 問題的 AI 助手。&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
+    <span class="p">]</span>
+
+    <span class="c1"># 使用聊天完成來生成回應</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">max_tokens</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+
+<span class="n">chatbot</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_12">評估我們的應用程式<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="_13">評估指標<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>回應的品質確保其聽起來自然、流暢且像人類</p>
+</li>
+<li>
+<p>資料的基礎性: 評估回應是否來自提供的文件</p>
+</li>
+<li>
+<p>相關性: 評估回應是否符合並與所問問題相關</p>
+</li>
+<li>
+<p>流暢度 - 回應在語法上是否合理</p>
+</li>
+</ul>
+<h2 id="rag_2">使用 RAG (檢索增強生成) 和向量資料庫的用例<a class="headerlink" href="#rag_2" title="Permanent link">&para;</a></h2>
+<p>在許多不同的使用案例中，函式呼叫可以改善您的應用程式，例如:</p>
+<ul>
+<li>
+<p>問答: 將公司的資料基礎連結到一個可以讓員工提問的聊天中。</p>
+</li>
+<li>
+<p>推薦系統: 你可以建立一個系統來匹配最相似的值，例如電影、餐廳等等。</p>
+</li>
+<li>
+<p>聊天機器人服務: 你可以儲存聊天歷史並根據使用者資料個性化對話。</p>
+</li>
+<li>
+<p>基於向量嵌入的圖片搜尋，在進行圖像識別和異常檢測時非常有用。</p>
+</li>
+</ul>
+<h2 id="_14">摘要<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>我們已經涵蓋了從將資料添加到應用程式、使用者查詢和輸出的RAG基本領域。為了簡化RAG的建立，你可以使用如Semanti Kernel、Langchain或Autogen等框架。</p>
+<h2 id="_15">作業<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>要繼續學習檢索增強生成（RAG），你可以建構:</p>
+<ul>
+<li>
+<p>使用您選擇的框架為應用程式建構前端</p>
+</li>
+<li>
+<p>利用框架（LangChain 或 Semantic Kernel）重新建構您的應用程式。</p>
+</li>
+</ul>
+<p>恭喜完成這節課 👏。</p>
+<h2 id="_16">學習不止於此，繼續旅程<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p>完成本課程後，請查看我們的<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">生成式 AI 學習集合</a>以繼續提升您的生成式 AI 知識！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

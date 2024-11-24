@@ -1,0 +1,1284 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/08-building-search-applications/translations/ko/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>검색 애플리케이션 만들기 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              검색 애플리케이션 만들기
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      소개
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      검색 애플리케이션을 만드는 이유
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      의미 기반 검색이란 무엇인가요?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      텍스트 임베딩이란 무엇인가요?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      임베딩 인덱스는 어떻게 생성되나요?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="임베딩 인덱스는 어떻게 생성되나요?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      벡터 데이터베이스
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      코사인 유사도 이해하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="코사인 유사도 이해하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      코사인 유사도란 무엇인가요?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      첫 번째 검색 애플리케이션 만들기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      과제 - 학생들이 사용할 수 있도록 검색 애플리케이션 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="과제 - 학생들이 사용할 수 있도록 검색 애플리케이션 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#azure-cloud-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure Cloud Shell 시작하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      해답
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      수고하셨습니다. 학습을 계속하세요!
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">검색 애플리케이션 만들기<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson8-gh?WT.mc_id=academic-105485-koreyst"><img alt="Introduction to Generative AI and Large Language Models" src="../../images/08-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<p>LLM(대형 언어 모델)은 챗봇과 텍스트 생성 이상의 기능을 가지고 있습니다. Embedding을 사용하여 검색 애플리케이션을 만들 수도 있습니다. Embedding은 데이터의 수치적 표현인 벡터로, 데이터의 의미 기반 검색에 사용할 수 있습니다.</p>
+<p>이 레슨에서는 교육 스타트업을 위한 검색 애플리케이션을 만들 것입니다. 우리 스타트업은 개발도상국의 학생들에게 무료 교육을 제공하는 비영리 기관입니다. 우리 스타트업은 학생들이 AI에 대해 배울 수 있는 많은 수의 YouTube 비디오를 보유하고 있습니다. 우리 스타트업은 학생들이 질문을 입력하여 YouTube 비디오를 검색할 수 있는 검색 애플리케이션을 만들고자 합니다.</p>
+<p>예를 들어, 학생이 'Jupyter Notebook이란 무엇인가?' 또는 'Azure ML이란 무엇인가?'라고 입력할 수 있고, 검색 애플리케이션은 해당 질문과 관련된 YouTube 비디오 목록을 반환하며, 더 나아가 검색 애플리케이션은 질문의 답변이 있는 비디오의 위치로 이동할 수 있는 링크를 반환할 것입니다.</p>
+<h2 id="_2">소개<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>이 레슨에서는 다음 내용을 다룰 것입니다:</p>
+<ul>
+<li>의미 기반 검색과 키워드 검색의 차이점.</li>
+<li>텍스트 Embedding이란 무엇인가.</li>
+<li>텍스트 Embedding 인덱스 생성.</li>
+<li>텍스트 Embedding 인덱스 검색.</li>
+</ul>
+<h2 id="_3">학습 목표<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>이 레슨을 마친 후에는 다음을 할 수 있습니다:</p>
+<ul>
+<li>의미 기반 검색과 키워드 검색의 차이를 설명할 수 있습니다.</li>
+<li>텍스트 Embedding이란 무엇인지 설명할 수 있습니다.</li>
+<li>Embedding을 사용하여 데이터를 검색하는 애플리케이션을 만들 수 있습니다.</li>
+</ul>
+<h2 id="_4">검색 애플리케이션을 만드는 이유<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>검색 애플리케이션을 만드는 것은 Embedding을 사용하여 데이터를 검색하는 방법을 이해하는 데 도움이 됩니다. 또한 학생들이 정보를 빠르게 찾을 수 있는 검색 애플리케이션을 만드는 방법을 배우게 될 것입니다.</p>
+<p>이 레슨에는 Microsoft <a href="https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1">AI Show</a> YouTube 채널의 YouTube 비디오 트랜스크립트의 Embedding 인덱스가 포함되어 있습니다. AI Show는 AI와 머신러닝에 대해 가르치는 YouTube 채널입니다. Embedding 인덱스에는 2023년 10월까지의 각 YouTube 트랜스크립트에 대한 Embedding이 포함되어 있습니다. 우리 스타트업을 위해 Embedding 인덱스를 사용하여 검색 애플리케이션을 만들 것입니다. 검색 애플리케이션은 질문의 답변이 있는 비디오의 위치로 이동할 수 있는 링크를 반환합니다. 이는 학생들이 필요한 정보를 빠르게 찾는 좋은 방법입니다.</p>
+<p>다음은 질문 'Azure ML에서 rstudio를 사용할 수 있나요?'에 대한 의미 기반 쿼리의 예입니다. YouTube URL을 확인해보면, 질문의 답변이 있는 비디오의 위치로 이동하는 타임스탬프가 URL에 포함되어 있습니다.</p>
+<p><img alt="Semantic query for the question &quot;can you use rstudio with Azure ML&quot;" src="../../images/query-results.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="_5">의미 기반 검색이란 무엇인가요?<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>이제 아마도 궁금해하실 것 같습니다. 의미 기반 검색이란 무엇일까요? 의미 기반 검색은 쿼리의 단어들의 의미, 즉 의미론을 활용하여 관련된 결과를 반환하는 검색 기술입니다.</p>
+<p>다음은 의미 기반 검색의 예시입니다. 예를 들어, 차를 구매하려고 한다고 가정해봅시다. '내 꿈의 차'라고 검색할 수 있습니다. 의미 기반 검색은 여러분이 차에 대해 '꿈을 꾸는' 것이 아니라 '이상적인' 차를 구매하려고 한다는 것을 이해합니다. 의미 기반 검색은 여러분의 의도를 이해하고 관련된 결과를 반환합니다. 반면에 '키워드 검색'은 차에 대한 꿈을 진정으로 검색하고 종종 관련 없는 결과를 반환합니다.</p>
+<h2 id="_6">텍스트 임베딩이란 무엇인가요?<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p><a href="https://en.wikipedia.org/wiki/Word_embedding?WT.mc_id=academic-105485-koreyst">텍스트 임베딩</a>은 <a href="https://en.wikipedia.org/wiki/Natural_language_processing?WT.mc_id=academic-105485-koreyst">자연어 처리</a>에서 사용되는 텍스트 표현 기술입니다. 텍스트 임베딩은 텍스트의 의미론적인 수치적 표현입니다. 임베딩은 기계가 이해하기 쉬운 방식으로 데이터를 표현하는 데 사용됩니다. 텍스트 임베딩을 구축하기 위한 다양한 모델이 있지만, 이 레슨에서는 OpenAI 임베딩 모델을 사용하여 임베딩을 생성하는 방법에 초점을 맞출 것입니다.</p>
+<p>다음은 AI Show YouTube 채널의 에피소드 중 하나의 트랜스크립트에서 가져온 텍스트의 예시입니다:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>오늘은 Azure Machine Learning에 대해 배우게 될 것입니다.
+</code></pre></div></td></tr></table></div>
+<p>텍스트를 OpenAI Embedding API에 전달하면, 1536개의 숫자로 구성된 임베딩이 반환됩니다. 각 숫자는 텍스트의 다른 측면을 나타냅니다. 간결함을 위해, 임베딩의 첫 10개 숫자만 표시하면 아래와 같습니다.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">[</span><span class="o">-</span><span class="mf">0.006655829958617687</span><span class="p">,</span> <span class="mf">0.0026128944009542465</span><span class="p">,</span> <span class="mf">0.008792596869170666</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02446001023054123</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.008540431968867779</span><span class="p">,</span> <span class="mf">0.022071078419685364</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.010703742504119873</span><span class="p">,</span> <span class="mf">0.003311325330287218</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.011632772162556648</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.02187200076878071</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_7">임베딩 인덱스는 어떻게 생성되나요?<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>이 레슨의 임베딩 인덱스는 일련의 Python 스크립트를 사용하여 생성되었습니다. 이 스크립트는 이 레슨의 <code>scripts</code> 폴더에 있는 <a href="../../scripts/?WT.mc_id=academic-105485-koreyst">README</a>와 함께 제공됩니다. 이 레슨을 완료하기 위해 이 스크립트를 실행할 필요는 없습니다. 왜냐하면 임베딩 인덱스가 이미 제공되기 때문입니다.</p>
+<p>이 스크립트는 다음과 같은 작업을 수행합니다:</p>
+<ol>
+<li><a href="https://www.youtube.com/playlist?list=PLlrxD0HtieHi0mwteKBOfEeOYf0LJU4O1">AI Show</a> 재생목록의 각 YouTube 비디오의 트랜스크립트를 다운로드합니다.</li>
+<li><a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/function-calling?WT.mc_id=academic-105485-koreyst">OpenAI Functions</a>를 사용하여 YouTube 트랜스크립트의 처음 3분에서 스피커 이름을 추출하려고 시도합니다. 각 비디오의 스피커 이름은 <code>embedding_index_3m.json</code>이라는 임베딩 인덱스에 저장됩니다.</li>
+<li>그런 다음 트랜스크립트 텍스트를 <strong>3분 텍스트 세그먼트</strong>로 분할합니다. 세그먼트에는 임베딩이 잘리지 않도록 하고 더 나은 검색 문맥을 제공하기 위해 다음 세그먼트에서 약 20개의 단어가 겹치도록 설계되었습니다.</li>
+<li>각 텍스트 세그먼트는 OpenAI Chat API에 전달되어 텍스트를 60단어로 요약합니다. 이 요약은 임베딩 인덱스 <code>embedding_index_3m.json</code>에도 저장됩니다.</li>
+<li>마지막으로, 세그먼트 텍스트는 OpenAI Embedding API에 전달됩니다. Embedding API는 세그먼트의 의미론적인 의미를 나타내는 1536개의 숫자 벡터를 반환합니다. 세그먼트와 OpenAI Embedding 벡터는 임베딩 인덱스 <code>embedding_index_3m.json</code>에 저장됩니다.</li>
+</ol>
+<h3 id="_8">벡터 데이터베이스<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>레슨의 간소화를 위해 임베딩 인덱스는 <code>embedding_index_3m.json</code>이라는 JSON 파일에 저장되고 Pandas 데이터프레임으로 로드됩니다. 그러나 실제 운영 환경에서는 임베딩 인덱스를 <a href="https://learn.microsoft.com/training/modules/improve-search-results-vector-search?WT.mc_id=academic-105485-koreyst">Azure Cognitive Search</a>, <a href="https://cookbook.openai.com/examples/vector_databases/redis/readme?WT.mc_id=academic-105485-koreyst">Redis</a>, <a href="https://cookbook.openai.com/examples/vector_databases/pinecone/readme?WT.mc_id=academic-105485-koreyst">Pinecone</a>, <a href="https://cookbook.openai.com/examples/vector_databases/weaviate/readme?WT.mc_id=academic-105485-koreyst">Weaviate</a>와 같은 벡터 데이터베이스에 저장됩니다.</p>
+<h2 id="_9">코사인 유사도 이해하기<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>텍스트 임베딩에 대해 배웠으니, 다음 단계는 코사인 유사도를 사용하여 데이터를 검색하고 특정 쿼리에 가장 유사한 임베딩을 찾는 방법을 배우는 것입니다.</p>
+<h3 id="_10">코사인 유사도란 무엇인가요?<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>코사인 유사도는 두 벡터 사이의 유사성을 측정하는 방법으로, 이를 <code>최근접 이웃 검색 (nearest neighbor search)</code>이라고도 합니다. 코사인 유사도 검색을 수행하려면 OpenAI Embedding API를 사용하여 <em>쿼리</em> 텍스트를 <em>벡터화</em> 해야 합니다. 그런 다음 쿼리 벡터와 임베딩 인덱스의 각 벡터 간의 <em>코사인 유사도</em> 를 계산합니다. 기억하세요, 임베딩 인덱스에는 각 YouTube 트랜스크립트 텍스트 세그먼트에 대한 벡터가 있습니다. 마지막으로, 코사인 유사도에 따라 결과를 정렬하고, 코사인 유사도가 가장 높은 텍스트 세그먼트가 쿼리와 가장 유사합니다.</p>
+<p>수학적인 관점에서 코사인 유사도는 다차원 공간에 투영된 두 벡터 사이의 각도의 코사인을 측정합니다. 이 측정은 유용합니다. 왜냐하면 두 문서가 크기 때문에 유클리드 거리로 인해 멀리 떨어져 있을지라도, 그들 사이의 각도가 더 작고 따라서 코사인 유사도가 더 높을 수 있기 때문입니다. 코사인 유사도 방정식에 대한 자세한 정보는 <a href="https://en.wikipedia.org/wiki/Cosine_similarity?WT.mc_id=academic-105485-koreyst">코사인 유사도</a>를 참조하세요.</p>
+<h2 id="_11">첫 번째 검색 애플리케이션 만들기<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>이제 임베딩을 사용하여 검색 애플리케이션을 만드는 방법을 배우겠습니다. 검색 애플리케이션은 학생들이 질문을 입력하여 비디오를 검색할 수 있게 해줍니다. 검색 애플리케이션은 질문과 관련된 비디오 목록을 반환합니다. 또한 검색 애플리케이션은 질문의 답변이 있는 비디오의 위치로 이동할 수 있는 링크를 반환합니다.</p>
+<p>이 솔루션은 Windows 11, macOS 및 Ubuntu 22.04에서 Python 3.10 이상을 사용하여 빌드 및 테스트되었습니다. Python은 <a href="https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst">python.org</a>에서 다운로드할 수 있습니다.</p>
+<h2 id="-">과제 - 학생들이 사용할 수 있도록 검색 애플리케이션 만들기<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<p>이 레슨의 시작에서 우리 스타트업을 소개했습니다. 이제 학생들이 자신의 평가를 위해 검색 애플리케이션을 만들 수 있도록 해야 합니다.</p>
+<p>이 과제에서는 검색 애플리케이션을 구축하는 데 사용될 Azure OpenAI 서비스를 생성합니다. 다음 Azure OpenAI 서비스를 생성해야 합니다. 이 과제를 완료하려면 Azure 구독이 필요합니다.</p>
+<h3 id="azure-cloud-shell">Azure Cloud Shell 시작하기<a class="headerlink" href="#azure-cloud-shell" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="https://portal.azure.com/?WT.mc_id=academic-105485-koreyst">Azure portal</a>에 로그인합니다.</li>
+<li>Azure 포털의 오른쪽 상단에 있는 Cloud Shell 아이콘을 선택합니다.</li>
+<li>환경 유형으로 <strong>Bash</strong>를 선택합니다.</li>
+</ol>
+<h4 id="_12">리소스 그룹 생성<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>이 안내에서는 동부 미국에 있는 "semantic-video-search"라는 리소스 그룹을 사용합니다.
+리소스 그룹의 이름을 변경할 수 있지만, 리소스의 위치를 변경할 때는 <a href="https://aka.ms/oai/models?WT.mc_id=academic-105485-koreyst">모델 가용성 테이블</a>을 확인하세요.</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>group<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>semantic-video-search<span class="w"> </span>--location<span class="w"> </span>eastus
+</code></pre></div></td></tr></table></div>
+<h4 id="azure-openai">Azure OpenAI 서비스 리소스 생성<a class="headerlink" href="#azure-openai" title="Permanent link">&para;</a></h4>
+<p>Azure Cloud Shell에서 다음 명령을 실행하여 Azure OpenAI 서비스 리소스를 생성합니다.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>semantic-video-openai<span class="w"> </span>--resource-group<span class="w"> </span>semantic-video-search<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--location<span class="w"> </span>eastus<span class="w"> </span>--kind<span class="w"> </span>OpenAI<span class="w"> </span>--sku<span class="w"> </span>s0
+</code></pre></div></td></tr></table></div>
+<h4 id="_13">애플리케이션에서 사용할 엔드포인트와 키 가져오기<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p>Azure Cloud Shell에서 다음 명령을 실행하여 Azure OpenAI 서비스 리소스의 엔드포인트와 키를 가져옵니다.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>show<span class="w"> </span>--name<span class="w"> </span>semantic-video-openai<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--resource-group<span class="w">  </span>semantic-video-search<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span>.properties.endpoint
+az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>keys<span class="w"> </span>list<span class="w"> </span>--name<span class="w"> </span>semantic-video-openai<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--resource-group<span class="w"> </span>semantic-video-search<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span>.key1
+</code></pre></div></td></tr></table></div>
+<h4 id="openai">OpenAI 임베딩 모델 배포<a class="headerlink" href="#openai" title="Permanent link">&para;</a></h4>
+<p>Azure Cloud Shell에서 다음 명령을 실행하여 OpenAI 임베딩 모델을 배포합니다.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>deployment<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="w"> </span>semantic-video-openai<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--resource-group<span class="w">  </span>semantic-video-search<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--deployment-name<span class="w"> </span>text-embedding-ada-002<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model-name<span class="w"> </span>text-embedding-ada-002<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model-version<span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="w">  </span><span class="se">\</span>
+<span class="w">    </span>--model-format<span class="w"> </span>OpenAI<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--sku-capacity<span class="w"> </span><span class="m">100</span><span class="w"> </span>--sku-name<span class="w"> </span><span class="s2">&quot;Standard&quot;</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_14">해답<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>GitHub Codespaces에서 <a href="../../python/oai-solution.ipynb?WT.mc_id=academic-105485-koreyst">해답 노트북</a>을 열고 Jupyter Notebook의 지침을 따르세요.</p>
+<p>노트북을 실행할 때, 쿼리를 입력하라는 메시지가 표시됩니다. 입력 상자는 다음과 같이 보일 것입니다:</p>
+<p><img alt="사용자가 쿼리를 입력하는 입력 상자" src="../../images/notebook-search.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="_15">수고하셨습니다. 학습을 계속하세요!<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>이 레슨을 완료한 후, <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">Generative AI 학습 컬렉션</a>을 확인하여 Generative AI 지식을 더욱 향상시킬 수 있습니다!</p>
+<p>Lesson 9로 이동하여 <a href="../../../09-building-image-applications/translations/ko/?WT.mc_id=academic-105485-koreyst">이미지 생성 애플리케이션 구축하기</a>을 살펴보세요!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

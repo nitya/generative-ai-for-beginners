@@ -1,0 +1,1710 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/11-integrating-with-function-calling/translations/pt-br/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Integrando com chamadas de função - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#integrando-com-chamadas-de-funcao" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Integrando com chamadas de função
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metas-de-aprendizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metas de Aprendizado
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cenario-melhorando-nosso-chatbot-com-funcoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cenário: melhorando nosso chatbot com funções
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-a-chamada-de-funcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por que a Chamada de Função
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ilustrando-o-problema-por-meio-de-um-cenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ilustrando o problema por meio de um cenário
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#casos-de-uso-para-chamadas-de-funcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Casos de uso para chamadas de função
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criando-sua-primeira-chamada-de-funcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando Sua Primeira Chamada de Função
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Criando Sua Primeira Chamada de Função">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etapa-1-criando-mensagens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Etapa 1 - criando mensagens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etapa-2-criando-funcoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Etapa 2 - criando funções
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etapa-3-fazendo-a-chamada-da-funcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Etapa 3 - Fazendo a chamada da função
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrando-chamadas-de-funcao-em-um-aplicativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrando Chamadas de Função em um Aplicativo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integrando Chamadas de Função em um Aplicativo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gerenciando-o-fluxo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerenciando o fluxo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarefa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarefa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#otimo-trabalho-continue-a-jornada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ótimo trabalho! Continue a jornada
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="integrando-com-chamadas-de-funcao">Integrando com chamadas de função<a class="headerlink" href="#integrando-com-chamadas-de-funcao" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson11-gh?WT.mc_id=academic-105485-koreyst"><img alt="Integrating with function calling" src="../../images/11-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<p>Você aprendeu bastante até agora nas lições anteriores. No entanto, podemos melhorar ainda mais. Algumas coisas que podemos abordar são como podemos obter um formato de resposta mais consistente para facilitar o trabalho com a resposta a jusante. Além disso, podemos querer adicionar dados de outras fontes para enriquecer ainda mais nossa aplicação.</p>
+<p>Os problemas mencionados acima são o que este capítulo pretende abordar.</p>
+<h2 id="introducao">Introdução<a class="headerlink" href="#introducao" title="Permanent link">&para;</a></h2>
+<p>Esta lição abordará:</p>
+<ul>
+<li>Explicará o que é a chamada de função e seus casos de uso.</li>
+<li>Criar uma chamada de função usando o Azure OpenAI.</li>
+<li>Como integrar uma chamada de função em um aplicativo.</li>
+</ul>
+<h2 id="metas-de-aprendizado">Metas de Aprendizado<a class="headerlink" href="#metas-de-aprendizado" title="Permanent link">&para;</a></h2>
+<p>Após concluir esta lição, você será capaz de:</p>
+<ul>
+<li>Explicar o propósito de usar chamadas de função.</li>
+<li>Configurar a Chamada de Função usando o Serviço Azure Open AI.</li>
+<li>Projetar chamadas de função eficazes para o caso de uso do seu aplicativo.</li>
+</ul>
+<h2 id="cenario-melhorando-nosso-chatbot-com-funcoes">Cenário: melhorando nosso chatbot com funções<a class="headerlink" href="#cenario-melhorando-nosso-chatbot-com-funcoes" title="Permanent link">&para;</a></h2>
+<p>Para esta lição, queremos criar um recurso para nossa startup de educação que permite aos usuários usar um chatbot para encontrar cursos técnicos. Vamos recomendar cursos que se encaixem no nível de habilidade deles, função atual e tecnologia de interesse.</p>
+<p>Para completar este cenário, usaremos uma combinação de:</p>
+<ul>
+<li><code>Azure Open AI</code> para criar uma experiência de chat para o usuário.</li>
+<li><code>Microsoft Learn Catalog API</code> para ajudar os usuários a encontrar cursos com base na solicitação do usuário.</li>
+<li><code>Chamada de Função</code> para pegar a consulta do usuário e enviá-la a uma função para fazer a solicitação à API.</li>
+</ul>
+<p>Para começar, vamos ver por que queremos usar chamada de função em primeiro lugar:</p>
+<h2 id="por-que-a-chamada-de-funcao">Por que a Chamada de Função<a class="headerlink" href="#por-que-a-chamada-de-funcao" title="Permanent link">&para;</a></h2>
+<p>Antes da chamada de função, as respostas de um LLM eram desestruturadas e inconsistentes. Os desenvolvedores eram obrigados a escrever código de validação complexo para garantir que pudessem lidar com cada variação de uma resposta. Os usuários não podiam obter respostas como "Qual é a temperatura atual em Estocolmo?". Isso ocorre porque os modelos eram limitados ao tempo em que os dados foram treinados.</p>
+<p>A Chamada de Função é um recurso do Serviço Azure Open AI para superar as seguintes limitações:</p>
+<ul>
+<li><strong>Formato de resposta consistente</strong>. Se pudermos controlar melhor o formato da resposta, podemos integrar mais facilmente a resposta a jusante em outros sistemas.</li>
+<li><strong>Dados externos</strong>. Capacidade de usar dados de outras fontes de um aplicativo em um contexto de chat.</li>
+</ul>
+<h2 id="ilustrando-o-problema-por-meio-de-um-cenario">Ilustrando o problema por meio de um cenário<a class="headerlink" href="#ilustrando-o-problema-por-meio-de-um-cenario" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Recomendamos que você crie um arquivo <em>Notebook.ipynb</em> e cole o código abaixo em células de código separadas se quiser executar o cenário abaixo. Você também pode apenas ler enquanto tentamos ilustrar um problema em que as funções podem ajudar a resolver o problema.</p>
+</blockquote>
+<p>Vamos dar uma olhada no exemplo que ilustra o problema do formato de resposta:</p>
+<p>Digamos que queremos criar um banco de dados de dados de estudantes para que possamos sugerir o curso certo para eles. Abaixo temos duas descrições de estudantes que são muito semelhantes nos dados que contêm.</p>
+<ol>
+<li>Crie uma conexão com nosso recurso Azure Open AI:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s2">&quot;azure&quot;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;YOUR OPENAI API BASE URL&quot;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s2">&quot;2023-07-01-preview&quot;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Acima está algum código Python para configurar nossa conexão com o Azure Open AI, onde definimos <code>api_type</code>, <code>api_base</code>, <code>api_version</code> e <code>api_key</code>.</p>
+<ol>
+<li>Crie duas descrições de estudantes usando as variáveis <code>student_1_description</code> e <code>student_2_description</code>.</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">student_1_description</span><span class="o">=</span><span class="s2">&quot;Emily Johnson is a sophomore majoring in computer science at Duke University. She has a 3.7 GPA. Emily is an active member of the university&#39;s Chess Club and Debate Team. She hopes to pursue a career in software engineering after graduating.&quot;</span>
+
+<span class="n">student_2_description</span> <span class="o">=</span> <span class="s2">&quot;Michael Lee is a sophomore majoring in computer science at Stanford University. He has a 3.8 GPA. Michael is known for his programming skills and is an active member of the university&#39;s Robotics Club. He hopes to pursue a career in artificial intelligence after finishing his studies.&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>Nós queremos enviar as descrições de estudantes acima para um LLM para analisar os dados. Esses dados podem ser usados posteriormente em nosso aplicativo e enviados para uma API ou armazenados em um banco de dados.</p>
+<ol>
+<li>Vamos criar duas solicitações idênticas nas quais instruímos o LLM sobre as informações que nos interessam:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt1</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">Please extract the following information from the given text and return it as a JSON object:</span>
+
+<span class="s1">name</span>
+<span class="s1">major</span>
+<span class="s1">school</span>
+<span class="s1">grades</span>
+<span class="s1">club</span>
+
+<span class="s1">This is the body of text to extract the information from:</span>
+<span class="si">{</span><span class="n">student_1_description</span><span class="si">}</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">prompt2</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">Please extract the following information from the given text and return it as a JSON object:</span>
+
+<span class="s1">name</span>
+<span class="s1">major</span>
+<span class="s1">school</span>
+<span class="s1">grades</span>
+<span class="s1">club</span>
+
+<span class="s1">This is the body of text to extract the information from:</span>
+<span class="si">{</span><span class="n">student_2_description</span><span class="si">}</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p>O prompt acima instrui o LLM a extrair informações e retornar a resposta no formato JSON.</p>
+<ol>
+<li>Após configurar os prompts e a conexão com o Azure Open AI, agora enviaremos os prompts para o LLM usando <code>openai.ChatCompletion</code>. Armazenamos o prompt na variável <code>messages</code> e atribuímos a função <code>user</code>. Isso é para imitar uma mensagem de um usuário sendo escrita em um chatbot.</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># response from prompt one</span>
+<span class="n">openai_response1</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+  <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;gpt-function&quot;</span><span class="p">,</span>
+  <span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">prompt1</span><span class="p">}]</span>
+<span class="p">)</span>
+<span class="n">openai_response1</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+
+<span class="c1"># response from prompt two</span>
+<span class="n">openai_response2</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+  <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;gpt-function&quot;</span><span class="p">,</span>
+  <span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">prompt2</span> <span class="p">}]</span>
+<span class="p">)</span>
+<span class="n">openai_response2</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>Agora nós podemos enviar ambas as solicitações para o LLM e examinar a resposta que recebemos encontrando-a assim <code>openai_response1['choices'][0]['message']['content']</code>.</p>
+<ol>
+<li>Por fim, podemos converter a resposta para o formato JSON chamando <code>json.loads</code>:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Loading the response as a JSON object</span>
+<span class="n">json_response1</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">openai_response1</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">])</span>
+<span class="n">json_response1</span>
+</code></pre></div></td></tr></table></div>
+<p>Resposta 1:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Emily Johnson&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;major&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;computer science&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;school&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Duke University&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;grades&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.7&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;club&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chess Club&quot;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Resposta 2:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Michael Lee&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;major&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;computer science&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;school&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stanford University&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;grades&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.8 GPA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;club&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Robotics Club&quot;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Embora os prompts sejam os mesmos e as descrições sejam semelhantes, vemos que os valores da propriedade <code>Grades</code> são formatados de maneira diferente, como <code>3.7</code> ou <code>3.7 GPA</code>, por exemplo.</p>
+<p>Isso ocorre porque o LLM recebe dados não estruturados na forma do prompt escrito e também retorna dados não estruturados. Precisamos ter um formato estruturado para saber o que esperar ao armazenar ou usar esses dados.</p>
+<p>Então, como resolvemos o problema de formatação? Ao usar chamadas de função, podemos garantir que recebemos dados estruturados de volta. Ao usar chamadas de função, o LLM na verdade não chama ou executa funções. Em vez disso, criamos uma estrutura para o LLM seguir para suas respostas. Em seguida, usamos essas respostas estruturadas para saber qual função executar em nossos aplicativos.</p>
+<p><img alt="fluxo de função" src="../../images/Function-Flow.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>Podemos então pegar o que é retornado da função e enviar isso de volta ao LLM. O LLM responderá usando linguagem natural para responder à consulta do usuário.</p>
+<h2 id="casos-de-uso-para-chamadas-de-funcao">Casos de uso para chamadas de função<a class="headerlink" href="#casos-de-uso-para-chamadas-de-funcao" title="Permanent link">&para;</a></h2>
+<p>Existem muitos casos de uso diferentes em que chamadas de função podem aprimorar seu aplicativo, como:</p>
+<ul>
+<li>
+<p><strong>Chamando Ferramentas Externas</strong>. Chatbots são ótimos para fornecer respostas a perguntas dos usuários. Ao usar chamadas de função, os chatbots podem usar mensagens dos usuários para concluir determinadas tarefas. Por exemplo, um aluno pode pedir ao chatbot para "Enviar e-mail ao meu instrutor dizendo que preciso de mais ajuda com este assunto". Isso pode fazer uma chamada de função para <code>send_email(to: string, body: string)</code>.</p>
+</li>
+<li>
+<p><strong>Criando Consultas de API ou Banco de Dados</strong>. Os usuários podem encontrar informações usando linguagem natural que é convertida em uma consulta ou solicitação de API formatada. Um exemplo disso pode ser um professor que solicita "Quais são os alunos que concluíram a última tarefa", o que poderia chamar uma função chamada <code>get_completed(student_name: string, assignment: int, current_status: string)</code>.</p>
+</li>
+<li>
+<p><strong>Criando Dados Estruturados</strong>. Os usuários podem pegar um bloco de texto ou CSV e usar o LLM para extrair informações importantes. Por exemplo, um aluno pode converter um artigo da Wikipedia sobre acordos de paz para criar cartões de memória de IA. Isso pode ser feito usando uma função chamada <code>get_important_facts(agreement_name: string, date_signed: string, parties_involved: list)</code>.</p>
+</li>
+</ul>
+<h2 id="criando-sua-primeira-chamada-de-funcao">Criando Sua Primeira Chamada de Função<a class="headerlink" href="#criando-sua-primeira-chamada-de-funcao" title="Permanent link">&para;</a></h2>
+<p>O processo de criar uma chamada de função inclui 3 etapas principais:</p>
+<ol>
+<li><strong>Chamando</strong> a API de Completions de Chat com uma lista de suas funções e uma mensagem do usuário.</li>
+<li><strong>Lendo</strong> a resposta do modelo para realizar uma ação, ou seja, executar uma função ou chamada de API.</li>
+<li><strong>Fazendo</strong> outra chamada para a API de Completions de Chat com a resposta de sua função para usar essas informações e criar uma resposta para o usuário.</li>
+</ol>
+<p><img alt="Fluxo LLM" src="../../images/LLM-Flow.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h3 id="etapa-1-criando-mensagens">Etapa 1 - criando mensagens<a class="headerlink" href="#etapa-1-criando-mensagens" title="Permanent link">&para;</a></h3>
+<p>A primeira etapa é criar uma mensagem do usuário. Isso pode ser atribuído dinamicamente, pegando o valor de uma entrada de texto, ou você pode atribuir um valor aqui. Se esta é a sua primeira vez trabalhando com a API de Completions de Chat, precisamos definir o <code>role</code> e o <code>content</code> da mensagem.</p>
+<p>O <code>role</code> pode ser <code>system</code> (criando regras), <code>assistant</code> (o modelo) ou <code>user</code> (o usuário final). Para chamadas de função, vamos atribuir isso como <code>user</code> e uma pergunta de exemplo.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">messages</span><span class="o">=</span> <span class="p">[</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Find me a good course for a beginner student to learn Azure.&quot;</span><span class="p">}</span> <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>Ao atribuir diferentes papéis, fica claro para o LLM se é o sistema dizendo algo ou o usuário, o que ajuda a criar um histórico de conversação no qual o LLM pode se basear.</p>
+<h3 id="etapa-2-criando-funcoes">Etapa 2 - criando funções<a class="headerlink" href="#etapa-2-criando-funcoes" title="Permanent link">&para;</a></h3>
+<p>Em seguida, definiremos uma função e os parâmetros dessa função. Usaremos apenas uma função aqui chamada <code>search_courses</code>, mas você pode criar várias funções.</p>
+<blockquote>
+<p><strong>Importante</strong>: As funções são incluídas na mensagem do sistema para o LLM e serão contadas na quantidade de tokens disponíveis.</p>
+</blockquote>
+<p>Abaixo, criamos as funções como uma matriz de itens. Cada item é uma função e tem propriedades <code>name</code>, <code>description</code> e <code>parameters</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">functions</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;search_courses&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;Retrieves courses from the search index based on the parameters provided&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;parameters&quot;</span><span class="p">:{</span>
+         <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;properties&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:{</span>
+               <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;The role of the learner (i.e. developer, data scientist, student, etc.)&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;product&quot;</span><span class="p">:{</span>
+               <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;The product that the lesson is covering (i.e. Azure, Power BI, etc.)&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;level&quot;</span><span class="p">:{</span>
+               <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;The level of experience the learner has prior to taking the course (i.e. beginner, intermediate, advanced)&quot;</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;required&quot;</span><span class="p">:[</span>
+            <span class="s2">&quot;role&quot;</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>Vamos descrever cada instância de função mais detalhadamente abaixo:</p>
+<ul>
+<li><code>name</code> - O nome da função que queremos que seja chamada.</li>
+<li><code>description</code> - Esta é a descrição de como a função funciona. Aqui é importante ser específico e claro.</li>
+<li><code>parameters</code> - Uma lista de valores e formatos que você deseja que o modelo produza em sua resposta. A matriz de parâmetros consiste em itens, onde cada item tem as seguintes propriedades:</li>
+<li><code>type</code> - O tipo de dados no qual as propriedades serão armazenadas.</li>
+<li><code>properties</code> - Lista dos valores específicos que o modelo usará para sua resposta<ol>
+<li><code>name</code> - A chave é o nome da propriedade que o modelo usará em sua resposta formatada, por exemplo, <code>product</code>.</li>
+<li><code>type</code> - O tipo de dados desta propriedade, por exemplo, <code>string</code>.</li>
+<li><code>description</code> - Descrição da propriedade específica.</li>
+</ol>
+</li>
+</ul>
+<p>Há também uma propriedade opcional <code>required</code> - propriedade necessária para que a chamada da função seja concluída.</p>
+<h3 id="etapa-3-fazendo-a-chamada-da-funcao">Etapa 3 - Fazendo a chamada da função<a class="headerlink" href="#etapa-3-fazendo-a-chamada-da-funcao" title="Permanent link">&para;</a></h3>
+<p>Depois de definir uma função, agora precisamos incluí-la na chamada à API de Completção de Bate-papo. Fazemos isso adicionando <code>functions</code> à solicitação. Neste caso, <code>functions=functions</code>.</p>
+<p>Também há a opção de definir <code>function_call</code> como <code>auto</code>. Isso significa que vamos deixar o LLM decidir qual função deve ser chamada com base na mensagem do usuário, em vez de atribuirmos.</p>
+<p>Aqui está algum código abaixo onde chamamos <code>ChatCompletion.create</code>, observe como definimos <code>functions=functions</code> e <code>function_call="auto"</code>, dando assim ao LLM a escolha de quando chamar as funções que fornecemos:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;gpt-function&quot;</span><span class="p">,</span>
+                                        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+                                        <span class="n">functions</span><span class="o">=</span><span class="n">functions</span><span class="p">,</span>
+                                        <span class="n">function_call</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;choices&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<p>The response coming back now looks like so:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;function_call&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_courses&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\n  \&quot;role\&quot;: \&quot;student\&quot;,\n  \&quot;product\&quot;: \&quot;Azure\&quot;,\n  \&quot;level\&quot;: \&quot;beginner\&quot;\n}&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Aqui nós podemos ver como a função <code>search_courses</code> foi chamada e com quais argumentos, conforme listado na propriedade <code>arguments</code> na resposta JSON.</p>
+<p>A conclusão de que o LLM foi capaz de encontrar os dados para se encaixar nos argumentos da função, pois estava extraindo-o do valor fornecido ao parâmetro <code>messages</code> na chamada de conclusão do chat. Abaixo está um lembrete do valor <code>messages</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">messages</span><span class="o">=</span> <span class="p">[</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Find me a good course for a beginner student to learn Azure.&quot;</span><span class="p">}</span> <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>Como você pode ver, <code>student</code>, <code>Azure</code> e <code>beginner</code> foram extraídos de <code>messages</code> e definidos como entrada para a função. Usar funções dessa maneira é uma ótima maneira de extrair informações de um prompt, mas também de fornecer estrutura ao LLM e ter funcionalidade reutilizável.</p>
+<p>Agora, precisamos ver como podemos usar isso em nosso aplicativo.</p>
+<h2 id="integrando-chamadas-de-funcao-em-um-aplicativo">Integrando Chamadas de Função em um Aplicativo<a class="headerlink" href="#integrando-chamadas-de-funcao-em-um-aplicativo" title="Permanent link">&para;</a></h2>
+<p>Após testarmos a resposta formatada do LLM, agora podemos integrá-la a um aplicativo.</p>
+<h3 id="gerenciando-o-fluxo">Gerenciando o fluxo<a class="headerlink" href="#gerenciando-o-fluxo" title="Permanent link">&para;</a></h3>
+<p>Para integrar isso ao nosso aplicativo, siga estas etapas:</p>
+<ol>
+<li>
+<p>First, let's make the call to the Open AI services and store the message in a variable called <code>response_message</code>.</p>
+</li>
+<li>
+<p>Primeiro, vamos fazer a chamada aos serviços Open AI e armazenar a mensagem em uma variável chamada <code>response_message</code>.</p>
+</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response_message</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;choices&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>Agora vamos definir a função que chamará a API Microsoft Learn para obter uma lista de cursos:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">search_courses</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+  <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://learn.microsoft.com/api/catalog/&quot;</span>
+  <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">role</span><span class="p">,</span>
+     <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="n">product</span><span class="p">,</span>
+     <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="n">level</span>
+  <span class="p">}</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+  <span class="n">modules</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;modules&quot;</span><span class="p">]</span>
+  <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+     <span class="n">title</span> <span class="o">=</span> <span class="n">module</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+     <span class="n">url</span> <span class="o">=</span> <span class="n">module</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>
+     <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">})</span>
+  <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Observe como agora criamos uma função Python real que mapeia para os nomes de função introduzidos na variável <code>functions</code>. Também estamos fazendo chamadas reais de API externa para buscar os dados de que precisamos. Neste caso, vamos contra a API Microsoft Learn para pesquisar módulos de treinamento.</p>
+<p>Ok! Então criamos variáveis <code>functions</code> e uma função Python correspondente, como dizemos ao LLM como mapear essas duas coisas para que nossa função Python seja chamada?</p>
+<ol>
+<li>Para ver se precisamos chamar uma função Python, precisamos olhar para a resposta LLM e ver se <code>function_call</code> faz parte dela e chamar a função apontada. Veja como você pode fazer a verificação mencionada abaixo:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Check if the model wants to call a function</span>
+<span class="k">if</span> <span class="n">response_message</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;function_call&quot;</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recommended Function call:&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">response_message</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;function_call&quot;</span><span class="p">))</span>
+  <span class="nb">print</span><span class="p">()</span>
+
+ <span class="c1"># Call the function.</span>
+ <span class="n">function_name</span> <span class="o">=</span> <span class="n">response_message</span><span class="p">[</span><span class="s2">&quot;function_call&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+
+ <span class="n">available_functions</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="s2">&quot;search_courses&quot;</span><span class="p">:</span> <span class="n">search_courses</span><span class="p">,</span>
+ <span class="p">}</span>
+ <span class="n">function_to_call</span> <span class="o">=</span> <span class="n">available_functions</span><span class="p">[</span><span class="n">function_name</span><span class="p">]</span>
+
+ <span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_message</span><span class="p">[</span><span class="s2">&quot;function_call&quot;</span><span class="p">][</span><span class="s2">&quot;arguments&quot;</span><span class="p">])</span>
+ <span class="n">function_response</span> <span class="o">=</span> <span class="n">function_to_call</span><span class="p">(</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output of function call:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">function_response</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">function_response</span><span class="p">))</span>
+
+
+ <span class="c1"># Add the assistant response and function response to the messages</span>
+ <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="c1"># adding assistant response to messages</span>
+     <span class="p">{</span>
+         <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">response_message</span><span class="p">[</span><span class="s2">&quot;role&quot;</span><span class="p">],</span>
+         <span class="s2">&quot;function_call&quot;</span><span class="p">:</span> <span class="p">{</span>
+             <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+             <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="n">response_message</span><span class="p">[</span><span class="s2">&quot;function_call&quot;</span><span class="p">][</span><span class="s2">&quot;arguments&quot;</span><span class="p">],</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="kc">None</span>
+     <span class="p">}</span>
+ <span class="p">)</span>
+ <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="c1"># adding function response to messages</span>
+     <span class="p">{</span>
+         <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+         <span class="s2">&quot;content&quot;</span><span class="p">:</span><span class="n">function_response</span><span class="p">,</span>
+     <span class="p">}</span>
+ <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Essas três linhas garantem que extraímos o nome da função, os argumentos e fazemos a chamada:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">function_to_call</span> <span class="o">=</span> <span class="n">available_functions</span><span class="p">[</span><span class="n">function_name</span><span class="p">]</span>
+
+<span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_message</span><span class="p">[</span><span class="s2">&quot;function_call&quot;</span><span class="p">][</span><span class="s2">&quot;arguments&quot;</span><span class="p">])</span>
+<span class="n">function_response</span> <span class="o">=</span> <span class="n">function_to_call</span><span class="p">(</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Acima está a saída da execução do nosso código:</p>
+<p><strong>Saída</strong></p>
+<p>```Recommended Function call:
+   {
+     "name": "search_courses",
+     "arguments": "{\n  \"role\": \"student\",\n  \"product\": \"Azure\",\n  \"level\": \"beginner\"\n}"
+   }</p>
+<p>Output of function call:
+   [{'title': 'Describe concepts of cryptography', 'url': 'https://learn.microsoft.com/training/modules/describe-concepts-of-cryptography/?
+   WT.mc_id=api_CatalogApi'}, {'title': 'Introduction to audio classification with TensorFlow', 'url': 'https://learn.microsoft.com/en-
+   us/training/modules/intro-audio-classification-tensorflow/?WT.mc_id=api_CatalogApi'}, {'title': 'Design a Performant Data Model in Azure SQL
+   Database with Azure Data Studio', 'url': 'https://learn.microsoft.com/training/modules/design-a-data-model-with-ads/?
+   WT.mc_id=api_CatalogApi'}, {'title': 'Getting started with the Microsoft Cloud Adoption Framework for Azure', 'url':
+   'https://learn.microsoft.com/training/modules/cloud-adoption-framework-getting-started/?WT.mc_id=api_CatalogApi'}, {'title': 'Set up the
+   Rust development environment', 'url': 'https://learn.microsoft.com/training/modules/rust-set-up-environment/?WT.mc_id=api_CatalogApi'}]
+   <class 'str'>
+   ```</p>
+<ol>
+<li>Agora enviaremos a mensagem atualizada, <code>messages</code> para o LLM para que possamos receber uma resposta em linguagem natural em vez de uma resposta formatada em JSON da API.</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Messages in next request:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="n">second_response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+  <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+  <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;gpt-function&quot;</span><span class="p">,</span>
+  <span class="n">function_call</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="n">functions</span><span class="o">=</span><span class="n">functions</span><span class="p">,</span>
+  <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span>
+     <span class="p">)</span>  <span class="c1"># get a new response from GPT where it can see the function response</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">second_response</span><span class="p">[</span><span class="s2">&quot;choices&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Saída</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+  <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;I found some good courses for beginner students to learn Azure:</span><span class="se">\n\n</span><span class="s2">1. [Describe concepts of cryptography] (https://learn.microsoft.com/training/modules/describe-concepts-of-cryptography/?WT.mc_id=api_CatalogApi)</span><span class="se">\n</span><span class="s2">2. [Introduction to audio classification with TensorFlow](https://learn.microsoft.com/training/modules/intro-audio-classification-tensorflow/?WT.mc_id=api_CatalogApi)</span><span class="se">\n</span><span class="s2">3. [Design a Performant Data Model in Azure SQL Database with Azure Data Studio](https://learn.microsoft.com/training/modules/design-a-data-model-with-ads/?WT.mc_id=api_CatalogApi)</span><span class="se">\n</span><span class="s2">4. [Getting started with the Microsoft Cloud Adoption Framework for Azure](https://learn.microsoft.com/training/modules/cloud-adoption-framework-getting-started/?WT.mc_id=api_CatalogApi)</span><span class="se">\n</span><span class="s2">5. [Set up the Rust development environment](https://learn.microsoft.com/training/modules/rust-set-up-environment/?WT.mc_id=api_CatalogApi)</span><span class="se">\n\n</span><span class="s2">You can click on the links to access the courses.&quot;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="tarefa">Tarefa<a class="headerlink" href="#tarefa" title="Permanent link">&para;</a></h2>
+<p>Para continuar seu aprendizado sobre a Chamada de Função do Azure Open AI, você pode:</p>
+<ul>
+<li>Adicionar mais parâmetros à função que podem ajudar os aprendizes a encontrar mais cursos.</li>
+<li>Criar outra chamada de função que obtenha mais informações do aprendiz, como o idioma nativo.</li>
+<li>Implementar tratamento de erro quando a chamada de função e/ou a chamada da API não retornar cursos adequados.</li>
+</ul>
+<p>Dica: Consulte a <a href="https://learn.microsoft.com/training/support/catalog-api-developer-reference?WT.mc_id=academic-105485-koreyst">documentação de referência da API Learn</a> para ver como e onde esses dados estão disponíveis.</p>
+<h2 id="otimo-trabalho-continue-a-jornada">Ótimo trabalho! Continue a jornada<a class="headerlink" href="#otimo-trabalho-continue-a-jornada" title="Permanent link">&para;</a></h2>
+<p>Após completar esta lição, confira nossa <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">coleção de aprendizado sobre IA Generativa</a> para continuar a aprimorar seus conhecimentos em IA Generativa!</p>
+<p>Vá para a Lição 12, onde veremos como <a href="../../../12-designing-ux-for-ai-applications/translations/pt-br/?WT.mc_id=academic-105485-koreyst">Projetando UX para aplicativos de IA</a>!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1417 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/10-building-low-code-ai-applications/translations/tw/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>建構低程式碼 AI 應用程式 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ai" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              建構低程式碼 AI 應用程式
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      簡介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      學習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-power-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成式 AI 在 Power Platform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="生成式 AI 在 Power Platform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      這是如何運作的？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copilot-in-power-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copilot in Power Apps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copilot-in-power-automate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copilot in Power Automate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      作業: 使用 Copilot 管理我們新創公司的學生作業和發票
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="作業: 使用 Copilot 管理我們新創公司的學生作業和發票">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      建構我們新創公司的學生作業追蹤應用程式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      建構我們新創公司的發票資訊表格
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-power-platform-ai-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      AI 模型在 Power Platform 中的應用與 AI Builder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-vs-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      預建 AI 模型 vs 自訂 AI 模型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      作業 #2 - 為我們的創業公司建構發票處理流程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-automate-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      在 Power Automate 中使用文本生成 AI 模型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      很棒的工作！繼續學習
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="ai">建構低程式碼 AI 應用程式<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson10-gh?WT.mc_id=academic-105485-koreyst"><img alt="建構低程式碼 AI 應用程式" src="../../images/10-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<blockquote>
+<p><em>(點擊上方圖片以觀看本課的影片)</em></p>
+</blockquote>
+<h2 id="_1">簡介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>現在我們已經學會如何建構影像生成應用程式，讓我們來談談低程式碼。生成式 AI 可以用於包括低程式碼在內的各種不同領域，但什麼是低程式碼，我們如何將 AI 添加到其中呢？</p>
+<p>建構應用程式和解決方案對於傳統開發者和非開發者來說變得更加容易，這要歸功於低程式碼開發平台。低程式碼開發平台使您能夠用很少甚至不需要程式碼來建構應用程式和解決方案。這是通過提供一個可視化的開發環境來實現的，該環境使您能夠拖放元件來建構應用程式和解決方案。這使您能夠更快地建構應用程式和解決方案，並且需要更少的資源。在本課程中，我們將深入探討如何使用低程式碼以及如何使用 Power Platform 與 AI 增強低程式碼開發。</p>
+<p>Power Platform 為組織提供了一個機會，讓他們的團隊能夠通過直觀的低程式碼或無程式碼環境來建構自己的解決方案。這個環境有助於簡化建構解決方案的過程。使用 Power Platform，解決方案可以在幾天或幾週內建構完成，而不是幾個月或幾年。Power Platform 包含五個主要產品：Power Apps、Power Automate、Power BI、Power Pages 和 Copilot Studio。</p>
+<p>本課程涵蓋:</p>
+<ul>
+<li>介紹 Power Platform 中的生成式 AI</li>
+<li>介紹 Copilot 及其使用方法</li>
+<li>使用生成式 AI 在 Power Platform 中建構應用程式和流程</li>
+<li>使用 AI Builder 了解 Power Platform 中的 AI 模型</li>
+</ul>
+<h2 id="_2">學習目標<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在這節課結束時，你將能夠：</p>
+<ul>
+<li>
+<p>了解 Copilot 在 Power Platform 中的運作方式。</p>
+</li>
+<li>
+<p>為我們的教育初創公司建構一個學生作業追蹤應用程式。</p>
+</li>
+<li>
+<p>建構一個使用 AI 從發票中提取資訊的發票處理流程。</p>
+</li>
+<li>
+<p>在使用 GPT AI 模型建立文字時應用最佳實踐。</p>
+</li>
+</ul>
+<p>這節課中你將使用的工具和技術有:</p>
+<ul>
+<li>
+<p><strong>Power Apps</strong>, 用於學生作業追蹤應用程式，提供低程式碼開發環境來建構應用程式以追蹤、管理和互動資料。</p>
+</li>
+<li>
+<p><strong>Dataverse</strong>, 用於儲存學生作業追蹤應用程式的資料，Dataverse 將提供低程式碼資料平台來儲存應用程式的資料。</p>
+</li>
+<li>
+<p><strong>Power Automate</strong>, 用於發票處理流程，你將擁有低程式碼開發環境來建構工作流程以自動化發票處理過程。</p>
+</li>
+<li>
+<p><strong>AI Builder</strong>, 用於發票處理 AI 模型，你將使用預建的 AI 模型來處理我們新創公司的發票。</p>
+</li>
+</ul>
+<h2 id="ai-power-platform">生成式 AI 在 Power Platform<a class="headerlink" href="#ai-power-platform" title="Permanent link">&para;</a></h2>
+<p>提升低程式碼開發和應用與生成式 AI 是 Power Platform 的一個關鍵重點領域。目標是讓每個人都能建構 AI 驅動的應用程式、網站、儀表板並自動化流程，<em>無需任何資料科學專業知識</em>。這個目標是通過將生成式 AI 以 Copilot 和 AI Builder 的形式整合到 Power Platform 的低程式碼開發體驗中來實現的。</p>
+<h3 id="_3">這是如何運作的？<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>Copilot 是一個 AI 助手，通過使用自然語言在一系列對話步驟中描述您的需求，使您能夠建構 Power Platform 解決方案。例如，您可以指示您的 AI 助手說明您的應用程式將使用哪些欄位，它將建立應用程式和基礎資料模型，或者您可以指定如何在 Power Automate 中設定流程。</p>
+<p>您可以在您的應用程式畫面中使用由 Copilot 驅動的功能，讓使用者透過對話互動來發掘見解。</p>
+<p>AI Builder 是一種在 Power Platform 中提供的低程式碼 AI 功能，使您能夠使用 AI 模型來幫助自動化流程和預測結果。使用 AI Builder，您可以將 AI 引入您的應用程式和連接到 Dataverse 或各種雲端資料來源（如 SharePoint、OneDrive 或 Azure）的流程。</p>
+<p>Copilot 可用於所有 Power Platform 產品: Power Apps、Power Automate、Power BI、Power Pages 和 Power Virtual Agents。AI Builder 可用於 Power Apps 和 Power Automate。在本課程中，我們將重點介紹如何在 Power Apps 和 Power Automate 中使用 Copilot 和 AI Builder 來為我們的教育初創公司建構解決方案。</p>
+<h3 id="copilot-in-power-apps">Copilot in Power Apps<a class="headerlink" href="#copilot-in-power-apps" title="Permanent link">&para;</a></h3>
+<p>作為 Power Platform 的一部分，Power Apps 提供了一個低程式碼開發環境，用於建構應用程式以追蹤、管理和互動資料。這是一套應用程式開發服務，具有可延展的資料平台，並能連接到雲端服務和內部部署資料。Power Apps 允許您建構可在瀏覽器、平板電腦和手機上執行的應用程式，並能與同事共享。Power Apps 透過簡單的介面讓使用者輕鬆進入應用程式開發，讓每個商業使用者或專業開發者都能建構自訂應用程式。透過 Copilot，應用程式開發體驗也因生成式 AI 而得到增強。</p>
+<p>Power Apps 中的 copilot AI 助手功能使您能夠描述您需要什麼樣的應用程式以及您希望應用程式追蹤、收集或顯示哪些資訊。Copilot 然後根據您的描述生成一個響應式 Canvas 應用程式。然後您可以自訂應用程式以滿足您的需求。AI Copilot 還會生成並建議一個包含您需要的欄位來儲存您想要追蹤的資料的 Dataverse 表格和一些範例資料。我們將在本課程後面介紹什麼是 Dataverse 以及如何在 Power Apps 中使用它。然後您可以使用 AI Copilot 助手功能通過對話步驟來自訂表格以滿足您的需求。此功能可以從 Power Apps 主畫面中輕鬆使用。</p>
+<h3 id="copilot-in-power-automate">Copilot in Power Automate<a class="headerlink" href="#copilot-in-power-automate" title="Permanent link">&para;</a></h3>
+<p>作為 Power Platform 的一部分，Power Automate 讓使用者在應用程式和服務之間建立自動化工作流程。它有助於自動化重複的業務流程，例如通信、資料收集和決策批准。其簡單的介面允許每個技術能力層級的使用者（從初學者到經驗豐富的開發人員）自動化工作任務。透過 Copilot，生成式 AI 也增強了工作流程開發體驗。</p>
+<p>Power Automate 中的副駕駛 AI 助手功能使您能夠描述您需要的流程類型以及希望流程執行的操作。副駕駛然後根據您的描述生成一個流程。然後您可以自訂流程以滿足您的需求。AI 副駕駛還會生成並建議您需要執行的操作來完成您想要自動化的任務。我們將在本課程的後面部分查看什麼是流程以及如何在 Power Automate 中使用它們。然後，您可以使用 AI 副駕駛助手功能通過對話步驟來自訂操作以滿足您的需求。此功能可從 Power Automate 主畫面中隨時使用。</p>
+<h2 id="copilot">作業: 使用 Copilot 管理我們新創公司的學生作業和發票<a class="headerlink" href="#copilot" title="Permanent link">&para;</a></h2>
+<p>我們的初創公司為學生提供線上課程。該初創公司發展迅速，現在難以應對課程的需求。該初創公司聘請了你作為 Power Platform 開發人員，幫助他們建構一個低程式碼解決方案，以幫助他們管理學生作業和發票。他們的解決方案應能通過應用程式幫助他們追蹤和管理學生作業，並通過工作流程自動化發票處理過程。你被要求使用生成式 AI 開發該解決方案。</p>
+<p>當你開始使用 Copilot 時，你可以使用 <a href="https://github.com/pnp/powerplatform-prompts?WT.mc_id=academic-109639-somelezediko">Power Platform Copilot Prompt Library</a> 來開始使用提示。此函式庫包含一系列提示，你可以用來與 Copilot 一起建構應用程式和流程。你也可以使用函式庫中的提示來了解如何向 Copilot 描述你的需求。</p>
+<h3 id="_4">建構我們新創公司的學生作業追蹤應用程式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>我們新創公司的教育工作者一直在努力跟蹤學生的作業。他們一直使用電子表格來跟蹤作業，但隨著學生數量的增加，這變得難以管理。他們要求你建構一個應用程式來幫助他們跟蹤和管理學生作業。該應用程式應允許他們新增作業、查看作業、更新作業和刪除作業。該應用程式還應允許教育工作者和學生查看已評分和未評分的作業。</p>
+<p>您將使用 Power Apps 中的 Copilot 按照以下步驟建構應用程式:</p>
+<ol>
+<li>
+<p>導航到 <a href="https://make.powerapps.com?WT.mc_id=academic-105485-koreyst">Power Apps</a> 主畫面。</p>
+</li>
+<li>
+<p>使用主畫面上的文字區域描述您想要建構的應用程式。例如，<strong><em>我想建構一個應用程式來追蹤和管理學生作業</em></strong>。點擊 <strong>Send</strong> 按鈕將提示發送給 AI Copilot。</p>
+</li>
+</ol>
+<p><img alt="描述你想要建構的應用程式" src="../../images/copilot-chat-prompt-powerapps.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ol>
+<li>AI Copilot 會建議一個 Dataverse 表格，其中包含您需要儲存想要追蹤的資料的欄位和一些範例資料。然後，您可以使用 AI Copilot 助手功能，通過對話步驟來自訂表格以滿足您的需求。</li>
+</ol>
+<blockquote>
+<p><strong>重要</strong>: Dataverse 是 Power Platform 的基礎資料平台。它是一個低程式碼的資料平台，用於儲存應用程式的資料。它是一個完全管理的服務，安全地將資料儲存在 Microsoft Cloud 中，並在您的 Power Platform 環境中配置。它具有內建的資料治理功能，例如資料分類、資料譜系、細粒度存取控制等。您可以在<a href="https://docs.microsoft.com/powerapps/maker/data-platform/data-platform-intro?WT.mc_id=academic-109639-somelezediko">此處</a>了解更多關於 Dataverse 的資訊。</p>
+</blockquote>
+<p><img alt="在您的新表格中建議的欄位" src="../../images/copilot-dataverse-table-powerapps.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ol>
+<li>教育工作者希望向已提交作業的學生發送電子郵件，以便讓他們了解作業的進度。您可以使用 Copilot 向表格添加一個新欄位來儲存學生的電子郵件。例如，您可以使用以下提示來向表格添加新欄位: <strong><em>我想添加一個欄位來儲存學生的電子郵件</em></strong>。點擊 <strong>發送</strong> 按鈕將提示發送給 AI Copilot。</li>
+</ol>
+<p><img alt="新增一個新欄位" src="../../images/copilot-new-column.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ol>
+<li>
+<p>AI Copilot 會生成一個新欄位，然後您可以自訂該欄位以滿足您的需求。</p>
+</li>
+<li>
+<p>完成表格後，點擊 <strong>Create app</strong> 按鈕來建立應用程式。</p>
+</li>
+<li>
+<p>AI Copilot 會根據您的描述生成一個響應式 Canvas 應用程式。然後您可以自訂應用程式以滿足您的需求。</p>
+</li>
+<li>
+<p>對於教育者發送電子郵件給學生，您可以使用 Copilot 向應用程式添加一個新螢幕。例如，您可以使用以下提示來向應用程式添加新螢幕：<strong><em>我想添加一個螢幕來發送電子郵件給學生</em></strong>。點擊 <strong>Send</strong> 按鈕將提示發送給 AI Copilot。</p>
+</li>
+</ol>
+<p><img alt="通過提示指令添加新螢幕" src="../../images/copilot-new-screen.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ol>
+<li>
+<p>AI Copilot 會生成一個新畫面，然後您可以自訂畫面以滿足您的需求。</p>
+</li>
+<li>
+<p>完成應用程式後，點擊 <strong>Save</strong> 按鈕來保存應用程式。</p>
+</li>
+<li>
+<p>要與教育工作者分享應用程式，點擊 <strong>Share</strong> 按鈕，然後再次點擊 <strong>Share</strong> 按鈕。您可以通過輸入他們的電子郵件地址來與教育工作者分享應用程式。</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>你的作業</strong>: 你剛建構的應用程式是一個好的開始，但可以進一步改進。使用電子郵件功能時，教育者只能手動輸入學生的電子郵件地址來發送郵件。你能使用Copilot來建構一個自動化功能，使教育者在學生提交作業時自動發送電子郵件嗎？提示：使用正確的提示，你可以在Power Automate中使用Copilot來建構這個功能。</p>
+</blockquote>
+<h3 id="_5">建構我們新創公司的發票資訊表格<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>我們初創公司的財務團隊一直在努力追蹤發票。他們一直在使用電子表格來追蹤發票，但隨著發票數量的增加，這變得難以管理。他們要求你建立一個表格，幫助他們存儲、追蹤和管理收到的發票資訊。該表格應用於建構一個自動化系統，將所有發票資訊提取並存儲在表格中。該表格還應使財務團隊能夠查看已支付和未支付的發票。</p>
+<p>Power Platform 有一個名為 Dataverse 的底層資料平台，可讓您儲存應用程式和解決方案的資料。Dataverse 提供一個低程式碼的資料平台來儲存應用程式的資料。這是一個完全受管理的服務，能夠安全地將資料儲存在 Microsoft Cloud 中，並在您的 Power Platform 環境中配置。它具有內建的資料治理功能，例如資料分類、資料沿革、細粒度存取控制等。您可以在<a href="https://docs.microsoft.com/powerapps/maker/data-platform/data-platform-intro?WT.mc_id=academic-109639-somelezediko">此處了解更多關於 Dataverse 的資訊</a>。</p>
+<p>為什麼我們的初創公司應該使用 Dataverse？Dataverse 中的標準和自訂表格為您的數據提供了一個安全且基於雲端的存儲選項。表格讓您可以存儲不同類型的數據，類似於您在單個 Excel 工作簿中使用多個工作表的方式。您可以使用表格來存儲特定於您的組織或業務需求的數據。我們的初創公司使用 Dataverse 所獲得的一些好處包括但不限於：</p>
+<ul>
+<li>
+<p><strong>易於管理</strong>: Metadata 和資料都存儲在雲端，因此您不必擔心它們如何存儲或管理。您可以專注於建構您的應用程式和解決方案。</p>
+</li>
+<li>
+<p><strong>安全</strong>: Dataverse 為您的資料提供安全且基於雲端的存儲選項。您可以使用基於角色的安全性控制誰可以訪問表中的資料以及他們如何訪問。</p>
+</li>
+<li>
+<p><strong>豐富的 Metadata</strong>: 資料類型和關係直接在 Power Apps 中使用。</p>
+</li>
+<li>
+<p><strong>邏輯和驗證</strong>: 您可以使用業務規則、計算欄位和驗證規則來強制執行業務邏輯並保持資料準確性。</p>
+</li>
+</ul>
+<p>現在你已經知道什麼是 Dataverse 以及為什麼應該使用它，讓我們來看看如何使用 Copilot 在 Dataverse 中建立一個表格以滿足我們財務團隊的需求。</p>
+<blockquote>
+<p><strong>注意</strong> : 您將在下一節中使用此表來建構一個自動化流程，該流程將提取所有發票資訊並將其存儲在表中。</p>
+</blockquote>
+<p>要使用 Copilot 在 Dataverse 中建立表格，請按照以下步驟操作:</p>
+<ol>
+<li>
+<p>導航到 <a href="https://make.powerapps.com?WT.mc_id=academic-105485-koreyst">Power Apps</a> 主畫面。</p>
+</li>
+<li>
+<p>在左側導航欄中，選擇 <strong>Tables</strong>，然後點擊 <strong>Describe the new Table</strong>。</p>
+</li>
+</ol>
+<p><img alt="選擇新表格" src="../../images/describe-new-table.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ol>
+<li>在 <strong>描述新表格</strong> 畫面上，使用文字區域描述您想要建立的表格。例如，<strong><em>我想建立一個表格來儲存發票資訊</em></strong>。點擊 <strong>送出</strong> 按鈕將提示發送給 AI Copilot。</li>
+</ol>
+<p><img alt="描述此表格" src="../../images/copilot-chat-prompt-dataverse.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ol>
+<li>AI Copilot 將建議一個 Dataverse 表格，包含您需要儲存您想追蹤的資料的欄位和一些範例資料。然後，您可以使用 AI Copilot 助手功能通過對話步驟自訂表格以滿足您的需求。</li>
+</ol>
+<p><img alt="建議的Dataverse表格" src="../../images/copilot-dataverse-table.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ol>
+<li>
+<p>財務團隊希望發送電子郵件給供應商，以更新他們的發票當前狀態。你可以使用Copilot向表格添加一個新欄位來存儲供應商電子郵件。例如，你可以使用以下提示來向表格添加新欄位: <strong><em>我想添加一個欄位來存儲供應商電子郵件</em></strong>。點擊<strong>發送</strong>按鈕將提示發送給AI Copilot。</p>
+</li>
+<li>
+<p>AI Copilot會生成一個新欄位，然後你可以自定義該欄位以滿足你的需求。</p>
+</li>
+<li>
+<p>完成表格後，點擊<strong>建立</strong>按鈕來建立表格。</p>
+</li>
+</ol>
+<h2 id="ai-power-platform-ai-builder">AI 模型在 Power Platform 中的應用與 AI Builder<a class="headerlink" href="#ai-power-platform-ai-builder" title="Permanent link">&para;</a></h2>
+<p>AI Builder 是一種在 Power Platform 中提供的低程式碼 AI 功能，使您能夠使用 AI 模型來幫助自動化流程和預測結果。使用 AI Builder，您可以將 AI 引入您的應用程式和連接到 Dataverse 或各種雲端資料來源（如 SharePoint、OneDrive 或 Azure）的流程。</p>
+<h2 id="ai-vs-ai">預建 AI 模型 vs 自訂 AI 模型<a class="headerlink" href="#ai-vs-ai" title="Permanent link">&para;</a></h2>
+<p>AI Builder 提供兩種類型的 AI 模型: 預建 AI 模型和自訂 AI 模型。預建 AI 模型是由 Microsoft 訓練並在 Power Platform 中可用的即用型 AI 模型。這些模型幫助你為應用程式和流程添加智能，而無需收集資料並建構、訓練和發佈你自己的模型。你可以使用這些模型來自動化流程並預測結果。</p>
+<p>Power Platform 中可用的一些預建 AI 模型包括:</p>
+<ul>
+<li><strong>關鍵詞提取</strong>: 此模型從文本中提取關鍵詞。</li>
+<li><strong>語言檢測</strong>: 此模型檢測文本的語言。</li>
+<li><strong>情感分析</strong>: 此模型檢測文本中的正面、負面、中立或混合情感。</li>
+<li><strong>名片讀取器</strong>: 此模型從名片中提取資訊。</li>
+<li><strong>文本識別</strong>: 此模型從圖像中提取文本。</li>
+<li><strong>物件檢測</strong>: 此模型檢測並從圖像中提取物件。</li>
+<li><strong>文件處理</strong>: 此模型從表單中提取資訊。</li>
+<li><strong>發票處理</strong>: 此模型從發票中提取資訊。</li>
+</ul>
+<p>使用自訂 AI 模型，您可以將自己的模型引入 AI Builder，使其能像任何 AI Builder 自訂模型一樣運作，允許您使用自己的資料訓練模型。您可以使用這些模型在 Power Apps 和 Power Automate 中自動化流程並預測結果。使用您自己的模型時，有一些限制適用。閱讀更多關於這些<a href="https://learn.microsoft.com/ai-builder/byo-model#limitations?WT.mc_id=academic-105485-koreyst">限制</a>。</p>
+<p><img alt="AI 建構模型" src="../../images/ai-builder-models.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h2 id="2-">作業 #2 - 為我們的創業公司建構發票處理流程<a class="headerlink" href="#2-" title="Permanent link">&para;</a></h2>
+<p>財務團隊一直在努力處理發票。他們一直在使用電子表格來追蹤發票，但隨著發票數量的增加，這變得難以管理。他們要求你建構一個工作流程，幫助他們使用 AI 處理發票。該工作流程應能讓他們從發票中提取資訊並將資訊存儲在 Dataverse 表中。該工作流程還應能讓他們將提取的資訊發送電子郵件給財務團隊。</p>
+<p>現在你已經知道什麼是 AI Builder 以及為什麼應該使用它，讓我們來看看如何在 AI Builder 中使用我們之前提到的發票處理 AI 模型，來建構一個幫助財務團隊處理發票的工作流程。</p>
+<p>要建構一個工作流程，以幫助財務團隊使用 AI Builder 中的發票處理 AI 模型處理發票，請按照以下步驟操作:</p>
+<ol>
+<li>
+<p>導航到<a href="https://make.powerautomate.com?WT.mc_id=academic-105485-koreyst">Power Automate</a>主畫面。</p>
+</li>
+<li>
+<p>使用主畫面上的文字區域描述您想要建構的工作流程。例如，<strong><em>處理到達郵箱的發票</em></strong>。點擊<strong>發送</strong>按鈕將提示發送給AI Copilot。</p>
+</li>
+</ol>
+<p><img alt="Copilot power automate" src="../../images/copilot-chat-prompt-powerautomate.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ol>
+<li>
+<p>AI Copilot會建議您需要執行的動作來完成您想要自動化的任務。您可以點擊<strong>下一步</strong>按鈕進行下一步。</p>
+</li>
+<li>
+<p>在下一步中，Power Automate會提示您設定流程所需的連接。完成後，點擊<strong>建立流程</strong>按鈕來建立流程。</p>
+</li>
+<li>
+<p>AI Copilot會生成一個流程，然後您可以自訂流程以符合您的需求。</p>
+</li>
+<li>
+<p>更新流程的觸發器並將<strong>資料夾</strong>設置為存放發票的資料夾。例如，您可以將資料夾設置為<strong>收件箱</strong>。點擊<strong>顯示進階選項</strong>並將<strong>僅限附件</strong>設置為<strong>是</strong>。這將確保流程僅在收到帶有附件的電子郵件時執行。</p>
+</li>
+<li>
+<p>從流程中移除以下動作：<strong>HTML轉文字</strong>、<strong>撰寫</strong>、<strong>撰寫2</strong>、<strong>撰寫3</strong>和<strong>撰寫4</strong>，因為您不會使用它們。</p>
+</li>
+<li>
+<p>從流程中移除<strong>條件</strong>動作，因為您不會使用它。應該如下圖所示：</p>
+</li>
+</ol>
+<p><img alt="power automate, remove actions" src="../../images/powerautomate-remove-actions.png?WT.mc_id=academic-105485-koreyst" /></p>
+<ol>
+<li>
+<p>點擊<strong>新增動作</strong>按鈕並搜索<strong>Dataverse</strong>。選擇<strong>新增一行</strong>動作。</p>
+</li>
+<li>
+<p>在<strong>從發票中提取資訊</strong>動作中，更新<strong>發票檔案</strong>以指向電子郵件中的<strong>附件內容</strong>。這將確保流程從發票附件中提取資訊。</p>
+</li>
+<li>
+<p>選擇您之前建立的<strong>表格</strong>。例如，您可以選擇<strong>發票資訊</strong>表格。選擇前一動作中的動態內容來填充以下欄位：</p>
+<ul>
+<li>ID</li>
+<li>金額</li>
+<li>日期</li>
+<li>名稱</li>
+<li>狀態 - 將<strong>狀態</strong>設置為<strong>待處理</strong>。</li>
+<li>供應商電子郵件 - 使用<strong>當新郵件到達時</strong>觸發器中的<strong>寄件者</strong>動態內容。</li>
+</ul>
+<p><img alt="power automate add row" src="../../images/powerautomate-add-row.png?WT.mc_id=academic-105485-koreyst" /></p>
+</li>
+<li>
+<p>完成流程後，點擊<strong>儲存</strong>按鈕來儲存流程。然後，您可以通過向觸發器中指定的資料夾發送帶有發票的電子郵件來測試流程。</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>你的作業</strong>: 你剛剛建構的流程是一個好的開始，現在你需要思考如何建構一個自動化流程，使我們的財務團隊能夠發送電子郵件給供應商，更新他們的發票當前狀態。提示: 當發票狀態變更時，流程必須執行。</p>
+</blockquote>
+<h2 id="power-automate-ai">在 Power Automate 中使用文本生成 AI 模型<a class="headerlink" href="#power-automate-ai" title="Permanent link">&para;</a></h2>
+<p>在 AI Builder 中使用 GPT AI 模型建立文字，讓你能夠根據提示生成文字，並由 Microsoft Azure OpenAI 服務提供支持。利用這項功能，你可以將 GPT（生成式預訓練轉換器）技術整合到你的應用程式和流程中，以建構各種自動化流程和具洞察力的應用程式。</p>
+<p>GPT 模型經過大量數據的廣泛訓練，使其在提供提示時能夠生成與人類語言非常相似的文本。當與工作流程自動化集成時，像 GPT 這樣的 AI 模型可以用來簡化和自動化各種任務。</p>
+<p>例如，你可以建構流程來自動生成各種用例的文本，例如: 電子郵件草稿、產品描述等。你也可以使用該模型為各種應用程式生成文本，例如聊天機器人和客服應用程式，使客服人員能夠有效且高效地回應客戶查詢。</p>
+<p><img alt="建立提示" src="../../images/create-prompt-gpt.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>要學習如何在 Power Automate 中使用此 AI 模型，請參閱<a href="https://learn.microsoft.com/training/modules/ai-builder-text-generation/?WT.mc_id=academic-109639-somelezediko">使用 AI Builder 和 GPT 增加智慧</a>模組。</p>
+<h2 id="_6">很棒的工作！繼續學習<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>完成本課程後，請查看我們的<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">生成式 AI 學習集合</a>以繼續提升您的生成式 AI 知識！</p>
+<p>前往第11課，我們將探討如何<a href="../../../11-integrating-with-function-calling/translations/tw/?WT.mc_id=academic-105485-koreyst">將生成式AI與函式呼叫整合</a>！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

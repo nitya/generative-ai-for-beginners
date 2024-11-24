@@ -1,0 +1,2140 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/06-text-generation-apps/translations/pt-br/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Desenvolvendo Aplicativos de Geração de Texto - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#desenvolvendo-aplicativos-de-geracao-de-texto" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Desenvolvendo Aplicativos de Geração de Texto
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos-de-aprendizagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos de aprendizagem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-e-uma-aplicacao-de-geracao-de-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que é uma aplicação de geração de texto?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O que é uma aplicação de geração de texto?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#console-e-aplicoes-de-ui-sao-limitadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Console e Aplições de UI são limitadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beneficios-de-aplicativos-de-geracao-de-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefícios de aplicativos de geração de texto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-que-posso-criar-com-um-aplicativo-de-geracao-de-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      O que posso criar com um aplicativo de geração de texto?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-posso-comecar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como posso começar?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bibliotecassdks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bibliotecas/SDKs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primeiro-aplicativo-usando-openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primeiro aplicativo usando openai
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primeiro aplicativo usando openai">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalando-o-openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalando o openai
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criando-o-recurso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criando o Recurso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localize-a-chave-da-api-e-o-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Localize a chave da API e o endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurando-o-recurso-do-azure-no-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurando o recurso do Azure no código
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gerando-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerando texto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gerando texto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chat-completions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chat completions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercicio-seu-primeiro-aplicativo-de-geracao-de-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício - seu primeiro aplicativo de geração de texto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diferentes-tipos-de-prompts-para-diferentes-coisas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diferentes tipos de prompts, para diferentes coisas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#um-caso-de-uso-mais-pratico-um-gerador-de-receitas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Um caso de uso mais prático: um gerador de receitas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execircio-crie-um-gerador-de-receitas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execírcio - crie um gerador de receitas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execírcio - crie um gerador de receitas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#melhore-adicionando-filtro-e-lista-de-compras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Melhore adicionando filtro e lista de compras
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#melhorando-a-nossa-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Melhorando a nossa configuração
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarefa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tarefa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solução
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amigo-de-estudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amigo de Estudo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bot-de-historia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bot de História
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao-de-conhecimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificação de Conhecimento
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desafio" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Desafio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excelente-trabalho-continue-seu-aprendizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Excelente trabalho! Continue seu aprendizado
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="desenvolvendo-aplicativos-de-geracao-de-texto">Desenvolvendo Aplicativos de Geração de Texto<a class="headerlink" href="#desenvolvendo-aplicativos-de-geracao-de-texto" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson6-gh?WT.mc_id=academic-105485-koreyst"><img alt="Building Text Generation Applications" src="../../images/06-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<blockquote>
+<p><em>(Clique na imagem acima para assistir ao vídeo desta lição)</em></p>
+</blockquote>
+<p>Você viu até agora neste currículo que existem conceitos básicos como prompts e até mesmo uma disciplina inteira chamada "engenharia de prompts". Muitas ferramentas com as quais você pode interagir, como ChatGPT, Office 365, Microsoft Power Platform e muito mais, suportam o uso de prompts para realizar algo.</p>
+<p>Para que você adicione tal experiência a um aplicação, você precisa entender conceitos como prompts, conclusões e escolher uma biblioteca para trabalhar. É exatamente isso que você aprenderá neste capítulo.</p>
+<h2 id="introducao">Introdução<a class="headerlink" href="#introducao" title="Permanent link">&para;</a></h2>
+<p>Nesse capítulo, você aprenderá:</p>
+<ul>
+<li>Aprender sobre a biblioteca openai e seus conceitos básicos.</li>
+<li>Criar uma aplicação de geração de texto usando openai.</li>
+<li>Entender como usar conceitos como prompt, temperatura e tokens para construir um aplicativo de geração de texto.</li>
+</ul>
+<h2 id="objetivos-de-aprendizagem">Objetivos de aprendizagem<a class="headerlink" href="#objetivos-de-aprendizagem" title="Permanent link">&para;</a></h2>
+<p>No final desta lição, você será capaz de:</p>
+<ul>
+<li>Explicar o que é uma aplicação de geração de texto.</li>
+<li>Criar uma aplicação de geração de texto usando openai.</li>
+<li>Configurar sua aplicação para usar mais ou menos tokens e também alterar a temperatura, para uma saída variada.</li>
+</ul>
+<h2 id="o-que-e-uma-aplicacao-de-geracao-de-texto">O que é uma aplicação de geração de texto?<a class="headerlink" href="#o-que-e-uma-aplicacao-de-geracao-de-texto" title="Permanent link">&para;</a></h2>
+<p>Normalmente quando você desenvolve uma aplicaçaõ, ele tem algum tipo de interface como a seguinte:</p>
+<ul>
+<li>Baseado em comando. Aplicações de console são aplicativos típicos onde você digita um comando e ele executa uma tarefa. Por exemplo, <code>git</code> é um aplicativo baseado em comando.</li>
+<li>Interface do usuário (UI). Alguns aplicativos têm interfaces gráficas do usuário (GUIs) onde você clica em botões, insere texto, seleciona opções e muito mais.</li>
+</ul>
+<h3 id="console-e-aplicoes-de-ui-sao-limitadas">Console e Aplições de UI são limitadas<a class="headerlink" href="#console-e-aplicoes-de-ui-sao-limitadas" title="Permanent link">&para;</a></h3>
+<p>Compare com um aplicativo baseado em comandos onde você digita um comando:</p>
+<ul>
+<li><strong>É limitado</strong>: Você não pode simplesmente digitar qualquer comando, apenas aqueles que o aplicativo suporta.</li>
+<li><strong>Específico de idioma</strong>: Alguns aplicativos suportam vários idiomas, mas por padrão, o aplicativo é construído para um idioma específico, mesmo que você possa adicionar mais suporte a idiomas.</li>
+</ul>
+<h3 id="beneficios-de-aplicativos-de-geracao-de-texto">Benefícios de aplicativos de geração de texto<a class="headerlink" href="#beneficios-de-aplicativos-de-geracao-de-texto" title="Permanent link">&para;</a></h3>
+<p>Então, como uma aplicativo de geração de texto é diferente?</p>
+<p>Em um aplicativo de geração de texto, você tem mais flexibilidade, não está limitado a um conjunto de comandos ou a um idioma específico de entrada. Em vez disso, você pode usar linguagem natural para interagir com o aplicativo. Outro benefício é que, como você já está interagindo com uma fonte de dados que foi treinada em um vasto corpus de informações, ao contrário de um aplicativo tradicional que pode ser limitado ao que está em um banco de dados.</p>
+<h3 id="o-que-posso-criar-com-um-aplicativo-de-geracao-de-texto">O que posso criar com um aplicativo de geração de texto?<a class="headerlink" href="#o-que-posso-criar-com-um-aplicativo-de-geracao-de-texto" title="Permanent link">&para;</a></h3>
+<p>Existem muitas coisas que você pode construir. Por exemplo:</p>
+<ul>
+<li><strong>Um chatbot</strong>: Um chatbot que responde a perguntas sobre tópicos, como sua empresa e seus produtos, pode ser uma boa opção.</li>
+<li><strong>Assistente</strong>: Modelos de linguagem são ótimos para coisas como resumir texto, obter insights a partir de texto, produzir texto como currículos e mais.</li>
+<li><strong>Assistente de código</strong>: Dependendo do modelo de linguagem que você usa, é possível construir um assistente de código que o ajuda a escrever código. Por exemplo, você pode usar um produto como o GitHub Copilot, bem como o ChatGPT, para ajudá-lo a escrever código.</li>
+</ul>
+<h2 id="como-posso-comecar">Como posso começar?<a class="headerlink" href="#como-posso-comecar" title="Permanent link">&para;</a></h2>
+<p>Bem, você precisa encontrar uma maneira de integrar um modelo de linguagem grande (LLM), o que geralmente envolve as seguintes duas abordagens:</p>
+<ul>
+<li><strong>Usar uma API</strong>: Aqui, você está construindo solicitações web com seu prompt e obtendo texto gerado de volta.</li>
+<li><strong>Usar uma biblioteca</strong>: As bibliotecas ajudam a encapsular as chamadas de API e facilitam o uso delas.</li>
+</ul>
+<h2 id="bibliotecassdks">Bibliotecas/SDKs<a class="headerlink" href="#bibliotecassdks" title="Permanent link">&para;</a></h2>
+<p>Existem algumas bibliotecas bem conhecidas para trabalhar com Grandes Modelos de Linguagem (LLMs), como:</p>
+<ul>
+<li><strong>openai</strong>: Esta biblioteca facilita a conexão com seu modelo e o envio de prompts.</li>
+</ul>
+<p>Em seguida, existem bibliotecas que operam em um nível mais alto, como:</p>
+<ul>
+<li><strong>Langchain</strong>: Langchain é bem conhecida e oferece suporte ao Python.</li>
+<li><strong>Semantic Kernel</strong>: Semantic Kernel é uma biblioteca da Microsoft que oferece suporte às linguagens C#, Python e Java.</li>
+</ul>
+<h2 id="primeiro-aplicativo-usando-openai">Primeiro aplicativo usando openai<a class="headerlink" href="#primeiro-aplicativo-usando-openai" title="Permanent link">&para;</a></h2>
+<p>Vamos ver como podemos criar nosso primeiro aplicativo, quais bibliotecas precisamos, quanto é necessário e etc.</p>
+<h3 id="instalando-o-openai">Instalando o openai<a class="headerlink" href="#instalando-o-openai" title="Permanent link">&para;</a></h3>
+<p>Existem muitas bibliotecas por aí para interagir com o OpenAI ou o Azure OpenAI. É possível usar várias linguagens de programação, como C#, Python, JavaScript, Java e outras. Optamos por usar a biblioteca <code>openai</code> em Python, então vamos usar o <code>pip</code> para instalá-la.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>openai
+</code></pre></div></td></tr></table></div>
+<h3 id="criando-o-recurso">Criando o Recurso<a class="headerlink" href="#criando-o-recurso" title="Permanent link">&para;</a></h3>
+<p>Você precisa realizar as seguintes etapas:</p>
+<ul>
+<li>Criar uma conta no Azure <a href="https://azure.microsoft.com/free/?WT.mc_id=academic-105485-koreyst">https://azure.microsoft.com/free/</a>.</li>
+<li>Obter acesso ao Azure Open AI. Vá para <a href="https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai?WT.mc_id=academic-105485-koreyst">https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai</a> e solicite acesso.</li>
+</ul>
+<blockquote>
+<p>[!OBSERVAÇÃO]
+Até o presente momento, você precisa solicitar acesso ao Azure Open AI.</p>
+</blockquote>
+<ul>
+<li>Instale Python <a href="https://www.python.org/">https://www.python.org/</a></li>
+<li>Ter criado um recurso de serviço Azure OpenAI. Consulte este guia para saber como <a href="https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal?WT.mc_id=academic-105485-koreyst">criar um recurso</a>.</li>
+</ul>
+<h3 id="localize-a-chave-da-api-e-o-endpoint">Localize a chave da API e o endpoint<a class="headerlink" href="#localize-a-chave-da-api-e-o-endpoint" title="Permanent link">&para;</a></h3>
+<p>Neste ponto, você precisa informar à biblioteca <code>openai</code> qual chave de API usar. Para encontrar sua chave de API, vá para a seção "Chaves e Endpoint" de seu recurso Azure Open AI e copie o valor de "Chave 1".</p>
+<p><img alt="Keys and Endpoint resource blade in Azure Portal" src="https://learn.microsoft.com/azure/ai-services/openai/media/quickstarts/endpoint.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>Agora que você tem essas informações copiadas, vamos instruir as bibliotecas a usá-las.</p>
+<blockquote>
+<p>[!OBSERVAÇÃO]
+Vale a pena separar sua chave API do seu código. Você pode fazer isso usando variáveis de ambiente.</p>
+<ul>
+<li>Defina a variável de ambiente em: <code>OPENAI_API_TYPE</code> para a chave da sua API.
+  <code>export OPENAI_API_KEY='sk-...'</code></li>
+</ul>
+</blockquote>
+<h3 id="configurando-o-recurso-do-azure-no-codigo">Configurando o recurso do Azure no código<a class="headerlink" href="#configurando-o-recurso-do-azure-no-codigo" title="Permanent link">&para;</a></h3>
+<p>If you're using Azure Open AI, here's how you setup configuration:</p>
+<p>Se você estiver usando o Azure Open AI, veja como configurar:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-05-15&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;API_BASE&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Aqui estamos definindo o seguinte:</p>
+<ul>
+<li><code>api_type</code> para <code>azure</code>. Isso diz à biblioteca para usar o Azure Open AI e não o OpenAI.</li>
+<li><code>api_key</code>, esta é a sua chave API encontrada no Portal do Azure.</li>
+<li><code>api_version</code>, esta é a versão da API que você deseja usar. No momento da escrita, a versão mais recente é <code>2023-05-15</code>.</li>
+<li><code>api_base</code>, este é o endpoint da API. Você pode encontrá-lo no Portal do Azure ao lado de sua chave API.</li>
+</ul>
+<blockquote>
+<p>[!OBSERVAÇÃO] &gt; <code>os.getenv</code> é uma função que lê variáveis de ambiente. Você pode usá-lo para ler variáveis de ambiente como <code>OPENAI_API_KEY</code> e <code>API_BASE</code>. Defina essas variáveis de ambiente em seu terminal ou usando uma biblioteca como <code>dotenv</code>.</p>
+</blockquote>
+<h2 id="gerando-texto">Gerando texto<a class="headerlink" href="#gerando-texto" title="Permanent link">&para;</a></h2>
+<p>Uma maneira de gerar texto é usar a classe <code>Completion</code>. Aqui está um exemplo:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Complete the following: Once upon a time there was a&quot;</span>
+
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>No código acima, criamos um <code>completion object</code> e passamos o modelo que queremos usar e o prompt. Em seguida, imprimimos o texto gerado.</p>
+<h3 id="chat-completions">Chat completions<a class="headerlink" href="#chat-completions" title="Permanent link">&para;</a></h3>
+<p>Até agora, você viu como usamos <code>Completion</code> para gerar texto. Mas há outra classe chamada <code>ChatCompletion</code> que é mais adequada para chatbots. Aqui está um exemplo de uso:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;sk-...&quot;</span>
+
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello world&quot;</span><span class="p">}])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Aprenderemos mais sobre essa funcionalidade em um capítulo futuro.</p>
+<h2 id="exercicio-seu-primeiro-aplicativo-de-geracao-de-texto">Exercício - seu primeiro aplicativo de geração de texto<a class="headerlink" href="#exercicio-seu-primeiro-aplicativo-de-geracao-de-texto" title="Permanent link">&para;</a></h2>
+<p>Agora que aprendemos a configurar o openai, é hora de criar o seu primeiro aplicativo de geração de texto. Para criar seu aplicativo, siga estas etapas:</p>
+<ol>
+<li>Crie um ambiente virtual e instale o openai:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>openai
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!OBSERVAÇÃO]
+Se você estiver usando o Windows, digite <code>venv\Scripts\activate</code> em vez de <code>source venv/bin/activate</code>.</p>
+<p>[!OBSERVAÇÃO]
+Localize sua chave Azure Open AI acessando <a href="https://portal.azure.com/?WT.mc_id=academic-105485-koreyst">https://portal.azure.com/</a> e pesquise por <code>Open AI</code> e selecione o <code>recurso Open AI</code> e depois selecione <code>Chaves e Endpoint</code> e copie o valor <code>Chave 1</code>.</p>
+</blockquote>
+<ol>
+<li>Crie um arquivo <em>app.py</em> e dê a ele o seguinte código:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;&lt;replace this value with your open ai key or Azure Open AI key&gt;&quot;</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="s1">&#39;azure&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="s1">&#39;2023-05-15&#39;</span>
+<span class="n">openai</span><span class="o">.</span><span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;&lt;endpoint found in Azure Portal where your API key is&gt;&quot;</span>
+<span class="n">deployment_name</span> <span class="o">=</span> <span class="s2">&quot;&lt;deployment name&gt;&quot;</span>
+
+<span class="c1"># add your completion code</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Complete the following: Once upon a time there was a&quot;</span>
+
+<span class="c1"># make completion</span>
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span> <span class="n">deployment_name</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">)</span>
+
+<span class="c1"># print response</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!OBSERVAÇÃO]
+Se você estiver usando o Azure Open AI, precisará definir o <code>api_type</code> como <code>azure</code> e definir o <code>api_key</code> como sua chave Azure Open AI.</p>
+</blockquote>
+<p>Você deve ver uma saída como a seguinte:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go"> very unhappy _____.</span>
+
+<span class="go">Once upon a time there was a very unhappy mermaid.</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="diferentes-tipos-de-prompts-para-diferentes-coisas">Diferentes tipos de prompts, para diferentes coisas<a class="headerlink" href="#diferentes-tipos-de-prompts-para-diferentes-coisas" title="Permanent link">&para;</a></h2>
+<p>Agora que você viu como gerar texto usando um prompt, você até tem um programa em execução que pode modificar e alterar para gerar diferentes tipos de texto.</p>
+<p>Prompts podem ser usados para todas as formas de tarefas. Por exemplo:</p>
+<ul>
+<li><strong>Gerar um tipo de texto</strong>: Por exemplo, você pode gerar um poema, perguntas para um quiz, etc.</li>
+<li><strong>Procurar informações</strong>: Você pode usar prompts para procurar informações, como no exemplo a seguir: 'O que significa CORS no desenvolvimento web?'.</li>
+<li><strong>Gerar código</strong>: Você pode usar prompts para gerar código, por exemplo, desenvolvendo uma expressão regular usada para validar e-mails ou até mesmo gerar um programa inteiro, como um aplicativo web?</li>
+</ul>
+<h2 id="um-caso-de-uso-mais-pratico-um-gerador-de-receitas">Um caso de uso mais prático: um gerador de receitas<a class="headerlink" href="#um-caso-de-uso-mais-pratico-um-gerador-de-receitas" title="Permanent link">&para;</a></h2>
+<p>Imagine que você tenha ingredientes em casa e quer cozinhar algo. Para isso, você precisa de uma receita. Uma maneira de encontrar receitas é usar um mecanismo de busca ou você poderia usar um LLM para fazer isso.</p>
+<p>Você poderia escrever um prompt assim:</p>
+<blockquote>
+<p>"Me forneça 5 receitas para um prato com os seguintes ingredientes: frango, batatas e cenouras. Por receita, liste todos os ingredientes utilizados"</p>
+</blockquote>
+<p>Dado o prompt acima, você pode obter uma resposta semelhante a:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">1. Frango Assado com Vegetais:</span>
+<span class="go">   - Ingredientes:</span>
+<span class="go">     - 4 coxas de frango</span>
+<span class="go">     - 2 batatas, cortadas em cubos</span>
+<span class="go">     - 2 cenouras, cortadas em cubos</span>
+<span class="go">     - 2 colheres de sopa de azeite de oliva</span>
+<span class="go">     - 2 dentes de alho, picados</span>
+<span class="go">     - 1 colher de chá de tomilho seco</span>
+<span class="go">     - 1 colher de chá de orégano seco</span>
+<span class="go">     - Sal e pimenta a gosto</span>
+
+<span class="go">2. Ensopado de Frango e Batata:</span>
+<span class="go">   - Ingredientes:</span>
+<span class="go">     - 2 colheres de sopa de azeite de oliva</span>
+<span class="go">     - 1 cebola, picada</span>
+<span class="go">     - 2 dentes de alho, picados</span>
+<span class="go">     - 2 peitos de frango, cortados em cubos</span>
+<span class="go">     - 2 batatas, cortadas em cubos</span>
+<span class="go">     - 2 cenouras, cortadas em cubos</span>
+<span class="go">     - 1 colher de chá de orégano seco</span>
+<span class="go">     - 1 colher de chá de tomilho seco</span>
+<span class="go">     - 1 xícara de caldo de galinha</span>
+<span class="go">     - Sal e pimenta a gosto</span>
+
+<span class="go">3. Assado de Frango e Batata:</span>
+<span class="go">   - Ingredientes:</span>
+<span class="go">     - 2 colheres de sopa de azeite de oliva</span>
+<span class="go">     - 2 peitos de frango, cortados em cubos</span>
+<span class="go">     - 2 batatas, cortadas em cubos</span>
+<span class="go">     - 2 cenouras, cortadas em cubos</span>
+<span class="go">     - 1 cebola, picada</span>
+<span class="go">     - 2 dentes de alho, picados</span>
+<span class="go">     - 1 colher de chá de orégano seco</span>
+<span class="go">     - 1 colher de chá de tomilho seco</span>
+<span class="go">     - 1 xícara de caldo de galinha</span>
+<span class="go">     - Sal e pimenta a gosto</span>
+
+<span class="go">4. Sopa de Frango e Batata:</span>
+<span class="go">   - Ingredientes:</span>
+<span class="go">     - 2 colheres de sopa de azeite de oliva</span>
+<span class="go">     - 1 cebola, picada</span>
+<span class="go">     - 2 dentes de alho, picados</span>
+<span class="go">     - 2 peitos de frango, cortados em cubos</span>
+<span class="go">     - 2 batatas, cortadas em cubos</span>
+<span class="go">     - 2 cenouras, cortadas em cubos</span>
+<span class="go">     - 1 colher de chá de orégano seco</span>
+<span class="go">     - 1 colher de chá de tomilho seco</span>
+<span class="go">     - 4 xícaras de caldo de galinha</span>
+<span class="go">     - Sal e pimenta a gosto</span>
+
+<span class="go">5. Hash de Frango e Batata:</span>
+<span class="go">   - Ingredientes:</span>
+<span class="go">     - 2 colheres de sopa de azeite de oliva</span>
+<span class="go">     - 2 peitos de frango, cortados em cubos</span>
+<span class="go">     - 2 batatas, cortadas em cubos</span>
+<span class="go">     - 2 cenouras, cortadas em cubos</span>
+<span class="go">     - 1 cebola, picada</span>
+<span class="go">     - 2 dentes de alho, picados</span>
+<span class="go">     - 1 colher de chá de orégano</span>
+</code></pre></div></td></tr></table></div>
+<p>Essa saída é ótima, eu sei o quê cozinhar. Neste ponto, o que poderia ser útil são melhorias:</p>
+<ul>
+<li>Filtre os ingredientes que não gosto ou sou alérgico.</li>
+<li>Me forneça uma lista de compras, caso eu não tenha todos os ingredientes em casa.</li>
+</ul>
+<p>Para os casos acima, vamos adicionar um prompt adicional:</p>
+<blockquote>
+<p>"Por favor, remova receitas com alho, pois sou alérgico e substitua por outra coisa. Além disso, por favor, me forneça uma lista de compras para as receitas, considerando que já tenho frango, batatas e cenouras em casa."</p>
+</blockquote>
+<p>Agora você tem um novo resultado, a saber:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">1. Frango Assado com Vegetais:</span>
+<span class="go">   - Ingredientes:</span>
+<span class="go">     - 4 coxas de frango</span>
+<span class="go">     - 2 batatas, cortadas em cubos</span>
+<span class="go">     - 2 cenouras, cortadas em cubos</span>
+<span class="go">     - 2 colheres de sopa de azeite de oliva</span>
+<span class="go">     - 1 colher de chá de tomilho seco</span>
+<span class="go">     - 1 colher de chá de orégano seco</span>
+<span class="go">     - Sal e pimenta a gosto</span>
+
+<span class="go">2. Ensopado de Frango e Batata:</span>
+<span class="go">   - Ingredientes:</span>
+<span class="go">     - 2 colheres de sopa de azeite de oliva</span>
+<span class="go">     - 1 cebola, picada</span>
+<span class="go">     - 2 peitos de frango, cortados em cubos</span>
+<span class="go">     - 2 batatas, cortadas em cubos</span>
+<span class="go">     - 2 cenouras, cortadas em cubos</span>
+<span class="go">     - 1 colher de chá de orégano seco</span>
+<span class="go">     - 1 colher de chá de tomilho seco</span>
+<span class="go">     - 1 xícara de caldo de galinha</span>
+<span class="go">     - Sal e pimenta a gosto</span>
+
+<span class="go">3. Frango e Batata Assados:</span>
+<span class="go">   - Ingredientes:</span>
+<span class="go">     - 2 colheres de sopa de azeite de oliva</span>
+<span class="go">     - 2 peitos de frango, cortados em cubos</span>
+<span class="go">     - 2 batatas, cortadas em cubos</span>
+<span class="go">     - 2 cenouras, cortadas em cubos</span>
+<span class="go">     - 1 cebola, picada</span>
+<span class="go">     - 1 colher de chá de orégano seco</span>
+<span class="go">     - 1 colher de chá de tomilho seco</span>
+<span class="go">     - 1 xícara de caldo de galinha</span>
+<span class="go">     - Sal e pimenta a gosto</span>
+
+<span class="go">4. Sopa de Frango e Batata:</span>
+<span class="go">   - Ingredientes:</span>
+<span class="go">     - 2 colheres de sopa de azeite de oliva</span>
+<span class="go">     - 1 cebola, picada</span>
+<span class="go">     - 2 peitos de frango, cortados em cubos</span>
+<span class="go">     - 2 batatas, cortadas em cubos</span>
+<span class="go">     - 2 cenouras, cortadas em cubos</span>
+<span class="go">     - 1 colher de chá de orégano seco</span>
+<span class="go">     - 1 colher de chá de tomilho seco</span>
+<span class="go">     - 4 xícaras de caldo de galinha</span>
+<span class="go">     - Sal e pimenta a gosto</span>
+
+<span class="go">5. Hash de Frango e Batata:</span>
+<span class="go">   - Ingredientes:</span>
+<span class="go">     - 2 colheres de sopa de azeite de oliva</span>
+<span class="go">     - 2 peitos de frango, cortados em cubos</span>
+<span class="go">     - 2 batatas, cortadas em cubos</span>
+<span class="go">     - 2 cenouras, cortadas em cubos</span>
+<span class="go">     - 1 cebola, picada</span>
+<span class="go">     - 1 colher de chá de orégano</span>
+
+<span class="go">Lista de Compras:</span>
+<span class="go">- Azeite de oliva</span>
+<span class="go">- Cebola</span>
+<span class="go">- Tomilho</span>
+<span class="go">- Orégano</span>
+<span class="go">- Sal</span>
+<span class="go">- Pimenta</span>
+</code></pre></div></td></tr></table></div>
+<p>Aqui estão as cinco receitas, sem mencionar alho, e também uma lista de compras considerando o que você já tem em casa.</p>
+<h2 id="execircio-crie-um-gerador-de-receitas">Execírcio - crie um gerador de receitas<a class="headerlink" href="#execircio-crie-um-gerador-de-receitas" title="Permanent link">&para;</a></h2>
+<p>Agora que temos um cenário, vamos escrever o código para corresponder ao cenário demonstrado. Para fazer isso, siga estas etapas:</p>
+<ol>
+<li>Use o arquivo <em>app.py</em> existente como ponto de partida</li>
+<li>Localize a variável <code>prompt</code> e altere seu código para o seguinte:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Me forneça 5 receitas de um prato com os seguintes ingredientes: frango, batata e cenoura. Por receita, liste todos os ingredientes usados&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>Se você executar o código agora, deverá ver uma saída semelhante a:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">- Ensopado de Frango com Batata e Cenoura: 3 colheres de sopa de azeite, 1 cebola picada, 2 dentes de alho picados, 1 cenoura descascada e picada, 1 batata descascada e picada, 1 folha de louro, 1 raminho de tomilho, 1/2 colher de chá de sal , 1/4 colher de chá de pimenta preta, 1 1/2 xícara de caldo de galinha, 1/2 xícara de vinho branco seco, 2 colheres de sopa de salsa fresca picada, 2 colheres de sopa de manteiga sem sal, 1 1/2 libra de coxas de frango desossadas e sem pele, cortadas em 1- pedaços de polegada</span>
+
+<span class="go">- Frango Assado no Forno com Batata e Cenoura: 3 colheres de sopa de azeite extra-virgem, 1 colher de sopa de mostarda Dijon, 1 colher de sopa de alecrim fresco picado, 1 colher de sopa de tomilho fresco picado, 4 dentes de alho picados, 1 1/2 libra de batatas vermelhas pequenas, esquartejado, 1 1/2 libra de cenoura, cortada em quartos longitudinalmente, 1/2 colher de chá de sal, 1/4 colher de chá de pimenta preta, 1 (4 libras) de frango inteiro</span>
+
+<span class="go">- Caçarola de frango, batata e cenoura: spray de cozinha, 1 cebola grande picada, 2 dentes de alho picados, 1 cenoura descascada e ralada, 1 batata descascada e ralada, 1/2 colher de chá de folhas secas de tomilho, 1/4 colher de chá sal, 1/4 colher de chá de pimenta preta, 2 xícaras de caldo de galinha desnatado e com baixo teor de sódio, 1 xícara de ervilhas congeladas, 1/4 xícara de farinha de trigo, 1 xícara de leite com baixo teor de gordura a 2%, 1/4 xícara de parmesão ralado queijo</span>
+
+<span class="go">- Jantar de frango e batata em uma panela: 2 colheres de sopa de azeite, 1 quilo de coxas de frango desossadas e sem pele, cortadas em pedaços de 2,5 cm, 1 cebola grande picada, 3 dentes de alho picados, 1 cenoura descascada e picada, 1 batata, descascado e picado, 1 folha de louro, 1 raminho de tomilho, 1/2 colher de chá de sal, 1/4 colher de chá de pimenta preta, 2 xícaras de caldo de galinha, 1/2 xícara de vinho branco seco</span>
+
+<span class="go">- Caril de Frango, Batata e Cenoura: 1 colher de sopa de óleo vegetal, 1 cebola grande picada, 2 dentes de alho picados, 1 cenoura descascada e picada, 1 batata descascada e picada, 1 colher de chá de coentro moído, 1 colher de chá de cominho moído, 1/2 colher de chá de açafrão em pó, 1/2 colher de chá de gengibre em pó, 1/4 colher de chá de pimenta caiena, 2 xícaras de caldo de galinha, 1/2 xícara de vinho branco seco, 1 lata (15 onças) de grão de bico, escorrido e enxaguado, 1/2 xícara de passas, 1/2 xícara de coentro fresco picado</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!OBSERVAÇÃO]
+seu LLM é não determinístico, então você pode obter resultados diferentes sempre que executar o programa.</p>
+</blockquote>
+<p>Ótimo! Vamos ver como podemos melhorar as coisas. Para melhorar as coisas, queremos ter certeza de que o código é flexível, para que os ingredientes e o número de receitas possam ser melhorados e alterados.</p>
+<ol>
+<li>Vamos alterar o código da seguinte maneira:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">no_recipes</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;No of recipes (for example, 5: &quot;</span><span class="p">)</span>
+
+<span class="n">ingredients</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;List of ingredients (for example, chicken, potatoes, and carrots: &quot;</span><span class="p">)</span>
+
+<span class="c1"># interpolate the number of recipes into the prompt an ingredients</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Show me </span><span class="si">{</span><span class="n">no_recipes</span><span class="si">}</span><span class="s2"> recipes for a dish with the following ingredients: </span><span class="si">{</span><span class="n">ingredients</span><span class="si">}</span><span class="s2">. Per recipe, list all the ingredients used&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>Execute o código e teste, e vejamos o resultado:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">No of recipes (for example, 5: 3</span>
+<span class="go">List of ingredients (for example, chicken, potatoes, and carrots: milk,strawberries</span>
+
+<span class="go">-Strawberry milk shake: milk, strawberries, sugar, vanilla extract, ice cubes</span>
+<span class="go">-Strawberry shortcake: milk, flour, baking powder, sugar, salt, unsalted butter, strawberries, whipped cream</span>
+<span class="go">-Strawberry milk: milk, strawberries, sugar, vanilla extract</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="melhore-adicionando-filtro-e-lista-de-compras">Melhore adicionando filtro e lista de compras<a class="headerlink" href="#melhore-adicionando-filtro-e-lista-de-compras" title="Permanent link">&para;</a></h3>
+<p>Agora nós temos um aplicativo funcionando capaz de produzir receitas e é flexível, pois depende de entradas do usuário, tanto no número de receitas quanto nos ingredientes usados.</p>
+<p>Para melhorar ainda mais, queremos adicionar o seguinte:</p>
+<ul>
+<li><strong>Filtrar ingredientes</strong>: Queremos ser capazes de filtrar ingredientes que não gostamos ou somos alérgicos. Para realizar essa alteração, podemos editar nosso prompt existente e adicionar uma condição de filtro ao final, assim:</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">filter</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Filter (for example, vegetarian, vegan, or gluten-free: &quot;</span><span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Show me </span><span class="si">{</span><span class="n">no_recipes</span><span class="si">}</span><span class="s2"> recipes for a dish with the following ingredients: </span><span class="si">{</span><span class="n">ingredients</span><span class="si">}</span><span class="s2">. Per recipe, list all the ingredients used, no </span><span class="si">{</span><span class="nb">filter</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>Acima adicionamos <code>{filter}</code> ao final do prompt e também capturamos o valor do filtro do usuário.</p>
+<p>Um exemplo de entrada da execução do programa pode ser assim:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">No of recipes (for example, 5: 3</span>
+<span class="go">List of ingredients (for example, chicken, potatoes, and carrots: onion,milk</span>
+<span class="go">Filter (for example, vegetarian, vegan, or gluten-free: no milk</span>
+
+<span class="go">1. French Onion Soup</span>
+
+<span class="go">Ingredients:</span>
+
+<span class="go">-1 large onion, sliced</span>
+<span class="go">-3 cups beef broth</span>
+<span class="go">-1 cup milk</span>
+<span class="go">-6 slices french bread</span>
+<span class="go">-1/4 cup shredded Parmesan cheese</span>
+<span class="go">-1 tablespoon butter</span>
+<span class="go">-1 teaspoon dried thyme</span>
+<span class="go">-1/4 teaspoon salt</span>
+<span class="go">-1/4 teaspoon black pepper</span>
+
+<span class="go">Instructions:</span>
+
+<span class="go">1. In a large pot, sauté onions in butter until golden brown.</span>
+<span class="go">2. Add beef broth, milk, thyme, salt, and pepper. Bring to a boil.</span>
+<span class="go">3. Reduce heat and simmer for 10 minutes.</span>
+<span class="go">4. Place french bread slices on soup bowls.</span>
+<span class="go">5. Ladle soup over bread.</span>
+<span class="go">6. Sprinkle with Parmesan cheese.</span>
+
+<span class="go">2. Onion and Potato Soup</span>
+
+<span class="go">Ingredients:</span>
+
+<span class="go">-1 large onion, chopped</span>
+<span class="go">-2 cups potatoes, diced</span>
+<span class="go">-3 cups vegetable broth</span>
+<span class="go">-1 cup milk</span>
+<span class="go">-1/4 teaspoon black pepper</span>
+
+<span class="go">Instructions:</span>
+
+<span class="go">1. In a large pot, sauté onions in butter until golden brown.</span>
+<span class="go">2. Add potatoes, vegetable broth, milk, and pepper. Bring to a boil.</span>
+<span class="go">3. Reduce heat and simmer for 10 minutes.</span>
+<span class="go">4. Serve hot.</span>
+
+<span class="go">3. Creamy Onion Soup</span>
+
+<span class="go">Ingredients:</span>
+
+<span class="go">-1 large onion, chopped</span>
+<span class="go">-3 cups vegetable broth</span>
+<span class="go">-1 cup milk</span>
+<span class="go">-1/4 teaspoon black pepper</span>
+<span class="go">-1/4 cup all-purpose flour</span>
+<span class="go">-1/2 cup shredded Parmesan cheese</span>
+
+<span class="go">Instructions:</span>
+
+<span class="go">1. In a large pot, sauté onions in butter until golden brown.</span>
+<span class="go">2. Add vegetable broth, milk, and pepper. Bring to a boil.</span>
+<span class="go">3. Reduce heat and simmer for 10 minutes.</span>
+<span class="go">4. In a small bowl, whisk together flour and Parmesan cheese until smooth.</span>
+<span class="go">5. Add to soup and simmer for an additional 5 minutes, or until soup has thickened.</span>
+</code></pre></div></td></tr></table></div>
+<p>Como você pode ver, todas as receitas com leite foram filtradas. Mas, se você for intolerante à lactose, talvez queira filtrar também as receitas com queijo, então é preciso ser claro.</p>
+<ul>
+<li><strong>Produze uma lista de compras</strong>. Queremos produzir uma lista de compras, considerando o que já temos em casa.</li>
+</ul>
+<p>Para esta funcionalidade, poderíamos tentar resolver tudo em um prompt ou poderíamos dividi-lo em dois prompts. Vamos tentar a última abordagem. Aqui estamos sugerindo adicionar um prompt adicional, mas para que isso funcione, precisamos adicionar o resultado do prompt anterior como contexto para o prompt posterior.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">old_prompt_result</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;Produce a shopping list for the generated recipes and please don&#39;t include ingredients that I already have.&quot;</span>
+
+<span class="n">new_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">old_prompt_result</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">deployment_name</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">new_prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span>
+
+<span class="c1"># print response</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shopping list:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Observe o seguinte:</p>
+<ol>
+<li>
+<p>Nós estamos criando um novo prompt adicionando o resultado do primeiro prompt ao novo prompt:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">new_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">old_prompt_result</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>Nós fizemos uma nova requisição, mas também considerando o número de tokens que solicitamos no primeiro prompt, então desta vez dizemos que <code>max_tokens</code> é 1200.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">deployment_name</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">new_prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Dando uma olhada neste código, chegamos agora à seguinte saída:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">No of recipes (for example, 5: 2</span>
+<span class="go">List of ingredients (for example, chicken, potatoes, and carrots: apple,flour</span>
+<span class="go">Filter (for example, vegetarian, vegan, or gluten-free: sugar</span>
+
+
+<span class="go">- Apple and flour pancakes: 1 cup flour, 1/2 tsp baking powder, 1/2 tsp baking soda, 1/4 tsp salt, 1 tbsp sugar, 1 egg, 1 cup buttermilk or sour milk, 1/4 cup melted butter, 1 Granny Smith apple, peeled and grated</span>
+
+<span class="go">- Apple fritters: 1-1/2 cups flour, 1 tsp baking powder, 1/4 tsp salt, 1/4 tsp baking soda, 1/4 tsp nutmeg, 1/4 tsp cinnamon, 1/4 tsp allspice, 1/4 cup sugar, 1/4 cup vegetable shortening, 1/4 cup milk, 1 egg, 2 cups shredded, peeled apples</span>
+
+<span class="go">Shopping list:</span>
+<span class="go">- Flour, baking powder, baking soda, salt, sugar, egg, buttermilk, butter, apple, nutmeg, cinnamon, allspice</span>
+</code></pre></div></td></tr></table></div>
+</li>
+</ol>
+<h2 id="melhorando-a-nossa-configuracao">Melhorando a nossa configuração<a class="headerlink" href="#melhorando-a-nossa-configuracao" title="Permanent link">&para;</a></h2>
+<p>O que temos até agora é um código que funciona, mas há algumas alterações que devemos fazer para melhorar ainda mais as coisas. Algumas coisas que devemos fazer são:</p>
+<ul>
+<li>
+<p><strong>Separar <code>secrets</code> do código</strong>, como a chave da API. Segredos não pertencem ao código e devem ser armazenados em um local seguro. Para separar segredos do código, podemos usar variáveis de ambiente e bibliotecas como <code>python-dotenv</code> para carregá-los de um arquivo. Veja como isso ficaria no código:</p>
+</li>
+<li>
+<p>Crie um arquivo <code>.env</code> com o seguinte conteúdo:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-...
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>Observação: para o Azure, você precisa definir as seguintes variáveis de ambiente:</p>
+</blockquote>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">OPENAI_API_TYPE</span><span class="o">=</span>azure
+<span class="nv">OPENAI_API_VERSION</span><span class="o">=</span><span class="m">2023</span>-05-15
+<span class="nv">OPENAI_API_BASE</span><span class="o">=</span>&lt;replace&gt;
+</code></pre></div></td></tr></table></div>
+<p>No código, você carregaria as variáveis de ambiente assim:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p><strong>Uma palavra sobre o comprimento do token</strong>. Devemos considerar quantos tokens precisamos para gerar o texto que queremos. Tokens custam dinheiro, então, sempre que possível, devemos tentar ser econômicos com o número de tokens que usamos. Por exemplo, podemos formular o prompt para que possamos usar menos tokens?</p>
+</li>
+</ul>
+<p>Para alterar os tokens usados, você pode usar o parâmetro <code>max_tokens</code>. Por exemplo, se você quiser usar 100 tokens, você faria:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>Experimentando com a temperatura</strong>. A temperatura é algo que não mencionamos até agora. Porém, é um contexto importante para o desempenho de nosso programa. Quanto maior o valor da temperatura, mais aleatório será o resultado. Por outro lado, quanto menor o valor da temperatura, mais previsível será o resultado. Considere se você deseja ou não variação na saída.</li>
+</ul>
+<p>Para alterar a temperatura, você pode usar o parâmetro <code>temperature</code>. Por exemplo, se você quiser usar uma temperatura de 0.5, você faria:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;davinci-002&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>Observação: quanto mais próximo de 1.0, mais variada será a saída.</p>
+</blockquote>
+<h2 id="tarefa">Tarefa<a class="headerlink" href="#tarefa" title="Permanent link">&para;</a></h2>
+<p>Para esta tarefa, você pode escolher o que criar para um aplicativo.</p>
+<p>Aqui estão algumas sugestões:</p>
+<ul>
+<li>Ajuste o aplicativo gerador de receitas para melhorá-lo ainda mais. Brinque com os valores de temperatura e os prompts para ver o que você pode criar.</li>
+<li>
+<p>Crie um "companheiro de estudos". Este aplicativo deve ser capaz de responder a perguntas sobre um tópico. Por exemplo: Python. Você poderia ter prompts como: "O que é um certo tópico em Python?" ou poderia ter um prompt que diz: "Me mostre o código para um certo tópico", etc.</p>
+</li>
+<li>
+<p>Bot de história, faça a história ganhar vida, instrua o bot a interpretar um certo personagem histórico e faça perguntas sobre sua vida e época.</p>
+</li>
+</ul>
+<h2 id="solucao">Solução<a class="headerlink" href="#solucao" title="Permanent link">&para;</a></h2>
+<h3 id="amigo-de-estudo">Amigo de Estudo<a class="headerlink" href="#amigo-de-estudo" title="Permanent link">&para;</a></h3>
+<p>Abaixo está um prompt inicial, veja como você pode usá-lo e ajustá-lo ao seu gosto.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>- &quot;You&#39;re an expert on the Python language
+
+    Suggest a beginner lesson for Python in the following format:
+
+    Format:
+    - concepts:
+    - brief explanation of the lesson:
+    - exercise in code with solutions&quot;
+</code></pre></div></td></tr></table></div>
+<h3 id="bot-de-historia">Bot de História<a class="headerlink" href="#bot-de-historia" title="Permanent link">&para;</a></h3>
+<p>Aqui estão alguns prompts que você pode usar:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>- &quot;You are Abe Lincoln, tell me about yourself in 3 sentences, and respond using grammar and words like Abe would have used&quot;
+- &quot;You are Abe Lincoln, respond using grammar and words like Abe would have used:
+
+   Tell me about your greatest accomplishments, in 300 words&quot;
+</code></pre></div></td></tr></table></div>
+<h2 id="verificacao-de-conhecimento">Verificação de Conhecimento<a class="headerlink" href="#verificacao-de-conhecimento" title="Permanent link">&para;</a></h2>
+<p>What does the concept temperature do?</p>
+<p>O que o conceito de temperatura faz?</p>
+<ol>
+<li>Ele controla o quão aleatória é a saída.</li>
+<li>Ele controla o quão grande é a resposta.</li>
+<li>Ele controla quantos tokens são usados.</li>
+</ol>
+<p>Resposta: 1. Ele controla o quão aleatória é a saída.</p>
+<h2 id="desafio">🚀 Desafio<a class="headerlink" href="#desafio" title="Permanent link">&para;</a></h2>
+<p>When working on the assignment, try to vary the temperature, try set it to 0, 0.5, and 1. Remember that 0 is the least varied and 1 is the most, what value works best for your app?</p>
+<p>Quando estiver trabalhando na tarefa, tente variar a temperatura, tente definir para 0, 0.5 e 1. Lembre-se de que 0 é o menos variado e 1 é o mais, qual valor funciona melhor para o seu aplicativo?</p>
+<h2 id="excelente-trabalho-continue-seu-aprendizado">Excelente trabalho! Continue seu aprendizado<a class="headerlink" href="#excelente-trabalho-continue-seu-aprendizado" title="Permanent link">&para;</a></h2>
+<p>Após concluir esta lição, confira nossa <a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">coleção de aprendizado de IA generativa</a> para continuar a aprimorar seus conhecimentos sobre IA generativa!</p>
+<p>Vamos prosseguir para a Lição 7, onde veremos como <a href="../../../07-building-chat-applications/translations/pt-br/?WT.mc_id=academic-105485-koreyst">criar aplicativos de chat</a>!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

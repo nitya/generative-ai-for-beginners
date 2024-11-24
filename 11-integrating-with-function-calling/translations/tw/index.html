@@ -1,0 +1,1709 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-part curriculum teaching Generative AI from concepts to code">
+      
+      
+        <meta name="author" content="AI Advocacy">
+      
+      
+        <link rel="canonical" href="https://nitya.github.io/generative-ai-for-beginners/11-integrating-with-function-calling/translations/tw/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>與函式呼叫整合 - Generative AI For Beginners</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Generative AI For Beginners" class="md-header__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Generative AI For Beginners
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              與函式呼叫整合
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-course-setup/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01-introduction-to-genai/" class="md-tabs__link">
+          
+  
+  Lessons
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Generative AI For Beginners" class="md-nav__button md-logo" aria-label="Generative AI For Beginners" data-md-component="logo">
+      
+  <img src="../../../img/logo.svg" alt="logo">
+
+    </a>
+    Generative AI For Beginners
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/microsoft/generative-ai-for-beginners" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    microsoft/generative-ai-for-beginners
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-course-setup/SETUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lessons
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lessons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-introduction-to-genai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-exploring-and-comparing-different-llms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Compare LLMs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-using-generative-ai-responsibly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Responsible AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-prompt-engineering-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-advanced-prompts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Advanced Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06-text-generation-apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Text Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-building-chat-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Chat Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../08-building-search-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. Search Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09-building-image-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Image Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10-building-low-code-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. Low Code Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Integrating with11-integrating-with-function-calling/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Function Calling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12-designing-ux-for-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Designing UX for AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../13-securing-ai-applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Securing AI Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../14-the-generative-ai-application-lifecycle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Generative AI App Lifecycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../15-rag-and-vector-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. RAG and Vector Databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../16-open-source-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Open Source Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../17-ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. AI Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../18-fine-tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Fine Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../19-slm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19. Small Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-mistral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20. Mistral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../21-meta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21. Meta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      簡介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      學習目標
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      情境: 使用函式改進我們的聊天機器人
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      為什麼要呼叫函式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      通過情境說明問題
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用函式呼叫的用例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      建立您的第一個函式呼叫
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="建立您的第一個函式呼叫">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1 - 建立訊息
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      步驟 2 - 建立函式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-" class="md-nav__link">
+    <span class="md-ellipsis">
+      步驟 3 - 進行函式呼叫
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      將函式呼叫整合到應用程式中
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="將函式呼叫整合到應用程式中">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      管理流程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      作業
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      很棒的工作！繼續這段旅程
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">與函式呼叫整合<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://aka.ms/gen-ai-lesson11-gh?WT.mc_id=academic-105485-koreyst"><img alt="與函式呼叫整合" src="../../images/11-lesson-banner.png?WT.mc_id=academic-105485-koreyst" /></a></p>
+<p>你在前面的課程中已經學到了不少。然而，我們還可以進一步改進。我們可以解決的一些問題是如何獲得更一致的回應格式，以便更容易處理後續的回應。此外，我們可能想要添加來自其他來源的數據，以進一步豐富我們的應用程式。</p>
+<p>上述提到的問題是本章要解決的。</p>
+<h2 id="_2">簡介<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>本課程將涵蓋:</p>
+<ul>
+<li>解釋什麼是函式呼叫及其使用案例。</li>
+<li>使用 Azure OpenAI 建立函式呼叫。</li>
+<li>如何將函式呼叫整合到應用程式中。</li>
+</ul>
+<h2 id="_3">學習目標<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>完成此課程後，您將能夠：</p>
+<ul>
+<li>解釋使用函式呼叫的目的。</li>
+<li>使用 Azure OpenAI Service 設定函式呼叫。</li>
+<li>為您的應用程式設計有效的函式呼叫用例。</li>
+</ul>
+<h2 id="_4">情境: 使用函式改進我們的聊天機器人<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>這節課中，我們想為我們的教育創業公司建構一個功能，允許用戶使用聊天機器人來查找技術課程。我們將推薦適合他們技能水平、當前角色和感興趣技術的課程。</p>
+<p>要完成此情境，我們將使用以下組合:</p>
+<ul>
+<li><code>Azure OpenAI</code> 用來建立使用者的聊天體驗。</li>
+<li><code>Microsoft Learn Catalog API</code> 幫助使用者根據請求找到課程。</li>
+<li><code>Function Calling</code> 接收使用者的查詢並將其發送到函式以進行 API 請求。</li>
+</ul>
+<p>要開始，我們先來看看為什麼我們一開始會想要使用函式呼叫:</p>
+<h2 id="_5">為什麼要呼叫函式<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>在呼叫函式之前，來自 LLM 的回應是非結構化且不一致的。開發者需要撰寫複雜的驗證程式碼，以確保他們能夠處理每個回應的變化。使用者無法得到像 "斯德哥爾摩目前的天氣如何？" 這樣的答案。這是因為模型僅限於訓練數據的時間。</p>
+<p>函式呼叫是 Azure OpenAI 服務的一項功能，用於克服以下限制:</p>
+<ul>
+<li><strong>一致的回應格式</strong>. 如果我們能更好地控制回應格式，我們可以更容易地將回應整合到其他系統中。</li>
+<li><strong>外部資料</strong>. 能夠在聊天情境中使用應用程式其他來源的資料。</li>
+</ul>
+<h2 id="_6">通過情境說明問題<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>我們建議你使用<a href="../../python/aoai-assignment.ipynb?WT.mc_id=academic-105485-koreyst">內建筆記本</a>如果你想要執行以下場景。你也可以只是閱讀，因為我們正在嘗試說明一個函式可以幫助解決的問題。</p>
+</blockquote>
+<p>讓我們看看說明回應格式問題的範例:</p>
+<p>假設我們想要建立一個學生資料的資料庫，以便我們可以向他們推薦合適的課程。以下是兩個學生的描述，它們所包含的資料非常相似。</p>
+<ol>
+<li>建立與我們的 Azure OpenAI 資源的連接:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">AzureOpenAI</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">AzureOpenAI</span><span class="p">(</span>
+<span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_API_KEY&#39;</span><span class="p">],</span>  <span class="c1"># 這也是預設值，可以省略</span>
+<span class="n">api_version</span> <span class="o">=</span> <span class="s2">&quot;2023-07-01-preview&quot;</span>
+<span class="p">)</span>
+
+<span class="n">deployment</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_OPENAI_DEPLOYMENT&#39;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>下面是一些 Python 程式碼，用於配置我們與 Azure OpenAI 的連接，我們設置了 <code>api_type</code>、<code>api_base</code>、<code>api_version</code> 和 <code>api_key</code>。</p>
+<ol>
+<li>使用變數 <code>student_1_description</code> 和 <code>student_2_description</code> 建立兩個學生描述。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">student_1_description</span><span class="o">=</span><span class="s2">&quot;Emily Johnson 是杜克大學計算機科學專業的二年級學生。她的 GPA 為 3.7。Emily 是大學國際象棋俱樂部和辯論隊的活躍成員。她希望畢業後從事軟體工程師的職業。&quot;</span>
+
+<span class="n">student_2_description</span> <span class="o">=</span> <span class="s2">&quot;Michael Lee 是史丹佛大學計算機科學專業的二年級學生。他的 GPA 為 3.8。Michael 以他的編程技能聞名，是大學機器人俱樂部的活躍成員。他希望在完成學業後從事人工智慧領域的職業。&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>我們希望將上述學生描述發送到 LLM 以解析數據。這些數據可以在我們的應用中使用，並發送到 API 或存儲在資料庫中。</p>
+<ol>
+<li>讓我們建立兩個相同的提示，其中我們指示 LLM 我們感興趣的資訊:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">prompt1</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">請從給定的文本中提取以下資訊並以 JSON 物件返回:</span>
+
+<span class="s1">name</span>
+<span class="s1">major</span>
+<span class="s1">school</span>
+<span class="s1">grades</span>
+<span class="s1">club</span>
+
+<span class="s1">這是要從中提取資訊的文本正文:</span>
+<span class="si">{</span><span class="n">student_1_description</span><span class="si">}</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">prompt2</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">請從給定的文本中提取以下資訊並以 JSON 物件返回:</span>
+
+<span class="s1">name</span>
+<span class="s1">major</span>
+<span class="s1">school</span>
+<span class="s1">grades</span>
+<span class="s1">club</span>
+
+<span class="s1">這是要從中提取資訊的文本正文:</span>
+<span class="si">{</span><span class="n">student_2_description</span><span class="si">}</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p>上述提示指示 LLM 提取資訊並以 JSON 格式返回響應。</p>
+<ol>
+<li>在設定提示和連接到 Azure OpenAI 之後，我們現在將使用 <code>openai.ChatCompletion</code> 將提示發送給 LLM。我們將提示存儲在 <code>messages</code> 變數中，並將角色分配給 <code>user</code>。這是為了模擬用戶向聊天機器人寫消息。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 提示一的回應</span>
+<span class="n">openai_response1</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span>
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">prompt1</span><span class="p">}]</span>
+<span class="p">)</span>
+<span class="n">openai_response1</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+<span class="c1"># 提示二的回應</span>
+<span class="n">openai_response2</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span>
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">prompt2</span><span class="p">}]</span>
+<span class="p">)</span>
+<span class="n">openai_response2</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+</code></pre></div></td></tr></table></div>
+<p>現在我們可以將兩個請求都發送到 LLM，並通過找到它來檢查我們收到的回應，如此 <code>openai_response1['choices'][0]['message']['content']</code>。</p>
+<ol>
+<li>Lastly, we can convert the response to JSON format by calling <code>json.loads</code>:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># Loading the response as a JSON object</span>
+<span class="n">json_response1</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">openai_response1</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="n">json_response1</span>
+</code></pre></div></td></tr></table></div>
+<p>Response 1:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Emily Johnson&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;major&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;computer science&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;school&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Duke University&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;grades&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.7&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;club&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chess Club&quot;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Response 2:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Michael Lee&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;major&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;computer science&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;school&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stanford University&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;grades&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.8 GPA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;club&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Robotics Club&quot;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Even though the prompts are the same and the descriptions are similar, we see values of the <code>Grades</code> property formatted differently as we can sometimes get the format <code>3.7</code> or <code>3.7 GPA</code> for example.</p>
+<p>This result is because the LLM takes unstructured data in the form of the written prompt and returns also unstructured data. We need to have a structured format so that we know what to expect when storing or using this data</p>
+<p>那麼我們如何解決格式問題呢？通過使用函式呼叫，我們可以確保收到結構化的資料。當使用函式呼叫時，LLM 實際上並不會呼叫或執行任何函式。相反，我們為 LLM 建立一個結構來遵循其回應。然後我們使用這些結構化的回應來知道在我們的應用程式中要執行什麼函式。</p>
+<p><img alt="函式流程" src="../../images/Function-Flow.png?WT.mc_id=academic-105485-koreyst" /></p>
+<p>我們可以將從函式返回的內容傳送回 LLM。然後 LLM 將使用自然語言回應來回答使用者的查詢。</p>
+<h2 id="_7">使用函式呼叫的用例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>在許多不同的使用案例中，函式呼叫可以改善您的應用程式，例如:</p>
+<ul>
+<li>
+<p><strong>呼叫外部工具</strong>。聊天機器人非常擅長回答用戶的問題。通過使用函式呼叫，聊天機器人可以使用用戶的消息來完成某些任務。例如，一個學生可以要求聊天機器人「發送電子郵件給我的導師，說我需要更多的幫助」。這可以通過呼叫 <code>send_email(to: string, body: string)</code> 函式來實現。</p>
+</li>
+<li>
+<p><strong>建立 API 或資料庫查詢</strong>。用戶可以使用自然語言查找資訊，這些自然語言會轉換成格式化的查詢或 API 請求。這方面的一個範例可能是一位老師請求「誰是完成了最後一個作業的學生」，這可以呼叫一個名為 <code>get_completed(student_name: string, assignment: int, current_status: string)</code> 的函式。</p>
+</li>
+<li>
+<p><strong>建立結構化資料</strong>。用戶可以使用 LLM 從一段文字或 CSV 中提取重要資訊。例如，一個學生可以將一篇關於和平協議的維基百科文章轉換成 AI 閃卡。這可以通過使用一個名為 <code>get_important_facts(agreement_name: string, date_signed: string, parties_involved: list)</code> 的函式來完成。</p>
+</li>
+</ul>
+<h2 id="_8">建立您的第一個函式呼叫<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>建立函式呼叫的過程包括三個主要步驟:</p>
+<ol>
+<li><strong>呼叫</strong> Chat Completions API 並附上你的函式列表和使用者訊息。</li>
+<li><strong>閱讀</strong>模型的回應以執行動作，即執行函式或 API 呼叫。</li>
+<li><strong>再次呼叫</strong> Chat Completions API 並使用你的函式回應中的資訊來建立對使用者的回應。</li>
+</ol>
+<p><img alt="LLM Flow" src="../../images/LLM-Flow.png?WT.mc_id=academic-105485-koreyst" /></p>
+<h3 id="step-1-">Step 1 - 建立訊息<a class="headerlink" href="#step-1-" title="Permanent link">&para;</a></h3>
+<p>第一步是建立使用者訊息。這可以透過取得文字輸入的值來動態分配，或者你可以在這裡分配一個值。如果這是你第一次使用 Chat Completions API，我們需要定義訊息的<code>role</code>和<code>content</code>。</p>
+<p><code>role</code> 可以是 <code>system</code> (建立規則), <code>assistant</code> (模型) 或 <code>user</code> (最終使用者)。對於函式呼叫, 我們將其指定為 <code>user</code> 和一個範例問題。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">messages</span><span class="o">=</span> <span class="p">[</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;幫我找一個適合初學者學習 Azure 的好課程。&quot;</span><span class="p">}</span> <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>通過分配不同的角色，可以明確地讓LLM知道是系統在說話還是用戶在說話，這有助於建立LLM可以基於此進行建構的對話歷史。</p>
+<h3 id="2-">步驟 2 - 建立函式<a class="headerlink" href="#2-" title="Permanent link">&para;</a></h3>
+<p>接下來，我們將定義一個函式和該函式的參數。我們將只使用一個名為 <code>search_courses</code> 的函式，但你可以建立多個函式。</p>
+<blockquote>
+<p><strong>重要</strong> : 函式包含在系統訊息中給 LLM，並將包含在您可用的 token 數量中。</p>
+</blockquote>
+<p>以下，我們將函式建立為一個項目陣列。每個項目都是一個函式，並具有屬性 <code>name</code>、<code>description</code> 和 <code>parameters</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">函式</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;search_courses&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;根據提供的參數從搜尋索引中檢索課程&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;parameters&quot;</span><span class="p">:{</span>
+         <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;物件&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;properties&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:{</span>
+               <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;學習者的角色 (例如: 開發者、數據科學家、學生等)&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;product&quot;</span><span class="p">:{</span>
+               <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;課程涵蓋的產品 (例如: Azure、Power BI 等)&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;level&quot;</span><span class="p">:{</span>
+               <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;學習者在參加課程前的經驗水平 (例如: 初學者、中級、高級)&quot;</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;required&quot;</span><span class="p">:[</span>
+            <span class="s2">&quot;role&quot;</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>讓我們更詳細地描述每個函式實例:</p>
+<ul>
+<li><code>name</code> - 我們希望呼叫的函式名稱。</li>
+<li><code>description</code> - 這是函式如何運作的描述。這裡重要的是要具體和清晰。</li>
+<li><code>parameters</code> - 你希望模型在其回應中產生的值和格式的列表。參數陣列由項目組成，其中項目具有以下屬性:</li>
+<li><code>type</code> - 屬性將存儲的資料類型。</li>
+<li><code>properties</code> - 模型將用於其回應的具體值列表<ol>
+<li><code>name</code> - 鍵是模型在其格式化回應中使用的屬性名稱，例如, <code>product</code>。</li>
+<li><code>type</code> - 此屬性的資料類型，例如, <code>string</code>。</li>
+<li><code>description</code> - 具體屬性的描述。</li>
+</ol>
+</li>
+</ul>
+<p>還有一個可選屬性 <code>required</code> - 函式呼叫完成所需的必要屬性。</p>
+<h3 id="3-">步驟 3 - 進行函式呼叫<a class="headerlink" href="#3-" title="Permanent link">&para;</a></h3>
+<p>在定義了一個函式之後，我們現在需要將它包含在呼叫 Chat Completion API 中。我們通過在請求中添加 <code>functions</code> 來完成這個操作。在這種情況下 <code>functions=functions</code>。</p>
+<p>還有一個選項可以將 <code>function_call</code> 設定為 <code>auto</code>。這意味著我們將讓 LLM 根據使用者訊息決定應該呼叫哪個函式，而不是由我們自己分配。</p>
+<p>以下是一些程式碼，我們呼叫 <code>ChatCompletion.create</code>，注意我們如何設定 <code>functions=functions</code> 和 <code>function_call="auto"</code>，從而讓 LLM 自行選擇何時呼叫我們提供的函式:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span>
+                                        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+                                        <span class="n">functions</span><span class="o">=</span><span class="n">函式</span><span class="p">,</span>
+                                        <span class="n">function_call</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>回應現在看起來是這樣的:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;角色&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;助手&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;函式呼叫&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;名稱&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_courses&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;參數&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\n  \&quot;角色\&quot;: \&quot;學生\&quot;,\n  \&quot;產品\&quot;: \&quot;Azure\&quot;,\n  \&quot;等級\&quot;: \&quot;初學者\&quot;\n}&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>在這裡我們可以看到函式 <code>search_courses</code> 是如何被呼叫的，以及在 JSON 回應中的 <code>arguments</code> 屬性中列出的參數。</p>
+<p>結論是 LLM 能夠找到數據來適應函式的參數，因為它是從提供給聊天完成呼叫的 <code>messages</code> 參數中的值中提取的。以下是 <code>messages</code> 值的提醒:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">messages</span><span class="o">=</span> <span class="p">[</span> <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;幫我找一個適合初學者學習 Azure 的好課程。&quot;</span><span class="p">}</span> <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>如你所見，<code>student</code>、<code>Azure</code> 和 <code>beginner</code> 從 <code>messages</code> 中提取並設置為函式的輸入。這樣使用函式是一個從提示中提取資訊的好方法，同時也為 LLM 提供結構並具有可重用的功能。</p>
+<p>接下來，我們需要看看如何在我們的應用程式中使用這個。</p>
+<h2 id="_9">將函式呼叫整合到應用程式中<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>在我們測試過來自 LLM 的格式化回應後，現在我們可以將其整合到應用程式中。</p>
+<h3 id="_10">管理流程<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>要將這個整合到我們的應用程式中，讓我們採取以下步驟:</p>
+<ol>
+<li>首先，讓我們呼叫 Open AI 服務並將訊息儲存在一個名為 <code>response_message</code> 的變數中。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">response_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+</code></pre></div></td></tr></table></div>
+<ol>
+<li>現在我們將定義一個函式來呼叫 Microsoft Learn API 以獲取課程列表:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">search_courses</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+  <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://learn.microsoft.com/api/catalog/&quot;</span>
+  <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">role</span><span class="p">,</span>
+     <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="n">product</span><span class="p">,</span>
+     <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="n">level</span>
+  <span class="p">}</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+  <span class="n">modules</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;modules&quot;</span><span class="p">]</span>
+  <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+     <span class="n">title</span> <span class="o">=</span> <span class="n">module</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+     <span class="n">url</span> <span class="o">=</span> <span class="n">module</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>
+     <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">})</span>
+  <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>注意我們現在如何建立一個實際的 Python 函式，並將其對應到 <code>functions</code> 變數中引入的函式名稱。我們還進行了真正的外部 API 呼叫來獲取所需的資料。在這個例子中，我們使用 Microsoft Learn API 來搜尋訓練模組。</p>
+<p>好的，所以我們建立了 <code>函式</code> 變數和相應的 Python 函式，我們如何告訴 LLM 如何將這兩者映射在一起，以便呼叫我們的 Python 函式？</p>
+<ol>
+<li>要查看我們是否需要呼叫一個 Python 函式，我們需要查看 LLM 的回應，看看 <code>function_call</code> 是否是其中的一部分並呼叫指出的函式。以下是您可以進行檢查的方式：</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 檢查模型是否想要呼叫函式</span>
+<span class="k">if</span> <span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;推薦的函式呼叫:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">()</span>
+
+ <span class="c1"># 呼叫函式。</span>
+ <span class="n">function_name</span> <span class="o">=</span> <span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">name</span>
+
+ <span class="n">available_functions</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="s2">&quot;search_courses&quot;</span><span class="p">:</span> <span class="n">search_courses</span><span class="p">,</span>
+ <span class="p">}</span>
+ <span class="n">function_to_call</span> <span class="o">=</span> <span class="n">available_functions</span><span class="p">[</span><span class="n">function_name</span><span class="p">]</span>
+
+ <span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+ <span class="n">function_response</span> <span class="o">=</span> <span class="n">function_to_call</span><span class="p">(</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;函式呼叫的輸出:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">function_response</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">function_response</span><span class="p">))</span>
+
+
+ <span class="c1"># 將助手回應和函式回應添加到訊息中</span>
+ <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="c1"># 將助手回應添加到訊息中</span>
+     <span class="p">{</span>
+         <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">response_message</span><span class="o">.</span><span class="n">role</span><span class="p">,</span>
+         <span class="s2">&quot;function_call&quot;</span><span class="p">:</span> <span class="p">{</span>
+             <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+             <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">arguments</span><span class="p">,</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="kc">None</span>
+     <span class="p">}</span>
+ <span class="p">)</span>
+ <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="c1"># 將函式回應添加到訊息中</span>
+     <span class="p">{</span>
+         <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;function&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">function_name</span><span class="p">,</span>
+         <span class="s2">&quot;content&quot;</span><span class="p">:</span><span class="n">function_response</span><span class="p">,</span>
+     <span class="p">}</span>
+ <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>這三行確保我們提取函式名稱、參數並進行呼叫：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">function_to_call</span> <span class="o">=</span> <span class="n">available_functions</span><span class="p">[</span><span class="n">function_name</span><span class="p">]</span>
+
+<span class="n">function_args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_message</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">arguments</span><span class="p">)</span>
+<span class="n">function_response</span> <span class="o">=</span> <span class="n">function_to_call</span><span class="p">(</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>以下是執行我們程式碼的輸出：</p>
+<p><strong>輸出</strong></p>
+<p>```推薦的函式呼叫:
+   {
+     "name": "search_courses",
+     "arguments": "{\n  \"role\": \"student\",\n  \"product\": \"Azure\",\n  \"level\": \"beginner\"\n}"
+   }</p>
+<p>函式呼叫的輸出:
+   [{'title': 'Describe concepts of cryptography', 'url': 'https://learn.microsoft.com/training/modules/describe-concepts-of-cryptography/?WT.mc_id=api_CatalogApi'}, {'title': 'Introduction to audio classification with TensorFlow', 'url': 'https://learn.microsoft.com/en-us/training/modules/intro-audio-classification-tensorflow/?WT.mc_id=api_CatalogApi'}, {'title': 'Design a Performant Data Model in Azure SQL Database with Azure Data Studio', 'url': 'https://learn.microsoft.com/training/modules/design-a-data-model-with-ads/?WT.mc_id=api_CatalogApi'}, {'title': 'Getting started with the Microsoft Cloud Adoption Framework for Azure', 'url': 'https://learn.microsoft.com/training/modules/cloud-adoption-framework-getting-started/?WT.mc_id=api_CatalogApi'}, {'title': 'Set up the Rust development environment', 'url': 'https://learn.microsoft.com/training/modules/rust-set-up-environment/?WT.mc_id=api_CatalogApi'}]
+   <class 'str'>
+   ```</p>
+<ol>
+<li>現在我們將更新的訊息 <code>messages</code> 發送給 LLM，以便我們可以收到自然語言回應，而不是 API JSON 格式的回應。</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;下一個請求中的訊息:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="n">second_response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+   <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+   <span class="n">model</span><span class="o">=</span><span class="n">deployment</span><span class="p">,</span>
+   <span class="n">function_call</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+   <span class="n">functions</span><span class="o">=</span><span class="n">functions</span><span class="p">,</span>
+   <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span>
+      <span class="p">)</span>  <span class="c1"># 從 GPT 獲取新的回應，它可以看到函式回應</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">second_response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>輸出</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
+  <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;我找到了一些適合初學者學習 Azure 的好課程:</span><span class="se">\n\n</span><span class="s2">1. [Describe concepts of cryptography](https://learn.microsoft.com/training/modules/describe-concepts-of-cryptography/?WT.mc_id=api_CatalogApi)</span><span class="se">\n</span><span class="s2">2. [Introduction to audio classification with TensorFlow](https://learn.microsoft.com/training/modules/intro-audio-classification-tensorflow/?WT.mc_id=api_CatalogApi)</span><span class="se">\n</span><span class="s2">3. [Design a Performant Data Model in Azure SQL Database with Azure Data Studio](https://learn.microsoft.com/training/modules/design-a-data-model-with-ads/?WT.mc_id=api_CatalogApi)</span><span class="se">\n</span><span class="s2">4. [Getting started with the Microsoft Cloud Adoption Framework for Azure](https://learn.microsoft.com/training/modules/cloud-adoption-framework-getting-started/?WT.mc_id=api_CatalogApi)</span><span class="se">\n</span><span class="s2">5. [Set up the Rust development environment](https://learn.microsoft.com/training/modules/rust-set-up-environment/?WT.mc_id=api_CatalogApi)</span><span class="se">\n\n</span><span class="s2">你可以點擊連結來訪問這些課程。&quot;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_11">作業<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>為了繼續學習 Azure OpenAI 函式呼叫，你可以建構:</p>
+<ul>
+<li>更多函式的參數可能幫助學習者找到更多課程。</li>
+<li>建立另一個函式呼叫，從學習者那裡獲取更多資訊，例如他們的母語</li>
+<li>當函式呼叫和/或 API 呼叫未返回任何合適的課程時，建立錯誤處理</li>
+</ul>
+<p>提示: 請參考<a href="https://learn.microsoft.com/training/support/catalog-api-developer-reference?WT.mc_id=academic-105485-koreyst">Learn API 參考文件</a>頁面，了解這些資料的可用方式和位置。</p>
+<h2 id="_12">很棒的工作！繼續這段旅程<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>完成本課程後，請查看我們的<a href="https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst">生成式 AI 學習集合</a>以繼續提升您的生成式 AI 知識！</p>
+<p>前往第12課，我們將探討如何<a href="../../../12-designing-ux-for-ai-applications/translations/tw/?WT.mc_id=academic-105485-koreyst">為 AI 應用設計 UX</a>！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - present Microsoft
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.expand", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "navigation.footer", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
