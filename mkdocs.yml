@@ -86,8 +86,23 @@ theme:
 # Extras  ...............................................
 extra:
   generator: false
-#  alternate:
-#  Check this for localization 
+  alternate:
+    - name: English
+      link: / 
+      lang: en
+    - name: Chinese
+      link: /translations/cn 
+      lang: cn
+    - name: Japanese
+      link: /translations/ja-jp 
+      lang: ja
+    - name: Korean
+      link: /translations/ko
+      lang: ko
+    - name: Portuguese
+      link: /translations/pt-br 
+      lang: pt
+#  Check this for localization guidance
 #  https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/?h=language#site-language-selector
 
 # Plugins  ...............................................
